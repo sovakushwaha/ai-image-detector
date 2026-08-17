@@ -1,0 +1,123 @@
+controlled_v1 processing report
+===============================
+
+This dataset is a bias-mitigated / controlled representation.
+It is not unbiased, bias-free, or leakage-free.
+
+processing_version: controlled_v1
+RESIZE_SHORT_SIDE = 256
+FINAL_SIZE = 224
+JPEG_QUALITY = 96
+JPEG_SUBSAMPLING = 0  (4:4:4)
+
+1. Number processed
+   4000
+
+2. Number failed
+   0
+
+3. Alpha-channel findings (ADM, before RGB conversion)
+   ADM images: 286
+   min alpha: 255
+   max alpha: 255
+   fully opaque images: 286
+   images containing transparency: 0
+   transparent pixels: 0 / 18743296
+   fraction transparent: 0.0
+   All ADM alpha channels were fully opaque, so RGBA → RGB was used.
+
+4. Original format distribution
+format
+JPEG    2000
+PNG     2000
+
+5. Processed format distribution
+{'JPEG': 4000}
+
+6. Original size distributions
+Width by label:
+        count     mean      std    min     25%    50%    75%     max
+label                                                               
+0      2000.0  492.740  169.136   75.0  492.75  500.0  500.0  2531.0
+1      2000.0  420.608  279.896  128.0  256.00  256.0  512.0  1024.0
+
+Height by label:
+        count     mean      std    min    25%    50%    75%     max
+label                                                              
+0      2000.0  390.622  138.217   49.0  333.0  375.0  434.0  2953.0
+1      2000.0  420.608  279.896  128.0  256.0  256.0  512.0  1024.0
+
+7. Processed size distribution
+{'224x224': 4000}
+
+8. Original aspect-ratio differences
+        count   mean    std   min    25%    50%    75%    max
+label                                                        
+0      2000.0  1.303  0.287  0.42  1.258  1.333  1.497  4.032
+1      2000.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+
+9. Processed aspect ratio
+   All successfully processed images are 224×224, so aspect ratio = 1.0.
+
+10. Original modes
+image_mode
+RGB     3704
+RGBA     286
+L         10
+
+11. Processed modes
+{'RGB': 4000}
+
+12. Processed duplicate findings (SHA-256 of JPEG bytes)
+   duplicate groups: 0
+   files in those groups: 0
+   cross-label groups: 0
+   cross-generator groups: 0
+   No groups were deleted automatically.
+
+Validation flags
+   all JPEG: True
+   all RGB: True
+   all 224×224: True
+   missing processed files: 0
+   unreadable processed files: 0
+   unexpected alpha: 0
+   processed label counts: {0: 2000, 1: 2000}
+   processed generator counts: {'Real': 2000, 'ADM': 286, 'BigGAN': 286, 'GLIDE': 286, 'Midjourney': 286, 'SD15': 286, 'VQDM': 285, 'Wukong': 285}
+
+KNOWN BIASES MITIGATED
+----------------------
+These are mitigations of *known visible* shortcuts, not a claim that
+the representation is unbiased.
+
+- Explicit file-format difference: original Real=JPEG and AI=PNG.
+  Every controlled_v1 file is re-encoded as JPEG quality 96.
+- Visible image dimensions: original AI sizes were generator-specific
+  squares (128/256/512/1024) while Real sizes varied. Every
+  controlled_v1 file is 224×224.
+- Visible aspect ratio: original AI images were all square and Real
+  images were mostly not. Centre-crop after shortest-side resize
+  removes that cue from the stored pixels. Direct stretch-to-square
+  was avoided because it would geometrically distort Real images.
+  Padding was avoided because almost only Real images would receive
+  borders, which could itself become a shortcut.
+- Channel-count difference: original ADM was RGBA and 10 Real images
+  were grayscale. Every controlled_v1 file is RGB.
+
+RESIDUAL / UNRESOLVED RISKS
+---------------------------
+- Real images were originally JPEG and may retain previous compression
+  artifacts. A shared final JPEG encode does NOT guarantee complete
+  removal of earlier JPEG traces. Compression bias is not claimed to
+  be eliminated.
+- Original generator resolution may leave different resampling artifacts
+  (BigGAN 128→256 vs Midjourney 1024→256, then crop to 224).
+- Content distribution cannot be perfectly verified from official
+  Tiny-GenImage metadata.
+- True source IDs are unavailable, so source-safe splits are still not
+  guaranteed by metadata.
+- Preprocessing cannot guarantee removal of all generator-specific
+  shortcuts (frequency traces, texture, semantic content, and so on).
+
+Raw originals remain under data/raw/ for later RAW vs controlled_v1
+comparisons using the same split assignments.

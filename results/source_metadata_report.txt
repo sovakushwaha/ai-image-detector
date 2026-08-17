@@ -1,0 +1,41 @@
+Tiny-GenImage source metadata report
+====================================
+
+Official parquet columns found in the downloaded shards:
+Inspected shard: train-00000-of-00014.parquet
+image: struct<bytes: binary, path: string>
+  child 0, bytes: binary
+  child 1, path: string
+label: int64
+generator: int64
+-- schema metadata --
+huggingface: '{"info": {"features": {"image": {"_type": "Image"}, "label"' + 186
+
+Hugging Face feature metadata:
+{"info": {"features": {"image": {"_type": "Image"}, "label": {"names": ["real", "fake"], "_type": "ClassLabel"}, "generator": {"names": ["Real", "ADM", "BigGAN", "GLIDE", "Midjourney", "SD14", "SD15", "VQDM", "Wukong"], "_type": "ClassLabel"}}}}
+
+Official fields present:
+- image.bytes  (raw file bytes)
+- image.path   (original filename string)
+- label        (0=real, 1=fake)
+- generator    (class index: Real, ADM, BigGAN, GLIDE, Midjourney, SD14, SD15, VQDM, Wukong)
+
+Official fields NOT present:
+- original sample ID / source_id
+- ImageNet class name
+- class index as a dedicated column
+- category
+- prompt
+- source image ID
+- seed
+- URL
+- parent/source reference
+
+We already preserved image.path as original_filename in metadata/download_manifest.csv. No official parquet field was dropped.
+
+Filename-derived clues (NOT official source IDs):
+- Real filenames match ImageNet style, e.g. n01440764_11602.JPEG. The n######## token looks like a WordNet/ImageNet synset. This is parsed from the filename only.
+- Some AI filenames start with an integer (ADM, BigGAN, Midjourney, SD15, Wukong). That integer may be a class index, but Tiny-GenImage does not document it as a dataset field.
+- GLIDE/VQDM filenames look like GLIDE_1000_200_00_001_glide_00086.png. Tokens after '00_' may be class/sample numbers, but this is uncertain.
+
+Do not treat parsed filename tokens as invented source_id values. They are recorded separately as filename-derived metadata.

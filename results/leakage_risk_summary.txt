@@ -1,0 +1,92 @@
+Leakage-risk summary (pilot subset)
+===================================
+
+Language note: close perceptual hashes are candidate near-duplicates
+requiring manual inspection. They do not by themselves prove leakage.
+
+1. Exact SHA-256 duplicate groups
+   0 (from Stage 3; no byte-identical files).
+
+2. pHash distance = 0 candidates
+   0 pairs. Very strong visual-similarity candidates.
+
+3. pHash distance <= 4 candidates
+   0 pairs. Strict near-duplicate candidates.
+
+4. pHash distance <= 8 candidates
+   4 pairs. Broader similarity candidates. Threshold is diagnostic only.
+
+5. Real ↔ AI candidates (pHash <= 8)
+   2 pairs. These are the most important to inspect by hand,
+   because a later split could place similar content in both classes
+   or leak the same scene across train and test.
+
+6. Cross-generator AI candidates (pHash <= 8)
+   0 pairs. These could indicate shared source content or a
+   generator-independent visual template.
+
+Category counts at pHash <= 8:
+   A Real ↔ Real: 0
+   B AI ↔ AI same generator: 2
+   C AI ↔ AI different generators: 0
+   D Real ↔ AI: 2
+
+7. Source IDs
+   Official source_id / parent image ID: unavailable.
+   original_filename (from parquet image.path): available and already stored.
+
+8. Semantic/class metadata
+   Official class/category field: unavailable.
+   Content-class balance cannot be verified from available official metadata.
+
+Content-class / semantic metadata
+---------------------------------
+
+Official ImageNet class/category columns are unavailable.
+The notes below use filename tokens only.
+
+Real images with a parsed ImageNet-style synset: 2000/2000
+Unique parsed Real synsets: 154
+Most common parsed Real synsets:
+filename_imagenet_synset
+n01944390    27
+n01698640    23
+n01855672    23
+n01873310    23
+n01847000    22
+n01871265    22
+n01978455    22
+n01980166    22
+n01664065    21
+n01910747    20
+
+AI filename leading-index counts (unconfirmed class indices):
+- ADM: parsed 286/286, unique values 126
+- BigGAN: parsed 286/286, unique values 135
+- GLIDE: parsed 190/286, unique values 87
+- Midjourney: parsed 286/286, unique values 119
+- SD15: parsed 286/286, unique values 127
+- VQDM: parsed 176/285, unique values 82
+- Wukong: parsed 285/285, unique values 123
+
+Content-class balance cannot be verified from available official metadata.
+We did not map synsets to names with an extra model or external class list in this stage, because the official dataset schema does not include class labels.
+
+9. Anything suspicious
+   Real ↔ AI perceptual-hash candidates exist. These require manual review before split design. This does not prove leakage.
+
+10. Recommended manual review
+   - All pHash distance 0 pairs, if any.
+   - Real ↔ AI candidates, smallest distances first.
+   - Cross-generator AI candidates, smallest distances first.
+   Contact sheets are under figures/near_duplicates/.
+
+Important scientific limitation
+-------------------------------
+Perceptual hashing can identify some visually similar images but cannot guarantee detection of all source-content overlap.
+It may miss:
+- substantial crops
+- large transformations
+- semantically related recreations
+- heavily altered images
+Therefore this is an additional leakage check, not proof that the dataset contains no leakage.
