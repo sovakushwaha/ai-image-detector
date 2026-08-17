@@ -1,0 +1,100 @@
+Handcrafted features v1 report
+==============================
+
+feature_version: handcrafted_features_v1
+CANNY_LOW = 100
+CANNY_HIGH = 200
+LOW_FREQUENCY_RADIUS_FRACTION = 0.1
+
+Saturation: OpenCV RGB→HSV, mean of S/255.
+Sharpness: variance of Laplacian(grayscale uint8).
+Entropy: Shannon entropy of 256-bin grayscale histogram, log2, zero bins ignored.
+High-frequency ratio: mean-centred luminance FFT power outside a centred
+circle of radius 0.10 × min(H, W).
+
+rows: 1832
+train: 1376
+validation: 456
+
+Assertions passed
+-----------------
+- exactly 1832 rows
+- exactly 1376 train rows
+- exactly 456 validation rows
+- exactly 13 predictive feature columns
+- no NaN feature values
+- no infinite feature values
+- no missing image IDs
+- no duplicate image IDs
+- no known_test rows
+- no unseen_test rows
+- labels remain 0/1
+- expected class counts remain correct
+
+TRAIN descriptive statistics
+----------------------------------------
+                           min           max         mean          std      median
+mean_brightness       0.033554      0.887259     0.455732     0.111057    0.450912
+std_brightness        0.018193      0.391216     0.191549     0.057713    0.189105
+mean_red              0.001570      0.913114     0.470955     0.134406    0.475796
+mean_green            0.037046      0.893492     0.460433     0.117701    0.455777
+mean_blue             0.030382      0.975574     0.391595     0.151086    0.374132
+std_red               0.002943      0.426933     0.201290     0.062890    0.199019
+std_green             0.028617      0.390515     0.196469     0.059348    0.192403
+std_blue              0.025456      0.440382     0.194788     0.066175    0.187963
+mean_saturation       0.000000      0.998412     0.362708     0.177787    0.342610
+edge_density          0.000000      0.368164     0.126299     0.084257    0.109096
+sharpness             1.168208  29156.415372  1927.994358  2564.155922  953.839988
+entropy               2.540993      7.919770     7.072023     0.688682    7.246165
+high_frequency_ratio  0.006432      0.780215     0.145048     0.116200    0.111536
+
+VALIDATION descriptive statistics
+----------------------------------------
+                           min           max         mean          std      median
+mean_brightness       0.058502      0.845193     0.453540     0.117140    0.449969
+std_brightness        0.023590      0.373472     0.192577     0.057464    0.192042
+mean_red              0.001001      0.850009     0.457646     0.143945    0.470914
+mean_green            0.058600      0.846841     0.460733     0.124199    0.450100
+mean_blue             0.023312      0.999093     0.405732     0.177687    0.378736
+std_red               0.001897      0.388829     0.199279     0.064308    0.199133
+std_green             0.026436      0.387493     0.198744     0.059201    0.197841
+std_blue              0.001833      0.385296     0.196137     0.067086    0.193240
+mean_saturation       0.005684      0.998969     0.368719     0.196193    0.339852
+edge_density          0.000000      0.358797     0.125948     0.086078    0.110571
+sharpness             1.899110  15056.105256  1885.116481  2376.582722  958.661018
+entropy               3.477676      7.957520     7.046369     0.795280    7.283105
+high_frequency_ratio  0.008006      0.501233     0.141147     0.109100    0.107395
+
+Constant / nearly-constant check (TRAIN)
+----------------------------------------
+mean_brightness: unique=1376, std=0.111017, range=0.853705 [varies]
+std_brightness: unique=1376, std=0.0576925, range=0.373023 [varies]
+mean_red: unique=1376, std=0.134357, range=0.911544 [varies]
+mean_green: unique=1376, std=0.117658, range=0.856446 [varies]
+mean_blue: unique=1376, std=0.151031, range=0.945192 [varies]
+std_red: unique=1376, std=0.0628675, range=0.423991 [varies]
+std_green: unique=1376, std=0.0593267, range=0.361898 [varies]
+std_blue: unique=1376, std=0.0661511, range=0.414927 [varies]
+mean_saturation: unique=1372, std=0.177722, range=0.998412 [varies]
+edge_density: unique=1311, std=0.084226, range=0.368164 [varies]
+sharpness: unique=1376, std=2563.22, range=29155.2 [varies]
+entropy: unique=1376, std=0.688432, range=5.37878 [varies]
+high_frequency_ratio: unique=1376, std=0.116158, range=0.773784 [varies]
+
+TRAIN Real vs AI separation (diagnostic, not a trained model)
+-------------------------------------------------------------
+mean_brightness: Real mean=0.4477, AI mean=0.4638, Cohen_d=0.145
+std_brightness: Real mean=0.1972, AI mean=0.1859, Cohen_d=-0.195
+mean_red: Real mean=0.462, AI mean=0.4799, Cohen_d=0.133
+mean_green: Real mean=0.4522, AI mean=0.4687, Cohen_d=0.141
+mean_blue: Real mean=0.3872, AI mean=0.396, Cohen_d=0.059
+std_red: Real mean=0.207, AI mean=0.1955, Cohen_d=-0.184
+std_green: Real mean=0.2017, AI mean=0.1913, Cohen_d=-0.176
+std_blue: Real mean=0.2005, AI mean=0.1891, Cohen_d=-0.173
+mean_saturation: Real mean=0.3528, AI mean=0.3726, Cohen_d=0.111
+edge_density: Real mean=0.1509, AI mean=0.1017, Cohen_d=-0.610
+sharpness: Real mean=2777, AI mean=1079, Cohen_d=-0.702
+entropy: Real mean=7.178, AI mean=6.966, Cohen_d=-0.312
+high_frequency_ratio: Real mean=0.1735, AI mean=0.1166, Cohen_d=-0.505
+
+A large Real/AI difference on controlled_v1 is not proof of an AI forensic signature. It may still reflect residual JPEG traces, generator artefacts, content differences, or resampling artefacts.

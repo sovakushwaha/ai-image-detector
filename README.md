@@ -39,14 +39,12 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 6: generator-aware splits are locked (`generator_protocol_v1`).
+Stage 7: 13 handcrafted development features have been extracted from `controlled_v1` train and validation only.
 
-`known_test` and `unseen_test` must not be used for development decisions.
+`known_test` and `unseen_test` were not opened. No model has been trained.
 
-No features have been extracted. No model has been trained.
-
-To recreate the same assignments:
+To recreate the feature table:
 
 ```bash
-python src/create_split_v1.py
+python src/extract_handcrafted_features.py
 ```
