@@ -39,10 +39,14 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-A bias-mitigated copy of the pilot set (`controlled_v1`) has been built. No train/test split yet, and no model has been trained.
+Stage 6: generator-aware splits are locked (`generator_protocol_v1`).
 
-Rebuild that representation with:
+`known_test` and `unseen_test` must not be used for development decisions.
+
+No features have been extracted. No model has been trained.
+
+To recreate the same assignments:
 
 ```bash
-python src/build_controlled_v1.py
+python src/create_split_v1.py
 ```
