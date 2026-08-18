@@ -1,0 +1,64 @@
+Logistic Regression Threshold Selection V1
+============================================
+
+Why threshold selection was performed on validation
+---------------------------------------------------
+The selected model (logreg_handcrafted_selected_v1, C=1.0) was frozen after
+a validation-only regularisation study. Threshold selection must also use
+validation data only so that test sets remain untouched for later evaluation.
+
+Why test sets were not used
+---------------------------
+known_test and unseen_test are locked. Using them for threshold selection
+would leak test information into model development and invalidate later
+generalisation claims.
+
+Validation ROC-AUC (threshold-independent): 0.736688
+Validation Average Precision (threshold-independent): 0.726477
+
+Default threshold metrics (reference operating point)
+DEFAULT_THRESHOLD = 0.5
+Accuracy: 0.653509
+Balanced Accuracy: 0.653509
+Precision: 0.623239
+Recall: 0.776316
+Specificity: 0.530702
+F1: 0.691406
+False Positive Rate: 0.469298
+TN=121 FP=107 FN=51 TP=177
+
+Selected Youden threshold
+VALIDATION_YOUDEN_THRESHOLD = 0.567152
+Youden J = 0.412281
+
+Selected-threshold metrics
+Accuracy: 0.706140
+Balanced Accuracy: 0.706140
+Precision: 0.723810
+Recall: 0.666667
+Specificity: 0.745614
+F1: 0.694064
+False Positive Rate: 0.254386
+TN=170 FP=58 FN=76 TP=152
+
+Change compared with default threshold 0.50
+FP change: -49
+FN change: +25
+
+Generator-specific validation AI recall at Youden threshold (diagnostic)
+generator  ai_samples  correctly_detected_ai  ai_recall
+      ADM          57                     35   0.614035
+   BigGAN          57                     53   0.929825
+    GLIDE          57                     53   0.929825
+     SD15          57                     11   0.192982
+
+Interpretation note
+This threshold provides a validation-selected balanced operating point for
+Baseline V1. Deployment-oriented thresholding will be investigated later
+using calibration and selective prediction.
+
+Test-set lock confirmation
+known_test images opened: 0
+unseen_test images opened: 0
+known_test features accessed: 0
+unseen_test features accessed: 0

@@ -39,12 +39,11 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 8: the first classical baseline (`logreg_handcrafted_v1`) has been trained on train and evaluated on validation only.
+The classical baseline is frozen (`logreg_handcrafted_selected_v1`, C=1.0). A validation-only Youden threshold was chosen, then the locked `known_test` and `unseen_test` splits were scored once.
 
-`known_test` and `unseen_test` were not used. No hyperparameter tuning was performed.
-
-To retrain this baseline:
+To recreate the final evaluation:
 
 ```bash
-python src/train_logistic_baseline_v1.py
+python src/extract_test_features_v1.py
+python src/evaluate_logreg_frozen_baseline_v1.py
 ```
