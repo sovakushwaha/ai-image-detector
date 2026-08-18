@@ -1,0 +1,17 @@
+{
+  "model_version": "logreg_handcrafted_selected_v1",
+  "selected_C": 1.0,
+  "solver": "lbfgs",
+  "max_iter": 2000,
+  "feature_version": "handcrafted_features_v1",
+  "representation_version": "controlled_v1",
+  "split_protocol": "generator_protocol_v1",
+  "selection_metric": "validation_roc_auc",
+  "selection_rule": "Primary: highest validation ROC-AUC. If ROC-AUC within 0.002, prefer higher Average Precision. If AP also within 0.002, prefer smaller C.",
+  "selection_reason": "C=1.0 was chosen because ROC-AUC and Average Precision were both tied within tolerance, so the smaller C was selected.",
+  "threshold_diagnostic_only": 0.5,
+  "known_test_features_accessed": 0,
+  "unseen_test_features_accessed": 0,
+  "known_test_images_opened": 0,
+  "unseen_test_images_opened": 0
+}

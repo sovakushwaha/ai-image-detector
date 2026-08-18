@@ -39,12 +39,12 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 7: 13 handcrafted development features have been extracted from `controlled_v1` train and validation only.
+Stage 8: the first classical baseline (`logreg_handcrafted_v1`) has been trained on train and evaluated on validation only.
 
-`known_test` and `unseen_test` were not opened. No model has been trained.
+`known_test` and `unseen_test` were not used. No hyperparameter tuning was performed.
 
-To recreate the feature table:
+To retrain this baseline:
 
 ```bash
-python src/extract_handcrafted_features.py
+python src/train_logistic_baseline_v1.py
 ```
