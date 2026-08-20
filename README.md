@@ -39,11 +39,10 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-The classical baseline is frozen (`logreg_handcrafted_selected_v1`, C=1.0). A validation-only Youden threshold was chosen, then the locked `known_test` and `unseen_test` splits were scored once.
+The classical baseline is frozen (`logreg_handcrafted_selected_v1`, C=1.0). Stage 12 adds a CNN data pipeline and `SmallCNNV1` architecture check: train-only RGB normalisation, one forward pass, and BCE loss with no training or test-set access.
 
-To recreate the final evaluation:
+To verify the CNN pipeline:
 
 ```bash
-python src/extract_test_features_v1.py
-python src/evaluate_logreg_frozen_baseline_v1.py
+python src/verify_cnn_pipeline_v1.py
 ```

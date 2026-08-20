@@ -1,0 +1,40 @@
+CNN Pipeline Verification V1
+============================
+
+1. Python version: 3.12.13
+2. torch version: 2.13.0
+3. torchvision version: 0.28.0
+4. operating system: Darwin 25.5.0 (arm64)
+5. selected device: mps
+6. random seed: 42
+7. train images: 1376
+8. validation images: 456
+9. batch size: 32
+10. train RGB means: R=0.47095534, G=0.46043337, B=0.39159461
+11. train RGB stds: R=0.25004397, G=0.23656553, B=0.25520343
+12. model architecture: SmallCNNV1 (Conv16-BN-ReLU-Pool → Conv32-BN-ReLU-Pool → Conv64-BN-ReLU-Pool → AdaptiveAvgPool → Linear(64→1 logit); no sigmoid in forward)
+13. total parameters: 23873
+14. trainable parameters: 23873
+15. train batch shape: (32, 3, 224, 224)
+16. validation batch shape: (32, 3, 224, 224)
+17. output logit shape: (32, 1)
+18. initial BCEWithLogitsLoss: 0.69825745
+19. confirmation no backward pass occurred: True
+20. confirmation no optimizer update occurred: True
+21. confirmation tests remained untouched: known_test images opened = 0; unseen_test images opened = 0
+
+Normalisation note
+------------------
+Channel statistics are estimated from the training data only so
+validation and test distributions do not influence preprocessing
+parameters. This is analogous to fitting StandardScaler only on
+X_train in the classical ML experiment.
+
+Loss note
+---------
+Training will use BCEWithLogitsLoss, which expects raw logits.
+Therefore SmallCNNV1.forward() does not apply sigmoid.
+Later evaluation will use: probability = torch.sigmoid(logit).
+
+This stage did NOT train the CNN.
+No epochs, learning-rate search, ROC-AUC, or test evaluation.

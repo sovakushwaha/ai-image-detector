@@ -1,0 +1,13 @@
+{
+  "representation": "controlled_v1",
+  "source_split": "train",
+  "sample_count": 1376,
+  "pixel_count": 69042176,
+  "mean_R": 0.47095533508870246,
+  "mean_G": 0.4604333704662004,
+  "mean_B": 0.39159461045502286,
+  "std_R": 0.2500439713333525,
+  "std_G": 0.23656553066140032,
+  "std_B": 0.25520343023426956,
+  "note": "Channel statistics are estimated from the training data only so validation and test distributions do not influence preprocessing parameters. This is analogous to fitting StandardScaler only on X_train in the classical ML experiment."
+}

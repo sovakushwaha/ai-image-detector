@@ -23,3 +23,8 @@ pyarrow==25.0.1
 # Stage 4 near-duplicate audit
 imagehash==4.3.2
 PyWavelets==1.9.0
+
+# Stage 12 CNN pipeline (macOS arm64 / MPS; no CUDA)
+# Installed via: pip install torch torchvision
+torch==2.13.0
+torchvision==0.28.0
