@@ -1,0 +1,5 @@
+generator,ai_samples,correctly_detected_ai,ai_recall
+ADM,57,46,0.8070175438596491
+BigGAN,57,57,1.0
+GLIDE,57,56,0.9824561403508771
+SD15,57,18,0.3157894736842105

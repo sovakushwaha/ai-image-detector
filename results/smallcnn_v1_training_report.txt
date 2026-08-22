@@ -1,0 +1,85 @@
+SmallCNNV1 Training Report — Stage 13
+======================================
+
+EXPERIMENT
+- experiment ID: smallcnn_v1_baseline
+- model: SmallCNNV1
+- seed: 42
+- device: mps
+- Python: 3.12.13
+- torch: 2.13.0
+- torchvision: 0.28.0
+- OS: Darwin 25.5.0 (arm64)
+
+DATA
+- representation: controlled_v1
+- split protocol: generator_protocol_v1
+- train count: 1376
+- validation count: 456
+- confirmation test sets were not accessed: YES
+- train RGB mean: R=0.47095534, G=0.46043337, B=0.39159461
+- train RGB std: R=0.25004397, G=0.23656553, B=0.25520343
+
+MODEL
+- total parameters: 23873
+- trainable parameters: 23873
+
+TRAINING CONFIGURATION
+- optimizer: AdamW
+- learning rate: 0.001
+- weight decay: 0.0001
+- batch size: 32
+- epochs: 30
+- loss: BCEWithLogitsLoss
+- augmentation: none
+- scheduler: none
+- early stopping: none
+- class weighting: none
+
+BEST VALIDATION EPOCH (checkpoint selection rule)
+1. highest validation ROC-AUC
+2. if tied, higher validation AP
+3. if tied, lower validation loss
+4. if tied, earlier epoch
+
+- epoch: 30
+- train loss: 0.427494
+- validation loss: 0.475274
+- validation ROC-AUC: 0.857148
+- validation AP: 0.867749
+- validation accuracy @ 0.50: 0.769737
+- validation balanced accuracy @ 0.50: 0.769737
+- validation precision @ 0.50: 0.786047
+- validation recall @ 0.50: 0.741228
+- validation specificity @ 0.50: 0.798246
+- validation F1 @ 0.50: 0.762980
+- confusion matrix @ 0.50: TN=182 FP=46 FN=59 TP=169
+
+FINAL EPOCH
+- epoch: 30
+- train loss: 0.427494
+- validation loss: 0.475274
+- validation ROC-AUC: 0.857148
+- validation AP: 0.867749
+- validation accuracy @ 0.50: 0.769737
+- validation balanced accuracy @ 0.50: 0.769737
+- validation precision @ 0.50: 0.786047
+- validation recall @ 0.50: 0.741228
+- validation specificity @ 0.50: 0.798246
+- validation F1 @ 0.50: 0.762980
+- confusion matrix @ 0.50: TN=182 FP=46 FN=59 TP=169
+
+LEARNING-BEHAVIOUR SUMMARY
+- minimum train loss: 0.427494 (epoch 30)
+- minimum validation loss: 0.475274 (epoch 30)
+- maximum validation ROC-AUC: 0.857148 (epoch 30)
+- maximum validation AP: 0.867749 (epoch 30)
+
+SAFETY CHECKS
+- CNN training performed: YES
+- Backward pass performed: YES
+- Optimizer updates performed: YES
+- Validation used for development: YES
+- known_test accessed: NO
+- unseen_test accessed: NO
+- Classical Baseline V1 modified: NO

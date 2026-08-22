@@ -1,0 +1,70 @@
+Logistic Regression Baseline V1 — validation report
+===================================================
+
+model_version: logreg_handcrafted_v1
+feature_version: handcrafted_features_v1
+representation_version: controlled_v1
+split_protocol: generator_protocol_v1
+training_samples: 1376
+validation_samples: 456
+feature_count: 13
+C: 1.0
+solver: lbfgs
+max_iter: 2000
+threshold: 0.5
+convergence_status: converged
+n_iter: 26
+
+Scaler note: StandardScaler is inside the sklearn Pipeline and is
+fitted only during model.fit(X_train, y_train). Validation was not
+used to compute scaling statistics.
+
+Validation metrics (AI-generated = positive class = 1)
+-----------------------------------------------------
+Accuracy: 0.653509
+Balanced Accuracy: 0.653509
+Precision: 0.623239
+Recall: 0.776316
+Specificity: 0.530702
+F1-score: 0.691406
+ROC-AUC: 0.736688
+Average Precision: 0.726477
+False Positive Rate: 0.469298
+
+Confusion matrix
+TN (Actual Real, Predicted Real): 121
+FP (Actual Real, Predicted AI): 107
+FN (Actual AI, Predicted Real): 51
+TP (Actual AI, Predicted AI): 177
+
+Coefficients (standardised features)
+A positive coefficient is associated with predictions toward AI.
+A negative coefficient is associated with predictions toward Real.
+This is not proof of causation or of an AI forensic signature.
+             feature  coefficient  absolute_coefficient
+           sharpness    -1.094529              1.094529
+high_frequency_ratio     0.257866              0.257866
+           std_green     0.206454              0.206454
+            mean_red     0.176562              0.176562
+        edge_density    -0.148796              0.148796
+     mean_saturation     0.131746              0.131746
+             entropy    -0.087704              0.087704
+      std_brightness    -0.087237              0.087237
+           mean_blue    -0.053593              0.053593
+     mean_brightness     0.053208              0.053208
+            std_blue    -0.052352              0.052352
+             std_red     0.025166              0.025166
+          mean_green    -0.003813              0.003813
+
+AI recall by known validation generator (diagnostic)
+generator  ai_samples  correctly_detected_ai  ai_recall
+      ADM          57                     46   0.807018
+   BigGAN          57                     57   1.000000
+    GLIDE          57                     56   0.982456
+     SD15          57                     18   0.315789
+
+False positives: 107
+False negatives: 51
+
+known_test rows used: 0
+unseen_test rows used: 0

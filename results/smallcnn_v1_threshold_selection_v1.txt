@@ -1,0 +1,61 @@
+SmallCNNV1 Threshold Selection V1 — Stage 15
+============================================
+
+MODEL
+- model: SmallCNNV1
+- selected epoch: 60
+- checkpoint path: models/smallcnn_v1_60ep_best.pt
+- seed: 42
+- device: mps
+
+VALIDATION
+- image count: 456
+- ROC-AUC: 0.883387
+- Average Precision: 0.885333
+
+DEFAULT THRESHOLD 0.50
+- accuracy: 0.817982
+- balanced accuracy: 0.817982
+- precision: 0.825112
+- recall (AI sensitivity): 0.807018
+- specificity: 0.828947
+- F1: 0.815965
+- false positive rate: 0.171053
+- confusion matrix: TN=189 FP=39 FN=44 TP=184
+
+YOUDEN THRESHOLD
+validation-selected balanced operating threshold using Youden J
+- exact threshold: 0.540600390261
+- Youden J: 0.649123
+- accuracy: 0.824561
+- balanced accuracy: 0.824561
+- precision: 0.842593
+- recall: 0.798246
+- specificity: 0.850877
+- F1: 0.819820
+- false positive rate: 0.149123
+- confusion matrix: TN=194 FP=34 FN=46 TP=182
+
+GENERATOR RECALL (diagnostic only; one global threshold)
+generator  threshold  ai_samples  detected  ai_recall
+      ADM     0.5000          57        32   0.561404
+   BigGAN     0.5000          57        57   1.000000
+    GLIDE     0.5000          57        57   1.000000
+     SD15     0.5000          57        38   0.666667
+      ADM     0.5406          57        32   0.561404
+   BigGAN     0.5406          57        57   1.000000
+    GLIDE     0.5406          57        57   1.000000
+     SD15     0.5406          57        36   0.631579
+
+INTERPRETATION
+The Youden threshold is a validation-selected balanced operating point.
+It is not a deployment threshold.
+
+FREEZE STATUS
+- model weights frozen: YES
+- selected epoch frozen: YES
+- threshold selected using validation only: YES
+- CNN training performed: NO
+- optimizer updates performed: NO
+- known_test accessed: NO
+- unseen_test accessed: NO

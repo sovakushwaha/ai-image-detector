@@ -1,0 +1,92 @@
+SmallCNNV1 60-Epoch Convergence Extension — Stage 14
+=====================================================
+
+EXPERIMENT
+- stage: 14
+- continuation method: CASE A — resume from epoch 30 with saved optimizer state
+- experiment family: smallcnn_v1_baseline
+- seed: 42
+- device: mps
+- Python: 3.12.13
+- torch: 2.13.0
+- torchvision: 0.28.0
+- OS: Darwin 25.5.0 (arm64)
+
+CHECKPOINT INSPECTION (Stage 13)
+- path: models/smallcnn_v1_best.pt
+- model_state_dict: present
+- optimizer_state_dict: present
+- epoch: 30
+- validation_roc_auc: 0.857148
+- validation_ap: 0.867749
+- validation_loss: 0.475274
+- seed: 42
+- normalization_statistics: present
+
+PROTOCOL (locked)
+- model: SmallCNNV1
+- max epochs: 60
+- batch size: 32
+- optimizer: AdamW
+- learning rate: 0.001
+- weight decay: 0.0001
+- loss: BCEWithLogitsLoss
+- augmentation: none
+- scheduler: none
+- class weights: none
+- representation: controlled_v1
+- split protocol: generator_protocol_v1
+- normalization: Stage 12 train-only RGB mean/std (reused)
+
+DATA
+- train count: 1376
+- validation count: 456
+- confirmation test sets were not accessed: YES
+
+STAGE 13 REFERENCE (epoch 30)
+- validation ROC-AUC: 0.857148
+- validation AP: 0.867749
+- validation loss: 0.475274
+
+60-EPOCH RESULT (selected best checkpoint)
+- best epoch: 60
+- best validation ROC-AUC: 0.883387
+- validation AP at selected epoch: 0.885333
+- validation loss at selected epoch: 0.448021
+- validation accuracy @ 0.50: 0.817982
+- validation balanced accuracy @ 0.50: 0.817982
+- validation precision @ 0.50: 0.825112
+- validation recall @ 0.50: 0.807018
+- validation specificity @ 0.50: 0.828947
+- validation F1 @ 0.50: 0.815965
+- confusion matrix @ 0.50: TN=189 FP=39 FN=44 TP=184
+
+CONVERGENCE SUMMARY
+- best validation ROC-AUC: 0.883387 (epoch 60)
+- best validation AP: 0.886031 (epoch 56)
+- minimum validation loss: 0.446191 (epoch 47)
+- minimum training loss: 0.351052 (epoch 60)
+
+Validation snapshots:
+  epoch 10: val_auc=0.823696, val_ap=0.826020, val_loss=0.519960
+  epoch 20: val_auc=0.812981, val_ap=0.812901, val_loss=0.588944
+  epoch 30: val_auc=0.857148, val_ap=0.867749, val_loss=0.475274
+  epoch 40: val_auc=0.866747, val_ap=0.874838, val_loss=0.483168
+  epoch 50: val_auc=0.862727, val_ap=0.874150, val_loss=0.510296
+  epoch 60: val_auc=0.883387, val_ap=0.885333, val_loss=0.448021
+
+Measured changes:
+- AUC improvement epoch 30 → best epoch (60): +0.026239
+- AUC improvement epoch 50 → epoch 60: +0.020660
+- validation loss change epoch 30 → epoch 60: -0.027253
+
+SAFETY
+- known_test accessed: NO
+- unseen_test accessed: NO
+- threshold tuning performed: NO
+- augmentation introduced: NO
+- LR changed: NO
+- architecture changed: NO
+- Classical Baseline V1 modified: NO
+- Stage 13 checkpoint overwritten: NO
+- Stage 13 history overwritten: NO

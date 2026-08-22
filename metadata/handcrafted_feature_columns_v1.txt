@@ -1,0 +1,13 @@
+mean_brightness
+std_brightness
+mean_red
+mean_green
+mean_blue
+std_red
+std_green
+std_blue
+mean_saturation
+edge_density
+sharpness
+entropy
+high_frequency_ratio

@@ -1,0 +1,57 @@
+Split protocol v1 report
+========================
+
+random_seed: 42
+split_protocol: generator_protocol_v1
+known generators: ADM, BigGAN, GLIDE, SD15
+unseen generators: Midjourney, VQDM, Wukong
+
+Class counts
+------------
+train: Real=688, AI=688, total=1376
+validation: Real=228, AI=228, total=456
+known_test: Real=228, AI=228, total=456
+unseen_test: Real=856, AI=856, total=1712
+
+Generator counts per split
+--------------------------
+generator    Real  ADM  BigGAN  GLIDE  SD15  Midjourney  VQDM  Wukong
+split                                                                
+train         688  172     172    172   172           0     0       0
+validation    228   57      57     57    57           0     0       0
+known_test    228   57      57     57    57           0     0       0
+unseen_test   856    0       0      0     0         286   285     285
+
+SCIENTIFIC PURPOSE
+------------------
+Train: learn model parameters.
+Validation: model/feature/hyperparameter/threshold development. Do not use test sets for these decisions.
+Known test: evaluate held-out images from familiar generators (ADM, BigGAN, GLIDE, SD15).
+Unseen test: evaluate cross-generator generalisation using generators never exposed during model development (Midjourney, VQDM, Wukong).
+
+SOURCE LIMITATION
+-----------------
+Source-level independence cannot be guaranteed from official metadata.
+Tiny-GenImage does not provide true source IDs.
+Filename-derived ImageNet-like tokens are not used as official source IDs.
+SHA-256 duplicate screening found no exact duplicates.
+pHash screening found no confirmed near-duplicate copies.
+These checks reduce leakage risk but do not prove complete source independence.
+
+RAW vs controlled_v1
+--------------------
+split_assignments_v1.csv is keyed by image_id (and original_filename / raw_path).
+The same assignments can be applied to RAW and controlled_v1. Those two experiments must differ by preprocessing only, not by sample identity.
+
+Validation assertions passed
+----------------------------
+- exactly 4000 assigned records
+- no duplicated image IDs
+- every image has exactly one split
+- class counts match expectations
+- generator counts match expectations
+- unseen generators occur ONLY in unseen_test
+- known generators occur ONLY in train/validation/known_test
+- no AI generator appears in Real records
+- no missing paths in controlled_v1
+- no overlap in processed image hashes between splits

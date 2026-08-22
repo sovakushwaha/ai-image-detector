@@ -1,0 +1,5 @@
+path_1,path_2,image_id_1,image_id_2,label_1,label_2,generator_1,generator_2,phash_1,phash_2,phash_distance,dhash_distance,category,filename_imagenet_synset_1,filename_imagenet_synset_2,filename_leading_index_1,filename_leading_index_2
+data/raw/tiny-genimage/images/BigGAN/006_biggan_00182.png,data/raw/tiny-genimage/images/BigGAN/079_biggan_00097.png,pilot_000157,pilot_002075,1,1,BigGAN,BigGAN,d1b30ccc33731bcc,d3b34ccc3333998c,6,14,B_ai_ai_same_generator,,,6,79
+data/raw/tiny-genimage/images/GLIDE/GLIDE_1000_200_00_071_glide_00167.png,data/raw/tiny-genimage/images/GLIDE/GLIDE_1000_200_01_143_glide_00022.png,pilot_001811,pilot_003799,1,1,GLIDE,GLIDE,b8389fcf7c3091c8,b038cfcf6c3092cb,8,22,B_ai_ai_same_generator,,,71,
+data/raw/tiny-genimage/images/BigGAN/077_biggan_00064.png,data/raw/tiny-genimage/images/Real/n02002724_108.JPEG,pilot_002019,pilot_003280,1,0,BigGAN,Real,b3334ccccc8c6e36,b333cc4c8e996c36,8,34,D_real_ai,,n02002724,77,
+data/raw/tiny-genimage/images/Real/n01770081_7298.JPEG,data/raw/tiny-genimage/images/BigGAN/092_biggan_00149.png,pilot_002046,pilot_002495,0,1,Real,BigGAN,f3b3c8cc76318c46,f333c9cc663398c4,8,21,D_real_ai,n01770081,,,92

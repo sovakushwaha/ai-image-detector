@@ -1,0 +1,69 @@
+Logistic Regression Regularisation Study V1
+=============================================
+
+feature_version: handcrafted_features_v1
+representation_version: controlled_v1
+split_protocol: generator_protocol_v1
+threshold (diagnostic only): 0.5
+
+Predefined C values
+0.01, 0.1, 1.0, 10.0
+
+Model-selection rule
+Primary: highest validation ROC-AUC. If ROC-AUC within 0.002, prefer higher Average Precision. If AP also within 0.002, prefer smaller C.
+
+Results for all configurations
+ accuracy  balanced_accuracy  precision   recall  specificity       f1  roc_auc  average_precision  false_positive_rate  TN  FP  FN  TP     C  iterations  coefficient_l2_norm  max_absolute_coefficient convergence_status
+ 0.657895           0.657895   0.634328 0.745614     0.570175 0.685484 0.712777           0.696069             0.429825 130  98  58 170  0.01          10             0.509823                  0.425365          converged
+ 0.655702           0.655702   0.628159 0.763158     0.548246 0.689109 0.733707           0.721191             0.451754 125 103  54 174  0.10          18             0.959616                  0.897767          converged
+ 0.653509           0.653509   0.623239 0.776316     0.530702 0.691406 0.736688           0.726477             0.469298 121 107  51 177  1.00          26             1.184135                  1.094529          converged
+ 0.653509           0.653509   0.623239 0.776316     0.530702 0.691406 0.737131           0.727017             0.469298 121 107  51 177 10.00          26             1.223356                  1.121509          converged
+
+Selected C: 1.0
+Selection reason: C=1.0 was chosen because ROC-AUC and Average Precision were both tied within tolerance, so the smaller C was selected.
+
+Difference from Baseline V1 (C=1.0)
+ROC-AUC change: +0.000000
+Average Precision change: +0.000000
+
+Regularisation impact (cautious interpretation)
+Regularisation strength produced measurable changes in validation discrimination or threshold-based metrics. Interpretation should remain cautious because differences may still be modest on this single validation split.
+
+Generator-specific validation AI recall (diagnostic only)
+    C generator  ai_samples  correctly_detected_ai  ai_recall
+ 0.01       ADM          57                     46   0.807018
+ 0.01    BigGAN          57                     54   0.947368
+ 0.01     GLIDE          57                     54   0.947368
+ 0.01      SD15          57                     16   0.280702
+ 0.10       ADM          57                     45   0.789474
+ 0.10    BigGAN          57                     57   1.000000
+ 0.10     GLIDE          57                     55   0.964912
+ 0.10      SD15          57                     17   0.298246
+ 1.00       ADM          57                     46   0.807018
+ 1.00    BigGAN          57                     57   1.000000
+ 1.00     GLIDE          57                     56   0.982456
+ 1.00      SD15          57                     18   0.315789
+10.00       ADM          57                     46   0.807018
+10.00    BigGAN          57                     57   1.000000
+10.00     GLIDE          57                     56   0.982456
+10.00      SD15          57                     18   0.315789
+
+Coefficient magnitude behaviour
+    C  coefficient_l2_norm  max_absolute_coefficient
+ 0.01             0.509823                  0.425365
+ 0.10             0.959616                  0.897767
+ 1.00             1.184135                  1.094529
+10.00             1.223356                  1.121509
+
+Convergence results
+    C  iterations convergence_status
+ 0.01          10          converged
+ 0.10          18          converged
+ 1.00          26          converged
+10.00          26          converged
+
+Test-set lock confirmation
+known_test features accessed: 0
+unseen_test features accessed: 0
+known_test images opened: 0
+unseen_test images opened: 0

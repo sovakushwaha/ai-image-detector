@@ -1,0 +1,39 @@
+{
+  "accuracy": 0.6535087719298246,
+  "balanced_accuracy": 0.6535087719298245,
+  "precision": 0.6232394366197183,
+  "recall": 0.7763157894736842,
+  "specificity": 0.5307017543859649,
+  "f1": 0.69140625,
+  "roc_auc": 0.7366882117574639,
+  "average_precision": 0.7264774985303656,
+  "false_positive_rate": 0.4692982456140351,
+  "true_negative": 121,
+  "false_positive": 107,
+  "false_negative": 51,
+  "true_positive": 177,
+  "model_version": "logreg_handcrafted_v1",
+  "feature_version": "handcrafted_features_v1",
+  "representation_version": "controlled_v1",
+  "split_protocol": "generator_protocol_v1",
+  "n_train": 1376,
+  "n_validation": 456,
+  "feature_count": 13,
+  "C": 1.0,
+  "solver": "lbfgs",
+  "max_iter": 2000,
+  "threshold": 0.5,
+  "convergence_status": "converged",
+  "n_iter": 26,
+  "known_test_rows_used": 0,
+  "unseen_test_rows_used": 0,
+  "x_train_shape": [
+    1376,
+    13
+  ],
+  "x_validation_shape": [
+    456,
+    13
+  ],
+  "scaler_fitted_on": "train_only_via_pipeline"
+}

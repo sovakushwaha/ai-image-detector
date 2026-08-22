@@ -1,0 +1,56 @@
+{
+  "model": "SmallCNNV1",
+  "checkpoint": "models/smallcnn_v1_60ep_best.pt",
+  "selected_epoch": 60,
+  "seed": 42,
+  "representation": "controlled_v1",
+  "split_protocol": "generator_protocol_v1",
+  "threshold_method": "validation_youden_j",
+  "default_threshold": 0.5,
+  "threshold": 0.5406003902614535,
+  "validation_youden_j": 0.6491228070175439,
+  "validation_roc_auc": 0.8833871960603262,
+  "validation_ap": 0.8853328259956941,
+  "normalization_mean": [
+    0.47095533508870246,
+    0.4604333704662004,
+    0.39159461045502286
+  ],
+  "normalization_std": [
+    0.2500439713333525,
+    0.23656553066140032,
+    0.25520343023426956
+  ],
+  "default_threshold_metrics": {
+    "threshold": 0.5,
+    "accuracy": 0.8179824561403509,
+    "balanced_accuracy": 0.8179824561403508,
+    "precision": 0.8251121076233184,
+    "recall": 0.8070175438596491,
+    "specificity": 0.8289473684210527,
+    "f1": 0.8159645232815964,
+    "false_positive_rate": 0.17105263157894737,
+    "TN": 189,
+    "FP": 39,
+    "FN": 44,
+    "TP": 184
+  },
+  "youden_threshold_metrics": {
+    "threshold": 0.5406003902614535,
+    "accuracy": 0.8245614035087719,
+    "balanced_accuracy": 0.8245614035087719,
+    "precision": 0.8425925925925926,
+    "recall": 0.7982456140350878,
+    "specificity": 0.8508771929824561,
+    "f1": 0.8198198198198198,
+    "false_positive_rate": 0.14912280701754385,
+    "TN": 194,
+    "FP": 34,
+    "FN": 46,
+    "TP": 182
+  },
+  "model_weights_frozen": true,
+  "threshold_selected_validation_only": true,
+  "known_test_accessed": false,
+  "unseen_test_accessed": false
+}

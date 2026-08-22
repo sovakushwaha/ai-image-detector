@@ -1,0 +1,84 @@
+Frozen Classical Baseline — Final Test Report V1
+================================================
+
+1. FROZEN MODEL CONFIGURATION
+model_version: logreg_handcrafted_selected_v1
+model_path: models/logreg_handcrafted_selected_v1.joblib
+representation_version: controlled_v1
+feature_version: handcrafted_features_v1
+split_protocol: generator_protocol_v1
+C: 1.0
+solver: lbfgs
+max_iter: 2000
+default_threshold: 0.5
+validation_selected_youden_threshold: 0.5671516607338236
+Model and scaler were loaded without refitting.
+
+2. KNOWN-GENERATOR TEST RESULTS
+ROC-AUC: 0.724665
+Average Precision: 0.722539
+Youden-threshold metrics:
+  Accuracy=0.686404, Balanced Acc=0.686404, Precision=0.690583, Recall=0.675439, Specificity=0.697368, F1=0.682927, FPR=0.302632
+  TN=159 FP=69 FN=74 TP=154
+
+3. UNSEEN-GENERATOR TEST RESULTS
+ROC-AUC: 0.645196
+Average Precision: 0.614106
+Youden-threshold metrics:
+  Accuracy=0.580023, Balanced Acc=0.580023, Precision=0.615905, Recall=0.425234, Specificity=0.734813, F1=0.503110, FPR=0.265187
+  TN=629 FP=227 FN=492 TP=364
+
+4. KNOWN VS UNSEEN PERFORMANCE GAP (observed, not significance-tested)
+ROC-AUC difference (unseen - known): -0.079470
+AP difference (unseen - known): -0.108433
+Balanced Accuracy difference (Youden): -0.106380
+F1 difference (Youden): -0.179817
+AI Recall difference (Youden): -0.250205
+FPR difference (Youden): -0.037445
+
+5. GENERATOR-SPECIFIC RECALL
+test_condition  generator  ai_samples  detected_at_050  recall_at_050  detected_at_youden  recall_at_youden
+    known_test        ADM          57               46       0.807018                  34          0.596491
+    known_test     BigGAN          57               57       1.000000                  52          0.912281
+    known_test      GLIDE          57               57       1.000000                  55          0.964912
+    known_test       SD15          57               18       0.315789                  13          0.228070
+   unseen_test Midjourney         286              229       0.800699                 152          0.531469
+   unseen_test       VQDM         285              189       0.663158                 142          0.498246
+   unseen_test     Wukong         285              146       0.512281                  70          0.245614
+
+6. DEFAULT VS YOUDEN THRESHOLD
+Known test at 0.50:
+  TN=115 FP=113 FN=50 TP=178
+Known test at Youden:
+  TN=159 FP=69 FN=74 TP=154
+Unseen test at 0.50:
+  TN=475 FP=381 FN=292 TP=564
+Unseen test at Youden:
+  TN=629 FP=227 FN=492 TP=364
+
+7. FAILURE COUNTS (Youden threshold)
+Known false positives: 69
+Known false negatives: 74
+Unseen false positives: 227
+Unseen false negatives: 492
+
+8. SCIENTIFIC INTERPRETATION
+The unseen-generator ROC-AUC was lower than the known-generator ROC-AUC by 0.079470 on this pilot split.
+These results describe one frozen classical baseline on a controlled pilot subset.
+They should not be interpreted as proof of reliable deployment performance.
+Generator-specific recall differences may reflect feature-generator coupling
+rather than a universal AI forensic signature.
+
+9. LIMITATIONS
+- Tiny-GenImage does not provide verified source IDs.
+- Exact and perceptual duplicate screening reduces but does not eliminate leakage risk.
+- controlled_v1 mitigates known format/geometry shortcuts but does not guarantee elimination of all biases.
+- Real images retain prior JPEG history.
+- Generator native resolutions may leave resampling artefacts.
+- Handcrafted features capture only simple image statistics.
+- Results from this pilot protocol should not automatically be generalised to every modern AI generator.
+
+Post-test lock confirmation
+model_retrained_after_test: false
+threshold_changed_after_test: false
+features_changed_after_test: false

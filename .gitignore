@@ -1,0 +1,60 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Environment / secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Local datasets (too large for git; keep folder placeholders)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/tiny-genimage/
+data/raw/tiny-genimage/**
+!data/raw/tiny-genimage/SOURCE.md
+data/pilot/*
+!data/pilot/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/controlled_v1/
+data/processed/controlled_v1/**
+!data/processed/controlled_v1/SOURCE.md
+
+# Common large binary artefacts if they appear outside data/
+*.h5
+*.hdf5
+*.ckpt
+*.pt
+*.pth
+*.onnx

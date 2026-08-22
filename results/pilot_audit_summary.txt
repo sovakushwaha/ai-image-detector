@@ -1,0 +1,236 @@
+Tiny-GenImage pilot audit summary
+=================================
+
+Random seed used for sample-grid sampling: 42
+Raw images were not modified.
+
+1. Total number of records
+   4000
+
+2. Real vs AI counts (0=Real, 1=AI-generated)
+label
+0    2000
+1    2000
+
+3. Generator counts
+generator
+ADM            286
+BigGAN         286
+GLIDE          286
+Midjourney     286
+Real          2000
+SD15           286
+VQDM           285
+Wukong         285
+
+4. Image format by label
+format  JPEG   PNG
+label             
+0       2000     0
+1          0  2000
+
+5. Image format by generator
+format      JPEG  PNG
+generator            
+ADM            0  286
+BigGAN         0  286
+GLIDE          0  286
+Midjourney     0  286
+Real        2000    0
+SD15           0  286
+VQDM           0  285
+Wukong         0  285
+
+6. Image modes by label
+image_mode   L   RGB  RGBA
+label                     
+0           10  1990     0
+1            0  1714   286
+
+7. Width/height summary statistics by label
+Width:
+        count     mean      std    min     25%    50%    75%     max
+label                                                               
+0      2000.0  492.740  169.136   75.0  492.75  500.0  500.0  2531.0
+1      2000.0  420.608  279.896  128.0  256.00  256.0  512.0  1024.0
+
+Height:
+        count     mean      std    min    25%    50%    75%     max
+label                                                              
+0      2000.0  390.622  138.217   49.0  333.0  375.0  434.0  2953.0
+1      2000.0  420.608  279.896  128.0  256.0  256.0  512.0  1024.0
+
+8. Width/height summary statistics by generator
+Width:
+             count     mean      std     min      25%     50%     75%     max
+generator                                                                    
+ADM          286.0   256.00    0.000   256.0   256.00   256.0   256.0   256.0
+BigGAN       286.0   128.00    0.000   128.0   128.00   128.0   128.0   128.0
+GLIDE        286.0   256.00    0.000   256.0   256.00   256.0   256.0   256.0
+Midjourney   286.0  1024.00    0.000  1024.0  1024.00  1024.0  1024.0  1024.0
+Real        2000.0   492.74  169.136    75.0   492.75   500.0   500.0  2531.0
+SD15         286.0   512.00    0.000   512.0   512.00   512.0   512.0   512.0
+VQDM         285.0   256.00    0.000   256.0   256.00   256.0   256.0   256.0
+Wukong       285.0   512.00    0.000   512.0   512.00   512.0   512.0   512.0
+
+Height:
+             count      mean      std     min     25%     50%     75%     max
+generator                                                                    
+ADM          286.0   256.000    0.000   256.0   256.0   256.0   256.0   256.0
+BigGAN       286.0   128.000    0.000   128.0   128.0   128.0   128.0   128.0
+GLIDE        286.0   256.000    0.000   256.0   256.0   256.0   256.0   256.0
+Midjourney   286.0  1024.000    0.000  1024.0  1024.0  1024.0  1024.0  1024.0
+Real        2000.0   390.622  138.217    49.0   333.0   375.0   434.0  2953.0
+SD15         286.0   512.000    0.000   512.0   512.0   512.0   512.0   512.0
+VQDM         285.0   256.000    0.000   256.0   256.0   256.0   256.0   256.0
+Wukong       285.0   512.000    0.000   512.0   512.0   512.0   512.0   512.0
+
+9. Aspect-ratio statistics
+By label:
+        count   mean    std   min    25%    50%    75%    max
+label                                                        
+0      2000.0  1.303  0.287  0.42  1.258  1.333  1.497  4.032
+1      2000.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+
+By generator:
+             count   mean    std   min    25%    50%    75%    max
+generator                                                         
+ADM          286.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+BigGAN       286.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+GLIDE        286.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+Midjourney   286.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+Real        2000.0  1.303  0.287  0.42  1.258  1.333  1.497  4.032
+SD15         286.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+VQDM         285.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+Wukong       285.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+
+10. File-size statistics by label (bytes)
+        count        mean         std     min       25%       50%        75%        max
+label                                                                                  
+0      2000.0  125412.482   85088.151  1372.0  78141.25  121242.0  162842.00  1709051.0
+1      2000.0  350637.960  397822.547  7487.0  85967.50  139828.0  485906.25  1974898.0
+
+File-size statistics by generator (bytes)
+             count         mean         std       min        25%        50%         75%        max
+generator                                                                                         
+ADM          286.0   122701.825   28698.699   51942.0  104059.50   122814.5   141712.50   190530.0
+BigGAN       286.0    31952.531    6657.480    7487.0   28453.75    33064.0    36856.75    42649.0
+GLIDE        286.0    84183.388   19809.333   40735.0   68747.75    83394.0    97209.00   127302.0
+Midjourney   286.0  1174457.769  338948.935  304726.0  914927.25  1152634.0  1419796.00  1974898.0
+Real        2000.0   125412.482   85088.151    1372.0   78141.25   121242.0   162842.00  1709051.0
+SD15         286.0   454945.979   75787.021  260626.0  399119.25   453309.5   515091.00   644971.0
+VQDM         285.0   119653.207   26417.188   25266.0  101252.00   118112.0   137687.00   185803.0
+Wukong       285.0   466167.330   59214.336  267912.0  425947.00   464998.0   502923.00   618994.0
+
+11. Corrupted/missing image count
+   missing files: 0
+   unreadable/corrupted: 0
+   rows with any issue flag: 296
+
+12. Exact duplicate count (SHA-256 of file bytes)
+   duplicate groups with more than one file: 0
+   files belonging to those groups: 0
+   groups within Real: 0
+   groups within AI (same generator): 0
+   groups across AI generators: 0
+   groups across Real and AI: 0
+
+SHA-256 detects exact byte-identical files only.
+It does NOT detect resized, cropped, recompressed, or near-duplicate images.
+
+Potential shortcut/confounding risks
+====================================
+
+These are audit observations, not proof that a future model will use them.
+Wording: potential confounder requiring control or ablation.
+
+1. File format
+format  JPEG   PNG
+label             
+0       2000     0
+1          0  2000
+MAJOR potential shortcut: every readable Real image is JPEG and every readable AI image is PNG. A classifier could ignore visual content and still separate the classes from compression artefacts or format-related statistics. Do not convert formats yet; this audit only records the evidence.
+
+2. Dimensions
+Width by label:
+        count     mean      std    min     25%    50%    75%     max
+label                                                               
+0      2000.0  492.740  169.136   75.0  492.75  500.0  500.0  2531.0
+1      2000.0  420.608  279.896  128.0  256.00  256.0  512.0  1024.0
+Height by label:
+        count     mean      std    min    25%    50%    75%     max
+label                                                              
+0      2000.0  390.622  138.217   49.0  333.0  375.0  434.0  2953.0
+1      2000.0  420.608  279.896  128.0  256.0  256.0  512.0  1024.0
+Width by generator:
+             count     mean      std     min      25%     50%     75%     max
+generator                                                                    
+ADM          286.0   256.00    0.000   256.0   256.00   256.0   256.0   256.0
+BigGAN       286.0   128.00    0.000   128.0   128.00   128.0   128.0   128.0
+GLIDE        286.0   256.00    0.000   256.0   256.00   256.0   256.0   256.0
+Midjourney   286.0  1024.00    0.000  1024.0  1024.00  1024.0  1024.0  1024.0
+Real        2000.0   492.74  169.136    75.0   492.75   500.0   500.0  2531.0
+SD15         286.0   512.00    0.000   512.0   512.00   512.0   512.0   512.0
+VQDM         285.0   256.00    0.000   256.0   256.00   256.0   256.0   256.0
+Wukong       285.0   512.00    0.000   512.0   512.00   512.0   512.0   512.0
+Height by generator:
+             count      mean      std     min     25%     50%     75%     max
+generator                                                                    
+ADM          286.0   256.000    0.000   256.0   256.0   256.0   256.0   256.0
+BigGAN       286.0   128.000    0.000   128.0   128.0   128.0   128.0   128.0
+GLIDE        286.0   256.000    0.000   256.0   256.0   256.0   256.0   256.0
+Midjourney   286.0  1024.000    0.000  1024.0  1024.0  1024.0  1024.0  1024.0
+Real        2000.0   390.622  138.217    49.0   333.0   375.0   434.0  2953.0
+SD15         286.0   512.000    0.000   512.0   512.0   512.0   512.0   512.0
+VQDM         285.0   256.000    0.000   256.0   256.0   256.0   256.0   256.0
+Wukong       285.0   512.000    0.000   512.0   512.0   512.0   512.0   512.0
+Square images: Real 23/2000, AI 2000/2000.
+Potential confounder requiring control or ablation: AI generators in this subset often use a small set of native square resolutions, while Real ImageNet photographs vary more in width and height.
+
+3. Aspect ratio
+        count   mean    std   min    25%    50%    75%    max
+label                                                        
+0      2000.0  1.303  0.287  0.42  1.258  1.333  1.497  4.032
+1      2000.0  1.000  0.000  1.00  1.000  1.000  1.000  1.000
+Potential confounder requiring control or ablation: every AI image in this subset is square (aspect ratio 1.0) while almost all Real images are not. Aspect ratio itself could help a classifier.
+
+4. Image mode / channels
+By label:
+image_mode   L   RGB  RGBA
+label                     
+0           10  1990     0
+1            0  1714   286
+By generator:
+image_mode   L   RGB  RGBA
+generator                 
+ADM          0     0   286
+BigGAN       0   286     0
+GLIDE        0   286     0
+Midjourney   0   286     0
+Real        10  1990     0
+SD15         0   286     0
+VQDM         0   285     0
+Wukong       0   285     0
+Potential confounder requiring control or ablation: a rare mode such as grayscale or RGBA, if concentrated in one class or generator, could become a shortcut. In this subset, all ADM images are RGBA and 10 Real images are grayscale (L). These rows were flagged, not removed.
+
+5. File size
+        count        mean         std     min       25%       50%        75%        max
+label                                                                                  
+0      2000.0  125412.482   85088.151  1372.0  78141.25  121242.0  162842.00  1709051.0
+1      2000.0  350637.960  397822.547  7487.0  85967.50  139828.0  485906.25  1974898.0
+             count         mean         std       min        25%        50%         75%        max
+generator                                                                                         
+ADM          286.0   122701.825   28698.699   51942.0  104059.50   122814.5   141712.50   190530.0
+BigGAN       286.0    31952.531    6657.480    7487.0   28453.75    33064.0    36856.75    42649.0
+GLIDE        286.0    84183.388   19809.333   40735.0   68747.75    83394.0    97209.00   127302.0
+Midjourney   286.0  1174457.769  338948.935  304726.0  914927.25  1152634.0  1419796.00  1974898.0
+Real        2000.0   125412.482   85088.151    1372.0   78141.25   121242.0   162842.00  1709051.0
+SD15         286.0   454945.979   75787.021  260626.0  399119.25   453309.5   515091.00   644971.0
+VQDM         285.0   119653.207   26417.188   25266.0  101252.00   118112.0   137687.00   185803.0
+Wukong       285.0   466167.330   59214.336  267912.0  425947.00   464998.0   502923.00   618994.0
+Potential confounder requiring control or ablation: PNG vs JPEG encoding and generator resolution both change file size, so file size is not an independent forensic signal.
+
+6. Generator-specific properties
+Potential confounder requiring control or ablation: each AI generator appears to occupy a characteristic resolution/file-size band. A model could learn generator identity proxies rather than general AI artefacts. Generator identity must never be used as a predictive feature.
+
+SHA-256 note: exact-hash duplicates are byte-identical files only. This audit does not detect resized, cropped, recompressed, or near-duplicate source content.

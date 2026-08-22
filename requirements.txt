@@ -1,0 +1,30 @@
+# Stage 1 classical ML environment.
+# Pinned after a successful install on macOS (Darwin, arm64), Python 3.12.13
+# Date: 2026-08-16
+
+numpy==2.5.2
+pandas==3.0.5
+pillow==12.3.0
+matplotlib==3.11.1
+scikit-learn==1.9.0
+opencv-python==5.0.0.93
+tqdm==4.70.0
+jupyter==1.1.1
+ipykernel==7.3.0
+joblib==1.5.3
+
+# Important transitive dependency used by scikit-learn
+scipy==1.18.0
+
+# Stage 2 dataset download (Tiny-GenImage parquet files)
+huggingface_hub==1.27.0
+pyarrow==25.0.1
+
+# Stage 4 near-duplicate audit
+imagehash==4.3.2
+PyWavelets==1.9.0
+
+# Stage 12 CNN pipeline (macOS arm64 / MPS; no CUDA)
+# Installed via: pip install torch torchvision
+torch==2.13.0
+torchvision==0.28.0

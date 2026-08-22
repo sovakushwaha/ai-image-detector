@@ -1,0 +1,65 @@
+SmallCNNV1 Frozen Test Evaluation — Stage 16
+============================================
+
+FROZEN MODEL CONFIGURATION
+- model: SmallCNNV1
+- selected epoch: 60
+- checkpoint: models/smallcnn_v1_60ep_best.pt
+- parameter count: 23873
+- seed: 42
+- normalization mean: [0.47095533508870246, 0.4604333704662004, 0.39159461045502286]
+- normalization std: [0.2500439713333525, 0.23656553066140032, 0.25520343023426956]
+- frozen threshold: 0.5406003902614535
+- threshold method: validation_youden_j
+
+KNOWN TEST
+- ROC-AUC: 0.866401
+- Average Precision: 0.867336
+Threshold 0.50 (diagnostic):
+  accuracy=0.796053, balanced_acc=0.796053, precision=0.800000, recall=0.789474, specificity=0.802632, f1=0.794702, fpr=0.197368
+  TN=183 FP=45 FN=48 TP=180
+Frozen Youden threshold:
+  accuracy=0.787281, balanced_acc=0.787281, precision=0.807512, recall=0.754386, specificity=0.820175, f1=0.780045, fpr=0.179825
+  TN=187 FP=41 FN=56 TP=172
+
+UNSEEN TEST
+- ROC-AUC: 0.721508
+- Average Precision: 0.655825
+Threshold 0.50 (diagnostic):
+  accuracy=0.606893, balanced_acc=0.606893, precision=0.701099, recall=0.372664, specificity=0.841121, f1=0.486651, fpr=0.158879
+  TN=720 FP=136 FN=537 TP=319
+Frozen Youden threshold:
+  accuracy=0.588785, balanced_acc=0.588785, precision=0.685366, recall=0.328271, specificity=0.849299, f1=0.443918, fpr=0.150701
+  TN=727 FP=129 FN=575 TP=281
+
+GENERALISATION GAPS (unseen - known)
+- ROC-AUC gap: -0.144893
+- AP gap: -0.211511
+- Balanced Accuracy gap (frozen threshold): -0.198496
+- F1 gap (frozen threshold): -0.336127
+- AI Recall gap (frozen threshold): -0.426115
+
+GENERATOR-SPECIFIC AI RECALL
+test_condition  generator  ai_samples  detected_at_050  recall_at_050  detected_at_frozen_youden  recall_at_frozen_youden
+    known_test        ADM          57               36       0.631579                         32                 0.561404
+    known_test     BigGAN          57               55       0.964912                         55                 0.964912
+    known_test      GLIDE          57               57       1.000000                         57                 1.000000
+    known_test       SD15          57               32       0.561404                         28                 0.491228
+   unseen_test Midjourney         286               92       0.321678                         78                 0.272727
+   unseen_test       VQDM         285               94       0.329825                         81                 0.284211
+   unseen_test     Wukong         285              133       0.466667                        122                 0.428070
+
+CLASSICAL BASELINE COMPARISON (historical reference only)
+     model  known_auc  unseen_auc   auc_gap  known_ap  unseen_ap    ap_gap
+ LogReg V1   0.725000    0.645000 -0.079000  0.723000   0.614000 -0.108000
+SmallCNNV1   0.866401    0.721508 -0.144893  0.867336   0.655825 -0.211511
+
+SAFETY / SCIENTIFIC INTEGRITY
+- Model refitted after test access: NO
+- Model weights changed: NO
+- Threshold changed: NO
+- Threshold selected using test data: NO
+- Hyperparameters changed: NO
+- known_test used for evaluation: YES
+- unseen_test used for evaluation: YES
+- Classical Baseline V1 modified: NO
