@@ -39,10 +39,10 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-The classical baseline is frozen (`logreg_handcrafted_selected_v1`, C=1.0). Stage 12 adds a CNN data pipeline and `SmallCNNV1` architecture check: train-only RGB normalisation, one forward pass, and BCE loss with no training or test-set access.
+Stage 13: `SmallCNNV1` was trained for 30 epochs on train and validation only, using frozen train RGB normalisation from Stage 12. The best validation ROC-AUC checkpoint was saved. Test splits were not opened.
 
-To verify the CNN pipeline:
+To train this CNN baseline:
 
 ```bash
-python src/verify_cnn_pipeline_v1.py
+python src/train_smallcnn_v1.py
 ```

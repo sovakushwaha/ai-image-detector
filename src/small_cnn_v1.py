@@ -59,14 +59,14 @@ class SmallCNNV1(nn.Module):
         self.classifier = nn.Linear(in_features=64, out_features=1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """Return raw logits of shape [B, 1]. No sigmoid here."""
+        """Return raw logits of shape [B]. No sigmoid here."""
         x = self.block1(x)
         x = self.block2(x)
         x = self.block3(x)
         x = self.pool(x)
         x = torch.flatten(x, start_dim=1)
         logits = self.classifier(x)
-        return logits
+        return logits.squeeze(1)
 
 
 def count_parameters(model: nn.Module) -> tuple[int, int]:

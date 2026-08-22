@@ -175,17 +175,15 @@ def main() -> None:
     with torch.no_grad():
         logits = model(images)
 
-    stop_if(logits.ndim != 2 or logits.shape[1] != 1, f"logit shape {tuple(logits.shape)} != [B,1]")
+    stop_if(logits.ndim != 1, f"logit shape {tuple(logits.shape)} != [B]")
     stop_if(logits.shape[0] != batch_size, f"logit batch {logits.shape[0]} != {batch_size}")
     print(f"Output logits: {tuple(logits.shape)}")
 
-    # Compatible shapes for BCEWithLogitsLoss: both [B] after squeeze.
-    logits_flat = logits.squeeze(1)
-    stop_if(logits_flat.shape != labels.shape, f"{logits_flat.shape} vs {labels.shape}")
+    stop_if(logits.shape != labels.shape, f"{logits.shape} vs {labels.shape}")
 
     criterion = nn.BCEWithLogitsLoss()
     # Compute loss once — NO backward, NO optimizer.
-    loss = criterion(logits_flat, labels)
+    loss = criterion(logits, labels)
     initial_loss = float(loss.item())
     print(f"Initial BCEWithLogitsLoss (one batch): {initial_loss:.6f}")
     print("Confirmation: loss.backward() was NOT called")
@@ -198,7 +196,7 @@ def main() -> None:
     val_images = val_images.to(device)
     with torch.no_grad():
         val_logits = model(val_images)
-    stop_if(val_logits.shape != (val_images.shape[0], 1), f"val logits {tuple(val_logits.shape)}")
+    stop_if(val_logits.shape != (val_images.shape[0],), f"val logits {tuple(val_logits.shape)}")
     print(f"\nValidation batch images: {tuple(val_images.shape)}")
     print(f"Validation batch labels: {tuple(val_labels.shape)}")
     print(f"Validation logits: {tuple(val_logits.shape)}")
