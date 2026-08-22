@@ -39,10 +39,10 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 13: `SmallCNNV1` was trained for 30 epochs on train and validation only, using frozen train RGB normalisation from Stage 12. The best validation ROC-AUC checkpoint was saved. Test splits were not opened.
+Stage 14: `SmallCNNV1` training was extended from 30 to 60 epochs by resuming the Stage 13 checkpoint. The best validation ROC-AUC checkpoint across the full run was saved separately. Test splits were not opened.
 
-To train this CNN baseline:
+To run the extension:
 
 ```bash
-python src/train_smallcnn_v1.py
+python src/extend_smallcnn_v1_60ep.py
 ```
