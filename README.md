@@ -39,10 +39,10 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 14: `SmallCNNV1` training was extended from 30 to 60 epochs by resuming the Stage 13 checkpoint. The best validation ROC-AUC checkpoint across the full run was saved separately. Test splits were not opened.
+Stage 15: the frozen `SmallCNNV1` checkpoint (epoch 60) was scored on validation only and a Youden threshold was selected. Test splits were not opened.
 
-To run the extension:
+To run threshold selection:
 
 ```bash
-python src/extend_smallcnn_v1_60ep.py
+python src/select_smallcnn_threshold_v1.py
 ```
