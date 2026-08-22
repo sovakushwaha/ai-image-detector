@@ -39,10 +39,10 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 15: the frozen `SmallCNNV1` checkpoint (epoch 60) was scored on validation only and a Youden threshold was selected. Test splits were not opened.
+Stage 16: the frozen `SmallCNNV1` model was evaluated once on `known_test` and `unseen_test` using the validation-selected Youden threshold.
 
-To run threshold selection:
+To run the final CNN test evaluation:
 
 ```bash
-python src/select_smallcnn_threshold_v1.py
+python src/evaluate_smallcnn_frozen_test_v1.py
 ```

@@ -1,0 +1,166 @@
+{
+  "model": "SmallCNNV1",
+  "checkpoint": "models/smallcnn_v1_60ep_best.pt",
+  "selected_epoch": 60,
+  "frozen_threshold": 0.5406003902614535,
+  "known_test": {
+    "n_samples": 456,
+    "roc_auc": 0.8664012003693444,
+    "average_precision": 0.8673358064465055,
+    "default_threshold_metrics": {
+      "threshold": 0.5,
+      "accuracy": 0.7960526315789473,
+      "balanced_accuracy": 0.7960526315789473,
+      "precision": 0.8,
+      "recall": 0.7894736842105263,
+      "specificity": 0.8026315789473685,
+      "f1": 0.7947019867549668,
+      "false_positive_rate": 0.19736842105263158,
+      "TN": 183,
+      "FP": 45,
+      "FN": 48,
+      "TP": 180
+    },
+    "frozen_threshold_metrics": {
+      "threshold": 0.5406003902614535,
+      "accuracy": 0.7872807017543859,
+      "balanced_accuracy": 0.7872807017543859,
+      "precision": 0.8075117370892019,
+      "recall": 0.7543859649122807,
+      "specificity": 0.8201754385964912,
+      "f1": 0.780045351473923,
+      "false_positive_rate": 0.17982456140350878,
+      "TN": 187,
+      "FP": 41,
+      "FN": 56,
+      "TP": 172
+    }
+  },
+  "unseen_test": {
+    "n_samples": 1712,
+    "roc_auc": 0.7215081557341254,
+    "average_precision": 0.6558252220465397,
+    "default_threshold_metrics": {
+      "threshold": 0.5,
+      "accuracy": 0.606892523364486,
+      "balanced_accuracy": 0.606892523364486,
+      "precision": 0.701098901098901,
+      "recall": 0.3726635514018692,
+      "specificity": 0.8411214953271028,
+      "f1": 0.486651411136537,
+      "false_positive_rate": 0.1588785046728972,
+      "TN": 720,
+      "FP": 136,
+      "FN": 537,
+      "TP": 319
+    },
+    "frozen_threshold_metrics": {
+      "threshold": 0.5406003902614535,
+      "accuracy": 0.5887850467289719,
+      "balanced_accuracy": 0.5887850467289719,
+      "precision": 0.6853658536585366,
+      "recall": 0.3282710280373832,
+      "specificity": 0.8492990654205608,
+      "f1": 0.4439178515007899,
+      "false_positive_rate": 0.15070093457943926,
+      "TN": 727,
+      "FP": 129,
+      "FN": 575,
+      "TP": 281
+    }
+  },
+  "gaps_unseen_minus_known": {
+    "roc_auc": -0.14489304463521901,
+    "average_precision": -0.21151058439996584,
+    "balanced_accuracy": -0.198495655025414,
+    "f1": -0.33612749997313307,
+    "recall": -0.42611493687489754
+  },
+  "generator_recall": [
+    {
+      "test_condition": "known_test",
+      "generator": "ADM",
+      "ai_samples": 57,
+      "detected_at_050": 36,
+      "recall_at_050": 0.631578947368421,
+      "detected_at_frozen_youden": 32,
+      "recall_at_frozen_youden": 0.5614035087719298
+    },
+    {
+      "test_condition": "known_test",
+      "generator": "BigGAN",
+      "ai_samples": 57,
+      "detected_at_050": 55,
+      "recall_at_050": 0.9649122807017544,
+      "detected_at_frozen_youden": 55,
+      "recall_at_frozen_youden": 0.9649122807017544
+    },
+    {
+      "test_condition": "known_test",
+      "generator": "GLIDE",
+      "ai_samples": 57,
+      "detected_at_050": 57,
+      "recall_at_050": 1.0,
+      "detected_at_frozen_youden": 57,
+      "recall_at_frozen_youden": 1.0
+    },
+    {
+      "test_condition": "known_test",
+      "generator": "SD15",
+      "ai_samples": 57,
+      "detected_at_050": 32,
+      "recall_at_050": 0.5614035087719298,
+      "detected_at_frozen_youden": 28,
+      "recall_at_frozen_youden": 0.49122807017543857
+    },
+    {
+      "test_condition": "unseen_test",
+      "generator": "Midjourney",
+      "ai_samples": 286,
+      "detected_at_050": 92,
+      "recall_at_050": 0.32167832167832167,
+      "detected_at_frozen_youden": 78,
+      "recall_at_frozen_youden": 0.2727272727272727
+    },
+    {
+      "test_condition": "unseen_test",
+      "generator": "VQDM",
+      "ai_samples": 285,
+      "detected_at_050": 94,
+      "recall_at_050": 0.3298245614035088,
+      "detected_at_frozen_youden": 81,
+      "recall_at_frozen_youden": 0.28421052631578947
+    },
+    {
+      "test_condition": "unseen_test",
+      "generator": "Wukong",
+      "ai_samples": 285,
+      "detected_at_050": 133,
+      "recall_at_050": 0.4666666666666667,
+      "detected_at_frozen_youden": 122,
+      "recall_at_frozen_youden": 0.4280701754385965
+    }
+  ],
+  "classical_baseline_comparison": [
+    {
+      "model": "LogReg V1",
+      "known_auc": 0.725,
+      "unseen_auc": 0.645,
+      "auc_gap": -0.079,
+      "known_ap": 0.723,
+      "unseen_ap": 0.614,
+      "ap_gap": -0.108
+    },
+    {
+      "model": "SmallCNNV1",
+      "known_auc": 0.8664012003693444,
+      "unseen_auc": 0.7215081557341254,
+      "auc_gap": -0.14489304463521901,
+      "known_ap": 0.8673358064465055,
+      "unseen_ap": 0.6558252220465397,
+      "ap_gap": -0.21151058439996584
+    }
+  ],
+  "model_refitted_after_test": false,
+  "threshold_changed": false
+}
