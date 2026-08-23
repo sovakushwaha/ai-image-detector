@@ -1,0 +1,83 @@
+MobileNetV3-Small Frozen Test Evaluation — Stage 18D
+===================================================
+
+FROZEN CONFIGURATION
+- model: MobileNetV3-Small
+- pretrained weights: IMAGENET1K_V1
+- selected phase: 2
+- selected epoch: 13
+- checkpoint: models/mobilenet_v3_small_selected_v1.pt
+- parameter count: 1518881
+- seed: 42
+- normalization mean: [0.485, 0.456, 0.406]
+- normalization std: [0.229, 0.224, 0.225]
+- frozen threshold: 0.730059862137
+- threshold method: validation_youden_j
+
+KNOWN TEST
+- ROC-AUC: 0.95192752
+- Average Precision: 0.95736038
+Threshold 0.50 (diagnostic):
+  accuracy=0.87719298, balanced_acc=0.87719298, precision=0.86440678, recall=0.89473684, specificity=0.85964912, f1=0.87931034, fpr=0.14035088
+  TN=196 FP=32 FN=24 TP=204
+Frozen Youden threshold:
+  accuracy=0.88377193, balanced_acc=0.88377193, precision=0.89954338, recall=0.86403509, specificity=0.90350877, f1=0.88143177, fpr=0.09649123
+  TN=206 FP=22 FN=31 TP=197
+
+UNSEEN TEST
+- ROC-AUC: 0.85898878
+- Average Precision: 0.87092697
+Threshold 0.50 (diagnostic):
+  accuracy=0.76401869, balanced_acc=0.76401869, precision=0.82102273, recall=0.67523364, specificity=0.85280374, f1=0.74102564, fpr=0.14719626
+  TN=730 FP=126 FN=278 TP=578
+Frozen Youden threshold:
+  accuracy=0.74707944, balanced_acc=0.74707944, precision=0.85427136, recall=0.59579439, specificity=0.89836449, f1=0.70199587, fpr=0.10163551
+  TN=769 FP=87 FN=346 TP=510
+
+GENERALISATION GAP (unseen - known)
+- ROC-AUC gap: -0.09293874
+- AP gap: -0.08643341
+- Balanced Accuracy gap (frozen threshold): -0.13669249
+- F1 gap (frozen threshold): -0.17943590
+- AI Recall gap (frozen threshold): -0.26824070
+
+GENERATOR-SPECIFIC AI RECALL
+test_condition  generator  ai_samples  detected_at_050  recall_at_050  detected_at_frozen_youden  recall_at_frozen_youden
+    known_test        ADM          57               46       0.807018                         44                 0.771930
+    known_test     BigGAN          57               57       1.000000                         57                 1.000000
+    known_test      GLIDE          57               56       0.982456                         55                 0.964912
+    known_test       SD15          57               45       0.789474                         41                 0.719298
+   unseen_test Midjourney         286              230       0.804196                        213                 0.744755
+   unseen_test       VQDM         285              103       0.361404                         71                 0.249123
+   unseen_test     Wukong         285              245       0.859649                        226                 0.792982
+
+TABLE A — DISCRIMINATION
+             model  known_roc_auc  unseen_roc_auc  auc_gap  known_ap  unseen_ap  ap_gap
+Handcrafted LogReg          0.725           0.645   -0.079     0.723      0.614  -0.108
+        SmallCNNV1          0.866           0.722   -0.145     0.867      0.656  -0.212
+ MobileNetV3-Small          0.952           0.859   -0.093     0.957      0.871  -0.086
+
+TABLE B — FROZEN OPERATING POINT
+             model  known_bal_acc  unseen_bal_acc  known_ai_recall  unseen_ai_recall  known_f1  unseen_f1
+Handcrafted LogReg          0.686           0.580            0.675             0.425     0.683      0.503
+        SmallCNNV1          0.787           0.589            0.754             0.328     0.780      0.444
+ MobileNetV3-Small          0.884           0.747            0.864             0.596     0.881      0.702
+
+MOBILENET VS SMALLCNN DIFFERENCES (test evidence)
+- Known AUC difference: +0.085928
+- Unseen AUC difference: +0.136989
+- Known AP difference: +0.090360
+- Unseen AP difference: +0.214927
+- AUC gap difference (MobileNet gap - SmallCNN gap): +0.052061
+- AP gap difference (MobileNet gap - SmallCNN gap): +0.125567
+
+SCIENTIFIC INTEGRITY
+- Model refitted after test access: NO
+- Model weights changed: NO
+- Threshold changed: NO
+- Threshold selected using test data: NO
+- Hyperparameters changed: NO
+- known_test used for evaluation: YES
+- unseen_test used for evaluation: YES
+- Classical Baseline V1 modified: NO
+- SmallCNNV1 modified: NO
