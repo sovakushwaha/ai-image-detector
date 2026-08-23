@@ -1,0 +1,54 @@
+Screenshot_v1 Generation Report — Stage 22C
+===========================================
+
+DEFINITION
+- software screenshot-style composite approximation
+- NOT physical LCD/smartphone camera recapture
+- no camera noise, perspective, moiré, sensor blur, or glare
+
+DATA SOURCE
+- representation: controlled_v1 (original locked test images)
+- NOT derived from robustness_v1 JPEG/resize/blur outputs
+- known source count: 456
+- unseen source count: 1712
+- total source count: 2168
+
+GENERATION PROTOCOL
+- canvas: 512x512 RGB(32, 32, 32)
+- JPEG subsampling: 0
+- final resize: LANCZOS to 224x224
+- output format: PNG
+
+- screenshot_mild (mild): JPEG q=85, display=448x448, border=32px each side
+- screenshot_strong (strong): JPEG q=65, display=384x384, border=64px each side
+
+COUNTS
+- expected transformed images: 4336
+- actual transformed images: 4336
+- known transformed: 912 (expected 912)
+- unseen transformed: 3424 (expected 3424)
+
+PER-CONDITION COUNTS
+- screenshot_mild: 2168 (expected 2168)
+- screenshot_strong: 2168 (expected 2168)
+
+INTEGRITY
+- unreadable outputs: 0
+- geometry/mode errors: 0
+- failures during generation: 0
+- labels preserved: YES
+- generator preserved: YES
+- split preserved: YES
+- variants per source: 2
+
+LIMITATIONS
+- one fixed neutral canvas colour
+- one fixed rendering geometry per severity
+- no real app UI chrome
+- no platform-specific pipeline
+- no camera/display acquisition effects
+- not representative of every screenshot scenario
+
+SCIENTIFIC INTEGRITY
+- Model training performed: NO
+- Physical screen recapture claimed: NO
