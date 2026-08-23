@@ -39,13 +39,11 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 23: RQ3 transformation-aware MobileNet regimes (A1–A3) were trained on validation-only robustness suites, then clean-validation Youden thresholds were selected. Test splits remain locked.
+Stage 23D–23E: frozen RQ3 regimes A1–A3 were evaluated once on locked test robustness conditions, then paired bootstrap uncertainty compared A2 against A0.
 
-To regenerate RQ3 development:
+To run the frozen RQ3 test evaluation and statistical analysis:
 
 ```bash
-python src/generate_rq3_validation_v1.py
-python src/evaluate_rq3_baseline_validation_v1.py
-python src/train_rq3_mobilenet_v1.py
-python src/select_rq3_thresholds_v1.py
+python src/evaluate_rq3_frozen_test_v1.py
+python src/rq3_bootstrap_uncertainty_v1.py
 ```

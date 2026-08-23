@@ -1,0 +1,179 @@
+RQ3 Frozen Test Evaluation Report — Stage 23D
+=============================================
+
+1. SEQUENTIAL-DESIGN CAVEAT
+RQ3 augmentation choices were motivated by RQ2 findings on the same pilot
+benchmark. This evaluation is a sequential follow-up experiment, NOT fully
+independent confirmatory evidence on the same transformed test samples.
+Stronger confirmation requires external/new-generator evaluation.
+A2 was selected as the primary candidate from validation BEFORE this test
+and remains primary regardless of test outcomes.
+
+2. FROZEN MODELS / THRESHOLDS
+- A0 (mobilenet_clean_v1): threshold=0.730059862137
+- A1 (mobilenet_blur_aug_v1): threshold=0.497975826263
+- A2 (mobilenet_resize_jpeg_aug_v1): threshold=0.365646272898
+- A3 (mobilenet_combined_aug_v1): threshold=0.282136976719
+
+3. ORIGINAL PERFORMANCE
+[known_test]
+  A0: AUC=0.951928 AP=0.957360 BalAcc=0.883772
+  A1: AUC=0.929574 AP=0.940930 BalAcc=0.848684
+  A2: AUC=0.942155 AP=0.949067 BalAcc=0.861842
+  A3: AUC=0.922707 AP=0.933953 BalAcc=0.835526
+[unseen_test]
+  A0: AUC=0.858989 AP=0.870927 BalAcc=0.747079
+  A1: AUC=0.871016 AP=0.881471 BalAcc=0.780374
+  A2: AUC=0.850321 AP=0.868683 BalAcc=0.768692
+  A3: AUC=0.861231 AP=0.873794 BalAcc=0.778037
+
+4. JPEG50
+[known_test]
+  A0: AUC=0.907241 ΔAUC=-0.044687 AP=0.913641 Rec=0.916667 Spec=0.679825
+  A1: AUC=0.882329 ΔAUC=-0.047245 AP=0.894447 Rec=0.894737 Spec=0.631579
+  A2: AUC=0.925920 ΔAUC=-0.016236 AP=0.931884 Rec=0.859649 Spec=0.815789
+  A3: AUC=0.901624 ΔAUC=-0.021083 AP=0.912490 Rec=0.912281 Spec=0.719298
+[unseen_test]
+  A0: AUC=0.818444 ΔAUC=-0.040545 AP=0.836915 Rec=0.758178 Spec=0.695093
+  A1: AUC=0.835780 ΔAUC=-0.035236 AP=0.852097 Rec=0.831776 Spec=0.623832
+  A2: AUC=0.826850 ΔAUC=-0.023471 AP=0.848423 Rec=0.675234 Spec=0.816589
+  A3: AUC=0.836858 ΔAUC=-0.024373 AP=0.853488 Rec=0.780374 Spec=0.723131
+
+5. RESIZE112
+[known_test]
+  A0: AUC=0.830756 ΔAUC=-0.121172 AP=0.828740 Rec=0.986842 Spec=0.201754
+  A1: AUC=0.843144 ΔAUC=-0.086430 AP=0.852339 Rec=0.925439 Spec=0.495614
+  A2: AUC=0.897430 ΔAUC=-0.044725 AP=0.906691 Rec=0.929825 Spec=0.570175
+  A3: AUC=0.854090 ΔAUC=-0.068617 AP=0.861489 Rec=0.929825 Spec=0.464912
+[unseen_test]
+  A0: AUC=0.780995 ΔAUC=-0.077993 AP=0.809067 Rec=0.963785 Spec=0.195093
+  A1: AUC=0.816413 ΔAUC=-0.054604 AP=0.837313 Rec=0.910047 Spec=0.435748
+  A2: AUC=0.816165 ΔAUC=-0.034156 AP=0.841822 Rec=0.849299 Spec=0.553738
+  A3: AUC=0.812518 ΔAUC=-0.048713 AP=0.836765 Rec=0.901869 Spec=0.442757
+
+6. BLUR2
+[known_test]
+  A0: AUC=0.686269 ΔAUC=-0.265659 AP=0.682976 Rec=0.995614 Spec=0.017544
+  A1: AUC=0.808864 ΔAUC=-0.120710 AP=0.811607 Rec=0.807018 Spec=0.631579
+  A2: AUC=0.732649 ΔAUC=-0.209507 AP=0.725698 Rec=0.995614 Spec=0.004386
+  A3: AUC=0.807248 ΔAUC=-0.115459 AP=0.802931 Rec=0.925439 Spec=0.456140
+[unseen_test]
+  A0: AUC=0.692507 ΔAUC=-0.166482 AP=0.718821 Rec=0.995327 Spec=0.016355
+  A1: AUC=0.801362 ΔAUC=-0.069654 AP=0.819843 Rec=0.821262 Spec=0.578271
+  A2: AUC=0.723662 ΔAUC=-0.126659 AP=0.753863 Rec=0.997664 Spec=0.005841
+  A3: AUC=0.779032 ΔAUC=-0.082199 AP=0.805221 Rec=0.898364 Spec=0.400701
+
+7. SCREENSHOT STRONG
+[known_test]
+  A0: AUC=0.813327 ΔAUC=-0.138600 AP=0.801152 Rec=0.815789 Spec=0.657895
+  A1: AUC=0.782779 ΔAUC=-0.146795 AP=0.797865 Rec=0.754386 Spec=0.605263
+  A2: AUC=0.859861 ΔAUC=-0.082295 AP=0.866150 Rec=0.758772 Spec=0.833333
+  A3: AUC=0.800535 ΔAUC=-0.122172 AP=0.814264 Rec=0.828947 Spec=0.578947
+[unseen_test]
+  A0: AUC=0.792771 ΔAUC=-0.066218 AP=0.795336 Rec=0.714953 Spec=0.720794
+  A1: AUC=0.797896 ΔAUC=-0.073120 AP=0.817675 Rec=0.800234 Spec=0.578271
+  A2: AUC=0.813731 ΔAUC=-0.036590 AP=0.825802 Rec=0.635514 Spec=0.831776
+  A3: AUC=0.806971 ΔAUC=-0.054260 AP=0.818046 Rec=0.831776 Spec=0.565421
+
+8. STRONG ROBUST TEST SCORE
+A0 known_test: StrongRobustTestAUC=0.844048 AP=0.845679
+A0 unseen_test: StrongRobustTestAUC=0.787734 AP=0.808932
+A1 known_test: StrongRobustTestAUC=0.865978 AP=0.874831
+A1 unseen_test: StrongRobustTestAUC=0.831143 AP=0.847681
+A2 known_test: StrongRobustTestAUC=0.874538 AP=0.878335
+A2 unseen_test: StrongRobustTestAUC=0.804249 AP=0.828198
+A3 known_test: StrongRobustTestAUC=0.871417 AP=0.877716
+A3 unseen_test: StrongRobustTestAUC=0.822410 AP=0.842317
+
+9. PRIMARY A2 VS A0
+[known_test]
+  original: ΔAUC(A2−A0)=-0.009772 ΔAP=-0.008293
+  jpeg_q50: ΔAUC(A2−A0)=+0.018679 ΔAP=+0.018242
+  resize_112: ΔAUC(A2−A0)=+0.066674 ΔAP=+0.077951
+  blur_sigma2: ΔAUC(A2−A0)=+0.046380 ΔAP=+0.042722
+  screenshot_strong: ΔAUC(A2−A0)=+0.046534 ΔAP=+0.064998
+  StrongRobustTestAUC difference: +0.030490
+[unseen_test]
+  original: ΔAUC(A2−A0)=-0.008668 ΔAP=-0.002244
+  jpeg_q50: ΔAUC(A2−A0)=+0.008405 ΔAP=+0.011508
+  resize_112: ΔAUC(A2−A0)=+0.035170 ΔAP=+0.032755
+  blur_sigma2: ΔAUC(A2−A0)=+0.031155 ΔAP=+0.035042
+  screenshot_strong: ΔAUC(A2−A0)=+0.020960 ΔAP=+0.030466
+  StrongRobustTestAUC difference: +0.016515
+
+10. A1/A2/A3 ABLATION COMPARISON
+A1 (blur-aware): inspect Blur2 transfer vs A0.
+  Unseen Blur2 ΔAUC(A1−A0)=+0.108856
+A2 (resize+JPEG): inspect JPEG50/Resize112 vs A0.
+  Unseen JPEG50 ΔAUC(A2−A0)=+0.008405
+  Unseen Resize112 ΔAUC(A2−A0)=+0.035170
+A3 (combined): compare StrongRobustTestAUC vs A2.
+  Unseen StrongRobust A3−A2=+0.018161
+
+11. CROSS-TRANSFORMATION EFFECTS
+ScreenshotStrong was not explicitly included as a training augmentation.
+Unseen ScreenshotStrong ΔAUC(A1−A0)=+0.005125
+Unseen ScreenshotStrong ΔAUC(A2−A0)=+0.020960
+Unseen ScreenshotStrong ΔAUC(A3−A0)=+0.014200
+A2 Blur2 (no blur augmentation): ΔAUC(A2−A0)=+0.031155
+
+12. GENERATOR-SPECIFIC OBSERVATIONS
+Unseen AI recall at frozen thresholds:
+  A0 Midjourney: original=0.745(n=286); jpeg_q50=0.860(n=286); resize_112=0.997(n=286); blur_sigma2=1.000(n=286); screenshot_strong=0.864(n=286)
+  A0 VQDM: original=0.249(n=285); jpeg_q50=0.523(n=285); resize_112=0.909(n=285); blur_sigma2=0.986(n=285); screenshot_strong=0.389(n=285)
+  A0 Wukong: original=0.793(n=285); jpeg_q50=0.891(n=285); resize_112=0.986(n=285); blur_sigma2=1.000(n=285); screenshot_strong=0.891(n=285)
+  A1 Midjourney: original=0.843(n=286); jpeg_q50=0.909(n=286); resize_112=0.948(n=286); blur_sigma2=0.832(n=286); screenshot_strong=0.860(n=286)
+  A1 VQDM: original=0.470(n=285); jpeg_q50=0.663(n=285); resize_112=0.807(n=285); blur_sigma2=0.716(n=285); screenshot_strong=0.614(n=285)
+  A1 Wukong: original=0.849(n=285); jpeg_q50=0.923(n=285); resize_112=0.975(n=285); blur_sigma2=0.916(n=285); screenshot_strong=0.926(n=285)
+  A2 Midjourney: original=0.825(n=286); jpeg_q50=0.776(n=286); resize_112=0.930(n=286); blur_sigma2=1.000(n=286); screenshot_strong=0.717(n=286)
+  A2 VQDM: original=0.361(n=285); jpeg_q50=0.400(n=285); resize_112=0.677(n=285); blur_sigma2=0.993(n=285); screenshot_strong=0.333(n=285)
+  A2 Wukong: original=0.853(n=285); jpeg_q50=0.849(n=285); resize_112=0.940(n=285); blur_sigma2=1.000(n=285); screenshot_strong=0.856(n=285)
+  A3 Midjourney: original=0.836(n=286); jpeg_q50=0.832(n=286); resize_112=0.951(n=286); blur_sigma2=0.892(n=286); screenshot_strong=0.923(n=286)
+  A3 VQDM: original=0.512(n=285); jpeg_q50=0.596(n=285); resize_112=0.772(n=285); blur_sigma2=0.828(n=285); screenshot_strong=0.632(n=285)
+  A3 Wukong: original=0.881(n=285); jpeg_q50=0.912(n=285); resize_112=0.982(n=285); blur_sigma2=0.975(n=285); screenshot_strong=0.940(n=285)
+
+13. THRESHOLD BEHAVIOUR
+Distinguish discrimination (AUC/AP) from operating-point (recall/specificity).
+High AI recall with collapsed specificity is NOT described as robustness gain.
+A0 unseen recall/spec:
+  original: recall=0.596 spec=0.898 FPR=0.102
+  jpeg_q50: recall=0.758 spec=0.695 FPR=0.305
+  resize_112: recall=0.964 spec=0.195 FPR=0.805
+  blur_sigma2: recall=0.995 spec=0.016 FPR=0.984
+  screenshot_strong: recall=0.715 spec=0.721 FPR=0.279
+A1 unseen recall/spec:
+  original: recall=0.721 spec=0.840 FPR=0.160
+  jpeg_q50: recall=0.832 spec=0.624 FPR=0.376
+  resize_112: recall=0.910 spec=0.436 FPR=0.564
+  blur_sigma2: recall=0.821 spec=0.578 FPR=0.422
+  screenshot_strong: recall=0.800 spec=0.578 FPR=0.422
+A2 unseen recall/spec:
+  original: recall=0.680 spec=0.857 FPR=0.143
+  jpeg_q50: recall=0.675 spec=0.817 FPR=0.183
+  resize_112: recall=0.849 spec=0.554 FPR=0.446
+  blur_sigma2: recall=0.998 spec=0.006 FPR=0.994
+  screenshot_strong: recall=0.636 spec=0.832 FPR=0.168
+A3 unseen recall/spec:
+  original: recall=0.743 spec=0.813 FPR=0.187
+  jpeg_q50: recall=0.780 spec=0.723 FPR=0.277
+  resize_112: recall=0.902 spec=0.443 FPR=0.557
+  blur_sigma2: recall=0.898 spec=0.401 FPR=0.599
+  screenshot_strong: recall=0.832 spec=0.565 FPR=0.435
+
+14. LIMITATIONS
+- Sequential follow-up to RQ2 on the same pilot benchmark.
+- No statistical significance testing in Stage 23D.
+- Screenshot condition is a digital approximation, not physical recapture.
+- Clean-performance trade-offs may accompany robustness gains.
+
+15. SCIENTIFIC INTEGRITY
+Model training after Stage 23C: NO
+Checkpoint changes: NO
+Threshold changes: NO
+Test-derived threshold selection: NO
+Primary candidate changed after test: NO
+Transformation-specific thresholds: NO
+Generator-specific thresholds: NO
+Samples removed after results: NO
+A0 rerun unnecessarily: NO
+A1/A2/A3 first frozen test evaluation: YES

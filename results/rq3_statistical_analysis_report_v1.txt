@@ -1,0 +1,125 @@
+RQ3 Statistical Analysis Report — Stage 23E
+===========================================
+
+1. STAGE 23D VERIFICATION
+PASSED. Prediction counts, source alignment, labels, generators, thresholds,
+and Stage-23D ROC-AUC/AP reproduction all verified. No new inference.
+
+2. BOOTSTRAP METHOD
+Replicates: 5000
+Seed: 42
+Method: paired_class_stratified_source_bootstrap_percentile_ci
+Same resampled source IDs applied across A0/A1/A2/A3 and all five conditions.
+
+3. PRIMARY A2 VS A0 (UNSEEN AUC)
+original: -0.008668  [-0.016453, -0.000869]  (consistent negative difference under the current fixed-sample bootstrap)
+jpeg_q50: +0.008405  [-0.000380, +0.017166]  (not clearly distinguishable from zero under this fixed-sample bootstrap)
+resize_112: +0.035170  [+0.024057, +0.046929]  (consistent positive difference under the current fixed-sample bootstrap)
+blur_sigma2: +0.031155  [+0.017808, +0.044475]  (consistent positive difference under the current fixed-sample bootstrap)
+screenshot_strong: +0.020960  [+0.008295, +0.033442]  (consistent positive difference under the current fixed-sample bootstrap)
+
+4. CLEAN PERFORMANCE TRADE-OFF
+Unseen original AUC A2−A0: -0.008668  [-0.016453, -0.000869]  (consistent negative difference under the current fixed-sample bootstrap)
+Unseen original AP A2−A0: -0.002244  [-0.009666, +0.005274]  (not clearly distinguishable from zero under this fixed-sample bootstrap)
+Known original AUC A2−A0: -0.009772  [-0.020526, +0.000770]  (not clearly distinguishable from zero under this fixed-sample bootstrap)
+
+5. JPEG TARGETED RESULT
+Unseen JPEG50 AUC: +0.008405  [-0.000380, +0.017166]  (not clearly distinguishable from zero under this fixed-sample bootstrap)
+Unseen JPEG50 difference-in-delta AUC: +0.017074  [+0.008767, +0.025472]  (consistent positive difference under the current fixed-sample bootstrap)
+
+6. RESIZE TARGETED RESULT
+Unseen Resize112 AUC: +0.035170  [+0.024057, +0.046929]  (consistent positive difference under the current fixed-sample bootstrap)
+Unseen Resize112 difference-in-delta AUC: +0.043838  [+0.032429, +0.055572]  (consistent positive difference under the current fixed-sample bootstrap)
+
+7. BLUR CROSS-TRANSFORMATION RESULT
+A2 did not receive blur augmentation.
+Unseen Blur2 AUC: +0.031155  [+0.017808, +0.044475]  (consistent positive difference under the current fixed-sample bootstrap)
+Unseen Blur2 difference-in-delta AUC: +0.039823  [+0.025091, +0.054668]  (consistent positive difference under the current fixed-sample bootstrap)
+
+8. SCREENSHOT CROSS-TRANSFORMATION RESULT
+ScreenshotStrong was not explicitly included as a training augmentation.
+Unseen ScreenshotStrong AUC: +0.020960  [+0.008295, +0.033442]  (consistent positive difference under the current fixed-sample bootstrap)
+Unseen ScreenshotStrong difference-in-delta AUC: +0.029628  [+0.015783, +0.043636]  (consistent positive difference under the current fixed-sample bootstrap)
+
+9. STRONG ROBUST TEST SCORE
+A0: AUC=0.787734 AP=0.808932
+A1: AUC=0.831143 AP=0.847681
+A2: AUC=0.804249 AP=0.828198
+A3: AUC=0.822410 AP=0.842317
+A2−A0 StrongRobustTestAUC: +0.016515  [+0.009187, +0.024050]  (consistent positive difference under the current fixed-sample bootstrap)
+A2−A0 StrongRobustTestAP: +0.019265  [+0.011660, +0.027055]  (consistent positive difference under the current fixed-sample bootstrap)
+
+10. DIFFERENCE-IN-DELTA ANALYSIS
+Positive values: A2 lost less relative to its own original than A0.
+jpeg_q50: +0.017074  [+0.008767, +0.025472]  (consistent positive difference under the current fixed-sample bootstrap)
+resize_112: +0.043838  [+0.032429, +0.055572]  (consistent positive difference under the current fixed-sample bootstrap)
+blur_sigma2: +0.039823  [+0.025091, +0.054668]  (consistent positive difference under the current fixed-sample bootstrap)
+screenshot_strong: +0.029628  [+0.015783, +0.043636]  (consistent positive difference under the current fixed-sample bootstrap)
+
+11. A1 BLUR ABLATION (SECONDARY)
+A1−A0 Blur2 AUC: +0.108856  [+0.087897, +0.129936]  (consistent positive difference under the current fixed-sample bootstrap)
+A1−A0 StrongRobustTestAUC: +0.043409  [+0.032470, +0.054292]  (consistent positive difference under the current fixed-sample bootstrap)
+A1 remains a predefined ablation; A2 remains the validation-selected primary.
+
+12. A3 COMBINED ABLATION (SECONDARY)
+A3−A0 StrongRobustTestAUC: +0.034676  [+0.024328, +0.045222]  (consistent positive difference under the current fixed-sample bootstrap)
+A3−A2 StrongRobustTestAUC: +0.018161  [+0.009291, +0.026706]  (consistent positive difference under the current fixed-sample bootstrap)
+
+13. THRESHOLD BEHAVIOUR
+Primary conclusions use ROC-AUC/AP. Frozen-threshold metrics are descriptive.
+High AI recall with collapsed specificity is NOT a robustness gain.
+A0 original: recall=0.596 spec=0.898 FPR=0.102 BalAcc=0.747
+A2 original: recall=0.680 spec=0.857 FPR=0.143 BalAcc=0.769
+A0 resize_112: recall=0.964 spec=0.195 FPR=0.805 BalAcc=0.579
+A2 resize_112: recall=0.849 spec=0.554 FPR=0.446 BalAcc=0.702
+A0 blur_sigma2: recall=0.995 spec=0.016 FPR=0.984 BalAcc=0.506
+A2 blur_sigma2: recall=0.998 spec=0.006 FPR=0.994 BalAcc=0.502
+A0 screenshot_strong: recall=0.715 spec=0.721 FPR=0.279 BalAcc=0.718
+A2 screenshot_strong: recall=0.636 spec=0.832 FPR=0.168 BalAcc=0.734
+
+14. GENERATOR-SPECIFIC OBSERVATIONS (descriptive Stage-23D recalls)
+Midjourney:
+  A0: original=0.745; jpeg_q50=0.860; resize_112=0.997; blur_sigma2=1.000; screenshot_strong=0.864
+  A1: original=0.843; jpeg_q50=0.909; resize_112=0.948; blur_sigma2=0.832; screenshot_strong=0.860
+  A2: original=0.825; jpeg_q50=0.776; resize_112=0.930; blur_sigma2=1.000; screenshot_strong=0.717
+  A3: original=0.836; jpeg_q50=0.832; resize_112=0.951; blur_sigma2=0.892; screenshot_strong=0.923
+VQDM:
+  A0: original=0.249; jpeg_q50=0.523; resize_112=0.909; blur_sigma2=0.986; screenshot_strong=0.389
+  A1: original=0.470; jpeg_q50=0.663; resize_112=0.807; blur_sigma2=0.716; screenshot_strong=0.614
+  A2: original=0.361; jpeg_q50=0.400; resize_112=0.677; blur_sigma2=0.993; screenshot_strong=0.333
+  A3: original=0.512; jpeg_q50=0.596; resize_112=0.772; blur_sigma2=0.828; screenshot_strong=0.632
+Wukong:
+  A0: original=0.793; jpeg_q50=0.891; resize_112=0.986; blur_sigma2=1.000; screenshot_strong=0.891
+  A1: original=0.849; jpeg_q50=0.923; resize_112=0.975; blur_sigma2=0.916; screenshot_strong=0.926
+  A2: original=0.853; jpeg_q50=0.849; resize_112=0.940; blur_sigma2=1.000; screenshot_strong=0.856
+  A3: original=0.881; jpeg_q50=0.912; resize_112=0.982; blur_sigma2=0.975; screenshot_strong=0.940
+
+15. SEQUENTIAL-DESIGN LIMITATION
+RQ3 was motivated by RQ2 results on the same pilot benchmark.
+This is a sequential follow-up, not fully independent confirmation.
+Bootstrap estimates sampling uncertainty for fixed samples only.
+External/new-generator validation remains required.
+
+16. RQ3 CONCLUSION
+Primary validation-selected candidate: A2 (resize+JPEG-aware).
+Unseen StrongRobustTestAUC A2−A0: +0.016515  [+0.009187, +0.024050]  (consistent positive difference under the current fixed-sample bootstrap)
+Clean trade-off (unseen original AUC): -0.008668  [-0.016453, -0.000869]  (consistent negative difference under the current fixed-sample bootstrap)
+Targeted JPEG/resize and several cross-transform conditions show positive A2−A0 ranking differences;
+interpret each CI individually. A1/A3 are secondary ablations and do not replace A2.
+
+17. SCIENTIFIC INTEGRITY
+New model training: NO
+New model inference: NO
+Model weights changed: NO
+Checkpoints changed: NO
+Thresholds changed: NO
+Primary candidate changed: NO
+Transformation-specific thresholds: NO
+Generator-specific thresholds: NO
+Samples removed after test results: NO
+A0 rerun: NO
+A1/A2/A3 rerun: NO
+Bootstrap uses existing frozen predictions: YES
+RQ3 model development reopened: NO
+RQ4 started: NO
+Frozen thresholds used: A0=0.730059862137, A1=0.497975826263, A2=0.365646272898, A3=0.282136976719
