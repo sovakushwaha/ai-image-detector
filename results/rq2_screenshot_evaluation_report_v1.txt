@@ -1,0 +1,125 @@
+RQ2 Screenshot-Style Evaluation Report — Stage 22C
+=================================================
+
+DEFINITION
+- Conditions are "software screenshot-style composite approximations".
+- They are NOT physical LCD/smartphone camera recaptures.
+
+GENERATION PROTOCOL
+- Sources: original controlled_v1 locked test images (2168)
+- Conditions: screenshot_mild (JPEG q85 + 448px centred on 512 canvas + resize 224)
+-             screenshot_strong (JPEG q65 + 384px centred on 512 canvas + resize 224)
+- Canvas RGB(32,32,32); LANCZOS; PNG final outputs
+- No camera noise / perspective / moiré / glare
+
+INTEGRITY
+- generated images: 4336
+- failures: 0 (generation gate passed before evaluation)
+- labels/generators/splits preserved
+
+FROZEN MODELS / THRESHOLDS
+- Handcrafted LogReg: threshold=0.567151660734
+- SmallCNNV1: threshold=0.540600390261
+- MobileNetV3-Small: threshold=0.730059862137
+- EfficientNet-B0: threshold=0.263691753149
+
+KNOWN RESULTS
+- Handcrafted LogReg original: AUC=0.7247, AP=0.7225, BalAcc=0.6864, Recall=0.6754, Spec=0.6974, F1=0.6829, ΔAUC=+0.0000
+- Handcrafted LogReg screenshot_mild: AUC=0.7182, AP=0.7187, BalAcc=0.6667, Recall=0.5395, Spec=0.7939, F1=0.6181, ΔAUC=-0.0065
+- Handcrafted LogReg screenshot_strong: AUC=0.7053, AP=0.7118, BalAcc=0.6623, Recall=0.6140, Spec=0.7105, F1=0.6452, ΔAUC=-0.0193
+- SmallCNNV1 original: AUC=0.8664, AP=0.8673, BalAcc=0.7873, Recall=0.7544, Spec=0.8202, F1=0.7800, ΔAUC=+0.0000
+- SmallCNNV1 screenshot_mild: AUC=0.8399, AP=0.8454, BalAcc=0.7675, Recall=0.7325, Spec=0.8026, F1=0.7591, ΔAUC=-0.0265
+- SmallCNNV1 screenshot_strong: AUC=0.8072, AP=0.8125, BalAcc=0.7303, Recall=0.7281, Spec=0.7325, F1=0.7297, ΔAUC=-0.0592
+- MobileNetV3-Small original: AUC=0.9519, AP=0.9574, BalAcc=0.8838, Recall=0.8640, Spec=0.9035, F1=0.8814, ΔAUC=+0.0000
+- MobileNetV3-Small screenshot_mild: AUC=0.9052, AP=0.9115, BalAcc=0.8355, Recall=0.8553, Spec=0.8158, F1=0.8387, ΔAUC=-0.0467
+- MobileNetV3-Small screenshot_strong: AUC=0.8133, AP=0.8012, BalAcc=0.7368, Recall=0.8158, Spec=0.6579, F1=0.7561, ΔAUC=-0.1386
+- EfficientNet-B0 original: AUC=0.9588, AP=0.9637, BalAcc=0.8750, Recall=0.9035, Spec=0.8465, F1=0.8785, ΔAUC=+0.0000
+- EfficientNet-B0 screenshot_mild: AUC=0.9532, AP=0.9561, BalAcc=0.8750, Recall=0.8860, Spec=0.8640, F1=0.8764, ΔAUC=-0.0056
+- EfficientNet-B0 screenshot_strong: AUC=0.9186, AP=0.9231, BalAcc=0.8377, Recall=0.8465, Spec=0.8289, F1=0.8391, ΔAUC=-0.0401
+
+UNSEEN RESULTS
+- Handcrafted LogReg original: AUC=0.6452, AP=0.6141, BalAcc=0.5800, Recall=0.4252, Spec=0.7348, F1=0.5031, ΔAUC=+0.0000
+- Handcrafted LogReg screenshot_mild: AUC=0.6492, AP=0.6074, BalAcc=0.5695, Recall=0.3294, Spec=0.8096, F1=0.4335, ΔAUC=+0.0040
+- Handcrafted LogReg screenshot_strong: AUC=0.6430, AP=0.6059, BalAcc=0.5806, Recall=0.4217, Spec=0.7395, F1=0.5014, ΔAUC=-0.0022
+- SmallCNNV1 original: AUC=0.7215, AP=0.6558, BalAcc=0.5888, Recall=0.3283, Spec=0.8493, F1=0.4439, ΔAUC=+0.0000
+- SmallCNNV1 screenshot_mild: AUC=0.7049, AP=0.6518, BalAcc=0.5975, Recall=0.3493, Spec=0.8458, F1=0.4646, ΔAUC=-0.0166
+- SmallCNNV1 screenshot_strong: AUC=0.6845, AP=0.6457, BalAcc=0.6197, Recall=0.4428, Spec=0.7967, F1=0.5380, ΔAUC=-0.0370
+- MobileNetV3-Small original: AUC=0.8590, AP=0.8709, BalAcc=0.7471, Recall=0.5958, Spec=0.8984, F1=0.7020, ΔAUC=+0.0000
+- MobileNetV3-Small screenshot_mild: AUC=0.8155, AP=0.8385, BalAcc=0.7395, Recall=0.6729, Spec=0.8061, F1=0.7209, ΔAUC=-0.0435
+- MobileNetV3-Small screenshot_strong: AUC=0.7928, AP=0.7953, BalAcc=0.7179, Recall=0.7150, Spec=0.7208, F1=0.7170, ΔAUC=-0.0662
+- EfficientNet-B0 original: AUC=0.8589, AP=0.8805, BalAcc=0.7938, Recall=0.7150, Spec=0.8727, F1=0.7762, ΔAUC=+0.0000
+- EfficientNet-B0 screenshot_mild: AUC=0.8414, AP=0.8665, BalAcc=0.7745, Recall=0.7114, Spec=0.8376, F1=0.7594, ΔAUC=-0.0175
+- EfficientNet-B0 screenshot_strong: AUC=0.8284, AP=0.8567, BalAcc=0.7576, Recall=0.7056, Spec=0.8096, F1=0.7443, ΔAUC=-0.0305
+
+DELTAS (unseen)
+- Handcrafted LogReg screenshot_mild: ΔAUC=+0.0040, ΔAP=-0.0067, ΔBalAcc=-0.0105, ΔRecall=-0.0958, ΔF1=-0.0696
+- Handcrafted LogReg screenshot_strong: ΔAUC=-0.0022, ΔAP=-0.0082, ΔBalAcc=+0.0006, ΔRecall=-0.0035, ΔF1=-0.0017
+- SmallCNNV1 screenshot_mild: ΔAUC=-0.0166, ΔAP=-0.0041, ΔBalAcc=+0.0088, ΔRecall=+0.0210, ΔF1=+0.0207
+- SmallCNNV1 screenshot_strong: ΔAUC=-0.0370, ΔAP=-0.0101, ΔBalAcc=+0.0310, ΔRecall=+0.1145, ΔF1=+0.0941
+- MobileNetV3-Small screenshot_mild: ΔAUC=-0.0435, ΔAP=-0.0325, ΔBalAcc=-0.0076, ΔRecall=+0.0771, ΔF1=+0.0189
+- MobileNetV3-Small screenshot_strong: ΔAUC=-0.0662, ΔAP=-0.0756, ΔBalAcc=-0.0292, ΔRecall=+0.1192, ΔF1=+0.0151
+- EfficientNet-B0 screenshot_mild: ΔAUC=-0.0175, ΔAP=-0.0140, ΔBalAcc=-0.0193, ΔRecall=-0.0035, ΔF1=-0.0168
+- EfficientNet-B0 screenshot_strong: ΔAUC=-0.0305, ΔAP=-0.0238, ΔBalAcc=-0.0362, ΔRecall=-0.0093, ΔF1=-0.0319
+
+GENERATOR BEHAVIOUR (pretrained unseen AI recall)
+- MobileNetV3-Small screenshot_mild Midjourney: recall=0.825 (n=286)
+- MobileNetV3-Small screenshot_mild VQDM: recall=0.326 (n=285)
+- MobileNetV3-Small screenshot_mild Wukong: recall=0.867 (n=285)
+- MobileNetV3-Small screenshot_strong Midjourney: recall=0.864 (n=286)
+- MobileNetV3-Small screenshot_strong VQDM: recall=0.389 (n=285)
+- MobileNetV3-Small screenshot_strong Wukong: recall=0.891 (n=285)
+- EfficientNet-B0 screenshot_mild Midjourney: recall=0.843 (n=286)
+- EfficientNet-B0 screenshot_mild VQDM: recall=0.382 (n=285)
+- EfficientNet-B0 screenshot_mild Wukong: recall=0.909 (n=285)
+- EfficientNet-B0 screenshot_strong Midjourney: recall=0.825 (n=286)
+- EfficientNet-B0 screenshot_strong VQDM: recall=0.393 (n=285)
+- EfficientNet-B0 screenshot_strong Wukong: recall=0.898 (n=285)
+
+COMPARISON WITH JPEG50 / RESIZE112 / BLUR_SIGMA2 (unseen ΔAUC)
+- Handcrafted LogReg (unseen ΔAUC):
+  screenshot_mild: +0.0040
+  screenshot_strong: -0.0022
+  jpeg_q50: -0.0035
+  resize_112: -0.0443
+  blur_sigma2: -0.0984
+  interpretation (screenshot_strong vs basic): comparable to jpeg_q50; smaller damage than resize_112; smaller damage than blur_sigma2
+- SmallCNNV1 (unseen ΔAUC):
+  screenshot_mild: -0.0166
+  screenshot_strong: -0.0370
+  jpeg_q50: -0.0211
+  resize_112: -0.1736
+  blur_sigma2: -0.2620
+  interpretation (screenshot_strong vs basic): greater damage than jpeg_q50; smaller damage than resize_112; smaller damage than blur_sigma2
+- MobileNetV3-Small (unseen ΔAUC):
+  screenshot_mild: -0.0435
+  screenshot_strong: -0.0662
+  jpeg_q50: -0.0405
+  resize_112: -0.0780
+  blur_sigma2: -0.1665
+  interpretation (screenshot_strong vs basic): greater damage than jpeg_q50; smaller damage than resize_112; smaller damage than blur_sigma2
+- EfficientNet-B0 (unseen ΔAUC):
+  screenshot_mild: -0.0175
+  screenshot_strong: -0.0305
+  jpeg_q50: -0.0239
+  resize_112: -0.0711
+  blur_sigma2: -0.2660
+  interpretation (screenshot_strong vs basic): comparable to jpeg_q50; smaller damage than resize_112; smaller damage than blur_sigma2
+
+LIMITATIONS
+- one fixed neutral canvas
+- one fixed rendering geometry per severity
+- no real app UI
+- no platform-specific pipeline
+- no camera/display acquisition effects
+- not representative of every screenshot scenario
+- actual physical display-camera recapture remains untested
+
+SCIENTIFIC INTEGRITY
+- Model training: NO
+- Model refitting: NO
+- Threshold change: NO
+- Screenshot-specific tuning: NO
+- Generator-specific tuning: NO
+- Samples removed after results: NO
+- RQ1 reopened: NO
+- Physical screen recapture claimed: NO

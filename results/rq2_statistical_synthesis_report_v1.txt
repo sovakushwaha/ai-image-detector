@@ -1,0 +1,141 @@
+RQ2 Statistical Synthesis Report — Stage 22D
+============================================
+
+METHOD
+- seed: 42
+- bootstrap replicates: 5000
+- method: stratified_paired_bootstrap_percentile_ci
+- stratified paired resampling of source_image_id (Real/AI separately)
+- same bootstrap sample for original and transformed predictions
+- no model inference, training, or threshold changes
+
+STRONG TRANSFORMATION DELTAS (observed unseen ΔAUC [95% CI])
+- LogReg:
+    jpeg_q50: -0.0035 [-0.0077, +0.0005] — not clearly distinguishable from zero
+    crop_75: +0.0084 [-0.0031, +0.0202] — not clearly distinguishable from zero
+    resize_112: -0.0443 [-0.0675, -0.0213] — consistent degradation (CI fully below zero)
+    blur_sigma2: -0.0984 [-0.1276, -0.0703] — consistent degradation (CI fully below zero)
+    screenshot_strong: -0.0022 [-0.0106, +0.0062] — not clearly distinguishable from zero
+- SmallCNNV1:
+    jpeg_q50: -0.0211 [-0.0300, -0.0124] — consistent degradation (CI fully below zero)
+    crop_75: -0.0071 [-0.0210, +0.0072] — not clearly distinguishable from zero
+    resize_112: -0.1736 [-0.2049, -0.1412] — consistent degradation (CI fully below zero)
+    blur_sigma2: -0.2620 [-0.2978, -0.2246] — consistent degradation (CI fully below zero)
+    screenshot_strong: -0.0370 [-0.0496, -0.0252] — consistent degradation (CI fully below zero)
+- MobileNetV3-Small:
+    jpeg_q50: -0.0405 [-0.0523, -0.0289] — consistent degradation (CI fully below zero)
+    crop_75: -0.0005 [-0.0097, +0.0088] — not clearly distinguishable from zero
+    resize_112: -0.0780 [-0.0948, -0.0613] — consistent degradation (CI fully below zero)
+    blur_sigma2: -0.1665 [-0.1906, -0.1426] — consistent degradation (CI fully below zero)
+    screenshot_strong: -0.0662 [-0.0847, -0.0481] — consistent degradation (CI fully below zero)
+- EfficientNet-B0:
+    jpeg_q50: -0.0239 [-0.0332, -0.0147] — consistent degradation (CI fully below zero)
+    crop_75: +0.0097 [+0.0004, +0.0189] — observed increase (CI excludes zero and above)
+    resize_112: -0.0711 [-0.0884, -0.0544] — consistent degradation (CI fully below zero)
+    blur_sigma2: -0.2660 [-0.2948, -0.2373] — consistent degradation (CI fully below zero)
+    screenshot_strong: -0.0305 [-0.0415, -0.0200] — consistent degradation (CI fully below zero)
+
+MOBILENET VS EFFICIENTNET (unseen difference-in-delta ΔAUC [95% CI])
+- jpeg_q50: +0.0167 [+0.0043, +0.0291]
+- crop_75: +0.0102 [-0.0025, +0.0228]
+- resize_112: +0.0069 [-0.0112, +0.0243]
+- blur_sigma2: -0.0995 [-0.1273, -0.0723]
+- screenshot_strong: +0.0357 [+0.0160, +0.0551]
+
+TRANSFORMATION DAMAGE RANKING (unseen, worst ΔAUC first)
+- MobileNetV3-Small ΔAUC: ['blur_sigma2', 'resize_112', 'screenshot_strong', 'jpeg_q50', 'crop_75']
+- MobileNetV3-Small ΔAP:  ['blur_sigma2', 'screenshot_strong', 'resize_112', 'jpeg_q50', 'crop_75']
+- EfficientNet-B0 ΔAUC: ['blur_sigma2', 'resize_112', 'screenshot_strong', 'jpeg_q50', 'crop_75']
+- EfficientNet-B0 ΔAP:  ['blur_sigma2', 'resize_112', 'jpeg_q50', 'screenshot_strong', 'crop_75']
+
+SEVERITY PATTERNS (descriptive)
+JPEG (mild -> strong, unseen ΔAUC):
+  MobileNetV3-Small: jpeg_q75 -0.0175 -> jpeg_q50 -0.0405 (strong worse)
+  EfficientNet-B0: jpeg_q75 -0.0168 -> jpeg_q50 -0.0239 (strong worse)
+CROP (mild -> strong, unseen ΔAUC):
+  MobileNetV3-Small: crop_90 +0.0043 -> crop_75 -0.0005 (strong worse)
+  EfficientNet-B0: crop_90 +0.0094 -> crop_75 +0.0097 (strong better)
+RESIZE (mild -> strong, unseen ΔAUC):
+  MobileNetV3-Small: resize_160 -0.0125 -> resize_112 -0.0780 (strong worse)
+  EfficientNet-B0: resize_160 +0.0088 -> resize_112 -0.0711 (strong worse)
+BLUR (mild -> strong, unseen ΔAUC):
+  MobileNetV3-Small: blur_sigma1 -0.0696 -> blur_sigma2 -0.1665 (strong worse)
+  EfficientNet-B0: blur_sigma1 -0.1189 -> blur_sigma2 -0.2660 (strong worse)
+SCREENSHOT (mild -> strong, unseen ΔAUC):
+  MobileNetV3-Small: screenshot_mild -0.0435 -> screenshot_strong -0.0662 (strong worse)
+  EfficientNet-B0: screenshot_mild -0.0175 -> screenshot_strong -0.0305 (strong worse)
+
+THRESHOLD SHIFT VS DISCRIMINATION
+Under unchanged frozen thresholds, strong resize/blur/screenshot often show:
+- ROC-AUC/AP degradation (discrimination failure)
+- AI recall inflation with specificity collapse (operating-point shift)
+
+MobileNetV3-Small (unseen):
+  resize_112: ΔAUC=-0.0780, Δrecall=+0.3680, Δspec=-0.7033, FPR=0.805
+  blur_sigma2: ΔAUC=-0.1665, Δrecall=+0.3995, Δspec=-0.8820, FPR=0.984
+  screenshot_strong: ΔAUC=-0.0662, Δrecall=+0.1192, Δspec=-0.1776, FPR=0.279
+
+EfficientNet-B0 (unseen):
+  resize_112: ΔAUC=-0.0711, Δrecall=+0.2558, Δspec=-0.7091, FPR=0.836
+  blur_sigma2: ΔAUC=-0.2660, Δrecall=+0.2850, Δspec=-0.8727, FPR=1.000
+  screenshot_strong: ΔAUC=-0.0305, Δrecall=-0.0093, Δspec=-0.0631, FPR=0.190
+
+SmallCNNV1 (unseen):
+  resize_112: ΔAUC=-0.1736, Δrecall=+0.6297, Δspec=-0.8283, FPR=0.979
+  blur_sigma2: ΔAUC=-0.2620, Δrecall=+0.6484, Δspec=-0.8364, FPR=0.987
+  screenshot_strong: ΔAUC=-0.0370, Δrecall=+0.1145, Δspec=-0.0526, FPR=0.203
+
+Handcrafted LogReg (unseen):
+  resize_112: ΔAUC=-0.0443, Δrecall=+0.5035, Δspec=-0.5549, FPR=0.820
+  blur_sigma2: ΔAUC=-0.0984, Δrecall=+0.5222, Δspec=-0.6752, FPR=0.940
+  screenshot_strong: ΔAUC=-0.0022, Δrecall=-0.0035, Δspec=+0.0047, FPR=0.261
+
+
+GENERATOR-SPECIFIC OBSERVATIONS
+MobileNetV3-Small unseen generator recall (frozen threshold):
+  Midjourney: jpeg_q50=0.860, crop_75=0.860, resize_112=0.997, blur_sigma2=1.000, screenshot_strong=0.864
+  VQDM: jpeg_q50=0.523, crop_75=0.382, resize_112=0.909, blur_sigma2=0.986, screenshot_strong=0.389
+  Wukong: jpeg_q50=0.891, crop_75=0.860, resize_112=0.986, blur_sigma2=1.000, screenshot_strong=0.891
+
+EfficientNet-B0 unseen generator recall (frozen threshold):
+  Midjourney: jpeg_q50=0.839, crop_75=0.888, resize_112=0.990, blur_sigma2=1.000, screenshot_strong=0.825
+  VQDM: jpeg_q50=0.414, crop_75=0.470, resize_112=0.930, blur_sigma2=1.000, screenshot_strong=0.393
+  Wukong: jpeg_q50=0.856, crop_75=0.926, resize_112=0.993, blur_sigma2=1.000, screenshot_strong=0.898
+
+
+LIMITATIONS
+- Bootstrap uncertainty for fixed test samples only
+- Does not account for alternative generator holdouts, training seeds, datasets
+- Does not represent all social-media platforms or physical screen recapture
+- Alternative transformation parameterisations not tested
+
+IMPLICATIONS FOR RQ3
+Evidence-based priorities for RQ3 design (objective summary only; no augmentation protocol):
+
+1. Magnitude (mean |ΔAUC| across pretrained, unseen): blur_sigma2=0.2162, resize_112=0.0745, screenshot_strong=0.0484, jpeg_q50=0.0322, crop_75=0.0051
+   Ranking: blur_sigma2 > resize_112 > screenshot_strong > jpeg_q50 > crop_75
+
+2. Bootstrap CI consistency (unseen ΔAUC):
+   - jpeg_q50: 2/2 pretrained models with CI fully below zero for ΔAUC
+   - crop_75: 0/2 pretrained models with CI fully below zero for ΔAUC
+   - resize_112: 2/2 pretrained models with CI fully below zero for ΔAUC
+   - blur_sigma2: 2/2 pretrained models with CI fully below zero for ΔAUC
+   - screenshot_strong: 2/2 pretrained models with CI fully below zero for ΔAUC
+
+3. Pretrained-model relevance: blur_sigma2 and resize_112 show largest consistent degradation;
+   screenshot_strong and jpeg_q50 show smaller but non-trivial effects.
+
+4. Severity: strong conditions consistently worse than mild for blur/resize/JPEG/screenshot
+   (descriptive check); crop mild vs strong mixed.
+
+Suggested RQ3 priority order (evidence only): blur > severe resize > screenshot > JPEG >> crop.
+Physical screen recapture not tested. No RQ3 training initiated.
+
+SCIENTIFIC INTEGRITY
+- Model training: NO
+- Model inference: NO
+- Threshold changes: NO
+- Transformation modification: NO
+- Sample exclusion: NO
+- RQ1 reopened: NO
+- RQ3 training started: NO

@@ -39,11 +39,12 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 22: the RQ2 robustness suite (`robustness_v1`) was generated from locked test images, and all four frozen RQ1 models were evaluated on the transformed conditions.
+Stage 22C–22D: screenshot-style composites (`screenshot_v1`) were generated and scored with frozen RQ1 models, then RQ2 bootstrap uncertainty synthesised the strong-transform and pretrained-model differences.
 
-To regenerate and evaluate robustness:
+To regenerate screenshot evaluation and RQ2 synthesis:
 
 ```bash
-python src/generate_robustness_v1.py
-python src/evaluate_rq2_robustness_v1.py
+python src/generate_screenshot_v1.py
+python src/evaluate_rq2_screenshot_v1.py
+python src/rq2_bootstrap_uncertainty_v1.py
 ```
