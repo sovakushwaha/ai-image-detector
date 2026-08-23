@@ -1,0 +1,63 @@
+{
+  "model": "MobileNetV3-Small",
+  "pretrained_weights": "IMAGENET1K_V1",
+  "checkpoint": "models/mobilenet_v3_small_selected_v1.pt",
+  "selected_phase": 2,
+  "selected_epoch": 13,
+  "seed": 42,
+  "representation": "controlled_v1",
+  "split_protocol": "generator_protocol_v1",
+  "threshold_method": "validation_youden_j",
+  "default_threshold": 0.5,
+  "threshold": 0.7300598621368408,
+  "validation_youden_j": 0.7719298245614036,
+  "validation_roc_auc": 0.952331486611265,
+  "validation_ap": 0.9562511806047883,
+  "normalization_mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "normalization_std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "total_parameters": 1518881,
+  "default_threshold_metrics": {
+    "threshold": 0.5,
+    "accuracy": 0.8640350877192983,
+    "balanced_accuracy": 0.8640350877192982,
+    "precision": 0.8487394957983193,
+    "recall": 0.8859649122807017,
+    "specificity": 0.8421052631578947,
+    "f1": 0.8669527896995708,
+    "false_positive_rate": 0.15789473684210525,
+    "TN": 192,
+    "FP": 36,
+    "FN": 26,
+    "TP": 202
+  },
+  "youden_threshold_metrics": {
+    "threshold": 0.7300598621368408,
+    "accuracy": 0.8859649122807017,
+    "balanced_accuracy": 0.8859649122807018,
+    "precision": 0.8963963963963963,
+    "recall": 0.8728070175438597,
+    "specificity": 0.8991228070175439,
+    "f1": 0.8844444444444445,
+    "false_positive_rate": 0.10087719298245613,
+    "TN": 205,
+    "FP": 23,
+    "FN": 29,
+    "TP": 199
+  },
+  "model_weights_frozen": true,
+  "selected_phase_frozen": true,
+  "selected_epoch_frozen": true,
+  "threshold_selected_validation_only": true,
+  "known_test_accessed": false,
+  "unseen_test_accessed": false,
+  "training_performed": false,
+  "optimizer_updates_performed": false
+}

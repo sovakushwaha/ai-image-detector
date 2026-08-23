@@ -1,0 +1,65 @@
+MobileNetV3-Small Threshold Selection V1 — Stage 18C
+===================================================
+
+MODEL
+- model: MobileNetV3-Small
+- pretrained weights: IMAGENET1K_V1
+- selected phase: 2
+- selected epoch: 13
+- checkpoint path: models/mobilenet_v3_small_selected_v1.pt
+- total parameters: 1518881
+- seed: 42
+- device: mps
+
+VALIDATION
+- sample count: 456
+- ROC-AUC: 0.95233149
+- Average Precision: 0.95625118
+
+DEFAULT THRESHOLD 0.50
+- accuracy: 0.86403509
+- balanced accuracy: 0.86403509
+- precision: 0.84873950
+- recall (AI sensitivity): 0.88596491
+- specificity: 0.84210526
+- F1: 0.86695279
+- false positive rate: 0.15789474
+- confusion matrix: TN=192 FP=36 FN=26 TP=202
+
+YOUDEN THRESHOLD
+validation-selected balanced operating threshold using Youden J
+- exact threshold: 0.730059862137
+- Youden J: 0.77192982
+- accuracy: 0.88596491
+- balanced accuracy: 0.88596491
+- precision: 0.89639640
+- recall: 0.87280702
+- specificity: 0.89912281
+- F1: 0.88444444
+- false positive rate: 0.10087719
+- confusion matrix: TN=205 FP=23 FN=29 TP=199
+
+GENERATOR RECALL (diagnostic only; one global threshold)
+generator  threshold  ai_samples  detected  ai_recall
+      ADM    0.50000          57        44   0.771930
+   BigGAN    0.50000          57        57   1.000000
+    GLIDE    0.50000          57        56   0.982456
+     SD15    0.50000          57        45   0.789474
+      ADM    0.73006          57        43   0.754386
+   BigGAN    0.73006          57        57   1.000000
+    GLIDE    0.73006          57        55   0.964912
+     SD15    0.73006          57        44   0.771930
+
+INTERPRETATION
+The Youden threshold is a validation-selected balanced operating point.
+It is not a deployment threshold.
+
+FREEZE STATUS
+- model weights frozen: YES
+- selected phase frozen: YES
+- selected epoch frozen: YES
+- threshold selected using validation only: YES
+- training performed: NO
+- optimizer updates performed: NO
+- known_test accessed: NO
+- unseen_test accessed: NO

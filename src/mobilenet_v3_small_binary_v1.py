@@ -63,6 +63,28 @@ class MobileNetV3SmallBinaryV1(nn.Module):
     def weights_url(self) -> str:
         return str(self.weights_enum.url)
 
+    @property
+    def features(self) -> nn.Module:
+        """Pretrained convolutional feature backbone (torchvision MobileNet.features)."""
+        return self.backbone.features
+
+    @property
+    def classifier(self) -> nn.Module:
+        """Classifier head including the binary Linear(…→1) replacement."""
+        return self.backbone.classifier
+
+    def freeze_features(self) -> None:
+        """Phase 1: freeze pretrained feature backbone; keep classifier trainable."""
+        for param in self.features.parameters():
+            param.requires_grad = False
+        for param in self.classifier.parameters():
+            param.requires_grad = True
+
+    def unfreeze_all(self) -> None:
+        """Phase 2: enable gradients for all parameters."""
+        for param in self.parameters():
+            param.requires_grad = True
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Return raw logits of shape [B]. No sigmoid here."""
         logits = self.backbone(x)

@@ -1,0 +1,115 @@
+============================================================
+Stage 18B — MobileNetV3-Small transfer training
+============================================================
+Experiment: mobilenet_v3_small_transfer_v1
+Python: 3.12.13
+torch: 2.13.0
+torchvision: 0.28.0
+OS: Darwin 25.5.0 (arm64)
+device: mps
+seed: 42
+
+============================================================
+PHASE 1 — Fixed pretrained feature extraction (10 epochs)
+============================================================
+Total parameters: 1518881
+Phase-1 trainable parameters: 591873
+Phase-1 frozen parameters: 927008
+Phase1 Epoch 01/10 | train_loss=0.5245 | val_loss=0.4685 | val_AUC=0.8643 | val_AP=0.8651
+  → saved best Phase-1 checkpoint (epoch 1)
+Phase1 Epoch 02/10 | train_loss=0.3489 | val_loss=0.3970 | val_AUC=0.9027 | val_AP=0.9018
+  → saved best Phase-1 checkpoint (epoch 2)
+Phase1 Epoch 03/10 | train_loss=0.2826 | val_loss=0.3812 | val_AUC=0.9105 | val_AP=0.9110
+  → saved best Phase-1 checkpoint (epoch 3)
+Phase1 Epoch 04/10 | train_loss=0.2355 | val_loss=0.4024 | val_AUC=0.9067 | val_AP=0.9068
+Phase1 Epoch 05/10 | train_loss=0.1803 | val_loss=0.3648 | val_AUC=0.9213 | val_AP=0.9193
+  → saved best Phase-1 checkpoint (epoch 5)
+Phase1 Epoch 06/10 | train_loss=0.1262 | val_loss=0.4017 | val_AUC=0.9153 | val_AP=0.9144
+Phase1 Epoch 07/10 | train_loss=0.1055 | val_loss=0.3822 | val_AUC=0.9213 | val_AP=0.9236
+  → saved best Phase-1 checkpoint (epoch 7)
+Phase1 Epoch 08/10 | train_loss=0.0625 | val_loss=0.3992 | val_AUC=0.9226 | val_AP=0.9221
+  → saved best Phase-1 checkpoint (epoch 8)
+Phase1 Epoch 09/10 | train_loss=0.0426 | val_loss=0.4172 | val_AUC=0.9236 | val_AP=0.9221
+  → saved best Phase-1 checkpoint (epoch 9)
+Phase1 Epoch 10/10 | train_loss=0.0302 | val_loss=0.4383 | val_AUC=0.9177 | val_AP=0.9170
+
+Phase 1 best: epoch=9 AUC=0.923630 AP=0.922107 loss=0.417233
+
+============================================================
+PHASE 2 — Full-network fine-tuning (20 epochs)
+============================================================
+Total parameters: 1518881
+Phase-2 trainable parameters: 1518881
+Starting from Phase-1 best epoch: 9
+Phase2 Epoch 01/20 | train_loss=0.1443 | val_loss=0.3688 | val_AUC=0.9351 | val_AP=0.9389
+  → saved best Phase-2 checkpoint (epoch 1)
+Phase2 Epoch 02/20 | train_loss=0.0677 | val_loss=0.3655 | val_AUC=0.9368 | val_AP=0.9405
+  → saved best Phase-2 checkpoint (epoch 2)
+Phase2 Epoch 03/20 | train_loss=0.0504 | val_loss=0.3596 | val_AUC=0.9396 | val_AP=0.9451
+  → saved best Phase-2 checkpoint (epoch 3)
+Phase2 Epoch 04/20 | train_loss=0.0396 | val_loss=0.3481 | val_AUC=0.9420 | val_AP=0.9465
+  → saved best Phase-2 checkpoint (epoch 4)
+Phase2 Epoch 05/20 | train_loss=0.0303 | val_loss=0.3632 | val_AUC=0.9416 | val_AP=0.9469
+Phase2 Epoch 06/20 | train_loss=0.0223 | val_loss=0.3603 | val_AUC=0.9429 | val_AP=0.9476
+  → saved best Phase-2 checkpoint (epoch 6)
+Phase2 Epoch 07/20 | train_loss=0.0225 | val_loss=0.3961 | val_AUC=0.9440 | val_AP=0.9477
+  → saved best Phase-2 checkpoint (epoch 7)
+Phase2 Epoch 08/20 | train_loss=0.0242 | val_loss=0.3359 | val_AUC=0.9468 | val_AP=0.9483
+  → saved best Phase-2 checkpoint (epoch 8)
+Phase2 Epoch 09/20 | train_loss=0.0163 | val_loss=0.3457 | val_AUC=0.9469 | val_AP=0.9495
+  → saved best Phase-2 checkpoint (epoch 9)
+Phase2 Epoch 10/20 | train_loss=0.0114 | val_loss=0.3483 | val_AUC=0.9487 | val_AP=0.9514
+  → saved best Phase-2 checkpoint (epoch 10)
+Phase2 Epoch 11/20 | train_loss=0.0107 | val_loss=0.3650 | val_AUC=0.9471 | val_AP=0.9493
+Phase2 Epoch 12/20 | train_loss=0.0084 | val_loss=0.3372 | val_AUC=0.9506 | val_AP=0.9540
+  → saved best Phase-2 checkpoint (epoch 12)
+Phase2 Epoch 13/20 | train_loss=0.0077 | val_loss=0.3449 | val_AUC=0.9523 | val_AP=0.9563
+  → saved best Phase-2 checkpoint (epoch 13)
+Phase2 Epoch 14/20 | train_loss=0.0077 | val_loss=0.3527 | val_AUC=0.9510 | val_AP=0.9559
+Phase2 Epoch 15/20 | train_loss=0.0088 | val_loss=0.3548 | val_AUC=0.9500 | val_AP=0.9545
+Phase2 Epoch 16/20 | train_loss=0.0057 | val_loss=0.3806 | val_AUC=0.9495 | val_AP=0.9536
+Phase2 Epoch 17/20 | train_loss=0.0102 | val_loss=0.4498 | val_AUC=0.9449 | val_AP=0.9495
+Phase2 Epoch 18/20 | train_loss=0.0036 | val_loss=0.3855 | val_AUC=0.9508 | val_AP=0.9558
+Phase2 Epoch 19/20 | train_loss=0.0071 | val_loss=0.3813 | val_AUC=0.9503 | val_AP=0.9539
+Phase2 Epoch 20/20 | train_loss=0.0054 | val_loss=0.3709 | val_AUC=0.9519 | val_AP=0.9553
+
+Phase 2 best: epoch=13 AUC=0.952331 AP=0.956251 loss=0.344945
+
+============================================================
+STAGE 18B — MOBILENETV3-SMALL TRANSFER TRAINING COMPLETE
+============================================================
+PHASE 1 — FEATURE EXTRACTION
+Best epoch: 9
+Validation ROC-AUC: 0.923630
+Validation AP: 0.922107
+Validation loss: 0.417233
+
+PHASE 2 — FULL FINE-TUNING
+Best epoch: 13
+Validation ROC-AUC: 0.952331
+Validation AP: 0.956251
+Validation loss: 0.344945
+
+FINAL VALIDATION SELECTION
+Selected phase: 2
+Selected epoch: 13
+Validation ROC-AUC: 0.952331
+Validation AP: 0.956251
+Checkpoint:
+models/mobilenet_v3_small_selected_v1.pt
+
+Train images: 1376
+Validation images: 456
+
+known_test accessed: NO
+unseen_test accessed: NO
+Threshold selected: NO
+
+STOP BEFORE TEST EVALUATION
+
+Wrote /Users/PankajKushwaha/ai-image-detector/results/mobilenet_v3_small_phase1_history_v1.csv
+Wrote /Users/PankajKushwaha/ai-image-detector/results/mobilenet_v3_small_phase2_history_v1.csv
+Wrote /Users/PankajKushwaha/ai-image-detector/results/mobilenet_v3_small_training_report_v1.txt
+Wrote /Users/PankajKushwaha/ai-image-detector/figures/mobilenet_v3_small_transfer_loss_v1.png
+Wrote /Users/PankajKushwaha/ai-image-detector/figures/mobilenet_v3_small_transfer_auc_v1.png
+Wrote /Users/PankajKushwaha/ai-image-detector/figures/mobilenet_v3_small_transfer_ap_v1.png

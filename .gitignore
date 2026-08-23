@@ -51,7 +51,9 @@ data/processed/*
 data/processed/controlled_v1/**
 !data/processed/controlled_v1/SOURCE.md
 
-# Common large binary artefacts if they appear outside data/
+# Local paper drafts (kept out of git)
+paper/
+
 *.h5
 *.hdf5
 *.ckpt

@@ -1,0 +1,109 @@
+MobileNetV3-Small Transfer Training Report V1
+=============================================
+
+Experiment
+----------
+experiment ID: mobilenet_v3_small_transfer_v1
+seed: 42
+device: mps
+pretrained weights: MobileNet_V3_Small_Weights.IMAGENET1K_V1
+weights source: https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth
+
+Data
+----
+representation: controlled_v1
+split protocol: generator_protocol_v1
+train: 1376
+validation: 456
+known_test access: NO
+unseen_test access: NO
+known_test rows used: 0
+unseen_test rows used: 0
+
+Model
+-----
+architecture: MobileNetV3-Small (binary logit head)
+total binary-model parameters: 1518881
+pretrained weights: MobileNet_V3_Small_Weights.IMAGENET1K_V1
+ImageNet mean: [0.485, 0.456, 0.406]
+ImageNet std: [0.229, 0.224, 0.225]
+augmentation: none
+scheduler: none
+
+Phase 1 — Fixed feature extraction
+----------------------------------
+epochs: 10 (fixed budget; not extended)
+backbone frozen: YES (features.requires_grad=False)
+classifier trainable: YES
+BatchNorm rule: model.train(); model.features.eval() each train epoch
+trainable parameter count: 591873
+frozen parameter count: 927008
+optimizer: AdamW(classifier.parameters())
+LR: 0.001
+weight decay: 0.0001
+best epoch: 9
+best validation ROC-AUC: 0.92363035
+best validation AP: 0.92210687
+best validation loss: 0.41723257
+diagnostic threshold 0.50 accuracy: 0.83552632
+diagnostic threshold 0.50 balanced accuracy: 0.83552632
+diagnostic threshold 0.50 precision: 0.81481481
+diagnostic threshold 0.50 recall: 0.86842105
+diagnostic threshold 0.50 specificity: 0.80263158
+diagnostic threshold 0.50 F1: 0.84076433
+diagnostic threshold 0.50 FPR: 0.19736842
+checkpoint: models/mobilenet_v3_small_phase1_best_v1.pt
+
+Phase 2 — Full fine-tuning
+--------------------------
+epochs: 20 (fixed budget; not extended)
+all parameters trainable: YES
+trainable parameter count: 1518881
+optimizer: NEW AdamW(model.parameters()) — Phase-1 optimizer moments NOT carried over
+LR: 0.0001
+weight decay: 0.0001
+started from Phase-1 best epoch: 9
+best fine-tuning epoch: 13
+best validation ROC-AUC: 0.95233149
+best validation AP: 0.95625118
+best validation loss: 0.34494472
+diagnostic threshold 0.50 accuracy: 0.86403509
+diagnostic threshold 0.50 balanced accuracy: 0.86403509
+diagnostic threshold 0.50 precision: 0.84873950
+diagnostic threshold 0.50 recall: 0.88596491
+diagnostic threshold 0.50 specificity: 0.84210526
+diagnostic threshold 0.50 F1: 0.86695279
+diagnostic threshold 0.50 FPR: 0.15789474
+checkpoint: models/mobilenet_v3_small_phase2_best_v1.pt
+
+Final validation selection
+--------------------------
+Phase-1 best:
+  AUC=0.92363035
+  AP=0.92210687
+  loss=0.41723257
+Phase-2 best:
+  AUC=0.95233149
+  AP=0.95625118
+  loss=0.34494472
+Selected candidate:
+  phase: 2 (Phase 2 (full fine-tuning))
+  epoch: 13
+  checkpoint: models/mobilenet_v3_small_selected_v1.pt
+  AUC: 0.95233149
+  AP: 0.95625118
+
+Safety
+------
+Phase-1 training performed: YES
+Phase-2 fine-tuning performed: YES
+known_test accessed: NO
+unseen_test accessed: NO
+Threshold selection performed: NO
+Augmentation introduced: NO
+Scheduler introduced: NO
+SmallCNNV1 modified: NO
+Classical Baseline V1 modified: NO
+MobileNet training extended beyond predefined budget: NO
+
+No threshold selection. No test evaluation.

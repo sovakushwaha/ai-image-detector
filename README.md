@@ -1,6 +1,6 @@
 # AI Image Detector
 
-University machine-learning project on detecting AI-generated images.
+Machine learning project on detecting AI-generated images.
 
 The aim is a lightweight model that can tell real photographs from AI-generated images, including images from generators the model has not seen, after typical social-media transformations. The work also looks at whether the model’s confidence scores are reliable.
 
@@ -39,10 +39,11 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 18A: MobileNetV3-Small transfer-learning pipeline verification. The pretrained ImageNet backbone with a binary head was checked with one forward pass on train and validation only. No training and no test-set access.
+Stage 18C: MobileNetV3-Small transfer learning is trained (Phase 1 feature extraction, Phase 2 fine-tuning) and a validation-only Youden threshold was selected. Test splits were not opened.
 
-To verify the transfer pipeline:
+To train and select the threshold:
 
 ```bash
-python src/verify_mobilenet_transfer_pipeline_v1.py
+python src/train_mobilenet_transfer_v1.py
+python src/select_mobilenet_threshold_v1.py
 ```
