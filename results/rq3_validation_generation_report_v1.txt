@@ -1,0 +1,17 @@
+RQ3 Validation Robustness Suite — Stage 23A
+===========================================
+
+SOURCE: controlled_v1 validation only (456 images)
+TEST IMAGES ACCESSED: NO
+
+CONDITIONS:
+- jpeg_q50: JPEG q=50, subsampling=0
+- resize_112: 224→112→224 LANCZOS, PNG
+- blur_sigma2: Gaussian σ=2.0, PNG
+- screenshot_strong: Stage 22C strong digital screenshot-style approximation, PNG
+
+Transformed images: 1824
+Failures: 0
+Labels/generators/source IDs preserved: YES
+
+Screenshot is development evaluation only; not used for training augmentation.

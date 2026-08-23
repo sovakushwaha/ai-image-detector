@@ -1,0 +1,5 @@
+regime,regime_id,parameters,selected_phase,selected_epoch,clean_validation_auc,robust_val_auc,frozen_threshold,threshold_selection_method,primary_candidate
+A0,mobilenet_clean_v1,1518881,2,13,0.952331486611265,0.8421461411203447,0.7300598621368408,validation_youden_j,False
+A1,mobilenet_blur_aug_v1,1518881,2,9,0.9198984302862419,0.8395083102493074,0.49797582626342773,clean_validation_youden_j,False
+A2,mobilenet_resize_jpeg_aug_v1,1518881,2,16,0.9383656509695291,0.8647660818713451,0.36564627289772034,clean_validation_youden_j,True
+A3,mobilenet_combined_aug_v1,1518881,2,8,0.9207640812557709,0.8525411665127731,0.2821369767189026,clean_validation_youden_j,False

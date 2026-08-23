@@ -1,0 +1,125 @@
+RQ3 Transformation-Aware Training Report — Stage 23B
+====================================================
+
+1. PROTOCOL
+Base model: MobileNetV3-Small (MobileNet_V3_Small_Weights.IMAGENET1K_V1)
+Train=1376, validation=456, test access=NO
+Phase 1: 10 epochs, frozen features, AdamW lr=1e-3
+Phase 2: 20 epochs, full fine-tune, AdamW lr=1e-4
+Selection metric: RobustValAUC over original/jpeg50/resize112/blur2
+
+2. FAIR INITIALIZATION
+A1/A2/A3 each started from fresh ImageNet-pretrained MobileNetV3-Small.
+NOT initialized from mobilenet_v3_small_selected_v1.pt or from each other.
+Seed reset to 42 before each regime.
+
+A1 RESULTS — Blur
+Selected phase: 2, epoch: 9
+Original AUC=0.91989843
+JPEG50 AUC=0.85482071
+Resize112 AUC=0.81146122
+Blur2 AUC=0.77185288
+RobustValAUC=0.83950831
+ScreenshotStrong AUC=0.78889658 (held-out; not used for selection)
+
+A2 RESULTS — Resize+JPEG
+Selected phase: 2, epoch: 16
+Original AUC=0.93836565
+JPEG50 AUC=0.91785934
+Resize112 AUC=0.88242536
+Blur2 AUC=0.72041397
+RobustValAUC=0.86476608
+ScreenshotStrong AUC=0.85076177 (held-out; not used for selection)
+
+A3 RESULTS — Combined
+Selected phase: 2, epoch: 8
+Original AUC=0.92076408
+JPEG50 AUC=0.88831179
+Resize112 AUC=0.83585334
+Blur2 AUC=0.76523546
+RobustValAUC=0.85254117
+ScreenshotStrong AUC=0.81488535 (held-out; not used for selection)
+
+6. PHASE-1 VS PHASE-2
+A1: P1 RobustValAUC=0.827139, P2 RobustValAUC=0.839508, selected phase=2
+A2: P1 RobustValAUC=0.842384, P2 RobustValAUC=0.864766, selected phase=2
+A3: P1 RobustValAUC=0.831429, P2 RobustValAUC=0.852541, selected phase=2
+
+7. ROBUST VALIDATION COMPARISON
+A0 RobustValAUC=0.84214614
+A1 ΔRobustValAUC vs A0=-0.00263783
+A2 ΔRobustValAUC vs A0=+0.02261994
+A3 ΔRobustValAUC vs A0=+0.01039503
+
+8. SCREENSHOT HELD-OUT VALIDATION OBSERVATION
+A1 screenshot_strong AUC=0.78889658
+A2 screenshot_strong AUC=0.85076177
+A3 screenshot_strong AUC=0.81488535
+
+9. PRIMARY VALIDATION-SELECTED RQ3 CANDIDATE
+A2 (mobilenet_resize_jpeg_aug_v1)
+RobustValAUC=0.86476608
+
+10. AUGMENTATION APPLICATION SANITY
+A1: {
+  "total_samples": 41280,
+  "blur_rate": 0.29944282945736433,
+  "resize_rate": 0.0,
+  "jpeg_rate": 0.0,
+  "resize_only_rate": 0.0,
+  "jpeg_only_rate": 0.0,
+  "both_resize_jpeg_rate": 0.0,
+  "neither_a2_rate": 1.0,
+  "any_augmentation_rate": 0.29944282945736433,
+  "combo_blur_rate": 0.29944282945736433,
+  "combo_none_rate": 0.7005571705426357
+}
+A2: {
+  "total_samples": 41280,
+  "blur_rate": 0.0,
+  "resize_rate": 0.3037063953488372,
+  "jpeg_rate": 0.3038032945736434,
+  "resize_only_rate": 0.21233042635658914,
+  "jpeg_only_rate": 0.21242732558139535,
+  "both_resize_jpeg_rate": 0.09137596899224806,
+  "neither_a2_rate": 0.4838662790697674,
+  "any_augmentation_rate": 0.5161337209302326,
+  "combo_jpeg_rate": 0.21242732558139535,
+  "combo_none_rate": 0.4838662790697674,
+  "combo_resize_rate": 0.21233042635658914,
+  "combo_resize+jpeg_rate": 0.09137596899224806
+}
+A3: {
+  "total_samples": 41280,
+  "blur_rate": 0.3002906976744186,
+  "resize_rate": 0.3006782945736434,
+  "jpeg_rate": 0.3013323643410853,
+  "resize_only_rate": 0.2097141472868217,
+  "jpeg_only_rate": 0.21036821705426356,
+  "both_resize_jpeg_rate": 0.0909641472868217,
+  "neither_a2_rate": 0.488953488372093,
+  "any_augmentation_rate": 0.6599079457364341,
+  "combo_blur_rate": 0.14886143410852712,
+  "combo_blur+jpeg_rate": 0.0625484496124031,
+  "combo_blur+resize_rate": 0.061991279069767445,
+  "combo_blur+resize+jpeg_rate": 0.02688953488372093,
+  "combo_jpeg_rate": 0.14781976744186046,
+  "combo_none_rate": 0.34009205426356587,
+  "combo_resize_rate": 0.14772286821705427,
+  "combo_resize+jpeg_rate": 0.06407461240310078
+}
+
+11. LIMITATIONS
+Validation-only development; no test evaluation.
+RQ3 is sequential to RQ2; not independent confirmatory evidence.
+
+12. SCIENTIFIC INTEGRITY
+A0 retrained: NO
+A1/A2/A3 trained from same ImageNet-pretrained starting protocol: YES
+Test images accessed: NO
+Test transformed predictions accessed for selection: NO
+Test thresholds changed: NO
+Screenshot validation used for checkpoint selection: NO
+Training budgets extended: NO
+Additional augmentation regimes added: NO
+RQ1 model development reopened: NO

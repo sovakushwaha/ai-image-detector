@@ -1,0 +1,23 @@
+RQ3 Baseline Validation Report — Stage 23A
+=========================================
+
+Model: frozen MobileNetV3-Small (A0 / mobilenet_clean_v1)
+Threshold: 0.730059862137 (diagnostic only; not used for selection)
+Split: validation only
+Test inference: NO
+Training: NO
+
+ROC-AUC by condition:
+- original: AUC=0.95233149, AP=0.95625118
+- jpeg_q50: AUC=0.90491305, AP=0.89595063
+- resize_112: AUC=0.82337835, AP=0.81158886
+- blur_sigma2: AUC=0.68796168, AP=0.67785905
+- screenshot_strong: AUC=0.81984841, AP=0.79604194
+
+RobustValAUC = (orig+jpeg50+resize112+blur2)/4 = 0.84214614
+screenshot_strong excluded from RobustValAUC
+
+SCIENTIFIC INTEGRITY
+- Training performed: NO
+- Test inference performed: NO
+- Validation robustness inference: YES
