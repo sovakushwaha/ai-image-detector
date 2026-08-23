@@ -1,0 +1,65 @@
+EfficientNet-B0 Threshold Selection V1 — Stage 20 Part A
+=======================================================
+
+MODEL
+- model: EfficientNet-B0
+- pretrained weights: IMAGENET1K_V1
+- selected phase: 2
+- selected epoch: 16
+- checkpoint path: models/efficientnet_b0_selected_v1.pt
+- total parameters: 4008829
+- seed: 42
+- device: mps
+
+VALIDATION
+- sample count: 456
+- ROC-AUC: 0.95490920
+- Average Precision: 0.96012011
+
+DEFAULT THRESHOLD 0.50
+- accuracy: 0.86842105
+- balanced accuracy: 0.86842105
+- precision: 0.87837838
+- recall (AI sensitivity): 0.85526316
+- specificity: 0.88157895
+- F1: 0.86666667
+- false positive rate: 0.11842105
+- confusion matrix: TN=201 FP=27 FN=33 TP=195
+
+YOUDEN THRESHOLD
+validation-selected balanced operating threshold using Youden J
+- exact threshold: 0.263691753149
+- Youden J: 0.78070175
+- accuracy: 0.89035088
+- balanced accuracy: 0.89035088
+- precision: 0.87711864
+- recall: 0.90789474
+- specificity: 0.87280702
+- F1: 0.89224138
+- false positive rate: 0.12719298
+- confusion matrix: TN=199 FP=29 FN=21 TP=207
+
+GENERATOR RECALL (diagnostic only; one global threshold)
+generator  threshold  ai_samples  detected  ai_recall
+      ADM   0.500000          57        43   0.754386
+   BigGAN   0.500000          57        57   1.000000
+    GLIDE   0.500000          57        56   0.982456
+     SD15   0.500000          57        39   0.684211
+      ADM   0.263692          57        48   0.842105
+   BigGAN   0.263692          57        57   1.000000
+    GLIDE   0.263692          57        56   0.982456
+     SD15   0.263692          57        46   0.807018
+
+INTERPRETATION
+The Youden threshold is a validation-selected balanced operating point.
+It is not a deployment threshold.
+
+FREEZE STATUS
+- model weights frozen: YES
+- selected phase frozen: YES
+- selected epoch frozen: YES
+- threshold selected using validation only: YES
+- training performed: NO
+- optimizer updates performed: NO
+- known_test accessed: NO
+- unseen_test accessed: NO

@@ -1,0 +1,64 @@
+RQ1 Bootstrap Uncertainty Analysis — Stage 21A
+==============================================
+
+METHOD
+- seed: 42
+- bootstrap replicates: 5000
+- method: stratified_bootstrap_percentile_ci
+- stratified resampling within each test split (Real and AI counts preserved)
+- paired resampling uses identical bootstrap indices across models within a split
+- generalisation gaps resample known_test and unseen_test independently per replicate
+
+MODEL-WISE CONFIDENCE INTERVALS
+
+KNOWN_TEST
+- LogReg: ROC-AUC observed=0.724665, 95% CI [0.6771, 0.7697]; AP observed=0.722539, 95% CI [0.6703, 0.7796]
+- SmallCNNV1: ROC-AUC observed=0.866401, 95% CI [0.8312, 0.8982]; AP observed=0.867336, 95% CI [0.8276, 0.9044]
+- MobileNetV3-Small: ROC-AUC observed=0.951928, 95% CI [0.9333, 0.9682]; AP observed=0.957360, 95% CI [0.9404, 0.9722]
+- EfficientNet-B0: ROC-AUC observed=0.958776, 95% CI [0.9424, 0.9737]; AP observed=0.963702, 95% CI [0.9495, 0.9768]
+
+UNSEEN_TEST
+- LogReg: ROC-AUC observed=0.645196, 95% CI [0.6189, 0.6702]; AP observed=0.614106, 95% CI [0.5878, 0.6431]
+- SmallCNNV1: ROC-AUC observed=0.721508, 95% CI [0.6971, 0.7460]; AP observed=0.655825, 95% CI [0.6285, 0.6862]
+- MobileNetV3-Small: ROC-AUC observed=0.858989, 95% CI [0.8417, 0.8751]; AP observed=0.870927, 95% CI [0.8547, 0.8861]
+- EfficientNet-B0: ROC-AUC observed=0.858915, 95% CI [0.8411, 0.8764]; AP observed=0.880502, 95% CI [0.8642, 0.8961]
+
+GENERALISATION-GAP CONFIDENCE INTERVALS
+- LogReg: AUC gap observed=-0.079470, 95% CI [-0.1331, -0.0243]; AP gap observed=-0.108433, 95% CI [-0.1716, -0.0466]
+- SmallCNNV1: AUC gap observed=-0.144893, 95% CI [-0.1870, -0.1022]; AP gap observed=-0.211511, 95% CI [-0.2595, -0.1622]
+- MobileNetV3-Small: AUC gap observed=-0.092939, 95% CI [-0.1167, -0.0687]; AP gap observed=-0.086433, 95% CI [-0.1084, -0.0638]
+- EfficientNet-B0: AUC gap observed=-0.099861, 95% CI [-0.1231, -0.0760]; AP gap observed=-0.083200, 95% CI [-0.1036, -0.0620]
+
+MOBILENET VS EFFICIENTNET PAIRED COMPARISON
+
+KNOWN_TEST
+- ROC-AUC difference observed=+0.006848, bootstrap mean=+0.006791, 95% CI [-0.0061, 0.0203]
+  The observed difference is not clearly distinguishable from zero under this bootstrap analysis (95% percentile CI includes zero).
+- AP difference observed=+0.006342, bootstrap mean=+0.006223, 95% CI [-0.0045, 0.0173]
+  The observed difference is not clearly distinguishable from zero under this bootstrap analysis (95% percentile CI includes zero).
+
+UNSEEN_TEST
+- ROC-AUC difference observed=-0.000074, bootstrap mean=+0.000025, 95% CI [-0.0151, 0.0145]
+  The observed difference is not clearly distinguishable from zero under this bootstrap analysis (95% percentile CI includes zero).
+- AP difference observed=+0.009575, bootstrap mean=+0.009666, 95% CI [-0.0045, 0.0234]
+  The observed difference is not clearly distinguishable from zero under this bootstrap analysis (95% percentile CI includes zero).
+
+SECONDARY PAIRED COMPARISONS (unseen_test)
+- MobileNetV3-Small minus SmallCNNV1: ROC-AUC diff observed=+0.137481, 95% CI [0.1132, 0.1616]; AP diff observed=+0.215102, 95% CI [0.1855, 0.2420]
+- EfficientNet-B0 minus SmallCNNV1: ROC-AUC diff observed=+0.137407, 95% CI [0.1111, 0.1637]; AP diff observed=+0.224677, 95% CI [0.1938, 0.2530]
+
+LIMITATIONS
+- Bootstrap uncertainty reflects the current fixed test samples only.
+- Does not account for uncertainty from different generator holdout choices,
+  training seeds, dataset sampling, unavailable source IDs, or broader
+  real-world generator populations.
+- Confidence intervals must not be interpreted as causal evidence when
+  excluding zero, nor as proof of equivalence when including zero.
+
+SCIENTIFIC INTEGRITY
+- Model training performed: NO
+- New inference-based tuning: NO
+- Threshold changed: NO
+- Samples removed after results: NO
+- Architecture selection changed: NO
+- RQ1 baseline development reopened: NO
