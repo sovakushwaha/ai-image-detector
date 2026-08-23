@@ -39,11 +39,12 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 18D: the frozen MobileNetV3-Small model was evaluated once on `known_test` and `unseen_test`. Stage 19: EfficientNet-B0 transfer learning (Phase 1 + Phase 2) was trained on train and validation only.
+Stage 20: EfficientNet-B0 threshold selection and frozen test evaluation are complete. Stage 21A: bootstrap uncertainty analysis was run on frozen RQ1 test predictions for all models.
 
-To run the latest evaluation and training:
+To run the latest steps:
 
 ```bash
-python src/evaluate_mobilenet_frozen_test_v1.py
-python src/train_efficientnet_transfer_v1.py
+python src/select_efficientnet_threshold_v1.py
+python src/evaluate_efficientnet_frozen_test_v1.py
+python src/rq1_bootstrap_uncertainty_v1.py
 ```

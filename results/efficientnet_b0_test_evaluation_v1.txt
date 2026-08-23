@@ -1,0 +1,87 @@
+EfficientNet-B0 Frozen Test Evaluation — Stage 20 Part B
+=======================================================
+
+FROZEN CONFIGURATION
+- model: EfficientNet-B0
+- pretrained weights: IMAGENET1K_V1
+- selected phase: 2
+- selected epoch: 16
+- checkpoint: models/efficientnet_b0_selected_v1.pt
+- parameter count: 4008829
+- seed: 42
+- normalization mean: [0.485, 0.456, 0.406]
+- normalization std: [0.229, 0.224, 0.225]
+- validation ROC-AUC: 0.95490920
+- validation AP: 0.96012011
+- frozen threshold: 0.263691753149
+- threshold method: validation_youden_j
+
+KNOWN TEST
+- ROC-AUC: 0.95877578
+- Average Precision: 0.96370238
+Threshold 0.50 (diagnostic):
+  accuracy=0.88596491, balanced_acc=0.88596491, precision=0.89285714, recall=0.87719298, specificity=0.89473684, f1=0.88495575, fpr=0.10526316
+  TN=204 FP=24 FN=28 TP=200
+Frozen Youden threshold:
+  accuracy=0.87500000, balanced_acc=0.87500000, precision=0.85477178, recall=0.90350877, specificity=0.84649123, f1=0.87846482, fpr=0.15350877
+  TN=193 FP=35 FN=22 TP=206
+
+UNSEEN TEST
+- ROC-AUC: 0.85891508
+- Average Precision: 0.88050201
+Threshold 0.50 (diagnostic):
+  accuracy=0.78329439, balanced_acc=0.78329439, precision=0.89689034, recall=0.64018692, specificity=0.92640187, f1=0.74710293, fpr=0.07359813
+  TN=793 FP=63 FN=308 TP=548
+Frozen Youden threshold:
+  accuracy=0.79380841, balanced_acc=0.79380841, precision=0.84882108, recall=0.71495327, specificity=0.87266355, f1=0.77615726, fpr=0.12733645
+  TN=747 FP=109 FN=244 TP=612
+
+GENERALISATION GAP (unseen - known)
+- ROC-AUC gap: -0.09986070
+- AP gap: -0.08320037
+- Balanced Accuracy gap (frozen threshold): -0.08119159
+- F1 gap (frozen threshold): -0.10230756
+- AI Recall gap (frozen threshold): -0.18855550
+
+GENERATOR-SPECIFIC AI RECALL
+test_condition  generator  ai_samples  detected_at_050  recall_at_050  detected_at_frozen_youden  recall_at_frozen_youden
+    known_test        ADM          57               47       0.824561                         48                 0.842105
+    known_test     BigGAN          57               57       1.000000                         57                 1.000000
+    known_test      GLIDE          57               57       1.000000                         57                 1.000000
+    known_test       SD15          57               39       0.684211                         44                 0.771930
+   unseen_test Midjourney         286              231       0.807692                        249                 0.870629
+   unseen_test       VQDM         285               74       0.259649                        106                 0.371930
+   unseen_test     Wukong         285              243       0.852632                        257                 0.901754
+
+FINAL FOUR-MODEL RQ1 COMPARISON
+             Model      Parameters  Known ROC-AUC  Unseen ROC-AUC   AUC Gap  Known AP  Unseen AP    AP Gap  Known Balanced Accuracy  Unseen Balanced Accuracy  Known AI Recall  Unseen AI Recall  Known F1  Unseen F1
+Handcrafted LogReg N/A (classical)       0.725000        0.645000 -0.079000  0.723000   0.614000 -0.108000                 0.686000                  0.580000         0.675000          0.425000  0.683000   0.503000
+        SmallCNNV1           23873       0.866000        0.722000 -0.145000  0.867000   0.656000 -0.212000                 0.787000                  0.589000         0.754000          0.328000  0.780000   0.444000
+ MobileNetV3-Small         1518881       0.951928        0.858989 -0.092939  0.957360   0.870927 -0.086433                 0.883772                  0.747079         0.864035          0.595794  0.881432   0.701996
+   EfficientNet-B0         4008829       0.958776        0.858915 -0.099861  0.963702   0.880502 -0.083200                 0.875000                  0.793808         0.903509          0.714953  0.878465   0.776157
+
+MOBILENET VS EFFICIENTNET DIFFERENCES
+- Known AUC difference: +0.006848
+- Unseen AUC difference: -0.000074
+- Known AP difference: +0.006342
+- Unseen AP difference: +0.009575
+- AUC gap difference (EfficientNet gap - MobileNet gap): -0.006922
+- AP gap difference (EfficientNet gap - MobileNet gap): +0.003233
+
+RQ1 OBJECTIVE OBSERVATIONS
+EfficientNet exceeded MobileNet on known ROC-AUC.
+EfficientNet fell below MobileNet on unseen ROC-AUC.
+EfficientNet known→unseen AUC gap was larger in magnitude than MobileNet.
+Known AUC difference (EfficientNet - MobileNet): +0.006848
+Unseen AUC difference (EfficientNet - MobileNet): -0.000074
+
+SCIENTIFIC INTEGRITY
+- EfficientNet retrained after test access: NO
+- Threshold changed after test access: NO
+- Test-derived threshold selection: NO
+- Hyperparameters changed after test access: NO
+- known_test evaluated: YES
+- unseen_test evaluated: YES
+- Previous frozen models rerun: NO
+- Previous frozen models modified: NO
+- Additional architecture automatically started: NO
