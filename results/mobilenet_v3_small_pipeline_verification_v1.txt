@@ -1,0 +1,64 @@
+MobileNetV3-Small Pipeline Verification V1
+==========================================
+
+ENVIRONMENT
+-----------
+Python: 3.12.13
+torch: 2.13.0
+torchvision: 0.28.0
+OS: Darwin 25.5.0 (arm64)
+device: mps
+random seed: 42
+
+MODEL
+-----
+architecture: MobileNetV3-Small (torchvision.models.mobilenet_v3_small)
+pretrained weight enum: MobileNet_V3_Small_Weights.IMAGENET1K_V1
+pretrained weights source: https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth
+original classifier output size: 1000
+replacement classifier output size: 1
+total parameters: 1518881
+trainable parameters: 1518881
+replacement binary head parameters: 1025
+
+PREPROCESSING
+-------------
+representation: controlled_v1 (RGB JPEG 224×224, no re-resize/re-crop in loader)
+ImageNet mean: [0.485, 0.456, 0.406]
+ImageNet std: [0.229, 0.224, 0.225]
+augmentation: none
+normalisation rationale: controlled_v1 provides spatial standardisation; ImageNet mean/std match the pretrained backbone weights
+
+DATA
+----
+train images: 1376
+validation images: 456
+batch size: 32
+test access: NO
+known_test rows used: 0
+unseen_test rows used: 0
+
+DRY RUN
+-------
+input tensor shape: (32, 3, 224, 224)
+label shape: (32,)
+logit shape: (32,)
+BCEWithLogitsLoss value: 0.66737592
+sample logits (first 5): [-0.8413901329040527, 0.6941261887550354, -0.5236697793006897, 0.11929534375667572, -0.589241087436676]
+sample probabilities (first 5): [0.3012421131134033, 0.666884183883667, 0.3719945251941681, 0.5297885537147522, 0.35680899024009705]
+sample labels (first 5): [0.0, 1.0, 0.0, 0.0, 1.0]
+prediction note: random/unadapted head — no AI-detection meaning yet
+
+SAFETY
+------
+model training performed: NO
+backward pass: NO
+optimizer created: NO
+weights updated: NO
+known_test accessed: NO
+unseen_test accessed: NO
+SmallCNNV1 modified: NO
+Classical Baseline V1 modified: NO
+
+This stage did NOT train MobileNetV3-Small.
+No epochs, threshold selection, ROC-AUC, or test evaluation.

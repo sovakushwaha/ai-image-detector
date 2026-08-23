@@ -39,10 +39,10 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 16: the frozen `SmallCNNV1` model was evaluated once on `known_test` and `unseen_test` using the validation-selected Youden threshold.
+Stage 18A: MobileNetV3-Small transfer-learning pipeline verification. The pretrained ImageNet backbone with a binary head was checked with one forward pass on train and validation only. No training and no test-set access.
 
-To run the final CNN test evaluation:
+To verify the transfer pipeline:
 
 ```bash
-python src/evaluate_smallcnn_frozen_test_v1.py
+python src/verify_mobilenet_transfer_pipeline_v1.py
 ```
