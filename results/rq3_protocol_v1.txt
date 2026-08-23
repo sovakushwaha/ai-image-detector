@@ -1,0 +1,68 @@
+RQ3 Development Protocol — Stage 23A
+====================================
+
+## Sequential-study note
+RQ3 is a sequential follow-up experiment motivated by RQ2 findings on the same
+pilot benchmark. RQ2 identified robustness failures using the frozen test set.
+Therefore RQ3 augmentation choices are informed by prior RQ2 evidence and must
+not be described as independent confirmatory evidence on the same transformed
+test samples. Model development uses ONLY train + validation. Stronger
+confirmation will require external/new-generator evaluation.
+
+## Base model
+MobileNetV3-Small (A0 = existing clean-trained frozen baseline).
+Chosen as a lightweight (~1.52M params) intervention model with unseen ROC-AUC
+statistically indistinguishable from EfficientNet-B0 under RQ1 bootstrap analysis.
+Not claimed universally superior. EfficientNet remains frozen comparison only.
+
+## Regimes
+A0 mobilenet_clean_v1 — existing clean baseline (no retraining)
+A1 mobilenet_blur_aug_v1 — blur-aware training
+A2 mobilenet_resize_jpeg_aug_v1 — resize + JPEG-aware training
+A3 mobilenet_combined_aug_v1 — blur + resize + JPEG-aware training
+
+## Why these augmentations (RQ2 MobileNet unseen ΔAUC evidence)
+blur_sigma2 ≈ -0.166 (highest priority)
+resize_112 ≈ -0.078 (second)
+screenshot_strong ≈ -0.066 (kept OUT of augmentation as composite holdout)
+jpeg_q50 ≈ -0.041 (included as common deployment transform)
+crop_75 ≈ -0.001 (excluded; minimal measured degradation)
+
+## Augmentation parameters (online; validation never randomly augmented)
+A1: blur p=0.30, sigma ~ Uniform(0.5, 2.0)
+A2: resize p=0.30 intermediate side ~ UniformInt[112,192]; JPEG p=0.30 quality ~ UniformInt[50,90]
+A3: independent blur/resize/JPEG with same parameters
+Order: 1) blur 2) resize degradation 3) JPEG 4) ToTensor 5) ImageNet normalize
+Excluded: crop, screenshot, rotation, colour jitter, flip
+Seed: 42
+
+## Validation robustness suite
+456 validation sources × 4 deterministic transforms = 1824 images
+Conditions: original (controlled_v1), jpeg_q50, resize_112, blur_sigma2, screenshot_strong
+
+## Robust validation score
+RobustValAUC = (AUC_original + AUC_jpeg50 + AUC_resize112 + AUC_blur2) / 4
+screenshot_strong is NOT part of checkpoint selection
+
+## Model-selection rule
+1. highest RobustValAUC
+2. if tied, higher clean validation AUC
+3. if tied, higher mean AP across the four selection conditions
+4. if tied, earlier epoch
+No test data.
+
+## Screenshot policy
+Evaluated on validation as auxiliary held-out transform; excluded from augmentation and selection.
+
+## Test policy
+No RQ3 test evaluation during development.
+
+## Baseline A0 reference (Stage 23A)
+RobustValAUC = 0.84214614
+Original AUC = 0.95233149
+JPEG50 AUC = 0.90491305
+Resize112 AUC = 0.82337835
+Blur2 AUC = 0.68796168
+ScreenshotStrong AUC = 0.81984841
+
+Training performed in Stage 23A: NO

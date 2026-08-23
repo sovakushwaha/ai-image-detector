@@ -39,12 +39,13 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 22C–22D: screenshot-style composites (`screenshot_v1`) were generated and scored with frozen RQ1 models, then RQ2 bootstrap uncertainty synthesised the strong-transform and pretrained-model differences.
+Stage 23: RQ3 transformation-aware MobileNet regimes (A1–A3) were trained on validation-only robustness suites, then clean-validation Youden thresholds were selected. Test splits remain locked.
 
-To regenerate screenshot evaluation and RQ2 synthesis:
+To regenerate RQ3 development:
 
 ```bash
-python src/generate_screenshot_v1.py
-python src/evaluate_rq2_screenshot_v1.py
-python src/rq2_bootstrap_uncertainty_v1.py
+python src/generate_rq3_validation_v1.py
+python src/evaluate_rq3_baseline_validation_v1.py
+python src/train_rq3_mobilenet_v1.py
+python src/select_rq3_thresholds_v1.py
 ```
