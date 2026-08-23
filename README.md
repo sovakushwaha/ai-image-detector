@@ -39,12 +39,11 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 20: EfficientNet-B0 threshold selection and frozen test evaluation are complete. Stage 21A: bootstrap uncertainty analysis was run on frozen RQ1 test predictions for all models.
+Stage 22: the RQ2 robustness suite (`robustness_v1`) was generated from locked test images, and all four frozen RQ1 models were evaluated on the transformed conditions.
 
-To run the latest steps:
+To regenerate and evaluate robustness:
 
 ```bash
-python src/select_efficientnet_threshold_v1.py
-python src/evaluate_efficientnet_frozen_test_v1.py
-python src/rq1_bootstrap_uncertainty_v1.py
+python src/generate_robustness_v1.py
+python src/evaluate_rq2_robustness_v1.py
 ```

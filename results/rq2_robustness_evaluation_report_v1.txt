@@ -1,0 +1,82 @@
+RQ2 Robustness Evaluation Report — Stage 22B
+===========================================
+
+PROTOCOL
+- frozen models: LogReg, SmallCNNV1, MobileNetV3-Small, EfficientNet-B0
+- robustness dataset: robustness_v1 (17,344 transformed images)
+- original reference: existing frozen controlled_v1 test evaluations
+- thresholds: each model's own validation-selected Youden threshold
+- no retraining, no threshold tuning on transformed data
+
+ORIGINAL REFERENCE PERFORMANCE
+- Handcrafted LogReg known_test: AUC=0.7247, AP=0.7225
+- Handcrafted LogReg unseen_test: AUC=0.6452, AP=0.6141
+- SmallCNNV1 known_test: AUC=0.8664, AP=0.8673
+- SmallCNNV1 unseen_test: AUC=0.7215, AP=0.6558
+- MobileNetV3-Small known_test: AUC=0.9519, AP=0.9574
+- MobileNetV3-Small unseen_test: AUC=0.8590, AP=0.8709
+- EfficientNet-B0 known_test: AUC=0.9588, AP=0.9637
+- EfficientNet-B0 unseen_test: AUC=0.8589, AP=0.8805
+
+JPEG RESULTS (unseen AUC deltas)
+- Handcrafted LogReg: jpeg_q75 delta=-0.0008, jpeg_q50 delta=-0.0035
+- SmallCNNV1: jpeg_q75 delta=-0.0162, jpeg_q50 delta=-0.0211
+- MobileNetV3-Small: jpeg_q75 delta=-0.0175, jpeg_q50 delta=-0.0405
+- EfficientNet-B0: jpeg_q75 delta=-0.0168, jpeg_q50 delta=-0.0239
+
+CROP RESULTS (unseen AUC deltas)
+- Handcrafted LogReg: crop_90 delta=+0.0064, crop_75 delta=+0.0084
+- SmallCNNV1: crop_90 delta=-0.0011, crop_75 delta=-0.0071
+- MobileNetV3-Small: crop_90 delta=+0.0043, crop_75 delta=-0.0005
+- EfficientNet-B0: crop_90 delta=+0.0094, crop_75 delta=+0.0097
+
+RESIZE RESULTS (unseen AUC deltas)
+- Handcrafted LogReg: resize_160 delta=-0.0139, resize_112 delta=-0.0443
+- SmallCNNV1: resize_160 delta=-0.0238, resize_112 delta=-0.1736
+- MobileNetV3-Small: resize_160 delta=-0.0125, resize_112 delta=-0.0780
+- EfficientNet-B0: resize_160 delta=+0.0088, resize_112 delta=-0.0711
+
+BLUR RESULTS (unseen AUC deltas)
+- Handcrafted LogReg: blur_sigma1 delta=-0.0569, blur_sigma2 delta=-0.0984
+- SmallCNNV1: blur_sigma1 delta=-0.2363, blur_sigma2 delta=-0.2620
+- MobileNetV3-Small: blur_sigma1 delta=-0.0696, blur_sigma2 delta=-0.1665
+- EfficientNet-B0: blur_sigma1 delta=-0.1189, blur_sigma2 delta=-0.2660
+
+LARGEST UNSEEN AUC DROP BY MODEL
+- Handcrafted LogReg: blur_sigma2 (-0.0984)
+- SmallCNNV1: blur_sigma2 (-0.2620)
+- MobileNetV3-Small: blur_sigma2 (-0.1665)
+- EfficientNet-B0: blur_sigma2 (-0.2660)
+
+VQDM UNSEEN RECALL (MobileNet / EfficientNet, frozen threshold)
+- MobileNetV3-Small jpeg_q75: recall=0.435
+- MobileNetV3-Small jpeg_q50: recall=0.523
+- MobileNetV3-Small crop_90: recall=0.323
+- MobileNetV3-Small crop_75: recall=0.382
+- MobileNetV3-Small resize_160: recall=0.477
+- MobileNetV3-Small resize_112: recall=0.909
+- MobileNetV3-Small blur_sigma1: recall=0.898
+- MobileNetV3-Small blur_sigma2: recall=0.986
+- EfficientNet-B0 jpeg_q75: recall=0.418
+- EfficientNet-B0 jpeg_q50: recall=0.414
+- EfficientNet-B0 crop_90: recall=0.386
+- EfficientNet-B0 crop_75: recall=0.470
+- EfficientNet-B0 resize_160: recall=0.628
+- EfficientNet-B0 resize_112: recall=0.930
+- EfficientNet-B0 blur_sigma1: recall=0.989
+- EfficientNet-B0 blur_sigma2: recall=1.000
+
+LIMITATIONS
+- Controlled transformations; not a full social-media pipeline.
+- Screenshot/re-digitisation excluded from Stage 22B.
+
+SCIENTIFIC INTEGRITY
+- Model training performed: NO
+- Model refitting performed: NO
+- Threshold changes: NO
+- Transformation-specific threshold tuning: NO
+- Generator-specific threshold tuning: NO
+- Test-time augmentation: NO
+- Samples excluded after seeing results: NO
+- RQ1 model development reopened: NO
+- Models evaluated on transformed locked test samples: YES

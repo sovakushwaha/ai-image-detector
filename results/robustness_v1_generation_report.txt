@@ -1,0 +1,80 @@
+Robustness_v1 Generation Report — Stage 22A
+========================================
+
+DATA SOURCE
+- representation: controlled_v1
+- split protocol: generator_protocol_v1
+- known source count: 456
+- unseen source count: 1712
+- total source count: 2168
+
+TRANSFORMATIONS
+- all transforms applied directly to each original controlled_v1 224×224 RGB source
+- no chained mild→strong pipelines
+- Pillow version: 12.3.0
+- JPEG subsampling: 0
+
+- jpeg_q75 (mild, jpeg_compression): format=JPEG, parameters={"quality": 75}
+- jpeg_q50 (strong, jpeg_compression): format=JPEG, parameters={"quality": 50}
+- crop_90 (mild, centre_crop_resize): format=PNG, parameters={"retain_fraction": 0.9, "crop_size": 202, "resize_to": 224, "resample": "LANCZOS"}
+- crop_75 (strong, centre_crop_resize): format=PNG, parameters={"retain_fraction": 0.75, "crop_size": 168, "resize_to": 224, "resample": "LANCZOS"}
+- resize_160 (mild, resize_degradation): format=PNG, parameters={"downsample_to": 160, "restore_to": 224, "resample": "LANCZOS"}
+- resize_112 (strong, resize_degradation): format=PNG, parameters={"downsample_to": 112, "restore_to": 224, "resample": "LANCZOS"}
+- blur_sigma1 (mild, gaussian_blur): format=PNG, parameters={"sigma": 1.0}
+- blur_sigma2 (strong, gaussian_blur): format=PNG, parameters={"sigma": 2.0}
+
+OUTPUT FORMATS
+- JPEG conditions (jpeg_q75, jpeg_q50) saved as JPEG to isolate compression degradation
+- crop, resize, and blur conditions saved as PNG to avoid additional lossy JPEG compression
+- decoded model inputs are RGB pixels; labels are not derived from file extension
+
+COUNTS
+- expected transformed images: 17344
+- actual transformed images: 17344
+- known transformed: 3648 (expected 3648)
+- unseen transformed: 13696 (expected 13696)
+
+PER-CONDITION COUNTS
+- blur_sigma1: 2168 (expected 2168)
+- blur_sigma2: 2168 (expected 2168)
+- crop_75: 2168 (expected 2168)
+- crop_90: 2168 (expected 2168)
+- jpeg_q50: 2168 (expected 2168)
+- jpeg_q75: 2168 (expected 2168)
+- resize_112: 2168 (expected 2168)
+- resize_160: 2168 (expected 2168)
+
+INTEGRITY
+- unreadable outputs: 0
+- geometry/mode errors: 0
+- failures during generation: 0
+- labels preserved: YES
+- generator preserved: YES
+- split preserved: YES
+- variants per source: 8
+
+PIXEL-CHANGE SANITY CHECK
+- sampled source images: 12
+- jpeg_q75: mean abs diff range [1.52, 8.35], nonzero change observed: YES
+- jpeg_q50: mean abs diff range [2.33, 11.39], nonzero change observed: YES
+- crop_90: mean abs diff range [11.57, 37.89], nonzero change observed: YES
+- crop_75: mean abs diff range [15.89, 62.60], nonzero change observed: YES
+- resize_160: mean abs diff range [1.11, 10.43], nonzero change observed: YES
+- resize_112: mean abs diff range [1.85, 15.04], nonzero change observed: YES
+- blur_sigma1: mean abs diff range [2.04, 15.61], nonzero change observed: YES
+- blur_sigma2: mean abs diff range [4.16, 21.05], nonzero change observed: YES
+
+LIMITATIONS
+- Controlled approximations of common image-processing operations only.
+- Not yet a full social-media or screenshot/re-digitisation pipeline.
+- Screenshot/re-digitisation simulation is excluded from Stage 22A.
+
+SCIENTIFIC INTEGRITY
+- Model training performed: NO
+- Model inference performed: NO
+- Threshold changes: NO
+- Model selection changes: NO
+- known_test source images transformed: YES
+- unseen_test source images transformed: YES
+- Test labels used only for manifest integrity: YES
+- RQ1 model development reopened: NO
