@@ -1,0 +1,125 @@
+EfficientNet-B0 Transfer Training Report V1
+==========================================
+
+Preflight
+---------
+status: PASS
+architecture: EfficientNet-B0 (torchvision.models.efficientnet_b0)
+pretrained weight enum: EfficientNet_B0_Weights.IMAGENET1K_V1
+weights source: https://download.pytorch.org/models/efficientnet_b0_rwightman-7f5810bc.pth
+device: mps
+total binary-model parameters: 4008829
+replacement binary head parameters: 1281
+original classifier output size: 1000
+replacement classifier output size: 1
+preflight input shape: (32, 3, 224, 224)
+preflight logit shape: (32,)
+preflight BCEWithLogitsLoss: 0.70819300
+
+Experiment
+----------
+experiment ID: efficientnet_b0_transfer_v1
+seed: 42
+device: mps
+pretrained weights: EfficientNet_B0_Weights.IMAGENET1K_V1
+weights source: https://download.pytorch.org/models/efficientnet_b0_rwightman-7f5810bc.pth
+
+Data
+----
+representation: controlled_v1
+split protocol: generator_protocol_v1
+train: 1376
+validation: 456
+known_test access: NO
+unseen_test access: NO
+known_test rows used: 0
+unseen_test rows used: 0
+
+Model
+-----
+architecture: EfficientNet-B0 (binary logit head)
+total binary-model parameters: 4008829
+pretrained weights: EfficientNet_B0_Weights.IMAGENET1K_V1
+ImageNet mean: [0.485, 0.456, 0.406]
+ImageNet std: [0.229, 0.224, 0.225]
+augmentation: none
+scheduler: none
+
+Phase 1 — Fixed feature extraction
+----------------------------------
+epochs: 10 (fixed budget; not extended)
+backbone frozen: YES (features.requires_grad=False)
+classifier trainable: YES
+BatchNorm rule: model.train(); model.features.eval() each train epoch
+trainable parameter count: 1281
+frozen parameter count: 4007548
+optimizer: AdamW(classifier.parameters())
+LR: 0.001
+weight decay: 0.0001
+best epoch: 10
+best validation ROC-AUC: 0.84206679
+best validation AP: 0.82720897
+best validation loss: 0.49997172
+diagnostic threshold 0.50 accuracy: 0.77192982
+diagnostic threshold 0.50 balanced accuracy: 0.77192982
+diagnostic threshold 0.50 precision: 0.78971963
+diagnostic threshold 0.50 recall: 0.74122807
+diagnostic threshold 0.50 specificity: 0.80263158
+diagnostic threshold 0.50 F1: 0.76470588
+diagnostic threshold 0.50 FPR: 0.19736842
+checkpoint: models/efficientnet_b0_phase1_best_v1.pt
+
+Phase 2 — Full fine-tuning
+--------------------------
+epochs: 20 (fixed budget; not extended)
+all parameters trainable: YES
+trainable parameter count: 4008829
+optimizer: NEW AdamW(model.parameters()) — Phase-1 optimizer moments NOT carried over
+LR: 0.0001
+weight decay: 0.0001
+started from Phase-1 best epoch: 10
+best fine-tuning epoch: 16
+best validation ROC-AUC: 0.95490920
+best validation AP: 0.96012011
+best validation loss: 0.34537416
+diagnostic threshold 0.50 accuracy: 0.86842105
+diagnostic threshold 0.50 balanced accuracy: 0.86842105
+diagnostic threshold 0.50 precision: 0.87837838
+diagnostic threshold 0.50 recall: 0.85526316
+diagnostic threshold 0.50 specificity: 0.88157895
+diagnostic threshold 0.50 F1: 0.86666667
+diagnostic threshold 0.50 FPR: 0.11842105
+checkpoint: models/efficientnet_b0_phase2_best_v1.pt
+
+Final validation selection
+--------------------------
+Phase-1 best:
+  AUC=0.84206679
+  AP=0.82720897
+  loss=0.49997172
+Phase-2 best:
+  AUC=0.95490920
+  AP=0.96012011
+  loss=0.34537416
+Selected candidate:
+  phase: 2 (Phase 2 (full fine-tuning))
+  epoch: 16
+  checkpoint: models/efficientnet_b0_selected_v1.pt
+  AUC: 0.95490920
+  AP: 0.96012011
+
+Safety
+------
+Phase-1 training performed: YES
+Phase-2 fine-tuning performed: YES
+known_test accessed: NO
+unseen_test accessed: NO
+Threshold selection performed: NO
+Augmentation introduced: NO
+Scheduler introduced: NO
+SmallCNNV1 modified: NO
+Classical Baseline V1 modified: NO
+MobileNetV3-Small modified: NO
+EfficientNet training extended beyond predefined budget: NO
+
+No threshold selection. No test evaluation.

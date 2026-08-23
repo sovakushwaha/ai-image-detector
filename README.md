@@ -39,11 +39,11 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 18C: MobileNetV3-Small transfer learning is trained (Phase 1 feature extraction, Phase 2 fine-tuning) and a validation-only Youden threshold was selected. Test splits were not opened.
+Stage 18D: the frozen MobileNetV3-Small model was evaluated once on `known_test` and `unseen_test`. Stage 19: EfficientNet-B0 transfer learning (Phase 1 + Phase 2) was trained on train and validation only.
 
-To train and select the threshold:
+To run the latest evaluation and training:
 
 ```bash
-python src/train_mobilenet_transfer_v1.py
-python src/select_mobilenet_threshold_v1.py
+python src/evaluate_mobilenet_frozen_test_v1.py
+python src/train_efficientnet_transfer_v1.py
 ```

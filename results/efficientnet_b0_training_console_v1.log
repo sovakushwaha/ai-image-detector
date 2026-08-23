@@ -1,0 +1,138 @@
+============================================================
+Stage 19 — EfficientNet-B0 transfer development
+============================================================
+Experiment: efficientnet_b0_transfer_v1
+Python: 3.12.13
+torch: 2.13.0
+torchvision: 0.28.0
+OS: Darwin 25.5.0 (arm64)
+device: mps
+seed: 42
+
+============================================================
+PART A — Preflight verification (no backward)
+============================================================
+Weights enum: EfficientNet_B0_Weights.IMAGENET1K_V1
+Weights source: https://download.pytorch.org/models/efficientnet_b0_rwightman-7f5810bc.pth
+Original classifier output size: 1000
+Replacement classifier output size: 1
+Total binary-model parameters: 4008829
+Trainable parameters (preflight): 4008829
+Replacement binary head parameters: 1281
+Input shape: (32, 3, 224, 224)
+Label shape: (32,)
+Logit shape: (32,)
+BCEWithLogitsLoss (one batch): 0.708193
+Preflight status: PASS
+
+============================================================
+PHASE 1 — Fixed pretrained feature extraction (10 epochs)
+============================================================
+Total parameters: 4008829
+Phase-1 trainable parameters: 1281
+Phase-1 frozen parameters: 4007548
+Phase1 Epoch 01/10 | train_loss=0.6640 | val_loss=0.6341 | val_AUC=0.7430 | val_AP=0.7215
+  → saved best Phase-1 checkpoint (epoch 1)
+Phase1 Epoch 02/10 | train_loss=0.5822 | val_loss=0.5897 | val_AUC=0.7974 | val_AP=0.7739
+  → saved best Phase-1 checkpoint (epoch 2)
+Phase1 Epoch 03/10 | train_loss=0.5322 | val_loss=0.5621 | val_AUC=0.8165 | val_AP=0.7966
+  → saved best Phase-1 checkpoint (epoch 3)
+Phase1 Epoch 04/10 | train_loss=0.5021 | val_loss=0.5473 | val_AUC=0.8202 | val_AP=0.7982
+  → saved best Phase-1 checkpoint (epoch 4)
+Phase1 Epoch 05/10 | train_loss=0.4759 | val_loss=0.5321 | val_AUC=0.8296 | val_AP=0.8105
+  → saved best Phase-1 checkpoint (epoch 5)
+Phase1 Epoch 06/10 | train_loss=0.4523 | val_loss=0.5212 | val_AUC=0.8351 | val_AP=0.8155
+  → saved best Phase-1 checkpoint (epoch 6)
+Phase1 Epoch 07/10 | train_loss=0.4361 | val_loss=0.5145 | val_AUC=0.8373 | val_AP=0.8217
+  → saved best Phase-1 checkpoint (epoch 7)
+Phase1 Epoch 08/10 | train_loss=0.4237 | val_loss=0.5101 | val_AUC=0.8374 | val_AP=0.8173
+  → saved best Phase-1 checkpoint (epoch 8)
+Phase1 Epoch 09/10 | train_loss=0.4081 | val_loss=0.5040 | val_AUC=0.8406 | val_AP=0.8241
+  → saved best Phase-1 checkpoint (epoch 9)
+Phase1 Epoch 10/10 | train_loss=0.3993 | val_loss=0.5000 | val_AUC=0.8421 | val_AP=0.8272
+  → saved best Phase-1 checkpoint (epoch 10)
+
+Phase 1 best: epoch=10 AUC=0.842067 AP=0.827209 loss=0.499972
+
+============================================================
+PHASE 2 — Full-network fine-tuning (20 epochs)
+============================================================
+Total parameters: 4008829
+Phase-2 trainable parameters: 4008829
+Starting from Phase-1 best epoch: 10
+Phase2 Epoch 01/20 | train_loss=0.4110 | val_loss=0.4034 | val_AUC=0.8992 | val_AP=0.9065
+  → saved best Phase-2 checkpoint (epoch 1)
+Phase2 Epoch 02/20 | train_loss=0.2275 | val_loss=0.3575 | val_AUC=0.9220 | val_AP=0.9297
+  → saved best Phase-2 checkpoint (epoch 2)
+Phase2 Epoch 03/20 | train_loss=0.1322 | val_loss=0.3363 | val_AUC=0.9319 | val_AP=0.9381
+  → saved best Phase-2 checkpoint (epoch 3)
+Phase2 Epoch 04/20 | train_loss=0.0803 | val_loss=0.3165 | val_AUC=0.9420 | val_AP=0.9489
+  → saved best Phase-2 checkpoint (epoch 4)
+Phase2 Epoch 05/20 | train_loss=0.0553 | val_loss=0.3043 | val_AUC=0.9456 | val_AP=0.9521
+  → saved best Phase-2 checkpoint (epoch 5)
+Phase2 Epoch 06/20 | train_loss=0.0410 | val_loss=0.3034 | val_AUC=0.9472 | val_AP=0.9523
+  → saved best Phase-2 checkpoint (epoch 6)
+Phase2 Epoch 07/20 | train_loss=0.0328 | val_loss=0.3057 | val_AUC=0.9492 | val_AP=0.9541
+  → saved best Phase-2 checkpoint (epoch 7)
+Phase2 Epoch 08/20 | train_loss=0.0270 | val_loss=0.3166 | val_AUC=0.9483 | val_AP=0.9533
+Phase2 Epoch 09/20 | train_loss=0.0340 | val_loss=0.3231 | val_AUC=0.9488 | val_AP=0.9570
+Phase2 Epoch 10/20 | train_loss=0.0200 | val_loss=0.3214 | val_AUC=0.9509 | val_AP=0.9560
+  → saved best Phase-2 checkpoint (epoch 10)
+Phase2 Epoch 11/20 | train_loss=0.0152 | val_loss=0.3316 | val_AUC=0.9508 | val_AP=0.9565
+Phase2 Epoch 12/20 | train_loss=0.0189 | val_loss=0.3543 | val_AUC=0.9460 | val_AP=0.9476
+Phase2 Epoch 13/20 | train_loss=0.0095 | val_loss=0.3413 | val_AUC=0.9503 | val_AP=0.9552
+Phase2 Epoch 14/20 | train_loss=0.0078 | val_loss=0.3727 | val_AUC=0.9476 | val_AP=0.9512
+Phase2 Epoch 15/20 | train_loss=0.0115 | val_loss=0.3714 | val_AUC=0.9484 | val_AP=0.9527
+Phase2 Epoch 16/20 | train_loss=0.0055 | val_loss=0.3454 | val_AUC=0.9549 | val_AP=0.9601
+  → saved best Phase-2 checkpoint (epoch 16)
+Phase2 Epoch 17/20 | train_loss=0.0068 | val_loss=0.3614 | val_AUC=0.9523 | val_AP=0.9572
+Phase2 Epoch 18/20 | train_loss=0.0059 | val_loss=0.3834 | val_AUC=0.9474 | val_AP=0.9527
+Phase2 Epoch 19/20 | train_loss=0.0050 | val_loss=0.4216 | val_AUC=0.9437 | val_AP=0.9493
+Phase2 Epoch 20/20 | train_loss=0.0093 | val_loss=0.4050 | val_AUC=0.9456 | val_AP=0.9511
+
+Phase 2 best: epoch=16 AUC=0.954909 AP=0.960120 loss=0.345374
+
+============================================================
+STAGE 19 — EFFICIENTNET-B0 DEVELOPMENT COMPLETE
+============================================================
+PREFLIGHT
+Status: PASS
+Device: mps
+Weights: EfficientNet_B0_Weights.IMAGENET1K_V1
+Parameters: 4008829
+
+PHASE 1 — FEATURE EXTRACTION
+Best epoch: 10
+Validation ROC-AUC: 0.842067
+Validation AP: 0.827209
+Validation loss: 0.499972
+
+PHASE 2 — FULL FINE-TUNING
+Best epoch: 16
+Validation ROC-AUC: 0.954909
+Validation AP: 0.960120
+Validation loss: 0.345374
+
+FINAL VALIDATION SELECTION
+Selected phase: 2
+Selected epoch: 16
+Validation ROC-AUC: 0.954909
+Validation AP: 0.960120
+Checkpoint:
+models/efficientnet_b0_selected_v1.pt
+
+Train images: 1376
+Validation images: 456
+
+known_test accessed: NO
+unseen_test accessed: NO
+Threshold selected: NO
+
+STOP BEFORE TEST EVALUATION
+
+Wrote /Users/PankajKushwaha/ai-image-detector/results/efficientnet_b0_phase1_history_v1.csv
+Wrote /Users/PankajKushwaha/ai-image-detector/results/efficientnet_b0_phase2_history_v1.csv
+Wrote /Users/PankajKushwaha/ai-image-detector/results/efficientnet_b0_training_report_v1.txt
+Wrote /Users/PankajKushwaha/ai-image-detector/figures/efficientnet_b0_transfer_loss_v1.png
+Wrote /Users/PankajKushwaha/ai-image-detector/figures/efficientnet_b0_transfer_auc_v1.png
+Wrote /Users/PankajKushwaha/ai-image-detector/figures/efficientnet_b0_transfer_ap_v1.png
