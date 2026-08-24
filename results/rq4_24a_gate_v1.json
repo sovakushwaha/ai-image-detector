@@ -1,0 +1,14 @@
+{
+  "frequency_transform_fixed": true,
+  "normalization_saved": true,
+  "architecture_fixed": true,
+  "training_complete": true,
+  "checkpoint_selected": true,
+  "test_accessed": false,
+  "representation_search": false,
+  "training_budget_extended": false,
+  "selected_epoch": 26,
+  "robust_val_auc": 0.7420624615266237,
+  "screenshot_auc": 0.797649276700523,
+  "parameters": 97761
+}

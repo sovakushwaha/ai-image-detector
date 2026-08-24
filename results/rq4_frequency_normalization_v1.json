@@ -1,0 +1,41 @@
+{
+  "transform_id": "FrequencyTransformV1",
+  "representation": "controlled_v1",
+  "split_protocol": "generator_protocol_v1",
+  "image_size": 224,
+  "grayscale_coefficients": {
+    "R": 0.299,
+    "G": 0.587,
+    "B": 0.114
+  },
+  "steps": [
+    "rgb_to_luminance_[0,1]",
+    "subtract_per_image_mean",
+    "2d_hann_window",
+    "fft2",
+    "fftshift",
+    "magnitude_abs",
+    "log1p",
+    "global_train_zscore"
+  ],
+  "hann_window": {
+    "type": "separable_2d_outer_product",
+    "numpy": "np.outer(np.hanning(224), np.hanning(224))",
+    "fixed_for_all_images": true
+  },
+  "fft_convention": "numpy.fft.fft2 + numpy.fft.fftshift",
+  "magnitude": "abs(F_shifted)",
+  "compression": "log1p",
+  "phase_used": false,
+  "per_image_zscore": false,
+  "training_image_count": 1376,
+  "training_pixel_count": 69042176,
+  "frequency_train_mean": 1.2630457300733713,
+  "frequency_train_std": 0.9094672697579884,
+  "output_tensor_shape": [
+    1,
+    224,
+    224
+  ],
+  "seed_note": "deterministic transform; no randomness"
+}

@@ -1,0 +1,63 @@
+RQ4 Stage 24C — Frozen Test Evaluation Report
+============================================================
+
+1. Hypothesis/context
+   Does explicit frequency-domain information provide complementary forensic
+   evidence beyond RGB/spatial information for AI-generated image detection?
+
+2. Sequential-design caveat
+   RQ4 follows RQ1–RQ3 on the same Tiny-GenImage pilot benchmark and is partly
+   motivated by RQ2 blur/downsampling degradation. It is NOT independent confirmation.
+
+3. Frozen models
+   F0 RGB A2: params=1518881 thr=0.36564627289772034
+   F1 Frequency-only: params=97761 thr=0.8011783361434937
+   F2 RGB+Frequency Fusion (PRIMARY): params=1912067 thr=0.1032474935054779
+
+4–8. Unseen ROC-AUC by condition
+   original: F0=0.8503 F1=0.6754 F2=0.8544
+   jpeg_q50: F0=0.8268 F1=0.6756 F2=0.8304
+   resize_112: F0=0.8162 F1=0.6789 F2=0.8220
+   blur_sigma2: F0=0.7237 F1=0.6227 F2=0.7342
+   screenshot_strong: F0=0.8137 F1=0.6728 F2=0.8105
+
+9. StrongRobustTestAUC (unseen)
+   F0: AUC=0.8042 AP=0.8282
+   F1: AUC=0.6631 AP=0.6314
+   F2: AUC=0.8102 AP=0.8293
+
+10. F1 frequency-only interpretation: see absolute AUC/AP vs F0.
+11. F2 vs F0 (primary):
+   original AUC F2-F0 = +0.0040
+   jpeg_q50 AUC F2-F0 = +0.0035
+   resize_112 AUC F2-F0 = +0.0058
+   blur_sigma2 AUC F2-F0 = +0.0105
+   screenshot_strong AUC F2-F0 = -0.0032
+   StrongRobustTestAUC diff F2-F0 = +0.0060
+
+12. F2 vs F1:
+   original AUC F2-F1 = +0.1790
+   blur_sigma2 AUC F2-F1 = +0.1115
+
+13. Original generalisation gaps (unseen-known AUC):
+   F0: -0.0918
+   F1: -0.1260
+   F2: -0.0881
+
+14. Generator observations: see rq4_generator_recall_v1.csv (VQDM diagnostic).
+15. Threshold behaviour: distinguish AUC/AP discrimination from recall/specificity;
+    high recall with collapsed specificity is NOT a robustness gain.
+16. Limitations: one FFT magnitude representation; sequential pilot design;
+    external confirmation pending.
+
+17. Integrity
+    Training after freeze: NO
+    Threshold changes: NO
+    Checkpoint changes: NO
+    Representation changes: NO
+    Test-derived model selection: NO
+    Primary RQ4 intervention changed: NO
+    F0 rerun: NO
+    F1/F2 first frozen test evaluation: YES
+
+Do not claim statistical significance in this stage.

@@ -1,0 +1,4 @@
+regime,model_id,checkpoint,threshold,parameters,primary,source
+F0,rq4_F0_rgb_a2_reference,models/mobilenet_resize_jpeg_aug_selected_v1.pt,0.36564627289772034,1518881,False,RQ3 A2 frozen
+F1,rq4_F1_frequency_only_v1,models/rq4_F1_frequency_only_selected_v1.pt,0.8011783361434937,97761,False,RQ4 F1
+F2,rq4_F2_rgb_frequency_fusion_v1,models/rq4_F2_rgb_frequency_fusion_selected_v1.pt,0.1032474935054779,1912067,True,RQ4 F2

@@ -1,0 +1,17 @@
+{
+  "F0_frozen": true,
+  "F1_checkpoint_frozen": true,
+  "F1_threshold_frozen": true,
+  "F2_checkpoint_frozen": true,
+  "F2_threshold_frozen": true,
+  "F2_marked_primary": true,
+  "test_accessed": true,
+  "representation_changed": false,
+  "architecture_search": false,
+  "training_budgets_extended": false,
+  "f1_threshold": 0.8011783361434937,
+  "f2_threshold": 0.1032474935054779,
+  "f2_phase": 1,
+  "f2_epoch": 1,
+  "stage_24c_complete": true
+}
