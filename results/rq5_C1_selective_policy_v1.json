@@ -1,0 +1,26 @@
+{
+  "model": "rq5_C1_rgb_frequency_fusion",
+  "temperature": 3.3861896467702617,
+  "probability_boundary": 0.5,
+  "target_coverages": [
+    0.9,
+    0.8,
+    0.7
+  ],
+  "gamma90": 0.6076297633793826,
+  "gamma80": 0.7140745490607183,
+  "gamma70": 0.7940083808274132,
+  "lower90": 0.39237023662061743,
+  "upper90": 0.6076297633793826,
+  "lower80": 0.2859254509392817,
+  "upper80": 0.7140745490607183,
+  "lower70": 0.2059916191725868,
+  "upper70": 0.7940083808274132,
+  "achieved_clean_validation_coverage_90": 0.9013157894736842,
+  "achieved_clean_validation_coverage_80": 0.8004385964912281,
+  "achieved_clean_validation_coverage_70": 0.7017543859649122,
+  "policy_derivation_split": "clean_validation_original_only",
+  "selection_method": "descending_confidence_quantile",
+  "primary_target": 0.8,
+  "policy_version": "rq5_v1"
+}

@@ -1,0 +1,17 @@
+{
+  "model": "rq5_C0_rgb_a2",
+  "checkpoint": "models/mobilenet_resize_jpeg_aug_selected_v1.pt",
+  "fitted_on": "clean_validation_original_only",
+  "sample_count": 456,
+  "method": "scalar_temperature_scaling",
+  "objective": "clean_validation_nll",
+  "raw_validation_nll": 0.37952013644938043,
+  "temperature": 1.9041730135965886,
+  "calibrated_validation_nll": 0.31670235997684326,
+  "raw_brier": 0.1057120356307026,
+  "calibrated_brier": 0.09903768011098008,
+  "raw_ece15": 0.08046206640107165,
+  "calibrated_ece15": 0.039268103543049944,
+  "calibration_version": "rq5_v1",
+  "total_parameters": 1518881
+}

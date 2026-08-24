@@ -1,0 +1,14 @@
+RQ5 COMPLETE REPORT v1
+============================================================
+
+1. RQ5 PURPOSE: calibration and selective prediction for frozen C0/C1.
+2. MODELS: C0 rq5_C0_rgb_a2; C1 rq5_C1_rgb_frequency_fusion.
+3. SEQUENTIAL-DESIGN CAVEAT: parameters from validation only; test is sequential pilot.
+
+6. C0 TEMPERATURE: 1.9041730135965886
+7. C1 TEMPERATURE: 3.3861896467702617
+
+Most challenging unseen condition (raw ECE): blur_sigma2
+
+26. RQ5 CONCLUSION: see master summary output.
+27. SCIENTIFIC INTEGRITY: no training; no test-derived calibration/policy.
