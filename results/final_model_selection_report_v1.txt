@@ -1,0 +1,94 @@
+Stage 26B — Final Model Selection Report
+============================================================
+
+1. PURPOSE
+   Select one final research/deployment candidate from frozen C0 and C1 using
+   accumulated RQ1–RQ5 and Stage 26A evidence. Analysis only; no new inference.
+
+2. CANDIDATES
+   C0: Robust RGB MobileNetV3-Small (RQ3 A2 / F0)
+   C1: RGB + Frequency Fusion (RQ4 F2)
+
+3. SELECTION PRINCIPLE
+   Multi-criteria evidence comparison across discrimination, robustness,
+   calibration/selective trustworthiness, and resource efficiency.
+   No arbitrary weighted composite score.
+
+4. DISCRIMINATION EVIDENCE
+   Unseen original AUC: C0 0.850321;
+   C1 0.854370;
+   diff +0.004049
+   95% CI [0.000549, 0.007648]
+
+5. GENERALISATION EVIDENCE
+   Known original AUC: C0 0.942155;
+   C1 0.942425
+   AUC gap (unseen−known): C0 -0.091835;
+   C1 -0.088055
+
+6. ROBUSTNESS EVIDENCE
+   StrongRobustTestAUC: C0 0.804249;
+   C1 0.810229;
+   diff +0.005980
+   95% CI [0.002546, 0.009569]
+   Largest C1 absolute gain: blur2 AUC +0.010530
+   C1 not improved: screenshot_strong AUC -0.003243
+
+7. CALIBRATION EVIDENCE
+   Calibrated unseen-original NLL: C0 0.570400;
+   C1 0.587956
+   ECE-15: C0 0.115274; C1 0.143962
+
+8. SELECTIVE-PREDICTION EVIDENCE
+   80% policy selective risk (unseen original): C0 0.187731;
+   C1 0.214386;
+   C1−C0 +0.026655
+   95% CI [0.016508, 0.037090]
+   AURC: C0 0.120142; C1 0.129268
+
+9. RESOURCE EVIDENCE
+   Parameters: C0 1,518,881; C1 1,912,067
+   (+25.9%)
+   State dict: C0 5.92 MiB; C1 7.44 MiB
+   CPU E2E: C0 44.84 ms; C1 49.19 ms
+   MPS E2E: C0 9.91 ms; C1 12.64 ms
+   MPS batch-32 throughput: C0 538.7; C1 367.3 ips
+
+10. PARETO ANALYSIS
+    C0 strictly dominates C1: NO
+    C1 strictly dominates C0: NO
+    Neither strictly dominates across all domains.
+
+11. PRACTICAL TRADE-OFF
+    C1 gains +0.0040 unseen AUC and
+    +0.0060 StrongRobustTestAUC in exchange for
+    +25.9% parameters, +27.6%
+    MPS end-to-end latency, -31.8% MPS batch-32 throughput,
+    and worse calibrated selective behaviour (+0.0267 selective risk).
+
+12. FINAL DECISION
+    FINAL_RESEARCH_MODEL_V1: C0
+    Checkpoint: models/mobilenet_resize_jpeg_aug_selected_v1.pt
+
+13. WHY THE OTHER MODEL WAS NOT SELECTED
+    C1 (RGB+frequency fusion) is not selected despite modest statistically separated gains on unseen original AUC (+0.004) and StrongRobustTestAUC (+0.006), primarily under blur and resize. C1 exhibits worse calibrated unseen-original NLL (+0.018), higher 80% selective risk (+0.027 [+0.017, +0.037]), higher AURC (+0.009), requires larger temperature correction (T=3.386 vs 1.904), adds FFT preprocessing complexity, and incurs ~26% parameter/state overhead with materially lower throughput. Neither model is fully trustworthy under severe blur.
+
+14. WHAT THE SELECTED MODEL DOES WELL
+    Strong unseen-generator discrimination; best calibration/selective metrics among finalists;
+    simpler RGB-only deployment; lower latency and higher throughput.
+
+15. WHAT THE SELECTED MODEL STILL FAILS ON
+    Severe blur (near-random threshold behaviour, useless abstention); generator holdout not
+    externally confirmed; moderate miscalibration under shift; physical recapture untested.
+
+16. EXTERNAL-CONFIRMATION REQUIREMENT
+    Status: PENDING — independent modern-generator evaluation required before deployment claims.
+
+17. DEPLOYMENT IMPLICATIONS
+    Use C0 with frozen temperature T=1.904173 and 80% selective policy
+    (REAL p≤0.263967; AI p≥0.736033; else UNCERTAIN).
+    Historical binary Youden threshold 0.365646 retained for RQ1–RQ4 reporting.
+
+18. SCIENTIFIC INTEGRITY
+    New training: NO | New inference: NO | Weights changed: NO | Composite score: NO
+    Final model selected: YES | External confirmation: NO

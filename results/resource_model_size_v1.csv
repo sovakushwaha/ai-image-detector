@@ -1,0 +1,3 @@
+model,model_id,parameters,trainable_parameters,parameter_memory_bytes,parameter_memory_mib,buffer_memory_mib,total_tensor_memory_mib,checkpoint_size_mib,state_dict_size_mib,checkpoint_path
+C0,resource_C0_rgb,1518881,1518881,6075524,5.794071197509766,0.0464630126953125,5.840534210205078,17.640803337097168,5.923338890075684,models/mobilenet_resize_jpeg_aug_selected_v1.pt
+C1,resource_C1_rgb_frequency,1912067,1912067,7648268,7.293956756591797,0.0483245849609375,7.342281341552734,7.453265190124512,7.440920829772949,models/rq4_F2_rgb_frequency_fusion_selected_v1.pt

@@ -1,0 +1,5 @@
+model,device,baseline_memory_mib,loaded_memory_mib,max_observed_memory_mib,increment_mib,measurement_method,limitations
+C0,cpu,348.5625,391.40625,399.546875,50.984375,psutil.Process().memory_info().rss isolated subprocess,RSS is approximate; MPS unified memory accounting is sampled not guaranteed peak
+C0,mps,23.37548828125,23.37548828125,24.14111328125,0.765625,torch.mps.current_allocated_memory sampled subprocess,RSS is approximate; MPS unified memory accounting is sampled not guaranteed peak
+C1,cpu,348.625,384.453125,403.890625,55.265625,psutil.Process().memory_info().rss isolated subprocess,RSS is approximate; MPS unified memory accounting is sampled not guaranteed peak
+C1,mps,14.74169921875,14.74169921875,15.69873046875,0.95703125,torch.mps.current_allocated_memory sampled subprocess,RSS is approximate; MPS unified memory accounting is sampled not guaranteed peak

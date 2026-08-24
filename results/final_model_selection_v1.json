@@ -1,0 +1,120 @@
+{
+  "final_model_id": "FINAL_RESEARCH_MODEL_V1",
+  "selected_candidate": "C0",
+  "historical_model_id": "rq5_C0_rgb_a2",
+  "historical_aliases": [
+    "A2",
+    "F0",
+    "resource_C0_rgb"
+  ],
+  "checkpoint": "models/mobilenet_resize_jpeg_aug_selected_v1.pt",
+  "architecture": "MobileNetV3-Small",
+  "parameter_count": 1518881,
+  "preprocessing": "controlled_v1 RGB 224x224; ToTensor; ImageNet normalization",
+  "frequency_branch_used": false,
+  "temperature_config": "results/rq5_C0_temperature_scaling_v1.json",
+  "selective_policy_config": "results/rq5_C0_selective_policy_v1.json",
+  "frozen_config": "results/rq3_A2_frozen_config_v1.json",
+  "binary_historical_threshold": 0.36564627289772034,
+  "calibrated_temperature": 1.9041730135965886,
+  "primary_selective_coverage": 0.8,
+  "real_ai_uncertain_bounds": {
+    "real_if_p_leq": 0.26396692384233933,
+    "ai_generated_if_p_geq": 0.7360330761576607,
+    "uncertain_otherwise": true,
+    "gamma80": 0.7360330761576607
+  },
+  "selection_date": "2026-08-24",
+  "selection_stage": "26B",
+  "selection_rationale": "C0 (RQ3 A2 robust RGB MobileNet) is selected because discrimination and transformation robustness remain strong and close to C1, while C0 provides better calibrated probability quality (lower unseen-original NLL/ECE), lower 80%-policy selective risk, lower AURC, and substantially lower deployment cost (26% fewer parameters, 28% lower MPS end-to-end latency, 32% lower MPS batch-32 throughput, no FFT branch). C1's incremental unseen AUC (+0.004) and StrongRobustTestAUC (+0.006) gains are modest and do not justify the combined trustworthiness and resource penalties under the project's resource-aware + trustworthy objective.",
+  "rejected_candidate": "C1",
+  "rejected_rationale": "C1 (RGB+frequency fusion) is not selected despite modest statistically separated gains on unseen original AUC (+0.004) and StrongRobustTestAUC (+0.006), primarily under blur and resize. C1 exhibits worse calibrated unseen-original NLL (+0.018), higher 80% selective risk (+0.027 [+0.017, +0.037]), higher AURC (+0.009), requires larger temperature correction (T=3.386 vs 1.904), adds FFT preprocessing complexity, and incurs ~26% parameter/state overhead with materially lower throughput. Neither model is fully trustworthy under severe blur.",
+  "evidence_summary": {
+    "discrimination": {
+      "unseen_original_auc_c0": 0.8503205793082365,
+      "unseen_original_auc_c1": 0.8543697866625906,
+      "unseen_original_auc_diff": 0.004049207354354101,
+      "unseen_original_auc_ci": [
+        0.0005486287011966462,
+        0.007648047864442181
+      ],
+      "unseen_original_ap_c0": 0.8686829851140283,
+      "unseen_original_ap_c1": 0.8702937816115772,
+      "unseen_original_ap_diff": 0.0016107964975489164,
+      "unseen_original_ap_ci_includes_zero": true
+    },
+    "generalisation": {
+      "known_original_auc_c0": 0.9421552785472453,
+      "known_original_auc_c1": 0.94242459218221,
+      "auc_gap_c0": -0.09183469923900889,
+      "auc_gap_c1": -0.08805480551961942
+    },
+    "robustness": {
+      "strong_robust_auc_c0": 0.8042492452943489,
+      "strong_robust_auc_c1": 0.810228888712988,
+      "strong_robust_auc_diff": 0.005979643418639102,
+      "strong_robust_auc_ci": [
+        0.0025457625597759574,
+        0.009569476591842162
+      ],
+      "blur2_auc_c0": 0.723661728098524,
+      "blur2_auc_c1": 0.7341921237662679,
+      "blur2_auc_diff": 0.01053039566774383,
+      "screenshot_auc_c0": 0.81373100270766,
+      "screenshot_auc_c1": 0.8104876790549392,
+      "screenshot_auc_diff": -0.003243323652720731
+    },
+    "calibration": {
+      "nll_c0": 0.5704001632934426,
+      "nll_c1": 0.5879562497178588,
+      "ece_c0": 0.11527379848302266,
+      "ece_c1": 0.14396174274576046
+    },
+    "selective": {
+      "risk80_c0": 0.1877309682187731,
+      "risk80_c1": 0.2143864598025388,
+      "risk80_diff": 0.026655491583765678,
+      "risk80_ci": [
+        0.01650819458038241,
+        0.03709028819583815
+      ],
+      "cov80_c0": 0.790303738317757,
+      "cov80_c1": 0.8282710280373832,
+      "aurc_c0": 0.12014216435493909,
+      "aurc_c1": 0.12926790499640362
+    },
+    "resource": {
+      "params_c0": 1518881,
+      "params_c1": 1912067,
+      "param_overhead_pct": 25.88655727473055,
+      "state_c0": 5.923338890075684,
+      "state_c1": 7.440920829772949,
+      "state_overhead_pct": 25.620380124458396,
+      "cpu_e2e_c0": 44.837895504315384,
+      "cpu_e2e_c1": 49.19185399921844,
+      "cpu_e2e_overhead_pct": 9.710443467365714,
+      "mps_e2e_c0": 9.906791499815881,
+      "mps_e2e_c1": 12.642374997085426,
+      "mps_e2e_overhead_pct": 27.61321359514215,
+      "mps_tp_c0": 538.6825661878781,
+      "mps_tp_c1": 367.3400303423051,
+      "mps_tp_delta_pct": -31.807700230234165
+    }
+  },
+  "pareto_analysis": {
+    "c0_strictly_dominates_c1": false,
+    "c1_strictly_dominates_c0": false,
+    "neither_strictly_dominates": true,
+    "explanation": "C1 is preferred on modest discrimination/robustness metrics; C0 is preferred on calibration, selective trustworthiness, resource efficiency, and deployment simplicity. Neither candidate is no-worse across all major domains."
+  },
+  "known_limitations": [
+    "Sequential pilot benchmark only; not independent external confirmation",
+    "Limited generator holdout; source independence not fully guaranteed",
+    "Temperature and selective policies fit on clean validation only",
+    "Severe blur causes saturated overconfidence; abstention fails for both models",
+    "Physical screen recapture not tested",
+    "Resource measurements from one Apple M1 environment",
+    "Research prototype; not production-certified"
+  ],
+  "external_confirmation_status": "PENDING"
+}
