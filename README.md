@@ -39,7 +39,14 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 24: RQ4 frequency-only (F1) and RGB+frequency fusion (F2) models were developed, frozen, evaluated on locked test conditions, and compared with paired bootstrap analysis against the RQ3 A2 reference.
+Stage 24A–24D evaluated frozen F1/F2 against F0 with paired bootstrap uncertainty. **Stage 25 (RQ5)** completed calibration audit, scalar temperature scaling, validation-derived selective prediction (Real / AI / Uncertain), frozen test evaluation, and bootstrap analysis for frozen C0 (RQ3 A2) and C1 (RQ4 F2). External independent confirmation, resource analysis, and final model selection remain pending.
+
+To rerun the RQ5 pipeline:
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=src python src/run_rq5_v1.py
+```
 
 To rerun the RQ4 pipeline:
 

@@ -1,0 +1,67 @@
+Stage 26A — Resource-Efficiency Analysis Report
+============================================================
+
+1. PURPOSE
+   Measure computational/resource cost of frozen C0 (RGB A2) and C1 (RGB+frequency fusion)
+   without changing models or selecting a final winner.
+
+2. CANDIDATES
+   C0: resource_C0_rgb (mobilenet_resize_jpeg_aug_selected_v1.pt)
+   C1: resource_C1_rgb_frequency (rq4_F2_rgb_frequency_fusion_selected_v1.pt)
+
+3. HARDWARE ENVIRONMENT
+   OS: Darwin 25.5.0
+   CPU: Apple M1
+   RAM: 16.0 GiB
+   Apple chip: Apple M1
+
+4. SOFTWARE ENVIRONMENT
+   Python 3.12.13, PyTorch 2.13.0, torchvision 0.28.0
+   MPS available: True
+
+5. BENCHMARK DATA
+   Clean validation images only: 456
+   Test images used: 0
+
+6. BENCHMARK METHODOLOGY
+   Separate static size, preprocessing, forward-only, end-to-end, throughput, memory.
+   3 measurement rounds for per-image latencies; MPS synchronized around timed sections.
+
+7. PARAMETER COUNTS
+   C0: 1,518,881 parameters
+   C1: 1,912,067 parameters
+
+8. MODEL / STATE SIZE
+   C0: checkpoint 17.64 MiB, state_dict 5.92 MiB
+   C1: checkpoint 7.45 MiB, state_dict 7.44 MiB
+
+9–16. See resource_efficiency_summary_v1.csv for latency/throughput/memory tables
+
+17. RELATIVE C1 OVERHEAD
+   parameter_overhead_pct: 25.88655727473055
+   state_dict_overhead_pct: 25.620380124458396
+   cpu_preprocess_overhead_pct: 137.95614363043916
+   cpu_forward_overhead_pct: 6.993602854810077
+   cpu_end_to_end_overhead_pct: 9.710443467365714
+   mps_forward_overhead_pct: 11.99667364303072
+   mps_end_to_end_overhead_pct: 27.61321359514215
+   mps_batch32_throughput_delta_pct: -31.807700230234172
+   cpu_batch32_throughput_delta_pct: -25.158869957543583
+
+18. HISTORICAL PERFORMANCE CONTEXT (not rerun)
+   C0: unseen AUC 0.8503, StrongRobust 0.8042, NLL 0.5704, 80% risk 0.1877, AURC 0.1201
+   C1: unseen AUC 0.8544, StrongRobust 0.8102, NLL 0.5880, 80% risk 0.2144, AURC 0.1293
+
+19. LIMITATIONS
+   Single local environment; hardware-dependent latency; MPS ≠ CUDA;
+   filesystem cache may affect load times; unified memory approximate;
+   sampled memory not guaranteed true peak; no quant/prune/compile tests;
+   no mobile/Raspberry Pi deployment benchmark; resource metrics are not model-quality evidence.
+
+20. SCIENTIFIC INTEGRITY
+   Training: NO | Weights modified: NO | Test inference: NO | Final model selected: NO
+
+SANITY CHECK
+   C0 val AUC 0.938366 vs ref 0.938366
+   C1 val AUC 0.932152 vs ref 0.932152
+   Passed: True

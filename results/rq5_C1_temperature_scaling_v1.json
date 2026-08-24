@@ -1,0 +1,17 @@
+{
+  "model": "rq5_C1_rgb_frequency_fusion",
+  "checkpoint": "models/rq4_F2_rgb_frequency_fusion_selected_v1.pt",
+  "fitted_on": "clean_validation_original_only",
+  "sample_count": 456,
+  "method": "scalar_temperature_scaling",
+  "objective": "clean_validation_nll",
+  "raw_validation_nll": 0.6061513188019132,
+  "temperature": 3.3861896467702617,
+  "calibrated_validation_nll": 0.33994411497448374,
+  "raw_brier": 0.1173443069403899,
+  "calibrated_brier": 0.10461126415993009,
+  "raw_ece15": 0.10826675372710456,
+  "calibrated_ece15": 0.0546703009353843,
+  "calibration_version": "rq5_v1",
+  "total_parameters": 1912067
+}

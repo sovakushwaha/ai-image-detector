@@ -1,0 +1,3 @@
+model,historical_id,unseen_original_auc,unseen_strong_robust_test_auc,calibrated_unseen_original_nll,unseen_original_80pct_selective_risk,unseen_original_aurc,source_note
+C0,F0,0.8503205793082365,0.8042492452943489,0.5704001632934426,0.1877309682187731,0.120142164354939,historical RQ4/RQ5 frozen test metrics; not rerun in Stage 26A
+C1,F2,0.8543697866625906,0.810228888712988,0.5879562497178588,0.2143864598025388,0.1292679049964036,historical RQ4/RQ5 frozen test metrics; not rerun in Stage 26A

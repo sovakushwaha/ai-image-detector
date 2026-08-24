@@ -1,0 +1,9 @@
+{
+  "final_model_id": "FINAL_RESEARCH_MODEL_V1",
+  "selected_candidate": "C0",
+  "checkpoint": "models/mobilenet_resize_jpeg_aug_selected_v1.pt",
+  "frozen_config": "results/rq3_A2_frozen_config_v1.json",
+  "temperature_config": "results/rq5_C0_temperature_scaling_v1.json",
+  "selective_policy_config": "results/rq5_C0_selective_policy_v1.json",
+  "selection_config": "results/final_model_selection_v1.json"
+}
