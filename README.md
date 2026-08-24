@@ -39,11 +39,14 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 23D–23E: frozen RQ3 regimes A1–A3 were evaluated once on locked test robustness conditions, then paired bootstrap uncertainty compared A2 against A0.
+Stage 24: RQ4 frequency-only (F1) and RGB+frequency fusion (F2) models were developed, frozen, evaluated on locked test conditions, and compared with paired bootstrap analysis against the RQ3 A2 reference.
 
-To run the frozen RQ3 test evaluation and statistical analysis:
+To rerun the RQ4 pipeline:
 
 ```bash
-python src/evaluate_rq3_frozen_test_v1.py
-python src/rq3_bootstrap_uncertainty_v1.py
+python src/rq4_frequency_transform_v1.py
+python src/train_rq4_f1_v1.py
+python src/train_rq4_f2_v1.py
+python src/evaluate_rq4_frozen_test_v1.py
+python src/rq4_bootstrap_uncertainty_v1.py
 ```

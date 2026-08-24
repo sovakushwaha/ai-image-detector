@@ -1,0 +1,29 @@
+RQ4 Stage 24D — Paired Bootstrap Statistical Analysis
+============================================================
+
+Bootstrap replicates: 5000
+Seed: 42
+Method: paired_class_stratified_source_bootstrap_percentile_ci
+Primary intervention: F2 (unchanged after test)
+New inference: NO
+
+PRIMARY F2 − F0 UNSEEN AUC
+  original: diff=+0.0040 95% CI [+0.0005, +0.0076] — consistent positive difference under the current fixed-sample bootstrap
+  jpeg_q50: diff=+0.0035 95% CI [-0.0002, +0.0073] — not clearly distinguishable from zero under this fixed-sample bootstrap
+  resize_112: diff=+0.0058 95% CI [+0.0022, +0.0096] — consistent positive difference under the current fixed-sample bootstrap
+  blur_sigma2: diff=+0.0105 95% CI [+0.0044, +0.0166] — consistent positive difference under the current fixed-sample bootstrap
+  screenshot_strong: diff=-0.0032 95% CI [-0.0072, +0.0007] — not clearly distinguishable from zero under this fixed-sample bootstrap
+  StrongRobustTest: diff=+0.0060 95% CI [+0.0025, +0.0096] — consistent positive difference under the current fixed-sample bootstrap
+
+StrongRobustTestAP F2−F0:
+  diff=+0.0011 95% CI [-0.0026, +0.0047] — not clearly distinguishable from zero under this fixed-sample bootstrap
+
+FREQUENCY-ONLY SECONDARY (unseen StrongRobustTestAUC)
+  F1_vs_F0: -0.1411 [-0.1648, -0.1180] — consistent negative difference under the current fixed-sample bootstrap
+  F2_vs_F1: +0.1471 [+0.1234, +0.1708] — consistent positive difference under the current fixed-sample bootstrap
+
+Clean trade-off (original unseen AUC F2−F0):
+  +0.0040 [+0.0005, +0.0076] — consistent positive difference under the current fixed-sample bootstrap
+
+Integrity: no new inference; F2 remains primary; no threshold/checkpoint changes.
+Tidy CSV rows: 62

@@ -1,0 +1,13 @@
+RQ4 Stage 24B — Threshold Selection + Freeze Report
+============================================================
+
+F1 threshold (Youden): 0.801178336143  J=0.491228  clean AUC=0.791994 AP=0.815250
+F2 threshold (Youden): 0.103247493505  J=0.745614  clean AUC=0.932152 AP=0.937509
+F0 threshold (from A2): 0.36564627289772034
+
+F2 selected phase/epoch: 1/1
+F2 RobustValAUC: 0.859947
+Platform: macOS-26.5.2-arm64-arm-64bit
+Device: mps
+
+Test accessed: NO

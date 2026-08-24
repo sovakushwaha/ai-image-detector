@@ -1,0 +1,40 @@
+RQ4 Stage 24A — F1 Frequency-Only Development Report
+============================================================
+
+Model ID: rq4_F1_frequency_only_v1
+Architecture: FrequencyOnlyCNNV1 (1→16→32→64→128 → AdaptiveAvgPool → Dropout0.2 → Linear128→1)
+Parameters: 97761
+Seed: 42
+Epochs: 40 FIXED
+Optimizer: AdamW(lr=0.001, weight_decay=0.0001)
+Augmentation: RQ3 A2 Resize+JPEG on RGB, then FrequencyTransformV1
+Frequency norm: /Users/PankajKushwaha/ai-image-detector/results/rq4_frequency_normalization_v1.json
+Device: mps
+Platform: macOS-26.5.2-arm64-arm-64bit
+
+Checkpoint selection rule: RobustValAUC → original AUC → RobustValAP → earlier epoch
+Selected epoch: 26
+Selected RobustValAUC: 0.742062
+Selected RobustValAP: 0.747771
+
+Validation (selected checkpoint):
+  Original AUC/AP: 0.791994 / 0.815250
+  JPEG50 AUC/AP:   0.791263 / 0.796541
+  Resize112 AUC/AP:0.765755 / 0.766775
+  Blur2 AUC/AP:    0.619239 / 0.612516
+
+ScreenshotStrong (post-selection once only):
+  AUC: 0.797649
+  AP:  0.806302
+
+Integrity:
+  Test accessed: NO
+  Representation search: NO
+  Architecture changed: NO
+  Training budget extended: NO
+  Screenshot used for selection: NO
+
+History rows: 40
+Checkpoint: /Users/PankajKushwaha/ai-image-detector/models/rq4_F1_frequency_only_selected_v1.pt
+History CSV: /Users/PankajKushwaha/ai-image-detector/results/rq4_F1_training_history_v1.csv
+
