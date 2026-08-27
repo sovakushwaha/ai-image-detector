@@ -1,0 +1,6 @@
+{
+  "gpt_image_2": "BLOCKED \u2014 OPENAI_API_KEY absent",
+  "gemini_3_1_flash_image": "BLOCKED \u2014 GEMINI_API_KEY absent",
+  "stable_diffusion_3_5_large": "BLOCKED \u2014 STABILITY_API_KEY absent",
+  "midjourney_v82": "MANUAL_COLLECTION_REQUIRED \u2014 see midjourney_v82_collection_instructions_v1.csv"
+}

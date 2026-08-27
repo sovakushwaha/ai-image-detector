@@ -1,0 +1,26 @@
+{
+  "seed": 42,
+  "n_prompts_selected": 100,
+  "n_generators": 18,
+  "generators": [
+    "Qwen-Image-2.0-pro",
+    "gpt-image-2",
+    "FLUX.2_max",
+    "nano-banana-2.0",
+    "nano-banana-pro",
+    "Seedream-4.0",
+    "Seedream-4.5",
+    "Seedream-5.0",
+    "GLM-Image",
+    "kling_v2_1",
+    "Qwen-Image-2512",
+    "Qwen-Image",
+    "GPT-Image-1",
+    "GPT-Image-1.5",
+    "HunyuanImage-3.0",
+    "Imagen-4.0",
+    "Imagen-4.0-Ultra",
+    "FLUX.2-pro"
+  ],
+  "selection_protocol": "100 matched prompts x all 18 generators"
+}

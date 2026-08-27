@@ -1,0 +1,31 @@
+{
+  "repo": "Qwen/Qwen-Image-Bench",
+  "revision_sha": "d2493deb153b020cf169c7e3f57d15e4dd697038",
+  "license": "apache-2.0",
+  "n_images": 1800,
+  "n_prompts": 100,
+  "n_generators": 18,
+  "generators": [
+    "Qwen-Image-2.0-pro",
+    "gpt-image-2",
+    "FLUX.2_max",
+    "nano-banana-2.0",
+    "nano-banana-pro",
+    "Seedream-4.0",
+    "Seedream-4.5",
+    "Seedream-5.0",
+    "GLM-Image",
+    "kling_v2_1",
+    "Qwen-Image-2512",
+    "Qwen-Image",
+    "GPT-Image-1",
+    "GPT-Image-1.5",
+    "HunyuanImage-3.0",
+    "Imagen-4.0",
+    "Imagen-4.0-Ultra",
+    "FLUX.2-pro"
+  ],
+  "prompt_subset_locked_before_inference": true,
+  "manifest": "metadata/external_qwen_image_bench_manifest_v2.csv",
+  "prompt_subset": "metadata/qwen_image_bench_prompt_subset_v2.csv"
+}

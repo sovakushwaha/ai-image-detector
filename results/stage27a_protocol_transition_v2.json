@@ -1,0 +1,21 @@
+{
+  "transition_date": "2026-08-27",
+  "old_protocol": "fal.ai Stage 27A v1.1",
+  "old_acquired_total": 438,
+  "old_real_count": 400,
+  "old_ai_count": 38,
+  "external_detector_inference_before_change": false,
+  "external_metrics_before_change": false,
+  "fal_images_used_in_final_external_evaluation": 0,
+  "new_protocol": "Stage 27A V2 Public Dataset External Evaluation",
+  "reason": "fal.ai cost/balance constraint and availability of provenance-verified public modern AI-image benchmarks.",
+  "result_driven_change": false,
+  "fal_workflow_status": "SUPERSEDED",
+  "fal_generation_process_running": false,
+  "fal_used_by_active_stage27a": false,
+  "old_readiness_gate_800_active": false,
+  "fal_ai_images_preserved": true,
+  "fal_ai_images_excluded_from_v2": true,
+  "fal_exclusion_manifest": "metadata/fal_generated_unused_artifacts_v1.csv",
+  "active_protocol": "Stage 27A V2 Public Dataset External Evaluation"
+}

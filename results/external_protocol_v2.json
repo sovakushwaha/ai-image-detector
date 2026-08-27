@@ -1,0 +1,75 @@
+{
+  "protocol_id": "external_validation_protocol_v2",
+  "protocol_version": "2.0",
+  "status": "ACTIVE",
+  "supersedes": "external_validation_protocol_v1_1",
+  "date": "2026-08-27",
+  "title": "Stage 27A V2 Public Dataset External Evaluation",
+  "purpose": "Independent external confirmation of FINAL_RESEARCH_MODEL_V1 using provenance-verified public datasets only. No API image generation.",
+  "frozen_model": {
+    "final_model_id": "FINAL_RESEARCH_MODEL_V1",
+    "candidate": "C0",
+    "checkpoint": "models/mobilenet_resize_jpeg_aug_selected_v1.pt",
+    "temperature_config": "results/rq5_C0_temperature_scaling_v1.json",
+    "selective_policy_config": "results/rq5_C0_selective_policy_v1.json",
+    "retrain_forbidden": true,
+    "recalibrate_forbidden": true,
+    "threshold_tuning_forbidden": true
+  },
+  "datasets": {
+    "primary": {
+      "repo": "zr-zhang/MLLM-Generated-Image-Detection-Dataset",
+      "role": "primary Real-vs-AI evaluation",
+      "classes_from_folder_names": ["real", "GPT-Image2-fake", "Nano-Banana2-fake"],
+      "subset": "images/Raw only"
+    },
+    "secondary": {
+      "repo": "Qwen/Qwen-Image-Bench",
+      "role": "AI-only modern-generator breadth stress test",
+      "selection": "200 matched prompts seed=42 (100 if disk<20GiB) × all generator columns"
+    },
+    "coco_real_stress": {
+      "source": "existing data/external_v1/native/real/coco2017",
+      "n": 400,
+      "role": "Real-only false-positive stress"
+    },
+    "optional_gpt2_wild": {
+      "repo": "Scam-AI/gpt-image-2",
+      "status_if_gated": "GATED_NOT_AVAILABLE"
+    }
+  },
+  "excluded": {
+    "fal_ai_images": {
+      "count": 38,
+      "manifest": "metadata/fal_generated_unused_artifacts_v1.csv",
+      "reason": "SUPERSEDED_BY_PUBLIC_STAGE27A_V2_BEFORE_EXTERNAL_INFERENCE"
+    },
+    "fal_api": false
+  },
+  "readiness_gate": {
+    "primary_mllm_complete": true,
+    "primary_labels_verified": true,
+    "qwen_subset_complete": true,
+    "coco_available": true,
+    "fal_excluded": true,
+    "fal_api_used": false,
+    "final_model_loaded_before_gate": false,
+    "external_predictions_before_gate": 0
+  },
+  "evaluation_pipeline": [
+    "overlap_duplicate_audit",
+    "controlled_preprocessing",
+    "transforms_jpeg_q50_resize_112_blur_sigma2_screenshot_strong",
+    "frozen_model_inference",
+    "calibration_metrics",
+    "selective_real_ai_uncertain",
+    "generator_analysis",
+    "bootstrap_class_generator_stratified",
+    "pilot_vs_external_comparison",
+    "paper_and_log_update"
+  ],
+  "scripts": {
+    "acquisition": "src/acquire_external_v2_public.py",
+    "evaluation": "src/evaluate_external_v2.py"
+  }
+}

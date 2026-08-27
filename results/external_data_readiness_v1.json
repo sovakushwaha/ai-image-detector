@@ -1,0 +1,16 @@
+{
+  "stage": "27A",
+  "protocol_version": "1.1",
+  "status": "SUPERSEDED",
+  "superseded_by": "Stage 27A V2 Public Dataset External Evaluation",
+  "superseded_date": "2026-08-27",
+  "transition_record": "results/stage27a_protocol_transition_v2.json",
+  "note": "Historical fal.ai readiness gate (800/800). No longer active. See results/external_v2_data_readiness_v1.json.",
+  "historical_counts": {
+    "real": 400,
+    "fal_ai_excluded": 38,
+    "total_acquired": 438
+  },
+  "model_inference": "NOT STARTED",
+  "fal_api_used_by_active_stage27a": false
+}

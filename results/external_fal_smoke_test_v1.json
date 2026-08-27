@@ -1,0 +1,26 @@
+{
+  "fal_key_present": true,
+  "timestamp": "2026-08-25T20:59:23.521535+00:00",
+  "results": {
+    "gpt_image_2": {
+      "status": "already_present",
+      "endpoint": "openai/gpt-image-2",
+      "path": "data/external_v1/native/ai/gpt_image_2/GPT2_P0001.png"
+    },
+    "gemini_3_1_flash_image": {
+      "status": "already_present",
+      "endpoint": "fal-ai/gemini-3.1-flash-image-preview",
+      "path": "data/external_v1/native/ai/gemini_3_1_flash_image/GEM31_P0001.png"
+    },
+    "stable_diffusion_3_5_large": {
+      "status": "already_present",
+      "endpoint": "fal-ai/stable-diffusion-v35-large",
+      "path": "data/external_v1/native/ai/stable_diffusion_3_5_large/SD35_P0001.png"
+    },
+    "seedream_5_pro": {
+      "status": "already_present",
+      "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+      "path": "data/external_v1/native/ai/seedream_5_pro/SEED5P_P0001.png"
+    }
+  }
+}
