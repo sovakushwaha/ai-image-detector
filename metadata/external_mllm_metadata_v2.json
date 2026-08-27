@@ -1,0 +1,36 @@
+{
+  "repo": "zr-zhang/MLLM-Generated-Image-Detection-Dataset",
+  "revision_sha": "1498eead24292a9a2d134476b2c559193b68b9de",
+  "license": "apache-2.0",
+  "source_url": "https://huggingface.co/datasets/zr-zhang/MLLM-Generated-Image-Detection-Dataset",
+  "acquisition_date": "2026-08-26T23:42:33.271895+00:00",
+  "n_images": 2178,
+  "n_expected_hf_files": 2178,
+  "corrupt_unreadable": 0,
+  "class_counts": {
+    "GPT-Image2-fake": 726,
+    "Nano-Banana2-fake": 726,
+    "real": 726
+  },
+  "label_mapping_verified": {
+    "real": {
+      "binary_label": 0,
+      "generator": "Real"
+    },
+    "GPT-Image2-fake": {
+      "binary_label": 1,
+      "generator": "GPT Image 2"
+    },
+    "Nano-Banana2-fake": {
+      "binary_label": 1,
+      "generator": "Nano Banana 2"
+    }
+  },
+  "hf_features_classlabel_names": [
+    "GPT-Image2-fake",
+    "Nano-Banana2-fake",
+    "real"
+  ],
+  "subset": "images/Raw only",
+  "manifest": "metadata/external_mllm_manifest_v2.csv"
+}

@@ -1,0 +1,11 @@
+STAGE 27A V2 — DATA READINESS GATE
+Updated: 2026-08-27T00:52:38.720858+00:00
+
+Gate pass: True
+MLLM: 2178 (2178 after overlap exclusion)
+Qwen: 1800
+COCO: 400
+Overlap exclusions: 0
+Optional GPT2 wild: GATED_NOT_AVAILABLE
+Fal images used: 0
+External predictions: 0

@@ -1,0 +1,5 @@
+{
+  "n_images": 400,
+  "manifest": "metadata/external_coco_stress_manifest_v2.csv",
+  "redownloaded": false
+}

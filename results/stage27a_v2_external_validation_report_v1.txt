@@ -1,0 +1,10 @@
+==================================================
+STAGE 27A V2 — EXTERNAL VALIDATION COMPLETE
+==================================================
+MLLM n=2178 | Qwen n=1800 | COCO n=400
+Primary ROC-AUC=0.5160 [0.4909, 0.5419]
+Primary AP=0.6828 [0.6640, 0.7040]
+ExternalStrongRobustAUC=0.5243
+COCO FPR=0.2800
+Fal images used: 0
+STATUS: COMPLETE

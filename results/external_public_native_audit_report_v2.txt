@@ -1,0 +1,44 @@
+STAGE 27A V2 — NATIVE EXTERNAL DATA AUDIT
+Generated: 2026-08-27T00:52:27.459817+00:00
+
+=== MLLM ===
+  samples: 2178
+  unreadable: 0
+  classes/generators: 3
+  format distribution: {'PNG': 1363, 'JPEG': 815}
+  mode distribution: {'RGB': 1612, 'RGBA': 566}
+  width min/median/max: 150/1024/3872
+  height min/median/max: 150/1025/5312
+  aspect ratio min/median/max: 0.255/0.846/3.333
+
+  SHA256 duplicate groups: 1
+=== QWEN ===
+  samples: 1800
+  unreadable: 0
+  classes/generators: 18
+  format distribution: {'PNG': 1008, 'JPEG': 792}
+  mode distribution: {'RGB': 1800}
+  width min/median/max: 1024/1024/1024
+  height min/median/max: 1024/1024/1024
+  aspect ratio min/median/max: 1.000/1.000/1.000
+
+  SHA256 duplicate groups: 0
+=== COCO ===
+  samples: 400
+  unreadable: 0
+  classes/generators: 1
+  format distribution: {'JPEG': 400}
+  mode distribution: {'RGB': 399, 'L': 1}
+  width min/median/max: 240/640/640
+  height min/median/max: 246/480/640
+  aspect ratio min/median/max: 0.522/1.333/2.602
+
+  SHA256 duplicate groups: 0
+
+=== MLLM CLASS SHORTCUT CHECK ===
+  GPT Image 2: n=726 formats={'PNG': 726} modes={'RGB': 726}
+    dims median=1086x1332 aspect=0.815
+  Nano Banana 2: n=726 formats={'PNG': 634, 'JPEG': 92} modes={'RGBA': 563, 'RGB': 163}
+    dims median=923x1024 aspect=0.849
+  Real: n=726 formats={'JPEG': 723, 'PNG': 3} modes={'RGB': 723, 'RGBA': 3}
+    dims median=624x544 aspect=0.882

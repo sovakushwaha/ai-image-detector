@@ -1,0 +1,18 @@
+FAL_KEY detected: YES
+
+=== PRE-FLIGHT SMOKE TESTS (P0001 counts as official sample) ===
+Endpoints:
+  gpt_image_2: openai/gpt-image-2
+  gemini_3_1_flash_image: fal-ai/gemini-3.1-flash-image-preview
+  stable_diffusion_3_5_large: fal-ai/stable-diffusion-v35-large
+  seedream_5_pro: bytedance/seedream/v5/pro/text-to-image
+Pricing: consult fal.ai model pages for current per-image rates before full run.
+Cost safety: max 100 successful images per generator; num_images=1.
+
+[smoke skip] gpt_image_2 P0001 already successful
+[smoke skip] gemini_3_1_flash_image P0001 already successful
+[smoke skip] stable_diffusion_3_5_large P0001 already successful
+[smoke skip] seedream_5_pro P0001 already successful
+
+=== Generating seedream_5_pro ===
+[seedream_5_pro] P0002 ...

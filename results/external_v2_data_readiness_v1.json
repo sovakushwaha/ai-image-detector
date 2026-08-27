@@ -1,0 +1,32 @@
+{
+  "stage": "27A_V2",
+  "protocol": "Stage 27A V2 Public Dataset External Evaluation",
+  "updated_at": "2026-08-27T00:52:38.720858+00:00",
+  "primary_mllm_dataset": "COMPLETE",
+  "primary_labels_verified": "VERIFIED",
+  "primary_provenance_verified": "VERIFIED",
+  "primary_audit_complete": "COMPLETE",
+  "primary_overlap_audit_complete": "COMPLETE",
+  "qwen_locked_prompt_subset": "COMPLETE",
+  "qwen_provenance_verified": "VERIFIED",
+  "qwen_overlap_audit_complete": "COMPLETE",
+  "coco_real_set": "AVAILABLE",
+  "optional_gpt2_wild": "GATED_NOT_AVAILABLE",
+  "fal_images_used": 0,
+  "fal_api_used": false,
+  "external_detector_predictions": 13090,
+  "final_model_modified": false,
+  "temperature_modified": false,
+  "selective_policy_modified": false,
+  "development_overlap_exclusions": 0,
+  "old_fal_protocol": "SUPERSEDED",
+  "active_protocol": "Stage 27A V2 Public Dataset External Evaluation",
+  "counts": {
+    "mllm_primary": 2178,
+    "mllm_eval_after_exclusion": 2178,
+    "qwen_ai_only": 1800,
+    "coco_real_stress": 400
+  },
+  "gate_pass": true,
+  "model_inference": "COMPLETE"
+}

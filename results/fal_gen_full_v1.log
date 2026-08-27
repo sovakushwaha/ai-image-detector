@@ -1,0 +1,147 @@
+FAL_KEY detected: YES
+
+=== PRE-FLIGHT SMOKE TESTS (P0001 counts as official sample) ===
+Endpoints:
+  gpt_image_2: openai/gpt-image-2
+  gemini_3_1_flash_image: fal-ai/gemini-3.1-flash-image-preview
+  stable_diffusion_3_5_large: fal-ai/stable-diffusion-v35-large
+  seedream_5_pro: bytedance/seedream/v5/pro/text-to-image
+Pricing: consult fal.ai model pages for current per-image rates before full run.
+Cost safety: max 100 successful images per generator; num_images=1.
+
+[smoke skip] gpt_image_2 P0001 already successful
+[smoke skip] gemini_3_1_flash_image P0001 already successful
+[smoke skip] stable_diffusion_3_5_large P0001 already successful
+[smoke skip] seedream_5_pro P0001 already successful
+
+=== Generating gpt_image_2 ===
+[gpt_image_2] P0021 ...
+FAL_KEY detected: YES
+
+=== PRE-FLIGHT SMOKE TESTS (P0001 counts as official sample) ===
+Endpoints:
+  gpt_image_2: openai/gpt-image-2
+  gemini_3_1_flash_image: fal-ai/gemini-3.1-flash-image-preview
+  stable_diffusion_3_5_large: fal-ai/stable-diffusion-v35-large
+  seedream_5_pro: bytedance/seedream/v5/pro/text-to-image
+Pricing: consult fal.ai model pages for current per-image rates before full run.
+Cost safety: max 100 successful images per generator; num_images=1.
+
+[smoke skip] gpt_image_2 P0001 already successful
+[smoke skip] gemini_3_1_flash_image P0001 already successful
+[smoke skip] stable_diffusion_3_5_large P0001 already successful
+[smoke skip] seedream_5_pro P0001 already successful
+
+=== Generating gpt_image_2 ===
+[gpt_image_2] P0021 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0021.png retries=0
+[gpt_image_2] P0022 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0022.png retries=0
+[gpt_image_2] P0023 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0023.png retries=0
+[gpt_image_2] P0024 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0024.png retries=0
+[gpt_image_2] P0025 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0025.png retries=0
+[gpt_image_2] P0026 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0026.png retries=0
+[gpt_image_2] P0027 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0027.png retries=0
+[gpt_image_2] P0028 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0028.png retries=0
+[gpt_image_2] P0029 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0029.png retries=1
+[gpt_image_2] P0030 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0030.png retries=0
+[gpt_image_2] P0031 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0031.png retries=1
+[gpt_image_2] P0032 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0032.png retries=0
+[gpt_image_2] P0033 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0034 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0035 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0035.png retries=0
+[gpt_image_2] P0036 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0036.png retries=2
+[gpt_image_2] P0037 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0038 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0039 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0040 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0041 ...
+  → success data/external_v1/native/ai/gpt_image_2/GPT2_P0041.png retries=3
+[gpt_image_2] P0042 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0043 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0044 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0045 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0046 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0047 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0048 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0049 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0050 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0051 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0052 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0053 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0054 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0055 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0056 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0057 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0058 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0059 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0060 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0061 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0062 ...
+  → failed  retries=3
+  FAIL: HTTPError: HTTP Error 403: Forbidden
+[gpt_image_2] P0063 ...

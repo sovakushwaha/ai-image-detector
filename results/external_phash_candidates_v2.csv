@@ -1,0 +1,8 @@
+image_id_1,image_id_2,phash_distance,note
+MLLM_STR_Nano-Banana2-fake_101,MLLM_STR_Nano-Banana2-fake_203,2,candidate_only_not_auto_excluded
+MLLM_STR_Nano-Banana2-fake_64,MLLM_STR_Nano-Banana2-fake_158,6,candidate_only_not_auto_excluded
+MLLM_TEX_Nano-Banana2-fake_40,MLLM_TEX_Nano-Banana2-fake_41,6,candidate_only_not_auto_excluded
+MLLM_HYB_real_51,MLLM_HYB_Nano-Banana2-fake_93,6,candidate_only_not_auto_excluded
+MLLM_TEX_Nano-Banana2-fake_45,MLLM_TEX_Nano-Banana2-fake_1,6,candidate_only_not_auto_excluded
+MLLM_STR_Nano-Banana2-fake_72,MLLM_STR_Nano-Banana2-fake_225,0,candidate_only_not_auto_excluded
+MLLM_STR_Nano-Banana2-fake_21,MLLM_STR_Nano-Banana2-fake_22,4,candidate_only_not_auto_excluded

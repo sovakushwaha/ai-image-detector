@@ -1,0 +1,208 @@
+{
+  "protocol_id": "external_validation_protocol_v1_1",
+  "stage": "27A",
+  "protocol_lock_date": "2026-08-24",
+  "protocol_locked_before_inference": true,
+  "purpose": "Independent external confirmation of FINAL_RESEARCH_MODEL_V1 without reopening model development",
+  "final_model": {
+    "final_model_id": "FINAL_RESEARCH_MODEL_V1",
+    "selected_candidate": "C0",
+    "checkpoint": "models/mobilenet_resize_jpeg_aug_selected_v1.pt",
+    "frozen_config": "results/rq3_A2_frozen_config_v1.json",
+    "temperature_config": "results/rq5_C0_temperature_scaling_v1.json",
+    "selective_policy_config": "results/rq5_C0_selective_policy_v1.json",
+    "pointer": "models/FINAL_MODEL_V1.json",
+    "calibrated_temperature": 1.9041730135965886,
+    "primary_selective_coverage": 0.8,
+    "real_if_p_leq": 0.26396692384233933,
+    "ai_generated_if_p_geq": 0.7360330761576607,
+    "historical_binary_youden_threshold": 0.36564627289772034,
+    "post_selection_changes_allowed": false
+  },
+  "dataset_targets": {
+    "total_images": 800,
+    "real": 400,
+    "ai": 400,
+    "ai_per_generator": 100,
+    "generators": [
+      {
+        "group_id": "G1",
+        "name": "GPT Image 2",
+        "provider": "fal.ai",
+        "requested_endpoint": "openai/gpt-image-2",
+        "underlying_vendor": "OpenAI",
+        "n": 100,
+        "directory": "data/external_v1/native/ai/gpt_image_2/",
+        "filename_prefix": "GPT2_",
+        "external_id_prefix": "EXT_GPT2_"
+      },
+      {
+        "group_id": "G2",
+        "name": "Gemini 3.1 Flash Image / Nano Banana 2",
+        "provider": "fal.ai",
+        "requested_endpoint": "fal-ai/gemini-3.1-flash-image-preview",
+        "underlying_vendor": "Google",
+        "product_family": "Nano Banana 2",
+        "n": 100,
+        "directory": "data/external_v1/native/ai/gemini_3_1_flash_image/",
+        "filename_prefix": "GEM31_",
+        "external_id_prefix": "EXT_GEM31_"
+      },
+      {
+        "group_id": "G3",
+        "name": "Stable Diffusion 3.5 Large",
+        "provider": "fal.ai",
+        "requested_endpoint": "fal-ai/stable-diffusion-v35-large",
+        "underlying_vendor": "Stability AI",
+        "n": 100,
+        "directory": "data/external_v1/native/ai/stable_diffusion_3_5_large/",
+        "filename_prefix": "SD35_",
+        "external_id_prefix": "EXT_SD35_",
+        "forbidden": [
+          "ControlNet",
+          "IP adapter",
+          "LoRA",
+          "image conditioning"
+        ],
+        "seed_formula": "420000 + prompt_index"
+      },
+      {
+        "group_id": "G4",
+        "name": "Seedream 5.0 Pro",
+        "provider": "fal.ai",
+        "requested_endpoint": "bytedance/seedream/v5/pro/text-to-image",
+        "underlying_vendor": "ByteDance",
+        "replaces": "Midjourney V8.2",
+        "n": 100,
+        "directory": "data/external_v1/native/ai/seedream_5_pro/",
+        "filename_prefix": "SEED5P_",
+        "external_id_prefix": "EXT_SEED5P_"
+      }
+    ]
+  },
+  "real_source": {
+    "dataset": "COCO 2017 validation",
+    "split": "val2017",
+    "reason": "Tiny-GenImage/GenImage real images originate from ImageNet; external REAL must not use ImageNet",
+    "forbidden_sources": [
+      "ImageNet",
+      "Tiny-GenImage",
+      "GenImage",
+      "project train/val/test"
+    ],
+    "n": 400,
+    "selection_seed": 42,
+    "selection_method": "sort candidate image IDs then np.random.default_rng(42).choice without replacement"
+  },
+  "prompt_design": {
+    "n_prompts": 100,
+    "anchor_selection": "first 100 sampled external-real image IDs after locked seeded selection order",
+    "caption_rule": "sort available COCO caption strings lexicographically; select first non-empty",
+    "prompt_template": "Photorealistic natural camera photograph. {COCO_CAPTION}. No text, no watermark, realistic lighting and camera detail.",
+    "prompt_ids": "P0001..P0100",
+    "matched_across_generators": true,
+    "prompt_set_immutable_after_write": true
+  },
+  "generation_settings": {
+    "aspect_ratio": "1:1",
+    "native_output_target": "approximately 1024x1024 / 1K",
+    "upscale_after_generation": false,
+    "edit_after_generation": false,
+    "cherry_pick_forbidden": true,
+    "retry_allowed_for": [
+      "network/API failure",
+      "server error",
+      "explicit safety refusal",
+      "corrupted output"
+    ],
+    "retry_forbidden_for": [
+      "poor quality",
+      "detector-easy appearance",
+      "strange subject"
+    ],
+    "safety_refusal_retry": "once with neutral shortened COCO caption",
+    "seed_formula_if_supported": "420000 + prompt_index",
+    "credentials": {
+      "hardcoded_keys_forbidden": true,
+      "env_vars": [
+        "OPENAI_API_KEY",
+        "GEMINI_API_KEY",
+        "STABILITY_API_KEY"
+      ]
+    }
+  },
+  "preprocessing": {
+    "primary_evaluation": "controlled_v1 philosophy on external natives",
+    "controlled_pipeline": "EXIF orientation \u2192 RGB \u2192 resize short side 256 LANCZOS \u2192 center crop 224\u00d7224 \u2192 JPEG q96 subsampling 0",
+    "secondary_evaluation": "native files through deployment decode/preprocess",
+    "transforms": [
+      "jpeg_q50",
+      "resize_112",
+      "blur_sigma2",
+      "screenshot_strong"
+    ],
+    "screenshot_strong_definition": "JPEG q65 \u2192 resize content 384 \u2192 center on 512\u00d7512 canvas RGB(32,32,32) \u2192 resize to 224\u00d7224 \u2192 PNG"
+  },
+  "evaluation_rules": {
+    "model_inference_before_800_gate": false,
+    "retrain": false,
+    "fine_tune": false,
+    "refit_temperature": false,
+    "change_selective_bounds": false,
+    "external_threshold_tuning": false,
+    "generator_specific_thresholds": false,
+    "bootstrap_replicates": 5000,
+    "bootstrap_seed": 42,
+    "bootstrap_method": "class_and_generator_stratified"
+  },
+  "data_readiness_gate": {
+    "required_counts": {
+      "real": 400,
+      "gpt_image_2": 100,
+      "gemini_3_1_flash_image": 100,
+      "stable_diffusion_3_5_large": 100,
+      "seedream_5_pro": 100,
+      "total": 800
+    },
+    "midjourney_required": false,
+    "action_if_incomplete": "STOP before model inference; write external_data_readiness_report_v1.txt"
+  },
+  "integrity": {
+    "fabricate_external_data": "FORBIDDEN",
+    "relabel_ambiguous_downloads": "FORBIDDEN",
+    "google_images_without_provenance": "FORBIDDEN",
+    "infer_generator_from_appearance": "FORBIDDEN",
+    "unofficial_midjourney_scraping": "FORBIDDEN"
+  },
+  "protocol_version": "1.1",
+  "protocol_amendment_date": "2026-08-25",
+  "provider_access": {
+    "provider": "fal.ai",
+    "credential_env": "FAL_KEY",
+    "credential_recorded_as": "presence_only",
+    "individual_provider_keys_required": false
+  },
+  "protocol_amendment": {
+    "version": "1.1",
+    "reason": "Midjourney V8.2 required separate/manual provider access unavailable to the researcher. Before any external AI generation or detector inference, the external protocol was amended to replace Midjourney V8.2 with ByteDance Seedream 5.0 Pro, accessible through the researcher's existing fal.ai credential. The sample count, locked prompt set, class balance, detector, calibration and evaluation procedures remained unchanged.",
+    "protocol_changed_after_external_results": false,
+    "external_detector_results_available_before_amendment": false,
+    "ai_images_generated_before_amendment": false,
+    "midjourney_status": "SUPERSEDED_BY_PROTOCOL_V1_1",
+    "replacement_generator": "Seedream 5.0 Pro",
+    "unchanged": [
+      "400 COCO real images",
+      "100 locked prompts P0001-P0100",
+      "prompt wording",
+      "400 Real / 400 AI balance",
+      "FINAL_RESEARCH_MODEL_V1",
+      "temperature",
+      "selective policy",
+      "evaluation/statistics protocol"
+    ]
+  },
+  "historical_superseded": {
+    "midjourney_v82_instructions": "metadata/midjourney_v82_collection_instructions_v1.csv",
+    "status": "SUPERSEDED_BY_PROTOCOL_V1_1"
+  }
+}

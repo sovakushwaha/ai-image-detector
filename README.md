@@ -39,7 +39,17 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 24A–24D evaluated frozen F1/F2 against F0 with paired bootstrap uncertainty. **Stage 25 (RQ5)** completed calibration audit, scalar temperature scaling, validation-derived selective prediction (Real / AI / Uncertain), frozen test evaluation, and bootstrap analysis for frozen C0 (RQ3 A2) and C1 (RQ4 F2). External independent confirmation, resource analysis, and final model selection remain pending.
+Stage 24A–24D evaluated frozen F1/F2 against F0 with paired bootstrap uncertainty. **Stage 25 (RQ5)** completed calibration audit, scalar temperature scaling, validation-derived selective prediction (Real / AI / Uncertain), frozen test evaluation, and bootstrap analysis for frozen C0 (RQ3 A2) and C1 (RQ4 F2). **Stage 27A V2 (public datasets)** is the active external-evaluation protocol; fal.ai Stage 27A v1.1 is **SUPERSEDED** (38 fal images preserved but excluded; no external detector inference on fal data). External detector inference: **NOT STARTED**.
+
+### Stage 27A V2 (active)
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=src python src/acquire_external_v2_public.py
+PYTHONPATH=src python src/evaluate_external_v2.py
+```
+
+Do **not** run `src/generate_external_ai_fal_v1.py` (superseded fal workflow).
 
 To rerun the RQ5 pipeline:
 

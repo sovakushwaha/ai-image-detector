@@ -1,0 +1,11 @@
+{
+  "n": 400,
+  "binary_fpr": 0.28,
+  "binary_specificity": 0.72,
+  "mean_calibrated_p_ai": 0.29778662797229805,
+  "median_calibrated_p_ai": 0.2102873890639206,
+  "selective_real_rate": 0.5875,
+  "selective_ai_rate": 0.085,
+  "selective_uncertain_rate": 0.3275,
+  "accepted_real_accuracy": 1.0
+}

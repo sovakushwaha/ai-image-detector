@@ -1,0 +1,7 @@
+STAGE 27A V1 — DATA READINESS REPORT (SUPERSEDED)
+Status: SUPERSEDED by Stage 27A V2 Public Dataset External Evaluation (2026-08-27)
+See: results/stage27a_protocol_transition_v2.json
+Active readiness: results/external_v2_data_readiness_v1.json
+
+Historical fal acquisition (excluded from V2): 400 COCO + 38 fal AI = 438 total
+Model inference on fal data: NOT STARTED (never run)

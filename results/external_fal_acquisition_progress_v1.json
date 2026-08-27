@@ -1,0 +1,155 @@
+{
+  "updated_at": "2026-08-25T21:41:50.136227+00:00",
+  "fal_key_present": true,
+  "counts": {
+    "gpt_image_2": 35,
+    "gemini_3_1_flash_image": 1,
+    "stable_diffusion_3_5_large": 1,
+    "seedream_5_pro": 1
+  },
+  "total_ai_success": 38,
+  "failed": [
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0033",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0034",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0037",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0038",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0039",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0040",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0042",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0043",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0044",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0045",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0046",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0047",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0048",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0049",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0050",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0051",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0052",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0053",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0054",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0055",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0056",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0057",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0058",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0059",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0060",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0061",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "generator": "gpt_image_2",
+      "prompt_id": "P0062",
+      "notes": "HTTPError: HTTP Error 403: Forbidden"
+    }
+  ],
+  "endpoints": {
+    "gpt_image_2": "openai/gpt-image-2",
+    "gemini_3_1_flash_image": "fal-ai/gemini-3.1-flash-image-preview",
+    "stable_diffusion_3_5_large": "fal-ai/stable-diffusion-v35-large",
+    "seedream_5_pro": "bytedance/seedream/v5/pro/text-to-image"
+  },
+  "stop_reason": "fal.ai account locked: Exhausted balance (HTTP 403). Top up at fal.ai/dashboard/billing."
+}

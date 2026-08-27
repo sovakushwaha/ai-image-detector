@@ -1,0 +1,10 @@
+STAGE 27A V2 — DEVELOPMENT OVERLAP AUDIT
+Generated: 2026-08-27T00:52:38.718655+00:00
+
+Development SHA256 registry size: 8000
+External samples audited: 4378
+Exact development overlaps (excluded): 0
+Cross-external exact SHA256 duplicate groups: 1
+pHash candidates (d<=6, screened n=500): 7
+
+Only confirmed exact development duplicates are excluded before inference.
