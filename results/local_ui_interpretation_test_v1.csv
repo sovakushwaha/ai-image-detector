@@ -1,0 +1,12 @@
+calibrated_p,underlying_decision,display_code,display_label,expected_code,expected_label,underlying_preserved,pass
+0.1,REAL,LIKELY_REAL,Likely Real,LIKELY_REAL,Likely Real,True,True
+0.3,UNCERTAIN,UNCERTAIN_LEANING_REAL,Uncertain — leaning Real,UNCERTAIN_LEANING_REAL,Uncertain — leaning Real,True,True
+0.49,UNCERTAIN,UNCERTAIN_NEUTRAL,Uncertain — no clear indication,UNCERTAIN_NEUTRAL,Uncertain — no clear indication,True,True
+0.51,UNCERTAIN,UNCERTAIN_NEUTRAL,Uncertain — no clear indication,UNCERTAIN_NEUTRAL,Uncertain — no clear indication,True,True
+0.7,UNCERTAIN,UNCERTAIN_LEANING_AI,Uncertain — leaning AI-generated,UNCERTAIN_LEANING_AI,Uncertain — leaning AI-generated,True,True
+0.9,AI-GENERATED,LIKELY_AI_GENERATED,Likely AI-generated,LIKELY_AI_GENERATED,Likely AI-generated,True,True
+0.26396692384233933,REAL,LIKELY_REAL,Likely Real,LIKELY_REAL,Likely Real,True,True
+0.2639669238433393,UNCERTAIN,UNCERTAIN_LEANING_REAL,Uncertain — leaning Real,UNCERTAIN_LEANING_REAL,Uncertain — leaning Real,True,True
+0.7360330761566607,UNCERTAIN,UNCERTAIN_LEANING_AI,Uncertain — leaning AI-generated,UNCERTAIN_LEANING_AI,Uncertain — leaning AI-generated,True,True
+0.7360330761576607,AI-GENERATED,LIKELY_AI_GENERATED,Likely AI-generated,LIKELY_AI_GENERATED,Likely AI-generated,True,True
+0.704,UNCERTAIN,UNCERTAIN_LEANING_AI,Uncertain — leaning AI-generated,UNCERTAIN_LEANING_AI,Uncertain — leaning AI-generated,True,True

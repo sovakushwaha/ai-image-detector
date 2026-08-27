@@ -1,0 +1,76 @@
+{
+  "stage": "28A",
+  "model": {
+    "model_id": "FINAL_RESEARCH_MODEL_V1",
+    "selected_candidate": "C0",
+    "checkpoint": "models/mobilenet_resize_jpeg_aug_selected_v1.pt",
+    "n_parameters": 1518881,
+    "temperature": 1.9041730135965886,
+    "real_boundary": 0.26396692384233933,
+    "ai_boundary": 0.7360330761576607,
+    "uncertain_interval": [
+      0.26396692384233933,
+      0.7360330761576607
+    ],
+    "historical_binary_threshold": 0.36564627289772034,
+    "device": "cpu",
+    "warning": "Experimental research detector. Independent external validation showed substantial degradation on modern generators; this prediction must not be treated as definitive evidence of image authenticity.",
+    "preprocessing_note": "Practical inference uses decoded pixels with resize-256 + centre-crop-224; does not re-encode JPEG q96. controlled_v1 JPEG q96 was research dataset standardisation only."
+  },
+  "reproduction": {
+    "n": 10,
+    "passed": 10,
+    "failed": 0,
+    "mean_abs_diff": 3.5743074509325144e-07,
+    "max_abs_diff": 1.914676666381343e-06,
+    "cpu_pass": true,
+    "mps_note": "MPS vs saved: mean_abs_diff=1.383e-07, max_abs_diff=1.100e-06 (CPU is authoritative; small FP variation allowed)",
+    "ids": [
+      "pilot_000000",
+      "pilot_000002",
+      "pilot_000006",
+      "pilot_000007",
+      "pilot_000008",
+      "pilot_000010",
+      "pilot_000011",
+      "pilot_000013",
+      "pilot_000014",
+      "pilot_000016"
+    ]
+  },
+  "smoke": {
+    "device": "mps",
+    "known_real": {
+      "image_id": "pilot_000000",
+      "path": "data/processed/controlled_v1/images/Real/pilot_000000.jpg",
+      "raw_probability": 0.1305305917381182,
+      "calibrated_probability": 0.2697576396206533,
+      "selective_decision": "UNCERTAIN"
+    },
+    "known_ai": {
+      "image_id": "pilot_000007",
+      "path": "data/processed/controlled_v1/images/Midjourney/pilot_000007.jpg",
+      "raw_probability": 0.0007320832630323689,
+      "calibrated_probability": 0.022072864095237725,
+      "selective_decision": "REAL"
+    }
+  },
+  "latency": {
+    "device": "mps",
+    "n_runs": 20,
+    "median_e2e_ms": 14.328770997963147,
+    "mean_e2e_ms": 14.615372849220876,
+    "p95_e2e_ms": 16.3148454943439,
+    "note": "Sanity check only; does not replace Stage 26A benchmark"
+  },
+  "integrity": {
+    "training": false,
+    "weights_changed": false,
+    "checkpoint_changed": false,
+    "temperature_changed": false,
+    "selective_policy_changed": false,
+    "external_tuning": false,
+    "api_calls": false,
+    "ui_built": false
+  }
+}

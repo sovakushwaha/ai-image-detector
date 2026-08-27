@@ -1,0 +1,9 @@
+{
+  "interpretation_passed": 11,
+  "interpretation_failed": 0,
+  "consistency_pass": true,
+  "example_0_704": {
+    "underlying": "UNCERTAIN",
+    "display": "Uncertain \u2014 leaning AI-generated"
+  }
+}

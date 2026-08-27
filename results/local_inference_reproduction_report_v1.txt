@@ -1,0 +1,19 @@
+STAGE 28A — LOCAL INFERENCE REPRODUCTION REPORT
+Generated: 2026-08-27T08:59:09.783318+00:00
+
+Source predictions: results/rq3_A2_test_predictions_v1.csv
+Condition: original
+N=10
+Device: cpu (authoritative)
+Tolerance: abs(diff) <= 1e-05
+Passed: 10
+Failed: 0
+Mean absolute difference: 3.574307e-07
+Maximum absolute difference: 1.914677e-06
+CPU reproduction: PASS
+
+MPS vs saved: mean_abs_diff=1.383e-07, max_abs_diff=1.100e-06 (CPU is authoritative; small FP variation allowed)
+
+Note: reproduction loads controlled_v1 224×224 research files with
+tensor normalisation only (matches RQ3 A2 frozen evaluation).
+Practical CLI inference uses decoded-pixel resize/crop without JPEG q96.

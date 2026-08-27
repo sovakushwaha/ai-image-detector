@@ -1,0 +1,41 @@
+STAGE 28B — LOCAL RESEARCH UI REPORT
+Generated: 2026-08-27T09:32:17.087927+00:00
+
+1. UI framework: Streamlit
+2. Final model: FINAL_RESEARCH_MODEL_V1 (C0)
+3. Inference engine reused: src/final_inference_v1.py :: FinalImageDetectorV1
+4. Accepted formats: JPG/JPEG/PNG/WEBP/BMP/TIFF
+5. Calibration temperature: 1.9041730135965886
+6. Selective REAL boundary: p <= 0.26396692384233933
+   Selective AI boundary: p >= 0.7360330761576607
+7. Privacy: local-only; no API upload; no automatic persistence
+8. Warnings shown: research warning; external ROC-AUC≈0.516; blur failure
+
+9. Consistency test
+   Images tested: 3
+   Passed: 3
+   Failed: 0
+   Maximum raw difference: 0.000000e+00
+   Maximum calibrated difference: 0.000000e+00
+   Decision agreement: 3 / 3
+
+10. Startup / import test: PASS
+    Streamlit run smoke: PASS (app started; headless local server)
+11. Limitations: research prototype; not production; UI predictions not paper Results
+12. Integrity:
+    Model training: NO
+    Model modification: NO
+    Checkpoint changed: NO
+    Temperature changed: NO
+    Selective boundaries changed: NO
+    External tuning: NO
+    Inference code duplicated/reimplemented: NO
+    FinalImageDetectorV1 reused: YES
+    External API: NO
+    Uploaded images persisted: NO
+    Uploaded images added to dataset: NO
+    UI predictions added to paper Results: NO
+
+App: app/local_detector_ui_v1.py
+Consistency CSV: results/local_ui_consistency_v1.csv
+STATUS: PASS
