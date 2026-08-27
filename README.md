@@ -27,6 +27,7 @@ python src/environment_test.py
 ## Layout
 
 ```text
+app/        # local research UI (Streamlit)
 data/        # local images (not in git)
 metadata/    # tables for images, audits, and splits
 src/         # Python scripts
@@ -39,9 +40,56 @@ Raw images stay under `data/raw/` and are never modified in place.
 
 ## Current status
 
-Stage 24A–24D evaluated frozen F1/F2 against F0 with paired bootstrap uncertainty. **Stage 25 (RQ5)** completed calibration audit, scalar temperature scaling, validation-derived selective prediction (Real / AI / Uncertain), frozen test evaluation, and bootstrap analysis for frozen C0 (RQ3 A2) and C1 (RQ4 F2). **Stage 27A V2 (public datasets)** is the active external-evaluation protocol; fal.ai Stage 27A v1.1 is **SUPERSEDED** (38 fal images preserved but excluded; no external detector inference on fal data). External detector inference: **NOT STARTED**.
+Stage 27A V2 public external validation is **COMPLETE**. Stage 28A–28C local inference engine, Streamlit UI, and usability polish are **COMPLETE**. FINAL_RESEARCH_MODEL_V1 = C0 remains unchanged.
 
-### Stage 27A V2 (active)
+### Local experimental image inference
+
+Research prototype only. Stage 27A V2 independent external validation showed substantial degradation on modern generators; local predictions are **not** proof of image authenticity.
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=src python src/predict_image_v1.py "/path/to/image.jpg"
+PYTHONPATH=src python src/predict_image_v1.py "/path/to/image.jpg" --device cpu
+PYTHONPATH=src python src/predict_image_v1.py "/path/to/image.jpg" --json
+```
+
+Uses frozen FINAL_RESEARCH_MODEL_V1 (C0), frozen temperature, and frozen Real / AI-GENERATED / Uncertain selective policy. Runs fully locally (no API upload). Predictions are not saved unless `--output` is explicitly provided.
+
+### Local graphical detector
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=src streamlit run app/local_detector_ui_v1.py
+```
+
+Open the local Streamlit URL, then:
+
+1. upload one image (JPG/PNG/WEBP/BMP/TIFF);
+2. click **Analyse image**;
+3. view the plain-language result (Likely Real / Uncertain lean / Likely AI-generated);
+4. inspect the **AI likelihood score** and scale;
+5. open Technical details / How to read for scientific wording;
+6. read the research warnings (external ROC-AUC ≈ 0.516; blur failure mode).
+
+The UI reuses `FinalImageDetectorV1` from Stage 28A. No external API is used; uploads are not automatically saved.
+
+**Example (UI wording only; underlying scientific decision may be UNCERTAIN):**
+
+```text
+Decision:
+Uncertain — leaning AI-generated
+
+AI likelihood score:
+70.4%
+
+Meaning:
+The detector leans toward AI-generated but does not have enough evidence to
+make a final AI-generated classification.
+```
+
+Scores below 26.4% → Likely Real; above 73.6% → Likely AI-generated; between → Uncertain (with optional lean labels). Technical details remain available in the UI expander.
+
+### Stage 27A V2 (complete)
 
 ```bash
 source .venv/bin/activate

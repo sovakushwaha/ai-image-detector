@@ -1,0 +1,44 @@
+STAGE 28C — UI INTERPRETATION & USABILITY POLISH REPORT
+Generated: 2026-08-27T09:32:17.090113+00:00
+
+PRIMARY USER RESULT FORMAT
+Likely Real: underlying REAL
+Uncertain — leaning Real: underlying UNCERTAIN + p < 0.45 (UI-only)
+Uncertain — no clear indication: underlying UNCERTAIN + 0.45<=p<=0.55 (UI-only)
+Uncertain — leaning AI-generated: underlying UNCERTAIN + p > 0.55 (UI-only)
+Likely AI-generated: underlying AI-GENERATED
+
+EXAMPLE P(AI)=0.704
+Underlying scientific decision: UNCERTAIN
+User-facing result: Uncertain — leaning AI-generated
+Displayed score: AI likelihood score: 70.4%
+Explanation: The detector is not confident enough to make a final classification, although its score leans toward AI-generated.
+
+BOUNDARIES (unchanged)
+Real: <= 26.4%
+Uncertain: 26.4%–73.6%
+AI-generated: >= 73.6%
+
+MODEL CONSISTENCY (Stage 28B re-check)
+Images checked: 3
+Raw probability unchanged: YES
+Calibrated probability unchanged: YES
+Underlying decisions unchanged: YES
+Decision agreement: 3/3
+
+UI INTERPRETATION TESTS
+Passed: 11
+Failed: 0
+
+INTEGRITY
+Model training: NO
+Inference logic changed: NO
+Model weights changed: NO
+Temperature changed: NO
+Real/AI boundaries changed: NO
+Underlying selective prediction changed: NO
+New scientific decision thresholds: NO
+UI-only interpretation bands added: YES
+Scientific results changed: NO
+
+STATUS: PASS

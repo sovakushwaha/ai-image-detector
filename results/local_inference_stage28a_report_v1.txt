@@ -1,0 +1,56 @@
+==================================================
+STAGE 28A — FROZEN LOCAL INFERENCE ENGINE COMPLETE
+==================================================
+
+Model: FINAL_RESEARCH_MODEL_V1 (C0)
+Checkpoint: models/mobilenet_resize_jpeg_aug_selected_v1.pt
+Parameters: 1518881
+Temperature: 1.9041730135965886
+REAL boundary: calibrated P(AI) <= 0.26396692384233933
+AI boundary: calibrated P(AI) >= 0.7360330761576607
+UNCERTAIN interval: (0.26396692384233933, 0.7360330761576607)
+
+REPRODUCTION TEST
+Images: 10
+Passed: 10
+Failed: 0
+Mean absolute difference: 3.574307e-07
+Max absolute difference: 1.914677e-06
+CPU reproduction: PASS
+MPS comparison: MPS vs saved: mean_abs_diff=1.383e-07, max_abs_diff=1.100e-06 (CPU is authoritative; small FP variation allowed)
+
+SMOKE TEST (engineering only; not paper Results)
+Known Real:
+  image_id=pilot_000000
+  Raw P(AI)=0.130531
+  Calibrated model P(AI)=0.269758
+  Decision=UNCERTAIN
+Known AI:
+  image_id=pilot_000007
+  Raw P(AI)=0.000732
+  Calibrated model P(AI)=0.022073
+  Decision=REAL
+
+LATENCY SANITY
+Device: mps
+Median E2E: 14.33 ms
+Mean E2E: 14.62 ms
+
+PRIVACY
+External API: NO
+Image upload: NO
+Automatic history: NO
+
+FILES
+src/final_inference_v1.py
+src/predict_image_v1.py
+results/local_inference_reproduction_v1.csv
+results/local_inference_reproduction_report_v1.txt
+results/local_inference_stage28a_report_v1.txt
+
+STATUS
+Stage 28A: COMPLETE
+Frozen pipeline reproduction: PASS
+Stage 28B graphical local upload UI: NOT STARTED
+
+Generated: 2026-08-27T08:59:10.669272+00:00
