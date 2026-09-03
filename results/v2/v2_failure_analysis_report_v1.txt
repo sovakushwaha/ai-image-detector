@@ -1,0 +1,172 @@
+V2-2 — V1 FAILURE ANALYSIS REPORT
+=================================
+Date: 2026-08-27
+Model: FINAL_RESEARCH_MODEL_V1 / C0
+Temperature T=1.9041730135965886
+Selective 80% boundaries: REAL if p<=0.26396692384233933; AI if p>=0.7360330761576607
+Inference rerun: NO
+NTIRE accessed: NO
+CLIP/GPU/training: NO
+Thresholds/calibration changed: NO
+Personal phone photo used formally: NO
+Contact sheets: deterministic by calibrated score
+
+PREDICTION SOURCES
+------------------
+Tiny: results/rq5_C0_test_calibrated_predictions_v1.csv (condition=original)
+MLLM: results/external_v2_mllm_predictions_v1.csv (original; blur_sigma2 for blur)
+COCO: results/external_v2_coco_predictions_v1.csv
+Qwen: results/external_v2_qwen_predictions_v1.csv
+Diagnostic features: shortest-side resize + centre-crop 224 RGB; handcrafted_features_v1 defs; n=6546
+
+PART 1 — REAL FALSE POSITIVES
+-----------------------------
+            domain    N  mean_raw_p_ai  median_raw_p_ai  mean_calibrated_p_ai  median_calibrated_p_ai  binary_fpr  specificity  likely_real_pct  uncertain_pct  likely_ai_pct   cal_p5  cal_p25  cal_p50  cal_p75  cal_p90  cal_p95
+Tiny-GenImage Real 1084       0.135042         0.005961              0.173106                0.063742    0.117159     0.882841        76.845018      17.988930       5.166052 0.002239 0.016937 0.063742 0.234345 0.549553 0.747550
+         MLLM Real  726       0.187251         0.025816              0.234924                0.129358    0.194215     0.805785        66.804408      26.584022       6.611570 0.009649 0.044316 0.129358 0.348836 0.641518 0.801579
+         COCO Real  400       0.256822         0.074497              0.297787                0.210287    0.280000     0.720000        58.750000      32.750000       8.500000 0.011566 0.073624 0.210287 0.474305 0.716965 0.844616
+
+Highest FP tendency: COCO Real (FPR=0.280)
+
+Real group counts:
+group
+CORRECT_CONFIDENT_REAL    1553
+UNCERTAIN_REAL             519
+FALSE_AI_REAL              138
+
+PART 2 — AI FALSE NEGATIVES
+---------------------------
+         generator   N  mean_calibrated_p_ai  median_calibrated_p_ai  binary_ai_recall  false_negative_rate  uncertain_rate
+   nano-banana-pro 100              0.186183                0.083026          0.170000             0.830000        0.170000
+   nano-banana-2.0 100              0.194767                0.094886          0.160000             0.840000        0.230000
+        FLUX.2_max 100              0.215606                0.112318          0.200000             0.800000        0.200000
+     GPT-Image-1.5 100              0.219357                0.097185          0.210000             0.790000        0.220000
+       gpt-image-2 100              0.228658                0.120765          0.200000             0.800000        0.220000
+     Nano Banana 2 726              0.230077                0.099486          0.196970             0.803030        0.238292
+      Seedream-4.0 100              0.261769                0.139508          0.210000             0.790000        0.220000
+       GPT Image 2 726              0.271657                0.169339          0.243802             0.756198        0.285124
+      Seedream-4.5 100              0.272171                0.145768          0.240000             0.760000        0.240000
+        FLUX.2-pro 100              0.304460                0.223887          0.330000             0.670000        0.380000
+Qwen-Image-2.0-pro 100              0.330262                0.243803          0.300000             0.700000        0.290000
+  HunyuanImage-3.0 100              0.330924                0.187450          0.370000             0.630000        0.280000
+              VQDM 285              0.351205                0.274345          0.308772             0.691228        0.354386
+        Qwen-Image 100              0.362819                0.226309          0.390000             0.610000        0.280000
+   Qwen-Image-2512 100              0.363473                0.224488          0.390000             0.610000        0.280000
+        Imagen-4.0 100              0.364272                0.311651          0.390000             0.610000        0.400000
+  Imagen-4.0-Ultra 100              0.384949                0.301437          0.400000             0.600000        0.290000
+       GPT-Image-1 100              0.391907                0.296389          0.430000             0.570000        0.330000
+      Seedream-5.0 100              0.393389                0.319648          0.380000             0.620000        0.300000
+         GLM-Image 100              0.443900                0.373475          0.490000             0.510000        0.300000
+        kling_v2_1 100              0.474849                0.452244          0.510000             0.490000        0.360000
+              SD15  57              0.711989                0.754447          0.789474             0.210526        0.315789
+        Midjourney 286              0.738930                0.913798          0.776224             0.223776        0.202797
+               ADM  57              0.766404                0.900781          0.807018             0.192982        0.157895
+            Wukong 285              0.802229                0.957550          0.817544             0.182456        0.171930
+            BigGAN  57              0.835607                0.929148          0.877193             0.122807        0.228070
+             GLIDE  57              0.851995                0.955087          0.877193             0.122807        0.070175
+
+GPT Image 2: recall=0.244 meanP=0.272
+Nano Banana 2: recall=0.197 meanP=0.230
+Qwen macro AI recall: 0.321
+
+AI group counts:
+group
+FALSE_REAL_AI           2193
+UNCERTAIN_AI            1131
+CORRECT_CONFIDENT_AI    1012
+
+PART 3 — DIAGNOSTIC FEATURE ASSOCIATIONS (not causal)
+-----------------------------------------------------
+CORRECT_CONFIDENT_REAL vs FALSE_AI_REAL:
+- high_frequency_ratio: Cohen's d(CORRECT_REAL-FALSE_AI_REAL)=0.554 (CORRECT_REAL higher); Spearman(P(AI),f)=-0.170\n- high_frequency_ratio: Cohen's d(CORRECT_REAL-FALSE_AI_REAL)=0.554 (CORRECT_REAL higher); Spearman(P(AI),f)=-0.170\n- edge_density: Cohen's d(CORRECT_REAL-FALSE_AI_REAL)=0.548 (CORRECT_REAL higher); Spearman(P(AI),f)=-0.227\n- edge_density: Cohen's d(CORRECT_REAL-FALSE_AI_REAL)=0.548 (CORRECT_REAL higher); Spearman(P(AI),f)=-0.227\n- sharpness: Cohen's d(CORRECT_REAL-FALSE_AI_REAL)=0.503 (CORRECT_REAL higher); Spearman(P(AI),f)=-0.167
+
+CORRECT_CONFIDENT_AI vs FALSE_REAL_AI:
+- height: Cohen's d(CORRECT_AI-FALSE_REAL_AI)=-0.908 (FALSE_REAL_AI higher); Spearman(P(AI),f)=-0.323\n- height: Cohen's d(CORRECT_AI-FALSE_REAL_AI)=-0.908 (FALSE_REAL_AI higher); Spearman(P(AI),f)=-0.323\n- height: Cohen's d(CORRECT_AI-FALSE_REAL_AI)=-0.908 (FALSE_REAL_AI higher); Spearman(P(AI),f)=-0.323\n- sharpness: Cohen's d(CORRECT_AI-FALSE_REAL_AI)=-0.842 (FALSE_REAL_AI higher); Spearman(P(AI),f)=-0.432\n- sharpness: Cohen's d(CORRECT_AI-FALSE_REAL_AI)=-0.842 (FALSE_REAL_AI higher); Spearman(P(AI),f)=-0.432
+
+PART 4 — DOMAIN SHIFT
+---------------------
+                    domain    N  mean_calibrated_p_ai  mean_sharpness  mean_edge_density  mean_high_frequency_ratio
+                 Tiny Real 1084              0.173106     2588.149057           0.151246                   0.168720
+                 MLLM Real  726              0.234924     3847.198527           0.121214                   0.218917
+                 COCO Real  400              0.297787     2365.997739           0.131719                   0.129999
+                 Legacy AI 1084              0.664690     1501.487194           0.111666                   0.140444
+GPT Image 2 (incl aliases)  826              0.266452     3608.274363           0.128740                   0.198256
+        Nano Banana family  926              0.221524     4501.741048           0.144944                   0.215526
+        Qwen modern AI all 1800              0.317984     2378.908885           0.137647                   0.161672
+             Modern AI all 3252              0.288017     3251.965514           0.135657                   0.184770
+
+Interpretation (associative): external Real domains (esp. COCO) show elevated P(AI) vs Tiny Real; modern AI scores far below legacy AI and often overlap Real. Low-level stats differ across domains and may proxy source differences.
+
+PART 5 — BLUR
+-------------
+{
+  "condition": "blur_sigma2",
+  "real_N": 726,
+  "real_mean_cal_p": 0.7537872785559084,
+  "real_binary_fpr": 0.9242424242424242,
+  "real_specificity": 0.07575757575757576,
+  "ai_N": 1452,
+  "ai_mean_cal_p": 0.7546143516655551,
+  "ai_binary_recall": 0.9152892561983471
+}
+
+PART 6 — DOMAIN CLASSIFIERS
+---------------------------
+{
+  "real_source_classification": {
+    "performed": true,
+    "n": 2210,
+    "classes": [
+      "COCO",
+      "MLLM",
+      "Tiny-GenImage"
+    ],
+    "cv5_accuracy_mean": 0.6904977375565611,
+    "cv5_accuracy_std": 0.0122590200761485,
+    "chance_baseline": 0.3333333333333333
+  },
+  "legacy_vs_modern_ai": {
+    "performed": true,
+    "n": 4336,
+    "cv5_accuracy_mean": 0.9368070947544103,
+    "cv5_accuracy_std": 0.008588773184349661,
+    "modern_fraction": 0.75,
+    "chance_majority": 0.75
+  }
+}
+
+PART 7 — SHORTCUT CHECK
+-----------------------
+controlled_v1 mitigated JPEG/PNG/geometry for Tiny pilot. Stage27 native images remain heterogeneous; residual content/ISP/compression statistics differ across domains (Real-source separability on diagnostic features). Associative evidence only.
+
+PART 8 — SMARTPHONE REAL FAILURE HYPOTHESIS
+-------------------------------------------
+SMARTPHONE_REAL_ANALYSIS: PENDING V2-3/V2 dataset reconstruction
+Related evidence: COCO/MLLM elevated FPR; blur collapses Real specificity; exploratory personal phone misclassification is motivation only.
+Later tests: manufacturer, sharpness/noise, ISP tier, compression, calibrated P(AI), selective abstention, specificity/FPR.
+
+PART 9 — MAIN FAILURE MODES
+---------------------------
+See results/v2/v2_failure_mode_summary_v1.csv
+
+PART 10 — V2-3 MINIMUM CONTENT
+------------------------------
+Real: Tiny + MLLM + COCO + smartphone (post-reconstruction)
+AI: legacy Tiny + GPT Image 2 + Nano Banana 2 + Qwen diversity
+Must: Real-domain balance; generator balance; prompt/source groups; smartphone val; multi-generator holdouts; NTIRE untouched until V2-11.
+
+FIGURES
+-------
+figures/v2/v2_v1_real_probability_by_domain_v1.png
+figures/v2/v2_v1_ai_probability_by_generator_v1.png
+figures/v2/v2_v1_external_real_ai_probability_v1.png
+figures/v2/v2_real_false_positive_examples_v1.png
+figures/v2/v2_modern_ai_false_negative_examples_v1.png
+
+INTEGRITY
+---------
+V2 training NO; CLIP NO; GPU NO; V1 modified NO; NTIRE NO;
+personal photo formal NO; thresholds NO; calibration NO; cherry-pick NO.
+
+NEXT: V2-3 — smartphone reconstruction + balanced V2 development protocol
+STOP.

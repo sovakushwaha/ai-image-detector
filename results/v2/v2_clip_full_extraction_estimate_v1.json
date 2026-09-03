@@ -1,0 +1,20 @@
+{
+  "document": "v2_clip_full_extraction_estimate_v1",
+  "n_images": 11377,
+  "best_stable_batch_size": 32,
+  "measured_images_per_sec_forward": 18.976,
+  "estimated_pure_encoding_seconds": 599.5,
+  "estimated_pure_encoding_minutes": 9.99,
+  "estimated_practical_local_seconds_low": 899.3,
+  "estimated_practical_local_seconds_high": 1498.9,
+  "estimated_practical_local_minutes_low": 14.99,
+  "estimated_practical_local_minutes_high": 24.98,
+  "overhead_note": "Practical duration multiplies pure forward by ~1.5\u20132.5\u00d7 for decode/IO/preprocess; not exact.",
+  "embedding_dim": 512,
+  "storage_float32_mib": 22.22,
+  "storage_float16_mib": 11.11,
+  "primary_storage_dtype": "float32",
+  "compute_decision": "LOCAL_MPS_RECOMMENDED",
+  "kaggle_required_now": false,
+  "full_extraction_started": false
+}

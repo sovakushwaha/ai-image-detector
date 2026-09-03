@@ -1,0 +1,163 @@
+V2-1 — Dataset Role Lock + Final Test Reservation Report
+==========================================================
+Date: 2026-08-27
+Stage: V2-1
+Training: NO
+CLIP download/encoding: NO
+GPU: NO
+Final-test inference: NO
+
+1. SCIENTIFIC BOUNDARY
+----------------------
+V1 Stage27 external datasets (MLLM, Qwen, COCO) were already observed.
+They are therefore LOCKED as V2 DEVELOPMENT sources and can NEVER again be
+described as independent V2 final external evidence.
+
+V1 Stage27 metrics remain permanently frozen historical baseline evidence
+(see results/v2_v1_baseline_freeze_v1.json). They are not overwritten.
+
+2. LOCKED DATASET ROLES
+-----------------------
+Authoritative file: metadata/v2_dataset_role_registry_locked_v1.csv
+
+Tiny-GenImage (4000): V2_DEVELOPMENT_ONLY; train YES; final test NO
+MLLM (2178): V2_DEVELOPMENT_DATA; train YES; holdout YES; final test NO
+Qwen-Image-Bench subset (1800): V2_MODERN_AI_DEVELOPMENT_DATA; train YES;
+  generator holdout YES; prompt_id = GROUP ID; final test NO
+COCO selected Real (400): V2_REAL_DEVELOPMENT_VALIDATION_DATA; final test NO
+fal historical (38): EXCLUDED_HISTORICAL_ARTIFACT; all uses NO
+laionmobile/laion-mobile: SMARTPHONE REAL development + internal holdout
+deepfakesMSU/NTIRE-RobustAIGenDetection-val: V2_FINAL_EXTERNAL_TEST_V1
+saberzl/So-Fake-OOD: BACKUP metadata-only reserve
+
+3. SMARTPHONE REAL
+------------------
+Dataset: laionmobile/laion-mobile
+Revision: 0c60f598e67cffe8475f54edd71307648cd03465
+Provenance verified: YES (metadata-only re-LAION-5B EXIF smartphone benchmark;
+  intended for AI-detector false-positive evaluation; CC-BY-4.0 metadata;
+  images reconstructed from original public URLs)
+
+Acquisition plan (NO downloads at V2-1):
+  seed=42
+  pool=eval_sample_metadata.csv (9115) after URL/SHA dedupe (8939 unique)
+  stratified by manufacturer with Apple capped at ~40% of sample
+  SMARTPHONE_TRAIN_REAL: 2000
+  SMARTPHONE_VALIDATION_REAL: 500
+  SMARTPHONE_INTERNAL_HOLDOUT_REAL: 500
+  Manifest: metadata/v2_smartphone_real_manifest_v1.csv
+  download_status: PENDING_URL_RECONSTRUCTION
+
+Manufacturer counts (planned): Apple 1512; Samsung 888; Huawei 366;
+  Oppo 81; Vivo 77; Xiaomi 76
+
+Privacy: do not redistribute reconstructed images; user personal UI photos
+remain exploratory only (not formal development data).
+
+4. UNTOUCHED FINAL EXTERNAL TEST
+--------------------------------
+Dataset: deepfakesMSU/NTIRE-RobustAIGenDetection-val
+Alias: V2_FINAL_EXTERNAL_TEST_V1
+Revision: c762434ed33d1b31f0adaafaaacaab1f8459a969
+FINAL_TEST_LOCKED: YES
+Images opened: NO
+Labels used/opened: NO
+Model inference: NO
+Images downloaded: NO
+
+LABEL CAVEAT (STOP CONDITION REPORT — NON-SILENT):
+  Official README claims validation labels are NOT provided and that only the
+  training set has labels.
+  Repo sibling listing nonetheless includes filenames:
+    val_labels.csv, val_hard_labels.csv
+  Those files were NOT opened. Label usability remains UNVERIFIED_AT_V2_1.
+  At STAGE V2-11 only: confirm label availability/usability without using
+  the data for any prior development decision.
+  If NTIRE labels are unusable at V2-11, activate backup per protocol
+  (not based on score shopping).
+
+Contamination guard: results/v2_final_test_contamination_guard_v1.json
+Any attempt to use NTIRE reserved data for train/val/calib/threshold/
+architecture selection before V2-11 must FAIL LOUDLY.
+
+5. BACKUP FINAL BENCHMARK
+-------------------------
+ACTIVE_FINAL_TEST: NTIRE
+BACKUP: saberzl/So-Fake-OOD
+Revision: b4b34d16fda2020c2923a21d431d1ab3acbdbaff
+Status: RESERVED_METADATA_ONLY
+Images/labels not inspected.
+
+SafeIMG considered but rejected as primary backup (AI-only; GPT Image 2
+overlap with V2 development). CommunityForensics-Eval considered but not
+selected (COCO real-source overlap risk; ~206GB; NC license).
+
+Rule: if NTIRE is usable at V2-11, use NTIRE regardless of score.
+
+6. DEVELOPMENT INVENTORIES
+--------------------------
+AI: metadata/v2_ai_development_inventory_v1.csv
+  Eligible AI images: 5252
+  Legacy generators (7): ADM, BigGAN, GLIDE, Midjourney, SD15, VQDM, Wukong
+  Modern listed generators (20 source-tagged IDs across MLLM+Qwen)
+  Generator identity preserved (not collapsed to binary AI for split planning)
+
+Real: metadata/v2_real_development_inventory_v1.csv
+  Tiny Real 2000; MLLM Real 726; COCO Real 400; smartphone target 3000
+  Real source balance required: YES (no single Real source may dominate)
+
+7. DUPLICATE / SOURCE-GROUP POLICY (LOCKED)
+-------------------------------------------
+- Exact SHA256 duplicates must not cross development splits
+- Qwen prompt_id treated as GROUP ID across generators
+- Transformed copies of one source stay in the same split
+- Smartphone duplicate URLs/SHA256 stay in one split
+
+8. GENERATOR-HOLDOUT DESIGN (NO NUMERICAL SPLITS YET)
+----------------------------------------------------
+File: results/v2_generator_holdout_design_v1.json
+Multiple generator holdouts: YES
+Planned fold count: 4
+Primary metrics: ROC-AUC, AP, Balanced Accuracy
+Also track: Real specificity/FPR, smartphone-real specificity, generator-wise recall
+No test-set tuning.
+Architectural families are NOT invented from names; generator IDs treated
+independently except verified product-string aliases (GPT-Image / Nano-Banana).
+
+9. BALANCING PRINCIPLES (LOCKED)
+--------------------------------
+AI generator balance required: YES
+Real source balance required: YES
+Smartphone representation required: YES
+Diversity over maximum raw sample count: YES
+Exact sampling deferred to V2-3.
+
+10. DATA SCALE / COMPUTE
+------------------------
+Estimated V2 AI (eligible): 5252
+Estimated V2 Real local: 3126
+Smartphone target: 3000
+Estimated total if smartphone succeeds: ~11378
+CLIP embeddings for ~11k images: ~21 MB (512-d float32) — tiny
+V2-2 GPU: NO
+V2-3 GPU: NO
+V2-4 CLIP dry run: LOCAL MPS EXPECTED
+V2-5 embedding extraction: LOCAL CLIP ENCODING PLAUSIBLE
+Kaggle required now: NO
+
+11. INTEGRITY
+-------------
+V2 model training: NO
+CLIP downloaded: NO
+CLIP inference: NO
+GPU used: NO
+V1 modified: NO
+Stage27 results overwritten: NO
+Observed Stage27 data reclassified transparently: YES
+Untouched final benchmark reserved: YES
+Final benchmark images opened: NO
+Final benchmark model inference: NO
+Smartphone personal user photos used formally: NO
+
+NEXT: V2-2 — failure analysis of V1 on modern AI + genuine Real domains
+STOP. Do not start V2-2 automatically.

@@ -1,0 +1,12 @@
+open-clip-torch==3.3.0
+ftfy
+regex
+safetensors
+timm
+huggingface_hub
+pandas
+numpy
+scikit-learn
+Pillow
+requests
+tqdm

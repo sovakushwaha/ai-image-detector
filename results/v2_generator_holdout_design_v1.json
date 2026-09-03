@@ -1,0 +1,109 @@
+{
+  "document": "v2_generator_holdout_design_v1",
+  "numerical_splits_created": false,
+  "multiple_generator_holdouts": true,
+  "planned_fold_count": 4,
+  "primary_metrics": [
+    "ROC-AUC",
+    "AP",
+    "Balanced Accuracy"
+  ],
+  "additional_metrics": [
+    "Real specificity",
+    "Real FPR",
+    "smartphone-real specificity",
+    "generator-wise recall"
+  ],
+  "no_test_set_tuning": true,
+  "prompt_source_grouping": true,
+  "qwen_prompt_id_is_group_id": true,
+  "duplicate_sha256_policy": "exact SHA256 duplicates must not cross development splits",
+  "transformed_copies_policy": "all transformations of one source remain in the same split",
+  "smartphone_duplicate_policy": "duplicate URLs/SHA256 remain in one split",
+  "family_rule": "Do not invent architectural families from names. Generator IDs treated independently unless verified product-string aliases across datasets.",
+  "verified_product_string_aliases_only": {
+    "GPT_Image_family_string_aliases": [
+      "GPT Image 2",
+      "gpt-image-2",
+      "GPT-Image-1",
+      "GPT-Image-1.5"
+    ],
+    "Nano_Banana_family_string_aliases": [
+      "Nano Banana 2",
+      "nano-banana-2.0",
+      "nano-banana-pro"
+    ]
+  },
+  "folds_design": [
+    {
+      "fold_id": "Fold_A",
+      "holdout_generator_ids": [
+        "GPT Image 2",
+        "gpt-image-2",
+        "GPT-Image-1",
+        "GPT-Image-1.5"
+      ],
+      "intent": "hold out selected modern commercial/MLLM GPT-Image product aliases"
+    },
+    {
+      "fold_id": "Fold_B",
+      "holdout_generator_ids": [
+        "Nano Banana 2",
+        "nano-banana-2.0",
+        "nano-banana-pro"
+      ],
+      "intent": "hold out Nano Banana product aliases"
+    },
+    {
+      "fold_id": "Fold_C",
+      "holdout_generator_ids": [
+        "FLUX.2_max",
+        "FLUX.2-pro",
+        "Imagen-4.0",
+        "Imagen-4.0-Ultra"
+      ],
+      "intent": "hold out selected independent Qwen-bench generator IDs (treated as IDs, not claimed architecture family)"
+    },
+    {
+      "fold_id": "Fold_D",
+      "holdout_generator_ids": [
+        "Midjourney",
+        "SD15",
+        "Seedream-5.0",
+        "kling_v2_1"
+      ],
+      "intent": "hold out mixed legacy Tiny-GenImage IDs + selected modern Qwen IDs for coverage"
+    }
+  ],
+  "real_validation_pool": "stable independent Real mix: Tiny Real + MLLM Real + COCO Real + smartphone validation; no single Real source may dominate",
+  "balancing_principles_locked": {
+    "AI_generator_balance_required": true,
+    "Real_source_balance_required": true,
+    "Smartphone_representation_required": true,
+    "diversity_over_max_count": true
+  },
+  "legacy_generators_available": [
+    "ADM",
+    "BigGAN",
+    "GLIDE",
+    "Midjourney",
+    "SD15",
+    "VQDM",
+    "Wukong"
+  ],
+  "independent_qwen_generator_ids": [
+    "Qwen-Image-2.0-pro",
+    "FLUX.2_max",
+    "Seedream-4.0",
+    "Seedream-4.5",
+    "Seedream-5.0",
+    "GLM-Image",
+    "kling_v2_1",
+    "Qwen-Image-2512",
+    "Qwen-Image",
+    "HunyuanImage-3.0",
+    "Imagen-4.0",
+    "Imagen-4.0-Ultra",
+    "FLUX.2-pro"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "stage": "V2-8",
+  "title": "Kaggle GPU parameter-efficient CLIP adaptation",
+  "clip": {
+    "model": "ViT-B-16-quickgelu",
+    "pretrained": "openai",
+    "frozen_except_lora": true
+  },
+  "lora": {
+    "last_n_blocks": 4,
+    "target_modules": ["attn.in_proj", "attn.out_proj"],
+    "rank": 8,
+    "alpha": 16,
+    "dropout": 0.05
+  },
+  "head": "MLP-B",
+  "baseline": "V2-7 frozen CLIP + MLP-B",
+  "kaggle_kernel_slug": "sovaakushwaha/v2-clip-lora-generalisation",
+  "smoke": {
+    "fold": 1,
+    "max_real_train": 128,
+    "max_ai_train": 128,
+    "max_epochs": 2
+  },
+  "full_training": {
+    "folds": [1, 2, 3, 4],
+    "max_epochs": 20,
+    "early_stopping_patience": 4
+  },
+  "ntire_access": false,
+  "decision_pending_import": true,
+  "smoke_status": "FAIL",
+  "smoke_blocker": "kaggle_gpu_not_allocated",
+  "full_training_status": "NOT_RUN",
+  "kernel_version_at_block": 12
+}

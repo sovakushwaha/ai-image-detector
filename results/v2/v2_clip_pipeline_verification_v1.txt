@@ -1,0 +1,40 @@
+V2-4 — CLIP LOCAL MPS PIPELINE VERIFICATION
+==========================================
+Library: open_clip_torch 3.3.0
+Torch: 2.13.0
+Torchvision: 0.28.0
+Model: ViT-B-16-quickgelu pretrained=openai
+Weight source: open_clip.create_model_and_transforms('ViT-B-16-quickgelu', pretrained='openai')
+Input resolution: 224
+Embedding dim: 512
+Parameters: 149620737
+Device: mps
+MPS pipeline: PASS
+
+Dry-run images: 32
+Input shape: [32, 3, 224, 224]
+Embedding shape: [32, 512]
+NaN: 0  Inf: 0
+L2 norm mean/min/max: 1.000000 / 1.000000 / 1.000000
+Same-image repeat max abs diff: 0.000e+00
+CPU vs MPS cosine mean/min: 0.99999998 / 0.99999994
+Similarity diag mean: 1.000000; all finite: True
+
+Batch benchmark:
+  bs=1: success=True ips=4.627 med_ms=216.129 err=
+  bs=8: success=True ips=18.927 med_ms=422.67 err=
+  bs=16: success=True ips=18.388 med_ms=870.152 err=
+  bs=32: success=True ips=18.976 med_ms=1686.339 err=
+Best stable batch: 32 (18.98 img/s)
+
+Full pool images: 11377
+Estimated pure encoding: 9.99 min
+Estimated practical local: 14.99–24.98 min
+Embedding storage float32: 22.22 MiB
+Compute decision: LOCAL_MPS_RECOMMENDED
+Kaggle required now: NO
+Full extraction: NOT STARTED
+Classifier training: NO
+CLIP fine-tuning: NO
+NTIRE accessed: NO
+V1 modified: NO

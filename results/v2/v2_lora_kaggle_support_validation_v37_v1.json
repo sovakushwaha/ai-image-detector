@@ -1,0 +1,18 @@
+{
+  "kaggle_support_dataset": "sovaakushwaha/v2-clip-lora-support",
+  "kaggle_support_dataset_version": 6,
+  "smartphone_zip_size_on_kaggle_bytes": 3508117485,
+  "expected_smartphone_ids": 2500,
+  "found_smartphone_ids": 2500,
+  "train_ids": 2000,
+  "validation_ids": 500,
+  "missing_ids": 0,
+  "extra_ids": 0,
+  "duplicate_ids": 0,
+  "corrupt_images": "not_downloaded_local_audit_skipped",
+  "unreadable_images": "not_downloaded_local_audit_skipped",
+  "kaggle_side_archive_validation": "PASS",
+  "validation_method": "kaggle datasets files paginated CSV audit against v2_smartphone_real_manifest train+validation splits",
+  "v36_cancelled": "attempted_via_api_session_id_unknown",
+  "kernel_target": "v37"
+}

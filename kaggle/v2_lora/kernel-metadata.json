@@ -1,0 +1,18 @@
+{
+  "id": "sovaakushwaha/v2-clip-lora-generalisation",
+  "title": "v2-clip-lora-generalisation",
+  "code_file": "train_v2_clip_lora.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "yangsangtai/tiny-genimage",
+    "sovaakushwaha/v2-clip-lora-pip-bundle",
+    "sovaakushwaha/v2-clip-lora-support/6"
+  ],
+  "kernel_sources": [],
+  "competition_sources": []
+}

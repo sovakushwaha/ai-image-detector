@@ -1,0 +1,28 @@
+{
+  "document": "v2_final_test_contamination_guard_v1",
+  "LOCKED_DATASET": "deepfakesMSU/NTIRE-RobustAIGenDetection-val",
+  "LOCKED_REVISION": "c762434ed33d1b31f0adaafaaacaab1f8459a969",
+  "FORBIDDEN_UNTIL_STAGE": "V2-11",
+  "forbidden_operations": [
+    "open_images",
+    "open_labels",
+    "visualize_samples",
+    "model_inference",
+    "compute_metrics",
+    "use_in_training",
+    "use_in_validation",
+    "use_in_calibration",
+    "threshold_selection",
+    "architecture_selection",
+    "hyperparameter_tuning",
+    "augmentation_selection"
+  ],
+  "required_behaviour": "FAIL_LOUDLY",
+  "path_markers": [
+    "NTIRE-RobustAIGenDetection-val",
+    "V2_FINAL_EXTERNAL_TEST_V1",
+    "deepfakesMSU/NTIRE",
+    "val_images.zip",
+    "val_labels.csv"
+  ]
+}

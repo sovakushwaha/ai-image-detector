@@ -1,0 +1,5 @@
+batch_size,success,error,median_forward_ms,images_per_sec,output_shape,mps_allocated_mb
+1,True,,216.129,4.627,"[1, 512]",570.87
+8,True,,422.67,18.927,"[8, 512]",570.91
+16,True,,870.152,18.388,"[16, 512]",571.42
+32,True,,1686.339,18.976,"[32, 512]",571.42

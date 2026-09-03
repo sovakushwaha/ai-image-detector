@@ -25,12 +25,15 @@ import zipfile
 from datetime import date
 from pathlib import Path
 
-from dotenv import load_dotenv
 import numpy as np
 from PIL import Image
 
+from fal_guard_v1 import block_fal_usage, strip_fal_env
+
+strip_fal_env()
+
 ROOT = Path(__file__).resolve().parents[1]
-load_dotenv(ROOT / ".env")
+# Do not load FAL_KEY from .env — fal.ai permanently disabled (see fal_guard_v1.py).
 EXT = ROOT / "data" / "external_v1"
 CACHE = ROOT / "data" / "external_v1" / "_coco_cache"
 META = EXT / "metadata"
@@ -396,6 +399,7 @@ def write_readiness_report(report: dict) -> Path:
 
 
 def main() -> int:
+    block_fal_usage("acquire_external_v1.py")
     print("=" * 50)
     print("STAGE 27A-0/27A-1 — PROTOCOL LOCK + ACQUISITION")
     print("=" * 50)

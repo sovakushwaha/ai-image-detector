@@ -1,0 +1,54 @@
+V2_8_FULL_RUN_FAILED
+Kernel: sovaakushwaha/v2-clip-lora-generalisation v35
+Date: 2026-09-02
+
+STAGE OF FAILURE
+  Post-smoke, pre-training: fold 1 data materialization (full mode)
+
+FOLD BEING PROCESSED
+  Fold 1 (0 folds completed)
+
+EPOCHS COMPLETED
+  0 (no full fold training started)
+
+ERROR CATEGORY
+  Engineering — incomplete offline smartphone cache in support bundle
+
+EXACT ERROR
+  STOP: failed to materialize 14 images
+  first=['SMARTPHONE_668289', 'SMARTPHONE_359516', 'SMARTPHONE_27966']
+
+ROOT CAUSE
+  smartphone_real.zip contained 2000 TRAIN smartphone IDs only.
+  V2-3 validation for each fold includes 500 smartphone REAL_VALIDATION IDs.
+  Total unique smartphone IDs required across train+val: 2500.
+  486 validation IDs were absent from zip; 14 failed URL fallback on Kaggle.
+
+COMPLETED FOLD OUTPUTS INTACT
+  NO — no v2_lora_outputs/, no checkpoints, no predictions on Kaggle
+
+FAILURE TYPE
+  Engineering (data materialization), not scientific/model
+
+RERUN FROM SAVED STATE
+  NO — smoke must re-run but no fold checkpoints to resume
+
+SMOKE GATE (v35)
+  PASS — LoRA norm ~0.30, batch 32, T4 GPU
+
+RECOMMENDED MINIMAL ENGINEERING FIX (no scientific changes)
+  1. Rebuild smartphone_real.zip with all 2500 locked smartphone IDs
+     (DONE locally: kaggle/v2_lora/support_bundle/smartphone_real.zip, 3.46 GB)
+  2. Upload new support dataset version to sovaakushwaha/v2-clip-lora-support
+     (DONE 2026-09-02: verified 2500 smartphone files on Kaggle incl. v35 failure IDs)
+  3. Push kernel v37 (cache-ready check requires 2500 phones; same LoRA config)
+  4. Do NOT change rank, LR, folds, epochs, or augmentation
+
+LOCKED SETTINGS UNCHANGED
+  LoRA rank 8, alpha 16, dropout 0.05, last 4 blocks
+  AdamW LoRA 1e-4 / head 5e-4, max 20 epochs, patience 4
+  V2-3 four folds unchanged
+
+NTIRE: UNTOUCHED
+FAL.AI: NOT USED
+V2-9: NOT STARTED

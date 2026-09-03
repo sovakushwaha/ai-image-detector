@@ -1,0 +1,86 @@
+V2-3 — BALANCED DEVELOPMENT DATASET + HOLDOUT PROTOCOL REPORT
+=============================================================
+Date: 2026-08-27
+Training: NO
+CLIP download/inference: NO
+GPU: NO
+NTIRE accessed: NO
+Personal phone photos: NO
+fal historical used: NO
+
+SMARTPHONE REAL
+---------------
+Requested: 3000
+Successfully reconstructed: 3000
+Train / Validation / Internal holdout: 2000 / 500 / 500
+Manufacturers: {'Samsung': 834, 'Apple': 1578, 'Vivo': 72, 'Oppo': 74, 'Huawei': 360, 'Xiaomi': 82}
+Device models: 1416
+Largest device share: 3.20% (['iPhone X', 96])
+Script: src/v2_acquire_smartphone_real_v1.py
+Manifest: metadata/v2_smartphone_real_manifest_v1.csv
+Note: freed disk by deleting data/external_v1/_coco_cache (zip/extract cache only; 400 COCO natives retained)
+
+REAL DATA
+---------
+Tiny: 2000
+MLLM: 726
+COCO: 400
+Smartphone: 3000
+Total Real: 6126
+
+Stable Real TRAIN roles (shared across folds): Tiny 1500, MLLM 500, COCO 280, Smartphone 2000
+Stable Real VALIDATION: see counts JSON smartphone_validation_n + other domain VALIDATION roles
+Smartphone VALIDATION: 500
+Stable Real validation total: 923
+
+AI DATA
+-------
+Tiny: 2000
+MLLM: 1451  (1 exact-SHA extra excluded from 1452)
+Qwen: 1800
+Total AI: 5251
+Canonical generator IDs: 27
+Train cap per generator per fold: 300
+
+TOTAL V2 DEVELOPMENT POOL: 11377
+Estimated disk: 9.639 GB
+
+DUPLICATES
+----------
+Exact duplicate groups: 1
+Confirmed leakage exclusions: 1
+pHash candidates (≤6, recorded only): 52
+
+FOUR GENERATOR HOLDOUT FOLDS
+----------------------------
+Fold 1: ['tiny::ADM', 'tiny::SD15', 'mllm::GPT_Image_2', 'qwen::FLUX.2_max', 'qwen::GPT-Image-1', 'qwen::GPT-Image-1.5', 'qwen::Qwen-Image-2512', 'qwen::gpt-image-2', 'qwen::kling_v2_1']
+Fold 2: ['tiny::BigGAN', 'tiny::VQDM', 'mllm::Nano_Banana_2', 'qwen::GLM-Image', 'qwen::Seedream-4.0', 'qwen::nano-banana-2.0', 'qwen::nano-banana-pro']
+Fold 3: ['tiny::GLIDE', 'tiny::Wukong', 'qwen::FLUX.2-pro', 'qwen::GPT-Image-1', 'qwen::GPT-Image-1.5', 'qwen::HunyuanImage-3.0', 'qwen::Seedream-4.5']
+Fold 4: ['tiny::Midjourney', 'qwen::Imagen-4.0', 'qwen::Imagen-4.0-Ultra', 'qwen::Qwen-Image', 'qwen::Qwen-Image-2.0-pro', 'qwen::Seedream-5.0']
+GPT Image 2 held out: YES (fold_1 includes mllm::GPT_Image_2 and qwen::gpt-image-2)
+Nano Banana 2 held out: YES (fold_2 includes mllm::Nano_Banana_2 and qwen nano-banana IDs)
+Qwen prompt grouping: PASS
+SHA cross-partition: PASS
+
+PRIMARY METRICS LOCKED
+----------------------
+['heldout_generator_ROC_AUC', 'heldout_generator_AP', 'balanced_accuracy', 'AI_recall', 'Real_specificity', 'Real_FPR', 'smartphone_specificity', 'smartphone_FPR']
+Selection hierarchy: ['held-out generator AUC/AP', 'smartphone/Real specificity', 'consistency across folds', 'worst-fold performance', 'resource cost']
+
+V2_NATIVE_PIXEL_PRIMARY: YES
+
+COMPUTE ASSESSMENT
+------------------
+Images for future CLIP encoding: 11377
+Local Apple MPS assessment: LOCAL_MPS_RECOMMENDED
+Kaggle required now: NO
+CLIP dry-run plan: results/v2/v2_clip_dryrun_plan_v1.json (no download)
+
+FINAL TEST
+----------
+NTIRE: LOCKED
+Images opened: NO
+Labels opened: NO
+
+NEXT: V2-4 — CLIP installation + tiny local MPS pipeline dry run only
+STOP.

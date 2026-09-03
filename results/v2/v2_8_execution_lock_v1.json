@@ -1,0 +1,16 @@
+{
+  "lock_type": "V2-8_ACTIVE_GPU_JOB",
+  "locked": false,
+  "reason": "v37 COMPLETE — outputs imported; scientific decision LORA_MIXED; no further V2-8 launch",
+  "account": "sovaakushwaha",
+  "kernel": "sovaakushwaha/v2-clip-lora-generalisation",
+  "version": 37,
+  "status": "COMPLETE",
+  "decision": "LORA_MIXED",
+  "support_dataset": "sovaakushwaha/v2-clip-lora-support",
+  "support_version": 6,
+  "run_mode": "smoke_then_full",
+  "launch_permitted": false,
+  "launch_note": "V2-8 complete. Do not push v38. Do not start V2-9.",
+  "updated_utc": "2026-09-03T08:20:00Z"
+}

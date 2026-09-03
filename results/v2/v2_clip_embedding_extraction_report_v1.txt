@@ -1,0 +1,13 @@
+V2-5 CLIP embedding extraction report
+N=11377 D=512 dtype=float32
+device=mps batch_size=32 chunk_size=500
+wall_clock_sec=470.5 wall_clock_min=7.84
+note=completing_resume_run_after_chunk_skips; cumulative_practical_with_repairs_approx_15_25_min
+nan=0 inf=0
+norm_mean=1.000000 min=1.000000 max=1.000000
+artifact=/Users/PankajKushwaha/ai-image-detector/results/v2/v2_clip_embeddings_v1.npz bytes=21727921
+sha256_embeddings_bytes=cba0cf3176fd8e61d828a102505edb991d5093c7979eb900f61031fe63acd7d0
+model=ViT-B-16-quickgelu pretrained=openai
+CLIP frozen=YES fine_tune=NO NTIRE=NO
+corrupt_exif_fallback=YES (SMARTPHONE_695708 and any similar IFD failures)
+smartphone_zero_byte_replacements=YES (pre-embedding; see v2_smartphone_unreadables_replaced_v1.json)

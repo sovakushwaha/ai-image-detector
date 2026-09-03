@@ -1,0 +1,28 @@
+source_dataset,source_generator_name,canonical_generator_id,vendor_if_verified,model_family_if_verified,legacy_or_modern,prompt_group_available,notes
+Tiny-GenImage_pilot_4000,ADM,tiny::ADM,,,legacy,NO,Tiny-GenImage pilot generator ID; no architectural family claimed
+Tiny-GenImage_pilot_4000,BigGAN,tiny::BigGAN,,,legacy,NO,Tiny-GenImage pilot generator ID; no architectural family claimed
+Tiny-GenImage_pilot_4000,GLIDE,tiny::GLIDE,,,legacy,NO,Tiny-GenImage pilot generator ID; no architectural family claimed
+Tiny-GenImage_pilot_4000,Midjourney,tiny::Midjourney,,,legacy,NO,Tiny-GenImage pilot generator ID; no architectural family claimed
+Tiny-GenImage_pilot_4000,SD15,tiny::SD15,,,legacy,NO,Tiny-GenImage pilot generator ID; no architectural family claimed
+Tiny-GenImage_pilot_4000,VQDM,tiny::VQDM,,,legacy,NO,Tiny-GenImage pilot generator ID; no architectural family claimed
+Tiny-GenImage_pilot_4000,Wukong,tiny::Wukong,,,legacy,NO,Tiny-GenImage pilot generator ID; no architectural family claimed
+zr-zhang/MLLM-Generated-Image-Detection-Dataset,GPT Image 2,mllm::GPT_Image_2,OpenAI,,modern,NO,Stage27-reclassified development; original name preserved
+zr-zhang/MLLM-Generated-Image-Detection-Dataset,Nano Banana 2,mllm::Nano_Banana_2,,,modern,NO,Stage27-reclassified development; original name preserved
+Qwen/Qwen-Image-Bench,FLUX.2-pro,qwen::FLUX.2-pro,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,FLUX.2_max,qwen::FLUX.2_max,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,GLM-Image,qwen::GLM-Image,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,GPT-Image-1,qwen::GPT-Image-1,OpenAI,,modern,YES,product-string related to GPT Image series; kept as distinct source_generator_name
+Qwen/Qwen-Image-Bench,GPT-Image-1.5,qwen::GPT-Image-1.5,OpenAI,,modern,YES,product-string related to GPT Image series; kept as distinct source_generator_name
+Qwen/Qwen-Image-Bench,HunyuanImage-3.0,qwen::HunyuanImage-3.0,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Imagen-4.0,qwen::Imagen-4.0,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Imagen-4.0-Ultra,qwen::Imagen-4.0-Ultra,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Qwen-Image,qwen::Qwen-Image,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Qwen-Image-2.0-pro,qwen::Qwen-Image-2.0-pro,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Qwen-Image-2512,qwen::Qwen-Image-2512,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Seedream-4.0,qwen::Seedream-4.0,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Seedream-4.5,qwen::Seedream-4.5,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,Seedream-5.0,qwen::Seedream-5.0,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,gpt-image-2,qwen::gpt-image-2,OpenAI,,modern,YES,product-string related to GPT Image series; kept as distinct source_generator_name
+Qwen/Qwen-Image-Bench,kling_v2_1,qwen::kling_v2_1,,,modern,YES,Independent Qwen-bench generator ID; prompt_id is GROUP ID
+Qwen/Qwen-Image-Bench,nano-banana-2.0,qwen::nano-banana-2.0,,,modern,YES,product-string related to Nano Banana series; kept as distinct source_generator_name
+Qwen/Qwen-Image-Bench,nano-banana-pro,qwen::nano-banana-pro,,,modern,YES,product-string related to Nano Banana series; kept as distinct source_generator_name

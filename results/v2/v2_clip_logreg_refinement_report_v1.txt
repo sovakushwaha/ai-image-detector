@@ -1,0 +1,50 @@
+V2-6 Validation-only frozen CLIP linear-probe refinement
+Decision: LINEAR_PROBE_REFINED
+Selected C: 3.0
+Selection rule: primary max mean AUC among eligible (best=0.822159); 2 C within 0.003 of best mean AUC; prefer higher worst-fold AUC (0.774378); selected C=3.0
+Explanation: Selected C=3.0 by locked rule with material development evidence (ΔAUC=0.0049, ΔMLLM=0.0465, Δhard_recall≈-0.0012).
+
+Eligibility:
+    C  eligible                                                                               reason
+ 0.01     False                                            Real spec 0.7321 < baseline-0.02 (0.8657)
+ 0.03     False MLLM spec 0.6018 < baseline-0.02 (0.6349); Real spec 0.7600 < baseline-0.02 (0.8657)
+ 0.10     False MLLM spec 0.5730 < baseline-0.02 (0.6349); Real spec 0.8126 < baseline-0.02 (0.8657)
+ 0.30     False MLLM spec 0.6018 < baseline-0.02 (0.6349); Real spec 0.8554 < baseline-0.02 (0.8657)
+ 1.00      True                                                          PASS all reliability guards
+ 3.00      True                                                          PASS all reliability guards
+10.00      True                                                          PASS all reliability guards
+
+Cross-fold aggregation:
+    C  mean_roc_auc  std_roc_auc  min_roc_auc  max_roc_auc  mean_ap   std_ap   min_ap  mean_ai_recall  mean_real_specificity  mean_smartphone_specificity  min_smartphone_specificity  mean_mllm_specificity  min_mllm_specificity  mean_coco_specificity  mean_tiny_specificity
+ 0.01      0.721267     0.031993     0.698824     0.768728 0.767500 0.052097 0.692773        0.476267               0.732124                       0.9875                       0.980               0.681416              0.451327               0.908333                  0.202
+ 0.03      0.745522     0.025764     0.726236     0.782690 0.788643 0.052768 0.713470        0.488693               0.760022                       0.9835                       0.978               0.601770              0.389381               0.933333                  0.343
+ 0.10      0.779009     0.021901     0.751427     0.803267 0.819085 0.055522 0.740181        0.515987               0.812568                       0.9840                       0.980               0.573009              0.407080               0.966667                  0.541
+ 0.30      0.802274     0.024025     0.768110     0.819472 0.842710 0.057333 0.760570        0.533350               0.855363                       0.9820                       0.978               0.601770              0.460177               0.975000                  0.688
+ 1.00      0.814990     0.028696     0.773578     0.837557 0.859071 0.059300 0.773315        0.536824               0.885699                       0.9815                       0.980               0.654867              0.575221               0.979167                  0.776
+ 3.00      0.819938     0.031777     0.774378     0.844955 0.867654 0.060065 0.779892        0.536077               0.908451                       0.9845                       0.980               0.701327              0.610619               0.983333                  0.832
+10.00      0.822159     0.033602     0.773760     0.845611 0.871431 0.061442 0.781007        0.529147               0.922806                       0.9805                       0.978               0.750000              0.663717               0.995833                  0.868
+
+Selected fold metrics:
+  C  fold    n  roc_auc       ap  balanced_accuracy  ai_recall  specificity       f1      fpr  smartphone_specificity  mllm_specificity  coco_specificity  tiny_specificity  smartphone_mean_p_ai  mllm_mean_p_ai class_weight  train_n_real  train_n_ai
+3.0     1 2821 0.822570 0.905630           0.716967   0.518440     0.915493 0.664865 0.084507                   0.986          0.716814          1.000000             0.844              0.069075        0.345466     balanced          4280        1728
+3.0     2 2619 0.844955 0.907374           0.726622   0.531250     0.921993 0.675159 0.078007                   0.988          0.814159          0.966667             0.828              0.062867        0.257950     balanced          4280        1729
+3.0     3 1994 0.837848 0.877718           0.754494   0.616246     0.892741 0.721311 0.107259                   0.980          0.610619          0.983333             0.824              0.068349        0.385962     balanced          4280        2029
+3.0     4 1709 0.774378 0.779892           0.690973   0.478372     0.903575 0.601119 0.096425                   0.984          0.663717          0.983333             0.832              0.066199        0.367064     balanced          4280        2314
+
+Selected vs C=1.0: ΔAUC=0.004948 ΔAP=0.008583 ΔMLLM_spec=0.046460 Δphone_spec=0.003000
+Bootstrap: paired stratified bootstrap 5000× seed=42 (selected − C=1.0)
+
+MLLM Real analysis:
+{
+  "identifiable_subgroup": "YES",
+  "evidence": "mean FPR\u22480.299; FP score mean\u22480.703; TN score mean\u22480.185; FP domains fold1={'Hybrid Images': 23, 'Structure Images': 8, 'Texture Images': 1}; TN domains fold1={'Structure Images': 49, 'Texture Images': 24, 'Hybrid Images': 8}; mean min-side FP=806 vs TN=538"
+}
+
+Hard generators (selected C mean recall / mean P):
+  mllm::GPT_Image_2: recall=0.5523 meanP=0.5192 folds=[1]
+  mllm::Nano_Banana_2: recall=0.5683 meanP=0.5214 folds=[2]
+  qwen::FLUX.2_max: recall=0.1700 meanP=0.2367 folds=[1]
+  qwen::GPT-Image-1.5: recall=0.1950 meanP=0.2837 folds=[1, 3]
+  qwen::Seedream-5.0: recall=0.1900 meanP=0.2589 folds=[4]
+
+Integrity: only LogisticRegression C varied; CLIP frozen; NTIRE untouched; no MLP/LoRA.

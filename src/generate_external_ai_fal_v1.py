@@ -24,11 +24,14 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-from dotenv import load_dotenv
 from PIL import Image
 
+from fal_guard_v1 import block_fal_usage, raise_fal_blocked, strip_fal_env
+
+strip_fal_env()
+
 ROOT = Path(__file__).resolve().parents[1]
-load_dotenv(ROOT / ".env")
+# Do not load FAL_KEY from .env — fal.ai permanently disabled (see fal_guard_v1.py).
 
 EXT = ROOT / "data" / "external_v1"
 META = EXT / "metadata"
@@ -265,61 +268,7 @@ class BalanceExhaustedError(RuntimeError):
 
 def fal_queue_generate(endpoint: str, arguments: dict, timeout_s: float = 300.0) -> tuple[dict, str]:
     """Submit to fal queue and poll until complete. Returns (result, request_id)."""
-    key = os.environ.get("FAL_KEY")
-    if not key:
-        raise RuntimeError("FAL_KEY absent")
-    submit_url = f"https://queue.fal.run/{endpoint}"
-    payload = json.dumps(arguments).encode()
-    req = urllib.request.Request(
-        submit_url,
-        data=payload,
-        headers={"Authorization": f"Key {key}", "Content-Type": "application/json"},
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            submitted = json.loads(resp.read().decode())
-    except urllib.error.HTTPError as exc:
-        body = ""
-        try:
-            body = exc.read().decode(errors="replace")
-        except Exception:
-            body = ""
-        low = body.lower()
-        if exc.code == 403 and ("exhausted balance" in low or "user is locked" in low):
-            raise BalanceExhaustedError(body[:300] or str(exc)) from exc
-        raise RuntimeError(f"HTTPError: HTTP Error {exc.code}: {exc.reason}; body={body[:300]}") from exc
-    request_id = submitted.get("request_id") or ""
-    status_url = submitted.get("status_url") or f"https://queue.fal.run/{endpoint}/requests/{request_id}/status"
-    response_url = submitted.get("response_url") or f"https://queue.fal.run/{endpoint}/requests/{request_id}"
-    t0 = time.time()
-    while True:
-        if time.time() - t0 > timeout_s:
-            raise TimeoutError(f"fal queue timeout after {timeout_s}s request_id={request_id}")
-        sreq = urllib.request.Request(
-            status_url,
-            headers={"Authorization": f"Key {key}"},
-            method="GET",
-        )
-        with urllib.request.urlopen(sreq, timeout=60) as resp:
-            status = json.loads(resp.read().decode())
-        st = status.get("status")
-        if st == "COMPLETED":
-            rreq = urllib.request.Request(
-                response_url,
-                headers={"Authorization": f"Key {key}"},
-                method="GET",
-            )
-            with urllib.request.urlopen(rreq, timeout=120) as resp:
-                result = json.loads(resp.read().decode())
-            # some responses wrap under 'payload' or return images at top-level
-            if isinstance(result, dict) and "images" not in result and "image" not in result:
-                if "payload" in result and isinstance(result["payload"], dict):
-                    result = result["payload"]
-            return result, request_id
-        if st in {"FAILED", "CANCELLED", "ERROR"}:
-            raise RuntimeError(f"fal queue failed status={st} body={status}")
-        time.sleep(2.0)
+    raise_fal_blocked("fal_queue_generate")
 
 
 def generate_one(
@@ -593,6 +542,7 @@ def print_gate(report: dict) -> None:
 
 
 def main() -> int:
+    block_fal_usage("generate_external_ai_fal_v1.py")
     parser = argparse.ArgumentParser()
     parser.add_argument("--smoke-only", action="store_true")
     parser.add_argument("--full", action="store_true")

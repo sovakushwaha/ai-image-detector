@@ -97,7 +97,7 @@ PYTHONPATH=src python src/acquire_external_v2_public.py
 PYTHONPATH=src python src/evaluate_external_v2.py
 ```
 
-Do **not** run `src/generate_external_ai_fal_v1.py` (superseded fal workflow).
+Do **not** run `src/generate_external_ai_fal_v1.py` or `src/acquire_external_v1.py` — superseded fal workflows, **permanently hard-disabled** via `src/fal_guard_v1.py`.
 
 To rerun the RQ5 pipeline:
 

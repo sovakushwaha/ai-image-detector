@@ -1,0 +1,23 @@
+{
+  "document": "v2_clip_dryrun_plan_v1",
+  "stage": "V2-4",
+  "download_now": false,
+  "weights_downloaded_in_v2_4": true,
+  "preferred_backbone": "ViT-B/16",
+  "resolved_model_name": "ViT-B-16-quickgelu",
+  "resolved_pretrained": "openai",
+  "fallback_backbone": "ViT-B/32",
+  "library": "open_clip_torch",
+  "library_version": "3.3.0",
+  "device_initial": "mps",
+  "device_verified": "mps",
+  "batch_size": 32,
+  "embedding_dim": 512,
+  "input_resolution": 224,
+  "l2_normalize": true,
+  "V2_NATIVE_PIXEL_PRIMARY": true,
+  "n_images_estimated": 11377,
+  "local_mps_assessment": "LOCAL_MPS_RECOMMENDED",
+  "full_extraction": "NOT_STARTED",
+  "kaggle_required_now": false
+}
