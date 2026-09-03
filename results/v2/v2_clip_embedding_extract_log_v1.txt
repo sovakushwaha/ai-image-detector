@@ -1,0 +1,29 @@
+wrote chunk 1/23 n=500 total=500/11377 elapsed=0.6m
+wrote chunk 2/23 n=500 total=1000/11377 elapsed=1.3m
+wrote chunk 3/23 n=500 total=1500/11377 elapsed=2.3m
+wrote chunk 4/23 n=500 total=2000/11377 elapsed=3.0m
+wrote chunk 5/23 n=500 total=2500/11377 elapsed=3.8m
+wrote chunk 6/23 n=500 total=3000/11377 elapsed=4.5m
+wrote chunk 7/23 n=500 total=3500/11377 elapsed=5.1m
+wrote chunk 8/23 n=500 total=4000/11377 elapsed=5.8m
+wrote chunk 9/23 n=500 total=4500/11377 elapsed=6.7m
+Traceback (most recent call last):
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 189, in <module>
+    main()
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 185, in main
+    extract(device=args.device, batch_size=args.batch_size, chunk_size=args.chunk_size)
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 79, in extract
+    emb = encoder.encode_paths(paths, batch_size=batch_size, return_numpy=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 143, in encode_paths
+    x = self.preprocess_paths(batch_paths)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 119, in preprocess_paths
+    img = load_rgb_image(p)
+          ^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 62, in load_rgb_image
+    with Image.open(path) as im:
+         ^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/Image.py", line 3715, in open
+    raise UnidentifiedImageError(msg)
+PIL.UnidentifiedImageError: cannot identify image file '/Users/PankajKushwaha/ai-image-detector/data/v2/smartphone_real/SMARTPHONE_143748.jpg'

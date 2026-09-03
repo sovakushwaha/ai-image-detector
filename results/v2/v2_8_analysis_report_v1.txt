@@ -1,0 +1,73 @@
+V2-8 CLIP LoRA vs authoritative V2-7 MLP-B
+Kernel: sovaakushwaha/v2-clip-lora-generalisation v37 COMPLETE
+Decision: LORA_MIXED
+Kernel self-decision LORA_PROMISING is NOT used: in-run baseline encoded LoRA-adapted visual features then applied the frozen MLP-B head (fold-2 in-run AUC 0.585 vs V2-7 0.853). Comparison below is vs published V2-7 MLP-B.
+
+Completion: 4/4 checkpoints (572 MB each), 4/4 prediction files, sample IDs match locked V2-3 manifests (missing 0, extra 0, duplicates 0). Scientific config locked. NTIRE unused. Fal unused. V2-9 not started.
+
+Fold comparison (LoRA vs V2-7 MLP-B)
+Fold  n     AUC L/V27   AP L/V27    AI rec L/V27  Real spec L/V27  MLLM spec L/V27  Phone spec L/V27  epoch  wall s
+1     2821  .889/.846   .933/.924   .288/.509     .982/.954        .947/.850        .988/.992         14     5217
+2     2619  .900/.853   .944/.918   .364/.472     .992/.960        .956/.929        .998/.988         19     5316
+3     1994  .937/.845   .940/.891   .599/.590     .962/.966        .823/.850        .990/.996         19     4942
+4     1709  .887/.803   .853/.802   .293/.576     .974/.828        .929/.496        .994/.960         19     4908
+
+Cross-fold
+                LoRA    V2-7    delta
+mean AUC        .903    .837    +.066
+worst AUC       .887    .803    +.084
+mean AP         .917    .884    +.034
+mean AI recall  .386    .537    -.151
+mean Real spec  .978    .927    +.051
+mean MLLM spec  .914    .781    +.133
+mean phone spec .992    .984    +.008
+
+Hard modern generators (AI recall @ 0.5 vs V2-7)
+GPT Image2      .132 vs .598   -.466
+Nano Banana2    .217 vs .426   -.209
+FLUX2_max       .120 vs .140   -.020
+GPT-Image-1.5   .260 vs .205   +.055  (mean of fold1 .150 and fold3 .370)
+Seedream5       .170 vs .360   -.190
+mean hard_gain  -.166  (protocol requires >+.02 for LORA_PROMISING)
+
+Top 5 generator improvements vs V2-7
+fold3 qwen::GPT-Image-1.5     +.180
+fold2 qwen::nano-banana-pro   +.150
+fold3 qwen::Seedream-4.5      +.130
+fold3 qwen::GPT-Image-1       +.110
+fold3 qwen::HunyuanImage-3.0  +.070
+
+Top 5 generator deteriorations vs V2-7
+fold4 tiny::Midjourney        -.493
+fold1 mllm::GPT_Image_2       -.466
+fold1 tiny::ADM               -.238
+fold2 mllm::Nano_Banana_2     -.209
+fold4 qwen::Qwen-Image        -.200
+
+Real-domain specificity (LoRA)
+         Tiny   MLLM   COCO  Smartphone
+Fold1    .980   .947   1.00  .988
+Fold2    .996   .956   1.00  .998
+Fold3    .960   .823   1.00  .990
+Fold4    .948   .929   1.00  .994
+LoRA does not buy AI ranking by collapsing smartphone/COCO Real. Fold-3 MLLM Real is the weakest real domain (.823).
+
+Overfitting
+Fold1 selected epoch 14/18 logged; train loss 0.75→0.09; val AUC best=selected .889, last .876
+Fold2 selected 19/20; train 0.70→0.06; val AUC last slightly below selected
+Fold3 selected 19/20; train 0.74→0.10; epoch 20 AUC dropped .937→.907
+Fold4 selected 19/20; train 0.62→0.07; val loss remains above train throughout
+Kernel flag: overfitting observed on folds 1 and 3.
+
+Resources
+trainable 295,297 (0.197% of CLIP); LoRA 147,456 + head 147,841; frozen CLIP 149,620,737
+GPU Tesla P100-PCIE-16GB, 15.89 GB, CUDA 11.8, torch 2.5.1+cu118, open_clip 3.3.0
+peak VRAM ~2.15–2.47 GB; batch 32; total training wall ~7.69 h (folds) / kernel ~7.88 h
+checkpoint 572 MB × 4
+
+Paired bootstrap (5000, seed 42) exists in v2_lora_bootstrap_v1.csv but is vs the invalid in-run baseline. Do not interpret those CIs as LoRA vs V2-7.
+
+Why LORA_MIXED
+Ranking improved (mean AUC +0.066, worst fold +0.084) and Real/phone specificity stayed high, including a large Fold-4 Real/MLLM-spec rescue vs V2-7. At the locked 0.5 threshold, mean AI recall fell 0.151 and the hard modern generators that motivated LoRA mostly got worse. Protocol: PROMISING requires hard_gain > 0.02; observed -0.166.
+
+Do not select a final V2 detector. Do not start V2-9.

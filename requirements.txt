@@ -31,3 +31,10 @@ torchvision==0.28.0
 
 # Stage 28B local research UI
 streamlit==1.62.0
+
+# V2-4 CLIP frozen image encoder (open_clip; torch/torchvision unchanged)
+open_clip_torch==3.3.0
+ftfy==6.3.1
+regex==2026.7.19
+safetensors==0.8.0
+timm==1.0.28

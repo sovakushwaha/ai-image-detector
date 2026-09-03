@@ -1,0 +1,293 @@
+{
+  "stage": "V2-7",
+  "selected_architecture": "MLP-B",
+  "selection_reason": "primary max mean AUC among eligible (best=0.836888); selected=MLP-B",
+  "decision": "MLP_MODEST_GAIN",
+  "decision_evidence": "Mean held-out AUC/AP improve vs LogReg C=3.0 (\u0394AUC\u2248+0.017, \u0394worst\u2248+0.029, \u0394MLLM\u2248+0.080) and eligibility guards pass, but gains are incomplete: Fold-4 Real specificity drops (0.904\u21920.828) with MLLM fold-4 specificity 0.496; Nano Banana 2 recall worsens; FLUX.2_max/GPT-Image-1.5 remain weak; train/val loss divergence indicates overfitting. Treat as modest nonlinear gain; frozen-representation limit still plausible.",
+  "REMOTE_GPU_NEEDED_FOR_NEXT_STAGE": "YES",
+  "param_counts": {
+    "MLP-A": 65793,
+    "MLP-B": 147841,
+    "LogReg_C3": 513
+  },
+  "clip_encoder_params_frozen": 149620737,
+  "architectures": [
+    {
+      "architecture": "MLP-A",
+      "trainable_params": 65793,
+      "mean_roc_auc": 0.8304030510740722,
+      "std_roc_auc": 0.027076331906813213,
+      "min_roc_auc": 0.7906911029693525,
+      "max_roc_auc": 0.8479200997842258,
+      "mean_ap": 0.8773344701719384,
+      "min_ap": 0.7863810749168261,
+      "mean_ai_recall": 0.5180117511030475,
+      "mean_real_specificity": 0.9320151679306609,
+      "mean_mllm_specificity": 0.7765486725663717,
+      "min_mllm_specificity": 0.6194690265486725,
+      "mean_smartphone_specificity": 0.9835,
+      "min_smartphone_specificity": 0.98,
+      "mean_selected_epoch": 23.25,
+      "eligible": true,
+      "eligibility_reason": "PASS"
+    },
+    {
+      "architecture": "MLP-B",
+      "trainable_params": 147841,
+      "mean_roc_auc": 0.8368883943447861,
+      "std_roc_auc": 0.02292819626065075,
+      "min_roc_auc": 0.8029147679185309,
+      "max_roc_auc": 0.8532382612073018,
+      "mean_ap": 0.8838183799872856,
+      "min_ap": 0.8016426899644047,
+      "mean_ai_recall": 0.5369207795223621,
+      "mean_real_specificity": 0.9271397616468039,
+      "mean_mllm_specificity": 0.7809734513274336,
+      "min_mllm_specificity": 0.49557522123893805,
+      "mean_smartphone_specificity": 0.984,
+      "min_smartphone_specificity": 0.96,
+      "mean_selected_epoch": 14.0,
+      "eligible": true,
+      "eligibility_reason": "PASS"
+    }
+  ],
+  "logreg_c3_summary": {
+    "mean_roc_auc": 0.8199376111488965,
+    "min_roc_auc": 0.7743777206200602,
+    "mean_ap": 0.8676535451979186,
+    "min_ap": 0.7798920038082271,
+    "mean_ai_recall": 0.5360771158794119,
+    "mean_real_specificity": 0.9084507042253521,
+    "mean_mllm_specificity": 0.7013274336283185,
+    "mean_smartphone_specificity": 0.9844999999999999,
+    "fold4_auc": 0.7743777206200602,
+    "fold4_ap": 0.7798920038082271,
+    "fold4_ai_recall": 0.47837150127226463,
+    "fold4_real_specificity": 0.9035752979414952
+  },
+  "selected_summary": {
+    "architecture": "MLP-B",
+    "trainable_params": 147841,
+    "mean_roc_auc": 0.8368883943447861,
+    "std_roc_auc": 0.02292819626065075,
+    "min_roc_auc": 0.8029147679185309,
+    "max_roc_auc": 0.8532382612073018,
+    "mean_ap": 0.8838183799872856,
+    "min_ap": 0.8016426899644047,
+    "mean_ai_recall": 0.5369207795223621,
+    "mean_real_specificity": 0.9271397616468039,
+    "mean_mllm_specificity": 0.7809734513274336,
+    "min_mllm_specificity": 0.49557522123893805,
+    "mean_smartphone_specificity": 0.984,
+    "min_smartphone_specificity": 0.96,
+    "mean_selected_epoch": 14.0,
+    "eligible": true,
+    "eligibility_reason": "PASS"
+  },
+  "train_wall_seconds": 108.04642791599326,
+  "device": "mps",
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.0001
+  },
+  "batch_size": 64,
+  "max_epochs": 100,
+  "patience": 12,
+  "integrity": {
+    "clip_weights_changed": false,
+    "clip_embeddings_changed": false,
+    "clip_fine_tuning": false,
+    "mlp_trained": true,
+    "architecture_search_beyond_AB": false,
+    "lr_search": false,
+    "threshold_selection": false,
+    "calibration": false,
+    "generator_folds_changed": false,
+    "smartphone_split_changed": false,
+    "ntire_accessed": false,
+    "kaggle": false
+  },
+  "train_meta": [
+    {
+      "architecture": "MLP-A",
+      "fold": 1,
+      "selected_epoch": 48,
+      "best_val_auc": 0.8356187216514618,
+      "n_epochs_ran": 54,
+      "class_ratio_max_min": 2.4768518518518516,
+      "pos_weight": "pos_weight=2.4769",
+      "n_real_train": 4280,
+      "n_ai_train": 1728,
+      "trainable_params": 65793,
+      "final_train_loss": 0.06538910898280904,
+      "final_val_loss": 4.8757853507995605,
+      "overfit_gap_loss": 4.810396241816751
+    },
+    {
+      "architecture": "MLP-A",
+      "fold": 2,
+      "selected_epoch": 20,
+      "best_val_auc": 0.8473822798912489,
+      "n_epochs_ran": 21,
+      "class_ratio_max_min": 2.475419317524581,
+      "pos_weight": "pos_weight=2.4754",
+      "n_real_train": 4280,
+      "n_ai_train": 1729,
+      "trainable_params": 65793,
+      "final_train_loss": 0.13520647490278204,
+      "final_val_loss": 3.355849027633667,
+      "overfit_gap_loss": 3.220642552730885
+    },
+    {
+      "architecture": "MLP-A",
+      "fold": 3,
+      "selected_epoch": 22,
+      "best_val_auc": 0.8479200997842258,
+      "n_epochs_ran": 23,
+      "class_ratio_max_min": 2.1094135041892557,
+      "pos_weight": "pos_weight=2.1094",
+      "n_real_train": 4280,
+      "n_ai_train": 2029,
+      "trainable_params": 65793,
+      "final_train_loss": 0.16847868173411398,
+      "final_val_loss": 2.416027545928955,
+      "overfit_gap_loss": 2.247548864194841
+    },
+    {
+      "architecture": "MLP-A",
+      "fold": 4,
+      "selected_epoch": 3,
+      "best_val_auc": 0.7906911029693525,
+      "n_epochs_ran": 15,
+      "class_ratio_max_min": 1.849611063094209,
+      "pos_weight": "pos_weight=1.8496",
+      "n_real_train": 4280,
+      "n_ai_train": 2314,
+      "trainable_params": 65793,
+      "final_train_loss": 0.3714187160993998,
+      "final_val_loss": 1.1664648056030273,
+      "overfit_gap_loss": 0.7950460895036275
+    },
+    {
+      "architecture": "MLP-B",
+      "fold": 1,
+      "selected_epoch": 21,
+      "best_val_auc": 0.8460762141137333,
+      "n_epochs_ran": 33,
+      "class_ratio_max_min": 2.4768518518518516,
+      "pos_weight": "pos_weight=2.4769",
+      "n_real_train": 4280,
+      "n_ai_train": 1728,
+      "trainable_params": 147841,
+      "final_train_loss": 0.027912180853432954,
+      "final_val_loss": 6.913087844848633,
+      "overfit_gap_loss": 6.8851756639951995
+    },
+    {
+      "architecture": "MLP-B",
+      "fold": 2,
+      "selected_epoch": 14,
+      "best_val_auc": 0.8532382612073018,
+      "n_epochs_ran": 21,
+      "class_ratio_max_min": 2.475419317524581,
+      "pos_weight": "pos_weight=2.4754",
+      "n_real_train": 4280,
+      "n_ai_train": 1729,
+      "trainable_params": 147841,
+      "final_train_loss": 0.045796471365549145,
+      "final_val_loss": 5.811527729034424,
+      "overfit_gap_loss": 5.765731257668874
+    },
+    {
+      "architecture": "MLP-B",
+      "fold": 3,
+      "selected_epoch": 20,
+      "best_val_auc": 0.8453243341395785,
+      "n_epochs_ran": 22,
+      "class_ratio_max_min": 2.1094135041892557,
+      "pos_weight": "pos_weight=2.1094",
+      "n_real_train": 4280,
+      "n_ai_train": 2029,
+      "trainable_params": 147841,
+      "final_train_loss": 0.036333461136867605,
+      "final_val_loss": 5.1254119873046875,
+      "overfit_gap_loss": 5.08907852616782
+    },
+    {
+      "architecture": "MLP-B",
+      "fold": 4,
+      "selected_epoch": 1,
+      "best_val_auc": 0.8029147679185309,
+      "n_epochs_ran": 13,
+      "class_ratio_max_min": 1.849611063094209,
+      "pos_weight": "pos_weight=1.8496",
+      "n_real_train": 4280,
+      "n_ai_train": 2314,
+      "trainable_params": 147841,
+      "final_train_loss": 0.5953162602650431,
+      "final_val_loss": 1.0118650197982788,
+      "overfit_gap_loss": 0.41654875953323567
+    }
+  ],
+  "hard_generators": [
+    {
+      "generator_id": "mllm::GPT_Image_2",
+      "mlp_recall": 0.5977961432506887,
+      "logreg_recall": 0.5523415977961432,
+      "diff": 0.045454545454545525
+    },
+    {
+      "generator_id": "mllm::Nano_Banana_2",
+      "mlp_recall": 0.4262068965517241,
+      "logreg_recall": 0.5682758620689655,
+      "diff": -0.1420689655172414
+    },
+    {
+      "generator_id": "qwen::FLUX.2_max",
+      "mlp_recall": 0.14,
+      "logreg_recall": 0.17,
+      "diff": -0.03
+    },
+    {
+      "generator_id": "qwen::GPT-Image-1.5",
+      "mlp_recall": 0.20500000000000002,
+      "logreg_recall": 0.195,
+      "diff": 0.010000000000000009
+    },
+    {
+      "generator_id": "qwen::Seedream-5.0",
+      "mlp_recall": 0.36,
+      "logreg_recall": 0.19,
+      "diff": 0.16999999999999998
+    }
+  ],
+  "fold4_mlp": {
+    "auc": 0.8029147679185309,
+    "ap": 0.8016426899644047,
+    "ai_recall": 0.5763358778625954,
+    "real_specificity": 0.8277356446370531
+  },
+  "overfitting": {
+    "observed": true,
+    "evidence": [
+      "fold1 val-train loss gap=6.885",
+      "fold1 train\u2193 val\u2191 divergence",
+      "fold2 val-train loss gap=5.766",
+      "fold2 train\u2193 val\u2191 divergence",
+      "fold3 val-train loss gap=5.089",
+      "fold3 train\u2193 val\u2191 divergence",
+      "fold4 val-train loss gap=0.417"
+    ]
+  },
+  "deltas_vs_logreg": {
+    "auc": 0.016950783195889607,
+    "worst_auc": 0.02853704729847073,
+    "ap": 0.016164834789367033,
+    "mllm_spec": 0.07964601769911506,
+    "phone_spec": -0.0004999999999999449,
+    "weak_gen_recall": 0.049999999999999996
+  },
+  "automated_threshold_note": "Raw \u0394AUC/\u0394worst thresholds initially flagged CLEARLY_BETTER; overridden to MODEST_GAIN after consistency/overfit/hard-generator review.",
+  "recommended_next_compute": "Kaggle GPU or user remote GPU/server for partial CLIP adaptation / LoRA (do not start automatically)"
+}

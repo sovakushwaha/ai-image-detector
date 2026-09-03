@@ -1,0 +1,43 @@
+unified images before exclude: 11378
+exact exclude extras: 1; audit rows: 53
+Qwen prompt grouping: PASS
+SHA partition check: PASS
+{
+  "smartphone": {
+    "requested": 3000,
+    "success_with_splits": 3000,
+    "train": 2000,
+    "validation": 500,
+    "internal_holdout": 500,
+    "manufacturers": {
+      "Samsung": 834,
+      "Apple": 1578,
+      "Vivo": 72,
+      "Oppo": 74,
+      "Huawei": 360,
+      "Xiaomi": 82
+    },
+    "device_models_n": 1416,
+    "largest_device_share": 0.032,
+    "largest_device": [
+      "iPhone X",
+      96
+    ]
+  },
+  "real": {
+    "Tiny": 2000,
+    "MLLM": 726,
+    "COCO": 400,
+    "Smartphone": 3000,
+    "total": 6126
+  },
+  "ai": {
+    "Tiny": 2000,
+    "MLLM": 1451,
+    "Qwen": 1800,
+    "total": 5251
+  },
+  "total_development_pool": 11377,
+  "local_mps_assessment": "LOCAL_MPS_RECOMMENDED"
+}
+V2-3 dataset build core COMPLETE

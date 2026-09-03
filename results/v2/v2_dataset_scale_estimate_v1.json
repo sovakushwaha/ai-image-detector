@@ -1,0 +1,68 @@
+{
+  "document": "v2_dataset_scale_estimate_v1",
+  "stage": "V2-1",
+  "AI_images_available_eligible": 5252,
+  "AI_images_breakdown": {
+    "Tiny-GenImage_AI": 2000,
+    "MLLM_AI": 1452,
+    "Qwen_AI": 1800,
+    "fal_excluded": 38
+  },
+  "Real_images_available_local": 3126,
+  "Real_images_breakdown": {
+    "Tiny-GenImage_Real": 2000,
+    "MLLM_Real": 726,
+    "COCO_Real": 400,
+    "smartphone_target_pending_reconstruction": 3000
+  },
+  "smartphone_reconstruction_target": 3000,
+  "modern_AI_generator_count_listed": 20,
+  "modern_AI_generators_listed": [
+    "FLUX.2-pro",
+    "FLUX.2_max",
+    "GLM-Image",
+    "GPT Image 2",
+    "GPT-Image-1",
+    "GPT-Image-1.5",
+    "HunyuanImage-3.0",
+    "Imagen-4.0",
+    "Imagen-4.0-Ultra",
+    "Nano Banana 2",
+    "Qwen-Image",
+    "Qwen-Image-2.0-pro",
+    "Qwen-Image-2512",
+    "Seedream-4.0",
+    "Seedream-4.5",
+    "Seedream-5.0",
+    "gpt-image-2",
+    "kling_v2_1",
+    "nano-banana-2.0",
+    "nano-banana-pro"
+  ],
+  "legacy_AI_generator_count": 7,
+  "legacy_AI_generators": [
+    "ADM",
+    "BigGAN",
+    "GLIDE",
+    "Midjourney",
+    "SD15",
+    "VQDM",
+    "Wukong"
+  ],
+  "estimated_total_dev_if_smartphone_succeeds": 11378,
+  "estimated_storage_gb_rough": {
+    "note": "Rough order-of-magnitude only",
+    "existing_local_external_already_on_disk": "Stage27 MLLM/Qwen/COCO already acquired locally (multi-GB)",
+    "smartphone_3k_reconstructed_jpeg_estimate_gb": 1.17,
+    "clip_embeddings_11k_x_512_float32_mb": 21.48
+  },
+  "compute_assessment": {
+    "V2_1_GPU": false,
+    "V2_2_GPU": false,
+    "V2_3_GPU": false,
+    "V2_4_CLIP_dry_run": "LOCAL_MPS_EXPECTED",
+    "V2_5_embedding_extraction": "LOCAL_CLIP_ENCODING_PLAUSIBLE",
+    "V2_5_rationale": "Estimated development set ~11378 images is modest for frozen CLIP ViT-B/16 or B/32 embedding extraction on Apple MPS; embeddings themselves are tiny. Re-evaluate after smartphone URL reconstruction yield is known.",
+    "kaggle_required_now": false
+  }
+}

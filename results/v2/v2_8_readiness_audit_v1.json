@@ -1,0 +1,252 @@
+{
+  "stage": "V2-8",
+  "audit_version": "v1",
+  "A_kaggle_state": {
+    "v36_status_raw": "sovaakushwaha/v2-clip-lora-generalisation has status \"KernelWorkerStatus.RUNNING\"",
+    "v36_status": "RUNNING",
+    "active_kernel_session": true,
+    "gpu_quota": {
+      "error": "could not convert string to float: '39253.640951.0'"
+    },
+    "gpu_quota_available": false,
+    "gpu_hours_available": 0.0,
+    "support_dataset_status": {
+      "status": "ready",
+      "current_version_number": 6
+    },
+    "manual_stop_required": true
+  },
+  "B_locked_config": {
+    "pass": true,
+    "issues": [],
+    "stale_hits": [],
+    "kernel_metadata": {
+      "id": "sovaakushwaha/v2-clip-lora-generalisation",
+      "title": "v2-clip-lora-generalisation",
+      "code_file": "train_v2_clip_lora.py",
+      "language": "python",
+      "kernel_type": "script",
+      "is_private": "true",
+      "enable_gpu": "true",
+      "enable_internet": "true",
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "yangsangtai/tiny-genimage",
+        "sovaakushwaha/v2-clip-lora-pip-bundle",
+        "sovaakushwaha/v2-clip-lora-support/6"
+      ],
+      "kernel_sources": [],
+      "competition_sources": []
+    },
+    "run_config": {
+      "mode": "smoke_then_full",
+      "support_dataset": "sovaakushwaha/v2-clip-lora-support",
+      "support_dataset_version": 6,
+      "kernel_target_version": 37
+    }
+  },
+  "C_dataset_version": {
+    "support_dataset": "sovaakushwaha/v2-clip-lora-support",
+    "version": 6,
+    "pass": true
+  },
+  "D_smartphone": {
+    "expected": 2500,
+    "train": 2000,
+    "validation": 500,
+    "kaggle_unique_ids": 2500,
+    "kaggle_missing": 0,
+    "kaggle_extra": 0,
+    "kaggle_total_bytes": 3508117485,
+    "kaggle_listing_error": null,
+    "local_found": 2500,
+    "local_missing": 0,
+    "missing_sample": [],
+    "decode_pass": true,
+    "corrupt": 0,
+    "unreadable": 0,
+    "unreadable_sample": [],
+    "existence_pass": true,
+    "decode_pass_flag": true,
+    "pass": true
+  },
+  "E_manifest": {
+    "checksums": {
+      "v2_split_assignments_v1.csv": "e07ca501bb08ea8865dd00bad2060014c732daff0baaa4610a6875d130f97fa3",
+      "v2_generator_holdout_folds_v1.csv": "f56b1d360c1287eac363863279d2eacf75257a74f6e9ea6bf39e6f2d9b0d3a9a",
+      "v2_generator_registry_v1.csv": "a5bbbe053f05520e04f5671621b3a924f6edbb406c7fc622664dea9968ed210c"
+    },
+    "excluded_duplicates": 1,
+    "unique_ids": 11377,
+    "duplicate_ids": 0,
+    "folds": {
+      "fold_1": {
+        "pass": true,
+        "train_total": 6433,
+        "train_real": 4280,
+        "train_ai": 2153,
+        "val_total": 2821,
+        "val_real": 923,
+        "val_ai": 1898,
+        "train_val_overlap": 0
+      },
+      "fold_2": {
+        "pass": true,
+        "train_total": 6435,
+        "train_real": 4280,
+        "train_ai": 2155,
+        "val_total": 2619,
+        "val_real": 923,
+        "val_ai": 1696,
+        "train_val_overlap": 0
+      },
+      "fold_3": {
+        "pass": true,
+        "train_total": 7160,
+        "train_real": 4280,
+        "train_ai": 2880,
+        "val_total": 1994,
+        "val_real": 923,
+        "val_ai": 1071,
+        "train_val_overlap": 0
+      },
+      "fold_4": {
+        "pass": true,
+        "train_total": 7445,
+        "train_real": 4280,
+        "train_ai": 3165,
+        "val_total": 1709,
+        "val_real": 923,
+        "val_ai": 786,
+        "train_val_overlap": 0
+      }
+    },
+    "train_val_leakage_check": "PASS",
+    "generator_holdout_check": "PASS",
+    "ntire_absent": "PASS",
+    "fal_absent": "PASS",
+    "pass": true
+  },
+  "F_materialization": {
+    "total_unique_required_images": 10454,
+    "local_offline_available": 6250,
+    "remote_hf": 3864,
+    "remote_http": 340,
+    "missing": 0,
+    "folds": {
+      "fold_1": {
+        "required_rows": 9254,
+        "missing": 0,
+        "remote_only": 3004,
+        "local_decoded": 6250,
+        "unreadable": 0,
+        "missing_sample": [],
+        "unreadable_sample": [],
+        "pass_local": true,
+        "pass_kaggle_expected": true
+      },
+      "fold_2": {
+        "required_rows": 9054,
+        "missing": 0,
+        "remote_only": 2804,
+        "local_decoded": 6250,
+        "unreadable": 0,
+        "missing_sample": [],
+        "unreadable_sample": [],
+        "pass_local": true,
+        "pass_kaggle_expected": true
+      },
+      "fold_3": {
+        "required_rows": 9154,
+        "missing": 0,
+        "remote_only": 2904,
+        "local_decoded": 6250,
+        "unreadable": 0,
+        "missing_sample": [],
+        "unreadable_sample": [],
+        "pass_local": true,
+        "pass_kaggle_expected": true
+      },
+      "fold_4": {
+        "required_rows": 9154,
+        "missing": 0,
+        "remote_only": 2904,
+        "local_decoded": 6250,
+        "unreadable": 0,
+        "missing_sample": [],
+        "unreadable_sample": [],
+        "pass_local": true,
+        "pass_kaggle_expected": true
+      }
+    },
+    "pass_local": true,
+    "pass_kaggle_expected": true
+  },
+  "G_disk": {
+    "estimated_peak_usage_mb": 5800,
+    "estimated_peak_usage_gb": 5.66,
+    "components_mb": {
+      "support_mount_smartphone_read_not_copy": 0,
+      "tiny_genimage_mount": 1800,
+      "clip_weights_cache": 600,
+      "pip_cache": 300,
+      "materialized_hf_coco_cache": 800,
+      "checkpoints_x4": 100,
+      "predictions_logs": 200,
+      "working_headroom": 2000
+    },
+    "safety_margin_recommended_gb": 5,
+    "note": "Smartphone copy-to-working removed in train script; read mounted paths directly.",
+    "pass": true
+  },
+  "H_dependencies": {
+    "pass_local": false,
+    "pass_kaggle_pending": true,
+    "python": "3.14.0",
+    "torch": "2.11.0",
+    "torchvision": "0.26.0",
+    "open_clip": "MISSING",
+    "pandas": "3.0.3",
+    "numpy": "2.4.4",
+    "PIL": "ok",
+    "sklearn": "1.8.0",
+    "torch_cuda_build": null,
+    "cuda_available": false,
+    "gpu": null
+  },
+  "I_clip": {
+    "weights_available_offline": "UNKNOWN",
+    "model_load": "FAIL",
+    "model_forward": "FAIL",
+    "error": "No module named 'open_clip'",
+    "pass": false
+  },
+  "J_checkpoint": {
+    "save_checkpoint": true,
+    "load_checkpoint": true,
+    "pass": true
+  },
+  "K_dataloader": {
+    "pass": false,
+    "note": "Requires Kaggle GPU env + full materialization; deferred to kernel preflight"
+  },
+  "L_security": {
+    "ntire_accessed": false,
+    "fal_used": false,
+    "scientific_config_changed": false,
+    "pass": true
+  },
+  "M_gpu_readiness": {
+    "gpu_hours_available": 0.0,
+    "gpu_quota_reset": null,
+    "estimated_required_gpu_hours": 8,
+    "v36_running": true,
+    "quota_gate": "FAIL",
+    "ready": false
+  },
+  "blockers": [
+    "v36 still RUNNING \u2014 MANUAL_STOP_REQUIRED",
+    "GPU quota exhausted until reset"
+  ],
+  "final_verdict": "NOT_READY_FOR_V37_GPU_RUN"
+}

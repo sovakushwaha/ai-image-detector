@@ -1,0 +1,55 @@
+{
+  "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "torch": "2.13.0",
+  "torchvision": "0.28.0",
+  "open_clip": "3.3.0",
+  "mps_available": true,
+  "mps_built": true,
+  "cuda_available": false,
+  "seed": 42,
+  "preferred_model": "ViT-B-16-quickgelu",
+  "preferred_pretrained": "openai",
+  "resolved_model": {
+    "library": "open_clip_torch",
+    "library_version": "3.3.0",
+    "model_name": "ViT-B-16-quickgelu",
+    "pretrained_tag": "openai",
+    "weight_source": "open_clip.create_model_and_transforms('ViT-B-16-quickgelu', pretrained='openai')",
+    "embedding_dim": 512,
+    "input_resolution": 224,
+    "parameter_count": 149620737,
+    "device": "mps",
+    "l2_normalize": true
+  },
+  "dryrun": {
+    "n_images": 32,
+    "input_shape": [
+      32,
+      3,
+      224,
+      224
+    ],
+    "embedding_shape": [
+      32,
+      512
+    ],
+    "nan": 0,
+    "inf": 0,
+    "norm_mean": 1.0,
+    "norm_min": 0.9999999403953552,
+    "norm_max": 1.0,
+    "same_image_repeat_max_abs_diff": 0.0,
+    "cpu_vs_mps_cosine_mean": 0.999999980131785,
+    "cpu_vs_mps_cosine_min": 0.9999999403953552,
+    "similarity_diag_mean": 1.0,
+    "similarity_all_finite": true,
+    "mps_pipeline": "PASS"
+  },
+  "best_stable_batch": 32,
+  "compute_decision": "LOCAL_MPS_RECOMMENDED",
+  "pretrained_weights_downloaded": true,
+  "classifier_training": false,
+  "clip_finetuning": false,
+  "ntire_accessed": false
+}

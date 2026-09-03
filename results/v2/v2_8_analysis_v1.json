@@ -1,0 +1,475 @@
+{
+  "stage": "V2-8",
+  "kernel": "sovaakushwaha/v2-clip-lora-generalisation",
+  "version": 37,
+  "status": "COMPLETE",
+  "scientific_decision": "LORA_MIXED",
+  "kernel_decision": "LORA_PROMISING",
+  "decision_basis": "authoritative_V2-7_MLP-B_published_metrics_not_inrun_baseline",
+  "hard_gain_vs_v27": -0.16604398214116084,
+  "reliability_ok": true,
+  "completion_verification": {
+    "FOUR_FOLD_CHECKPOINTS": 4,
+    "fold1_predictions_valid": true,
+    "fold2_predictions_valid": true,
+    "fold3_predictions_valid": true,
+    "fold4_predictions_valid": true,
+    "sample_ids_align_with_manifests": true,
+    "missing": 0,
+    "extra": 0,
+    "duplicates": 0,
+    "no_fold_skipped": true,
+    "scientific_config_locked": true
+  },
+  "inrun_baseline_status": "INVALID_AS_V2_7: baseline_frozen_predict encodes with LoRA-adapted visual then frozen MLP-B head",
+  "cross_fold": {
+    "lora_mean_auc": 0.9031727720401306,
+    "v27_mean_auc": 0.8368883943447861,
+    "delta_mean_auc": 0.06628437769534445,
+    "lora_worst_auc": 0.8866678245239691,
+    "v27_worst_auc": 0.8029147679185309,
+    "lora_mean_ap": 0.9173675653928914,
+    "v27_mean_ap": 0.8838183799872856,
+    "delta_mean_ap": 0.03354918540560581,
+    "lora_mean_ai_recall": 0.3860296665949639,
+    "v27_mean_ai_recall": 0.5369207795223621,
+    "delta_mean_ai_recall": -0.15089111292739815,
+    "lora_mean_real_spec": 0.977518959913326,
+    "v27_mean_real_spec": 0.9271397616468039,
+    "lora_mean_mllm_spec": 0.913716814159292,
+    "v27_mean_mllm_spec": 0.7809734513274336,
+    "lora_mean_phone_spec": 0.9924999999999999,
+    "v27_mean_phone_spec": 0.984,
+    "lora_worst_phone_spec": 0.988
+  },
+  "fold_comparison_vs_v27": [
+    {
+      "fold": 1,
+      "n": 2821,
+      "lora_auc": 0.8893269644616504,
+      "v27_auc": 0.8460762141137333,
+      "delta_auc": 0.04325075034791703,
+      "lora_ap": 0.9330544687611088,
+      "v27_ap": 0.9240304111146304,
+      "delta_ap": 0.0090240576464784,
+      "lora_ai_recall": 0.2876712328767123,
+      "v27_ai_recall": 0.5089567966280295,
+      "delta_ai_recall": -0.2212855637513172,
+      "lora_real_spec": 0.9815817984832068,
+      "v27_real_spec": 0.9544962080173348,
+      "delta_real_spec": 0.027085590465872,
+      "lora_mllm_spec": 0.9469026548672568,
+      "v27_mllm_spec": 0.8495575221238938,
+      "delta_mllm_spec": 0.09734513274336298,
+      "lora_phone_spec": 0.988,
+      "v27_phone_spec": 0.992,
+      "delta_phone_spec": -0.0040000000000000036,
+      "lora_tiny_spec": 0.98,
+      "v27_tiny_spec": 0.92,
+      "lora_coco_spec": 1.0,
+      "v27_coco_spec": 0.9833333333333332,
+      "selected_epoch": 14,
+      "wall_seconds": 5217.409036959,
+      "peak_vram_gb": 2.154,
+      "checkpoint_size_mb": 572.0475254058838,
+      "inrun_baseline_auc": 0.8503819382208792
+    },
+    {
+      "fold": 2,
+      "n": 2619,
+      "lora_auc": 0.8999091610621641,
+      "v27_auc": 0.8532382612073018,
+      "delta_auc": 0.04667089985486228,
+      "lora_ap": 0.9438980038350224,
+      "v27_ap": 0.918159369660994,
+      "delta_ap": 0.02573863417402844,
+      "lora_ai_recall": 0.3643867924528302,
+      "v27_ai_recall": 0.4722877358490566,
+      "delta_ai_recall": -0.10790094339622641,
+      "lora_real_spec": 0.9924160346695556,
+      "v27_real_spec": 0.9599133261105092,
+      "delta_real_spec": 0.03250270855904647,
+      "lora_mllm_spec": 0.9557522123893806,
+      "v27_mllm_spec": 0.9292035398230089,
+      "delta_mllm_spec": 0.026548672566371723,
+      "lora_phone_spec": 0.998,
+      "v27_phone_spec": 0.988,
+      "delta_phone_spec": 0.010000000000000009,
+      "lora_tiny_spec": 0.996,
+      "v27_tiny_spec": 0.912,
+      "lora_coco_spec": 1.0,
+      "v27_coco_spec": 0.9833333333333332,
+      "selected_epoch": 19,
+      "wall_seconds": 5316.054358340001,
+      "peak_vram_gb": 2.259,
+      "checkpoint_size_mb": 572.0475254058838,
+      "inrun_baseline_auc": 0.5851905701261269
+    },
+    {
+      "fold": 3,
+      "n": 1994,
+      "lora_auc": 0.9367871381127388,
+      "v27_auc": 0.8453243341395785,
+      "delta_auc": 0.09146280397316031,
+      "lora_ap": 0.9397479686419078,
+      "v27_ap": 0.8914410492091132,
+      "delta_ap": 0.04830691943279464,
+      "lora_ai_recall": 0.5994397759103641,
+      "v27_ai_recall": 0.5901027077497666,
+      "delta_ai_recall": 0.00933706816059754,
+      "lora_real_spec": 0.962080173347779,
+      "v27_real_spec": 0.9664138678223184,
+      "delta_real_spec": -0.004333694474539462,
+      "lora_mllm_spec": 0.8230088495575221,
+      "v27_mllm_spec": 0.8495575221238938,
+      "delta_mllm_spec": -0.026548672566371723,
+      "lora_phone_spec": 0.99,
+      "v27_phone_spec": 0.996,
+      "delta_phone_spec": -0.006000000000000005,
+      "lora_tiny_spec": 0.96,
+      "v27_tiny_spec": 0.952,
+      "lora_coco_spec": 1.0,
+      "v27_coco_spec": 1.0,
+      "selected_epoch": 19,
+      "wall_seconds": 4942.394095586002,
+      "peak_vram_gb": 2.365,
+      "checkpoint_size_mb": 572.0475254058838,
+      "inrun_baseline_auc": 0.9192996086119531
+    },
+    {
+      "fold": 4,
+      "n": 1709,
+      "lora_auc": 0.8866678245239691,
+      "v27_auc": 0.8029147679185309,
+      "delta_auc": 0.08375305660543819,
+      "lora_ap": 0.852769820333527,
+      "v27_ap": 0.8016426899644047,
+      "delta_ap": 0.05112713036912231,
+      "lora_ai_recall": 0.2926208651399491,
+      "v27_ai_recall": 0.5763358778625954,
+      "delta_ai_recall": -0.2837150127226463,
+      "lora_real_spec": 0.9739978331527628,
+      "v27_real_spec": 0.8277356446370531,
+      "delta_real_spec": 0.1462621885157097,
+      "lora_mllm_spec": 0.9292035398230089,
+      "v27_mllm_spec": 0.495575221238938,
+      "delta_mllm_spec": 0.43362831858407086,
+      "lora_phone_spec": 0.994,
+      "v27_phone_spec": 0.96,
+      "delta_phone_spec": 0.03400000000000003,
+      "lora_tiny_spec": 0.948,
+      "v27_tiny_spec": 0.684,
+      "lora_coco_spec": 1.0,
+      "v27_coco_spec": 0.95,
+      "selected_epoch": 19,
+      "wall_seconds": 4907.938609535999,
+      "peak_vram_gb": 2.47,
+      "checkpoint_size_mb": 572.0475254058838,
+      "inrun_baseline_auc": 0.7809513176140421
+    }
+  ],
+  "hard_generators_vs_v27": [
+    {
+      "generator_id": "mllm::GPT_Image_2",
+      "folds": [
+        1
+      ],
+      "lora_recall": 0.1322314049586777,
+      "v27_recall": 0.5977961432506887,
+      "delta": -0.46556473829201106,
+      "n": 726
+    },
+    {
+      "generator_id": "mllm::Nano_Banana_2",
+      "folds": [
+        2
+      ],
+      "lora_recall": 0.216551724137931,
+      "v27_recall": 0.4262068965517241,
+      "delta": -0.2096551724137931,
+      "n": 725
+    },
+    {
+      "generator_id": "qwen::FLUX.2_max",
+      "folds": [
+        1
+      ],
+      "lora_recall": 0.12,
+      "v27_recall": 0.14,
+      "delta": -0.020000000000000018,
+      "n": 100
+    },
+    {
+      "generator_id": "qwen::GPT-Image-1.5",
+      "folds": [
+        1,
+        3
+      ],
+      "lora_recall": 0.26,
+      "v27_recall": 0.20500000000000002,
+      "delta": 0.05499999999999999,
+      "n": 200
+    },
+    {
+      "generator_id": "qwen::Seedream-5.0",
+      "folds": [
+        4
+      ],
+      "lora_recall": 0.17,
+      "v27_recall": 0.36,
+      "delta": -0.18999999999999997,
+      "n": 100
+    }
+  ],
+  "top5_generator_improvements": [
+    {
+      "fold": 3,
+      "generator_id": "qwen::GPT-Image-1.5",
+      "n": 100,
+      "lora_ai_recall_050": 0.37,
+      "v27_ai_recall_050": 0.19,
+      "delta_recall": 0.18
+    },
+    {
+      "fold": 2,
+      "generator_id": "qwen::nano-banana-pro",
+      "n": 100,
+      "lora_ai_recall_050": 0.37,
+      "v27_ai_recall_050": 0.22,
+      "delta_recall": 0.15
+    },
+    {
+      "fold": 3,
+      "generator_id": "qwen::Seedream-4.5",
+      "n": 100,
+      "lora_ai_recall_050": 0.24,
+      "v27_ai_recall_050": 0.11,
+      "delta_recall": 0.13
+    },
+    {
+      "fold": 3,
+      "generator_id": "qwen::GPT-Image-1",
+      "n": 100,
+      "lora_ai_recall_050": 0.36,
+      "v27_ai_recall_050": 0.25,
+      "delta_recall": 0.10999999999999999
+    },
+    {
+      "fold": 3,
+      "generator_id": "qwen::HunyuanImage-3.0",
+      "n": 100,
+      "lora_ai_recall_050": 0.37,
+      "v27_ai_recall_050": 0.3,
+      "delta_recall": 0.07
+    }
+  ],
+  "top5_generator_deteriorations": [
+    {
+      "fold": 4,
+      "generator_id": "tiny::Midjourney",
+      "n": 286,
+      "lora_ai_recall_050": 0.458041958041958,
+      "v27_ai_recall_050": 0.951048951048951,
+      "delta_recall": -0.493006993006993
+    },
+    {
+      "fold": 1,
+      "generator_id": "mllm::GPT_Image_2",
+      "n": 726,
+      "lora_ai_recall_050": 0.1322314049586777,
+      "v27_ai_recall_050": 0.5977961432506887,
+      "delta_recall": -0.46556473829201106
+    },
+    {
+      "fold": 1,
+      "generator_id": "tiny::ADM",
+      "n": 286,
+      "lora_ai_recall_050": 0.5979020979020979,
+      "v27_ai_recall_050": 0.8356643356643356,
+      "delta_recall": -0.2377622377622377
+    },
+    {
+      "fold": 2,
+      "generator_id": "mllm::Nano_Banana_2",
+      "n": 725,
+      "lora_ai_recall_050": 0.216551724137931,
+      "v27_ai_recall_050": 0.4262068965517241,
+      "delta_recall": -0.2096551724137931
+    },
+    {
+      "fold": 4,
+      "generator_id": "qwen::Qwen-Image",
+      "n": 100,
+      "lora_ai_recall_050": 0.18,
+      "v27_ai_recall_050": 0.38,
+      "delta_recall": -0.2
+    }
+  ],
+  "overfitting": [
+    {
+      "fold": 1,
+      "epochs_logged": 18,
+      "selected_epoch": 14,
+      "train_loss_first": 0.7487717847082209,
+      "train_loss_last": 0.0914677028157847,
+      "train_loss_selected": 0.1149407974171868,
+      "val_loss_selected": 1.430659532546997,
+      "val_auc_best": 0.8893269644616504,
+      "val_auc_selected": 0.8893269644616504,
+      "val_auc_last": 0.8759451415471837,
+      "val_auc_drop_from_best": 0.013381822914466657,
+      "train_decreased": true,
+      "loss_gap_at_selected": 1.3157187351298103
+    },
+    {
+      "fold": 2,
+      "epochs_logged": 20,
+      "selected_epoch": 19,
+      "train_loss_first": 0.7014318578579324,
+      "train_loss_last": 0.0636184792324747,
+      "train_loss_selected": 0.0608593104459825,
+      "val_loss_selected": 1.6062445640563965,
+      "val_auc_best": 0.8999091610621641,
+      "val_auc_selected": 0.8999091610621641,
+      "val_auc_last": 0.8899903411762302,
+      "val_auc_drop_from_best": 0.009918819885933905,
+      "train_decreased": true,
+      "loss_gap_at_selected": 1.545385253610414
+    },
+    {
+      "fold": 3,
+      "epochs_logged": 20,
+      "selected_epoch": 19,
+      "train_loss_first": 0.7414518305749604,
+      "train_loss_last": 0.0970345769768975,
+      "train_loss_selected": 0.0989041691892921,
+      "val_loss_selected": 0.591640055179596,
+      "val_auc_best": 0.9367871381127388,
+      "val_auc_selected": 0.9367871381127388,
+      "val_auc_last": 0.9071573736031068,
+      "val_auc_drop_from_best": 0.02962976450963206,
+      "train_decreased": true,
+      "loss_gap_at_selected": 0.4927358859903038
+    },
+    {
+      "fold": 4,
+      "epochs_logged": 20,
+      "selected_epoch": 19,
+      "train_loss_first": 0.6243173904033099,
+      "train_loss_last": 0.0699080844170184,
+      "train_loss_selected": 0.0703414046005368,
+      "val_loss_selected": 0.942713499069214,
+      "val_auc_best": 0.8866678245239691,
+      "val_auc_selected": 0.8866678245239691,
+      "val_auc_last": 0.8865603092030356,
+      "val_auc_drop_from_best": 0.00010751532093344895,
+      "train_decreased": true,
+      "loss_gap_at_selected": 0.8723720944686771
+    }
+  ],
+  "domain_table": [
+    {
+      "fold": 1,
+      "real_domain": "Tiny",
+      "lora_specificity": 0.98,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 1,
+      "real_domain": "MLLM",
+      "lora_specificity": 0.9469026548672568,
+      "baseline_specificity": 0.991150442477876
+    },
+    {
+      "fold": 1,
+      "real_domain": "COCO",
+      "lora_specificity": 1.0,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 1,
+      "real_domain": "Smartphone",
+      "lora_specificity": 0.988,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 2,
+      "real_domain": "Tiny",
+      "lora_specificity": 0.996,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 2,
+      "real_domain": "MLLM",
+      "lora_specificity": 0.9557522123893806,
+      "baseline_specificity": 0.9646017699115044
+    },
+    {
+      "fold": 2,
+      "real_domain": "COCO",
+      "lora_specificity": 1.0,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 2,
+      "real_domain": "Smartphone",
+      "lora_specificity": 0.998,
+      "baseline_specificity": 0.952
+    },
+    {
+      "fold": 3,
+      "real_domain": "Tiny",
+      "lora_specificity": 0.96,
+      "baseline_specificity": 0.992
+    },
+    {
+      "fold": 3,
+      "real_domain": "MLLM",
+      "lora_specificity": 0.8230088495575221,
+      "baseline_specificity": 0.9734513274336284
+    },
+    {
+      "fold": 3,
+      "real_domain": "COCO",
+      "lora_specificity": 1.0,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 3,
+      "real_domain": "Smartphone",
+      "lora_specificity": 0.99,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 4,
+      "real_domain": "Tiny",
+      "lora_specificity": 0.948,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 4,
+      "real_domain": "MLLM",
+      "lora_specificity": 0.9292035398230089,
+      "baseline_specificity": 0.9734513274336284
+    },
+    {
+      "fold": 4,
+      "real_domain": "COCO",
+      "lora_specificity": 1.0,
+      "baseline_specificity": 1.0
+    },
+    {
+      "fold": 4,
+      "real_domain": "Smartphone",
+      "lora_specificity": 0.994,
+      "baseline_specificity": 0.994
+    }
+  ],
+  "paired_bootstrap": {
+    "n_replicates": 5000,
+    "seed": 42,
+    "status": "COMPUTED_ON_KERNEL_BUT_VS_INVALID_INRUN_BASELINE",
+    "use_for_v27_inference": false,
+    "reason": "p_mlpb_baseline used LoRA visual features; fold2 in-run baseline AUC 0.585 vs V2-7 0.853"
+  }
+}

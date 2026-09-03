@@ -1,0 +1,33 @@
+image_id,binary_label,source_dataset,generator,real_domain,path,dryrun_role,selection_seed
+pilot_001590,0,Tiny-GenImage,Real,Tiny,data/raw/tiny-genimage/images/Real/n01728572_16588.JPEG,REAL_Tiny,42
+pilot_002936,0,Tiny-GenImage,Real,Tiny,data/raw/tiny-genimage/images/Real/n01819313_106.JPEG,REAL_Tiny,42
+pilot_000956,0,Tiny-GenImage,Real,Tiny,data/raw/tiny-genimage/images/Real/n01669191_133.JPEG,REAL_Tiny,42
+pilot_001614,0,Tiny-GenImage,Real,Tiny,data/raw/tiny-genimage/images/Real/n01756291_18184.JPEG,REAL_Tiny,42
+MLLM_STR_real_117,0,MLLM,Real,MLLM,data/external_v2/public/mllm/raw/Structure Images/real/117.jpeg,REAL_MLLM,42
+MLLM_TEX_real_173,0,MLLM,Real,MLLM,data/external_v2/public/mllm/raw/Texture Images/real/173.jpg,REAL_MLLM,42
+MLLM_STR_real_232,0,MLLM,Real,MLLM,data/external_v2/public/mllm/raw/Structure Images/real/232.jpeg,REAL_MLLM,42
+MLLM_HYB_real_188,0,MLLM,Real,MLLM,data/external_v2/public/mllm/raw/Hybrid Images/real/188.jpg,REAL_MLLM,42
+EXT_REAL_0348,0,COCO,Real,COCO,data/external_v1/native/real/coco2017/EXT_REAL_0348_399462.jpg,REAL_COCO,42
+EXT_REAL_0089,0,COCO,Real,COCO,data/external_v1/native/real/coco2017/EXT_REAL_0089_239717.jpg,REAL_COCO,42
+EXT_REAL_0045,0,COCO,Real,COCO,data/external_v1/native/real/coco2017/EXT_REAL_0045_327605.jpg,REAL_COCO,42
+EXT_REAL_0103,0,COCO,Real,COCO,data/external_v1/native/real/coco2017/EXT_REAL_0103_210388.jpg,REAL_COCO,42
+SMARTPHONE_467531,0,Smartphone,Real,Smartphone,data/v2/smartphone_real/SMARTPHONE_467531.jpg,REAL_Smartphone,42
+SMARTPHONE_985140,0,Smartphone,Real,Smartphone,data/v2/smartphone_real/SMARTPHONE_985140.jpg,REAL_Smartphone,42
+SMARTPHONE_167092,0,Smartphone,Real,Smartphone,data/v2/smartphone_real/SMARTPHONE_167092.jpg,REAL_Smartphone,42
+SMARTPHONE_167655,0,Smartphone,Real,Smartphone,data/v2/smartphone_real/SMARTPHONE_167655.jpg,REAL_Smartphone,42
+pilot_003999,1,Tiny-GenImage,SD15,,data/raw/tiny-genimage/images/SD15/142_sdv5_00059.png,AI_SD15,42
+pilot_003555,1,Tiny-GenImage,Wukong,,data/raw/tiny-genimage/images/Wukong/209_wukong_image31.png,AI_Wukong,42
+QWEN_0354_nano_banana_pro,1,Qwen,nano-banana-pro,,data/external_v2/public/qwen/images/nano-banana-pro/000354_41c84405.png,AI_nano-banana-pro,42
+pilot_002903,1,Tiny-GenImage,GLIDE,,data/raw/tiny-genimage/images/GLIDE/GLIDE_1000_200_01_106_glide_00193.png,AI_GLIDE,42
+pilot_003783,1,Tiny-GenImage,BigGAN,,data/raw/tiny-genimage/images/BigGAN/146_biggan_00066.png,AI_BigGAN,42
+QWEN_0081_Imagen_40_Ultra,1,Qwen,Imagen-4.0-Ultra,,data/external_v2/public/qwen/images/Imagen-4.0-Ultra/000081_b93c5ef5.png,AI_Imagen-4.0-Ultra,42
+QWEN_0699_nano_banana_20,1,Qwen,nano-banana-2.0,,data/external_v2/public/qwen/images/nano-banana-2.0/000699_5348eacd.png,AI_nano-banana-2.0,42
+QWEN_0415_Seedream_40,1,Qwen,Seedream-4.0,,data/external_v2/public/qwen/images/Seedream-4.0/000415_f7729775.jpg,AI_Seedream-4.0,42
+QWEN_0713_FLUX2_pro,1,Qwen,FLUX.2-pro,,data/external_v2/public/qwen/images/FLUX.2-pro/000713_b357957a.png,AI_FLUX.2-pro,42
+QWEN_0777_gpt_image_2,1,Qwen,gpt-image-2,,data/external_v2/public/qwen/images/gpt-image-2/000777_aea5ce38.png,AI_gpt-image-2,42
+QWEN_0335_HunyuanImage_30,1,Qwen,HunyuanImage-3.0,,data/external_v2/public/qwen/images/HunyuanImage-3.0/000335_2617ef1f.png,AI_HunyuanImage-3.0,42
+QWEN_0465_Qwen_Image,1,Qwen,Qwen-Image,,data/external_v2/public/qwen/images/Qwen-Image/000465_d372d5c1.jpg,AI_Qwen-Image,42
+QWEN_0471_Seedream_45,1,Qwen,Seedream-4.5,,data/external_v2/public/qwen/images/Seedream-4.5/000471_73f3d9f3.jpg,AI_Seedream-4.5,42
+QWEN_0876_Qwen_Image_2512,1,Qwen,Qwen-Image-2512,,data/external_v2/public/qwen/images/Qwen-Image-2512/000876_7e8fb950.jpeg,AI_Qwen-Image-2512,42
+QWEN_0140_Qwen_Image_20_pro,1,Qwen,Qwen-Image-2.0-pro,,data/external_v2/public/qwen/images/Qwen-Image-2.0-pro/000140_41c03f0a.png,AI_Qwen-Image-2.0-pro,42
+pilot_000567,1,Tiny-GenImage,Midjourney,,data/raw/tiny-genimage/images/Midjourney/119_midjourney_5.png,AI_Midjourney,42

@@ -1,0 +1,6 @@
+{
+  "mode": "smoke_then_full",
+  "support_dataset": "sovaakushwaha/v2-clip-lora-support",
+  "support_dataset_version": 6,
+  "kernel_target_version": 37
+}

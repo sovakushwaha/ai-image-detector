@@ -1,0 +1,93 @@
+{
+  "report": "V2-8 EXECUTION CONTROL REPORT",
+  "generated_utc": "2026-09-02T21:57:00Z",
+  "decision": "KEEP_CURRENT_V37_RUNNING",
+  "internal_state": {
+    "ACTIVE_RUN_OWNER": "sovaakushwaha",
+    "ACTIVE_RUN_VERSION": 37,
+    "ACTIVE_RUN_STATUS": "RUNNING",
+    "ACTIVE_RUN_GPU": "ENABLED (NvidiaTeslaT4 in push metadata; 6.7h sustained RUNNING implies allocation)",
+    "ACTIVE_RUN_SUPPORT_VERSION": 6,
+    "ACTIVE_RUN_MODE": "smoke_then_full",
+    "ACTIVE_RUN_STAGE": "INFERRED_FULL_FOUR_FOLD_TRAINING (precheck+smoke+sanity likely complete; logs unavailable until kernel ends)"
+  },
+  "active_remote_run": {
+    "account": "sovaakushwaha",
+    "kernel": "sovaakushwaha/v2-clip-lora-generalisation",
+    "version": 37,
+    "version_confidence": "HIGH (lastRunTime 2026-09-02T15:15:46Z matches v37 push; run_config kernel_target_version=37)",
+    "status": "RUNNING",
+    "gpu": "ENABLED",
+    "start_time_utc": "2026-09-02T15:15:46.023Z",
+    "elapsed_hours": 6.69,
+    "current_stage": "INFERRED: full four-fold training (fold 2-4 likely; ETA near completion window)",
+    "support_dataset_version": 6,
+    "materialization_precheck": "INFERRED PASS (v35 failed <1h; 6.7h runtime incompatible with precheck failure)",
+    "scientific_training_started": "YES (inferred)",
+    "valid_run": "YES"
+  },
+  "validation_checklist": {
+    "support_dataset": "sovaakushwaha/v2-clip-lora-support",
+    "support_version_6": true,
+    "smartphone_2500": true,
+    "run_mode_smoke_then_full": true,
+    "materialization_precheck_enabled": true,
+    "locked_v2_3_manifests": true,
+    "scientific_config_unchanged": true,
+    "gpu_enabled": true,
+    "ntire_not_accessed": true,
+    "fal_not_used": true
+  },
+  "other_cursor_audit": {
+    "still_running": false,
+    "readiness_report_available": true,
+    "artifact": "results/v2/v2_8_readiness_audit_v1.json",
+    "production_readiness_text_report": false,
+    "important_blockers": [
+      "Audit verdict NOT_READY_FOR_V37_GPU_RUN is stale for NEW launches only",
+      "Audit labels active session as v36 RUNNING — same kernel session as v37 production push",
+      "GPU quota parse error in audit (39253.640951.0) — contradicted by active 6.7h GPU run",
+      "Local dependency/CLIP/CUDA gates FAIL locally (expected); Kaggle pip bundle handles runtime"
+    ]
+  },
+  "current_account": {
+    "cli_authenticated_as": "sovaakushwaha",
+    "auth_method": "ACCESS_TOKEN",
+    "gpu_quota_available_new_sessions": "UNKNOWN (audit parse failed; no second run attempted)",
+    "can_existing_valid_run_continue": "YES"
+  },
+  "alternative_account": {
+    "username": "kushwahapankaj2001",
+    "credentials_on_disk": "kaggle.json present; overridden by access_token",
+    "authenticated": false,
+    "compute_available": "UNKNOWN",
+    "migration_required": false
+  },
+  "preventable_failure_gates": {
+    "four_fold_manifest": "PASS",
+    "2500_smartphone": "PASS",
+    "full_four_fold_materialization": "PASS (audit expected); live precheck INFERRED PASS",
+    "image_decoding": "PASS (smartphone); remote HF/HTTP deferred on-worker",
+    "disk": "PASS",
+    "dependencies": "PENDING (Kaggle runtime; local FAIL expected)",
+    "cuda": "PENDING (Kaggle runtime; local FAIL expected)",
+    "clip_weights": "PENDING (Kaggle runtime)",
+    "checkpoint_save_reload": "PASS (local audit)",
+    "all_fold_dataloader": "PENDING (on-worker; passed if past smoke/sanity)",
+    "one_batch_all_fold": "PENDING (on-worker; passed if in full training)"
+  },
+  "actions_taken": [
+    "Established authoritative remote state via kaggle kernels status (read-only)",
+    "Did NOT switch credentials",
+    "Did NOT push duplicate kernel",
+    "Did NOT migrate accounts",
+    "Did NOT modify audit artifacts",
+    "Preserved sovaakushwaha access for monitor/import"
+  ],
+  "next_steps": [
+    "Poll kaggle kernels status until COMPLETE or ERROR",
+    "On COMPLETE: kaggle kernels output + run src/run_v2_lora_kaggle_v1.py import",
+    "On ERROR: download logs immediately; do not relaunch until root cause confirmed",
+    "Do NOT cancel current run unless status becomes ERROR or exceeds ~10h with no completion"
+  ]
+}

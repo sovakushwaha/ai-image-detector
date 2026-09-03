@@ -1,0 +1,155 @@
+FAL.AI REMOVAL AUDIT v1
+Date: 2026-09-02
+Project: ai-image-detector
+
+==================================================
+ENVIRONMENT
+==================================================
+
+FAL_ENV_PRESENT_BEFORE: NO
+  (FAL_KEY / FAL_API_KEY absent from current shell)
+
+FAL_ENV_PRESENT_AFTER: NO
+  (strip_fal_env() guard added; no persistent shell profiles contained FAL)
+
+Project .env file: PRESENT
+FAL entries in project .env: NOT FOUND
+
+Shell profiles scanned (~/.zshrc, ~/.zprofile): NO FAL REFERENCES
+
+Cron / launchd fal jobs: NOT FOUND
+
+==================================================
+ACTIVE PROCESSES
+==================================================
+
+ACTIVE_FAL_PROCESS_FOUND: NO
+  (no running python/node/shell jobs invoking generate_external_ai_fal_v1,
+   acquire_external_v1, fal.run, or fal-ai endpoints)
+
+ACTIVE_FAL_PROCESS_STOPPED: N/A
+
+==================================================
+REPOSITORY — ACTIVE CODE
+==================================================
+
+ACTIVE_FAL_CODE_FOUND: YES
+  Locations (category A — now hard-disabled):
+    - src/generate_external_ai_fal_v1.py  (superseded Stage 27A v1.1 generator)
+    - src/acquire_external_v1.py          (superseded Stage 27A-1 gate)
+
+ACTIVE_FAL_CODE_REMOVED: YES
+  Actions taken:
+    - Added src/fal_guard_v1.py (permanent block + env strip + provider guard)
+    - generate_external_ai_fal_v1.py: main() exits immediately; fal_queue_generate raises
+    - acquire_external_v1.py: main() exits immediately
+    - Removed load_dotenv() from superseded fal scripts (no FAL_KEY loading)
+
+FAL_FALLBACK_FOUND: NO
+  (no provider registry routes inference or generation through fal.ai)
+
+FAL_FALLBACK_REMOVED: N/A
+
+Active workflow uses: src/acquire_external_v2_public.py (public datasets only)
+
+==================================================
+CONFIGURATION / SECRET FILES
+==================================================
+
+FAL_SECRET_FILE_FOUND: NO
+  (.env present but contains no FAL_KEY / FAL_API_KEY entry)
+
+Secret type if found elsewhere: N/A
+
+==================================================
+GIT
+==================================================
+
+FAL credential currently tracked in repo files: NO
+  (tracked references are historical logs/metadata only; no literal key values)
+
+FAL_SECRET_IN_GIT_HISTORY: NO
+  (git log -S'FAL_KEY=' found no committed literal assignments)
+
+Tracked fal-related files (historical / documentation):
+  - src/generate_external_ai_fal_v1.py (disabled)
+  - src/acquire_external_v1.py (disabled)
+  - results/fal_gen_*.log
+  - results/external_fal_*.json
+  - results/external_protocol_v1.json
+  - metadata/* fal historical registry entries
+
+==================================================
+KAGGLE V2-8
+==================================================
+
+FAL_PRESENT_IN_KAGGLE_V2_8: NO
+  (kaggle/v2_lora/ and support bundles: no FAL_KEY, fal client, or fal.run calls)
+
+V2-8 training affected by this audit: NO
+  (kernel sovaakushwaha/v2-clip-lora-generalisation left RUNNING)
+
+==================================================
+TESTS
+==================================================
+
+Dedicated fal test suite: NOT FOUND
+No active tests make real fal network calls.
+
+Guard verification (local):
+  generate_external_ai_fal_v1.py --smoke-only with FAL_KEY=dummy -> exit 3 STOP
+  acquire_external_v1.py with FAL_KEY=dummy -> STOP (blocked at main)
+
+==================================================
+DEPENDENCIES
+==================================================
+
+FAL_CLIENT_DEPENDENCY_PRESENT_AFTER: NO
+  (requirements.txt / package.json: no @fal-ai/client or fal-client)
+
+==================================================
+HISTORICAL ARTIFACTS
+==================================================
+
+HISTORICAL_FAL_IMAGES_RETAINED: YES
+  - data/external_v1/native/ai/* (fal-generated, Stage 27A v1.1)
+  - metadata/fal_generated_unused_artifacts_v1.csv
+  - registry marks fal_historical_artifacts as historical_only_excluded
+
+EXCLUDED_FROM_TRAINING: YES (per v2_dataset_role_registry)
+EXCLUDED_FROM_INFERENCE: YES (superseded protocol; V2 uses public benchmarks)
+EXCLUDED_FROM_METRICS: YES (Stage 27A V2 replaced fal workflow)
+NOT_REGENERATED: YES (generation scripts hard-disabled)
+
+==================================================
+PROVIDER STATE
+==================================================
+
+FAL_ACTIVE_PROVIDER: NO
+FAL_FALLBACK_PROVIDER: NO
+FAL_CAN_BE_CALLED_FROM_ACTIVE_PROJECT: NO
+
+Network guard: src/fal_guard_v1.py
+  - block_fal_usage() hard exit
+  - raise_fal_blocked() on API paths
+  - assert_provider_not_fal() for future provider selection
+  - strip_fal_env() removes FAL_KEY / FAL_API_KEY from process
+
+==================================================
+USER ACTION REQUIRED
+==================================================
+
+Revoke/delete the existing fal.ai API key in the fal dashboard: YES
+
+Reason: Local removal cannot invalidate a key that may exist in other environments,
+browser sessions, or copied configs. Provider-side revocation is the only reliable
+way to stop unknown callers from incurring charges.
+
+==================================================
+V2-8 / NTIRE
+==================================================
+
+Kaggle V2-8 LoRA training: LEAVE RUNNING
+NTIRE: UNTOUCHED
+
+Audit completed by: automated fal removal task (2026-09-02)

@@ -27,6 +27,9 @@ htmlcov/
 # Environment / secrets
 .env
 .env.*
+kaggle.json
+.kaggle/
+*.token
 
 # OS
 .DS_Store
@@ -50,6 +53,11 @@ data/processed/*
 !data/processed/controlled_v1/
 data/processed/controlled_v1/**
 !data/processed/controlled_v1/SOURCE.md
+data/external_v1/native/
+data/external_v1/_coco_cache/
+data/external_v2/
+data/v2/**
+!data/v2/.gitkeep
 
 # Local paper drafts (kept out of git)
 paper/
@@ -60,3 +68,26 @@ paper/
 *.pt
 *.pth
 *.onnx
+*.zip
+
+# Kaggle local caches / wheel bundles / uploads (too large)
+kaggle/v2_lora/pip_bundle/*.whl
+kaggle/v2_lora/support_bundle/smartphone_real/
+kaggle/v2_lora/support_bundle/smartphone_real.zip
+kaggle/v2_lora/support_upload/
+kaggle/v2_lora/__pycache__/
+kaggle/v2_lora/_local_*/
+kaggle/v2_lora/_readiness_*/
+
+# Heavy V2 runtime artifacts (keep small metrics/reports)
+results/v2/kaggle_v2_lora_v37/
+results/v2/kaggle_v2_lora/
+results/v2/clip_embedding_chunks_v1/
+results/v2/kaggle_v2_lora_v*/
+results/local_ui_startup.log
+
+# Accidental Kaggle CLI downloads at repo root
+/dataset-metadata.json
+/kernel-metadata.json
+/v2-clip-lora-generalisation.py
+/v2-clip-lora-generalisation.ipynb

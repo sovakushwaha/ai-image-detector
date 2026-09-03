@@ -1,0 +1,39 @@
+V2-8 Kaggle integration report (updated 2026-09-02)
+authentication: PASS
+account: kushwahapankaj2001
+credential_printed: NO
+credential_in_repo: NO
+ntire_accessed: NO
+
+Kernel:
+  slug: sovaakushwaha/v2-clip-lora-generalisation
+  latest_version: 35 (RUNNING as of report time)
+  accelerator: NvidiaTeslaT4
+  mode: smoke_then_full (hardcoded)
+
+Stages completed on Kaggle (v34 logs):
+  A GPU verify: PASS (cuda_available=true, cuda:0 only)
+  B CUDA PyTorch preserved: PASS (--no-deps offline open-clip)
+  C Environment audit: PASS (open_clip 3.3.0, ViT-B-16-quickgelu)
+  E Parameter audit: PASS (295297 trainable, 0.197%, no unintended CLIP grads)
+  F Smoke gate: PASS (LoRA norm ~0.30, MLP changed, batch 32)
+
+Stages in progress:
+  G-L Full four-fold training: v35 running after smartphone_real.zip path fix
+  Prior blocker: 29-30 smartphone images failed URL-only materialization (fold 1)
+  Fix: support dataset smartphone_real.zip (2000 locked train IDs) + nested zip extraction
+
+Not yet done:
+  Import to results/v2/kaggle_v2_lora/
+  Copy clip_lora_fold{N}_best_v1.pt to models/v2/
+  Paired bootstrap (5000 replicates, seed 42)
+  LORA_PROMISING / LORA_MIXED / LORA_NOT_BETTER decision
+  Final formatted V2-8 summary with fold metrics
+
+Scientific integrity:
+  V1 changed: NO
+  V2 folds changed: NO
+  Full CLIP fine-tuning: NO
+  LoRA: YES (last 4 blocks, locked config)
+  NTIRE: NO
+  Threshold/calibration: NO

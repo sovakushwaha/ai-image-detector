@@ -1,0 +1,22 @@
+{
+  "real_source_classification": {
+    "performed": true,
+    "n": 2210,
+    "classes": [
+      "COCO",
+      "MLLM",
+      "Tiny-GenImage"
+    ],
+    "cv5_accuracy_mean": 0.6904977375565611,
+    "cv5_accuracy_std": 0.0122590200761485,
+    "chance_baseline": 0.3333333333333333
+  },
+  "legacy_vs_modern_ai": {
+    "performed": true,
+    "n": 4336,
+    "cv5_accuracy_mean": 0.9368070947544103,
+    "cv5_accuracy_std": 0.008588773184349661,
+    "modern_fraction": 0.75,
+    "chance_majority": 0.75
+  }
+}

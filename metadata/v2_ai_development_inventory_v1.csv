@@ -1,0 +1,29 @@
+dataset,generator,image_count,unique_prompt_count_if_known,source_group,observed_in_V1,eligible_for_V2_training,eligible_for_V2_holdout
+Tiny-GenImage_pilot_4000,ADM,286,UNKNOWN,tiny_genimage_legacy,YES,YES,YES
+Tiny-GenImage_pilot_4000,BigGAN,286,UNKNOWN,tiny_genimage_legacy,YES,YES,YES
+Tiny-GenImage_pilot_4000,GLIDE,286,UNKNOWN,tiny_genimage_legacy,YES,YES,YES
+Tiny-GenImage_pilot_4000,Midjourney,286,UNKNOWN,tiny_genimage_legacy,YES,YES,YES
+Tiny-GenImage_pilot_4000,SD15,286,UNKNOWN,tiny_genimage_legacy,YES,YES,YES
+Tiny-GenImage_pilot_4000,VQDM,285,UNKNOWN,tiny_genimage_legacy,YES,YES,YES
+Tiny-GenImage_pilot_4000,Wukong,285,UNKNOWN,tiny_genimage_legacy,YES,YES,YES
+zr-zhang/MLLM-Generated-Image-Detection-Dataset,GPT Image 2,726,UNKNOWN,mllm_stage27_reclassified,YES_Stage27_external,YES,YES
+zr-zhang/MLLM-Generated-Image-Detection-Dataset,Nano Banana 2,726,UNKNOWN,mllm_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,FLUX.2-pro,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,FLUX.2_max,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,GLM-Image,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,GPT-Image-1,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,GPT-Image-1.5,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,HunyuanImage-3.0,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Imagen-4.0,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Imagen-4.0-Ultra,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Qwen-Image,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Qwen-Image-2.0-pro,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Qwen-Image-2512,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Seedream-4.0,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Seedream-4.5,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,Seedream-5.0,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,gpt-image-2,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,kling_v2_1,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,nano-banana-2.0,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+Qwen/Qwen-Image-Bench,nano-banana-pro,100,100,qwen_stage27_reclassified,YES_Stage27_external,YES,YES
+fal_ai_historical_artifacts_38,fal_historical_mixed,38,UNKNOWN,fal_excluded,YES_unused,NO,NO

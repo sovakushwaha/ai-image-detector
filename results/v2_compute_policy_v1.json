@@ -1,0 +1,50 @@
+{
+  "document": "v2_compute_policy_v1",
+  "stage": "V2-0",
+  "created": "2026-08-27",
+  "LOCAL_MACHINE": "development/audit/lightweight-analysis",
+  "local_allowed": [
+    "metadata work",
+    "dataset audits",
+    "dataset manifests",
+    "small classical classifiers (e.g. logistic regression on precomputed embeddings)",
+    "analysis and statistics",
+    "plots and tables",
+    "lightweight inference where practical",
+    "protocol and paper drafting"
+  ],
+  "REMOTE_GPU_REQUIRED_FOR": [
+    "large-scale CLIP embedding extraction if local runtime is impractical",
+    "CLIP fine-tuning",
+    "LoRA / partial-block adaptation training",
+    "large-batch image training",
+    "repeated deep-learning experiments"
+  ],
+  "preferred_remote_option": "Kaggle GPU",
+  "alternative_remote_option": "user-provided remote GPU/server",
+  "first_stage_expected_to_require_remote_gpu": "V2-4 or V2-5 (frozen CLIP embedding extraction / baseline) if local runtime is impractical; definitely V2-7 (CLIP adaptation / LoRA)",
+  "kaggle_required_at_v2_0": false,
+  "heavy_gpu_training_started": false,
+  "stop_gate_before_heavy_compute": {
+    "required": true,
+    "message": "REMOTE GPU RECOMMENDED",
+    "must_report": [
+      "estimated task",
+      "approximate dataset size",
+      "model",
+      "expected VRAM need where estimable",
+      "recommended Kaggle/server setup"
+    ]
+  },
+  "installed_library_audit_v2_0": {
+    "torch": "installed",
+    "torchvision": "installed",
+    "open_clip": "NOT installed",
+    "openai_clip": "NOT installed",
+    "transformers": "NOT installed",
+    "timm": "NOT installed",
+    "preferred_first_clip_backbone": "ViT-B/16 or ViT-B/32",
+    "download_or_train_at_v2_0": false,
+    "note": "CLIP libraries are not yet installed; installation/download deferred until a later V2 stage after protocol lock."
+  }
+}

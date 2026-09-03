@@ -1,0 +1,32 @@
+{
+  "document": "v2_final_external_backup_candidate_v1",
+  "ACTIVE_FINAL_TEST": "NTIRE",
+  "ACTIVE_FINAL_TEST_DATASET_ID": "deepfakesMSU/NTIRE-RobustAIGenDetection-val",
+  "BACKUP_STATUS": "RESERVED_METADATA_ONLY",
+  "backup_dataset_id": "saberzl/So-Fake-OOD",
+  "backup_revision_sha": "b4b34d16fda2020c2923a21d431d1ab3acbdbaff",
+  "backup_reason": "Contemporary OOD evaluation split with platform-native real images and held-out commercial generators; verified label schema in card; no images/labels inspected.",
+  "images_opened": false,
+  "labels_used": false,
+  "model_inference": false,
+  "selection_rule": "If NTIRE is usable at V2-11, use NTIRE regardless of score. Do NOT create two final tests to choose the better score.",
+  "safeimg_considered": {
+    "dataset_id": "Snowstorm1492/SafeIMG",
+    "revision_sha": "389a7c555191c9e946727a470500fcd9b045381c",
+    "rejected_as_primary_backup": true,
+    "reasons": [
+      "AI-only safety-oriented synthetic benchmark (no Real class for full ROC)",
+      "Generated with GPT Image 2 \u2014 overlaps planned V2 development AI sources"
+    ]
+  },
+  "community_forensics_eval_considered": {
+    "dataset_id": "OwensLab/CommunityForensics-Eval",
+    "revision_sha": "7d4a74a88d2cac93b513c0853bf92c260eaceea0",
+    "not_selected_as_primary_backup": true,
+    "reasons": [
+      "Real sources include COCO (overlap risk with V2 COCO development pool)",
+      "Very large download (~206GB) impractical as emergency backup",
+      "CC-BY-NC-SA-4.0 non-commercial research constraints"
+    ]
+  }
+}

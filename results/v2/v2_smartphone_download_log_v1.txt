@@ -1,0 +1,63 @@
+unique metadata rows: 8939
+loaded existing candidate pool: 7561
+already success=1036 failed=68 pending=6457
+progress success=1103 failed=73 scanned=72/6457
+progress success=1169 failed=79 scanned=144/6457
+progress success=1236 failed=84 scanned=216/6457
+progress success=1299 failed=93 scanned=288/6457
+progress success=1366 failed=98 scanned=360/6457
+progress success=1436 failed=100 scanned=432/6457
+progress success=1500 failed=108 scanned=504/6457
+progress success=1567 failed=113 scanned=576/6457
+progress success=1636 failed=116 scanned=648/6457
+progress success=1705 failed=119 scanned=720/6457
+progress success=1775 failed=121 scanned=792/6457
+progress success=1843 failed=125 scanned=864/6457
+progress success=1909 failed=131 scanned=936/6457
+Traceback (most recent call last):
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_acquire_smartphone_real_v1.py", line 515, in <module>
+    main()
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_acquire_smartphone_real_v1.py", line 419, in main
+    sid, payload, status = fut.result()
+                           ^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_acquire_smartphone_real_v1.py", line 385, in process_one
+    local.write_bytes(data)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1037, in write_bytes
+    return f.write(view)
+           ^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device
+unique metadata rows: 8939
+loaded existing candidate pool: 7561
+already success=1909 failed=131 pending=5521
+progress success=1964 failed=136 scanned=60/5521
+progress success=2021 failed=139 scanned=120/5521
+progress success=2077 failed=143 scanned=180/5521
+progress success=2132 failed=148 scanned=240/5521
+progress success=2188 failed=152 scanned=300/5521
+progress success=2247 failed=153 scanned=360/5521
+progress success=2306 failed=154 scanned=420/5521
+progress success=2364 failed=156 scanned=480/5521
+progress success=2420 failed=160 scanned=540/5521
+progress success=2478 failed=162 scanned=600/5521
+progress success=2537 failed=163 scanned=660/5521
+progress success=2596 failed=164 scanned=720/5521
+progress success=2653 failed=167 scanned=780/5521
+progress success=2711 failed=169 scanned=840/5521
+progress success=2768 failed=172 scanned=900/5521
+progress success=2826 failed=174 scanned=960/5521
+progress success=2880 failed=180 scanned=1020/5521
+progress success=2937 failed=183 scanned=1080/5521
+progress success=2994 failed=186 scanned=1140/5521
+progress success=3000 failed=186 scanned=1200/5521
+DONE smartphone acquisition
+n= 3000 Counter({'train': 2000, 'validation': 500, 'internal_holdout': 500})
+manufacturers Counter({'Apple': 1578, 'Samsung': 834, 'Huawei': 360, 'Xiaomi': 82, 'Oppo': 74, 'Vivo': 72})
+top devices [('iPhone X', 96), ('iPhone 7 Plus', 96), ('iPhone 7', 95), ('iPhone 8', 90), ('iPhone 5', 87)] max share 0.032

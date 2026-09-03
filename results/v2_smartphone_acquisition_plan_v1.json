@@ -1,0 +1,32 @@
+{
+  "document": "v2_smartphone_acquisition_plan_v1",
+  "source_dataset": "laionmobile/laion-mobile",
+  "source_revision_sha": "0c60f598e67cffe8475f54edd71307648cd03465",
+  "provenance_verified": true,
+  "metadata_only_design": true,
+  "seed": 42,
+  "pool_used": "metadata/eval_sample_metadata.csv (n=9115 complete-case eval sample)",
+  "unique_after_url_sha_dedupe": 8939,
+  "targets": {
+    "train": 2000,
+    "validation": 500,
+    "internal_holdout": 500
+  },
+  "achieved_split_counts": {
+    "internal_holdout": 500,
+    "train": 2000,
+    "validation": 500
+  },
+  "manufacturer_counts_selected": {
+    "Apple": 1512,
+    "Huawei": 366,
+    "Oppo": 81,
+    "Samsung": 888,
+    "Vivo": 77,
+    "Xiaomi": 76
+  },
+  "download_status": "PENDING_URL_RECONSTRUCTION",
+  "images_downloaded_at_v2_1": false,
+  "replacement_policy": "Replace inaccessible URLs BEFORE any V2 inference; never based on model output",
+  "privacy": "Do not redistribute reconstructed images; no user personal photos in formal protocol"
+}

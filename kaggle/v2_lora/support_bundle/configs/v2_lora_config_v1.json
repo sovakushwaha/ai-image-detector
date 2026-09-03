@@ -1,0 +1,61 @@
+{
+  "stage": "V2-8",
+  "seed": 42,
+  "clip": {
+    "model_name": "ViT-B-16-quickgelu",
+    "pretrained": "openai",
+    "library": "open_clip_torch",
+    "library_version": "3.3.0",
+    "embedding_dim": 512,
+    "l2_normalize": true
+  },
+  "lora": {
+    "target": "last_4_visual_transformer_blocks",
+    "target_modules": ["attn.in_proj", "attn.out_proj"],
+    "rank": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "last_n_blocks": 4
+  },
+  "head": {
+    "architecture": "MLP-B",
+    "layers": [512, 256, 64, 1],
+    "dropout": 0.2
+  },
+  "training": {
+    "batch_size": 32,
+    "batch_size_fallback": 16,
+    "max_epochs": 20,
+    "early_stopping_patience": 4,
+    "lora_lr": 0.0001,
+    "head_lr": 0.0005,
+    "weight_decay": 0.0001,
+    "horizontal_flip_p": 0.5,
+    "cap_per_generator": 300,
+    "class_ratio_threshold": 1.25
+  },
+  "smoke": {
+    "fold": 1,
+    "max_real_train": 128,
+    "max_ai_train": 128,
+    "max_epochs": 2
+  },
+  "data_sources": {
+    "tiny_kaggle": "yangsangtai/tiny-genimage",
+    "mllm_hf": "zr-zhang/MLLM-Generated-Image-Detection-Dataset",
+    "mllm_revision": "1498eead24292a9a2d134476b2c559193b68b9de",
+    "qwen_hf": "Qwen/Qwen-Image-Bench",
+    "qwen_revision": "d2493deb153b020cf169c7e3f57d15e4dd697038",
+    "coco_base_url": "http://images.cocodataset.org/val2017"
+  },
+  "baseline": {
+    "reference": "V2-7 frozen CLIP + MLP-B",
+    "checkpoint_glob": "clip_mlpB_fold{fold}_best_v1.pt"
+  },
+  "integrity": {
+    "ntire_access": false,
+    "clip_full_finetune": false,
+    "threshold_tuning": false,
+    "calibration": false
+  }
+}

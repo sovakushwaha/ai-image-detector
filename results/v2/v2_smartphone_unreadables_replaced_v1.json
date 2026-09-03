@@ -1,0 +1,19 @@
+{
+  "stage": "V2-5",
+  "this_run_replacements": [],
+  "all_replacements": [
+    {
+      "v2_image_id": "SMARTPHONE_759460",
+      "old": "759460",
+      "new": "699138",
+      "split": "train"
+    },
+    {
+      "v2_image_id": "SMARTPHONE_143748",
+      "old": "143748",
+      "new": "927258",
+      "split": "train"
+    }
+  ],
+  "removed_chunks": []
+}

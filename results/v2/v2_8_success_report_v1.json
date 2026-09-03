@@ -1,0 +1,40 @@
+{
+  "stage": "V2-8",
+  "kernel": "sovaakushwaha/v2-clip-lora-generalisation",
+  "version": 37,
+  "status": "COMPLETE",
+  "completed_utc": "2026-09-02T23:31:17Z",
+  "analysis_utc": "2026-09-03T08:20:00Z",
+  "scientific_decision": "LORA_MIXED",
+  "kernel_decision_discarded": "LORA_PROMISING",
+  "total_wall_hours": 7.88,
+  "gpu": {
+    "name": "Tesla P100-PCIE-16GB",
+    "vram_gb": 15.89,
+    "torch": "2.5.1+cu118",
+    "cuda": "11.8",
+    "open_clip": "3.3.0"
+  },
+  "completion_verification": {
+    "FOUR_FOLD_CHECKPOINTS": 4,
+    "predictions_valid": true,
+    "manifest_alignment": "PASS",
+    "missing": 0,
+    "extra": 0,
+    "duplicates": 0
+  },
+  "artifact_import": {
+    "status": "COMPLETE",
+    "raw_archive": "results/v2/kaggle_v2_lora_v37/",
+    "imported_metrics": "results/v2/kaggle_v2_lora/v37_imported/",
+    "checkpoints": "models/v2/clip_lora_fold{1-4}_best_v1.pt",
+    "analysis": "results/v2/v2_8_analysis_v1.json"
+  },
+  "integrity": {
+    "ntire_accessed": false,
+    "fal_used": false,
+    "scientific_config_changed": false,
+    "support_dataset_version": 6,
+    "v2_9_started": false
+  }
+}

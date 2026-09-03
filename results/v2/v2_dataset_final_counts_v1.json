@@ -1,0 +1,108 @@
+{
+  "document": "v2_dataset_final_counts_v1",
+  "seed": 42,
+  "max_per_generator_train_cap": 300,
+  "V2_NATIVE_PIXEL_PRIMARY": true,
+  "smartphone": {
+    "requested": 3000,
+    "success_with_splits": 3000,
+    "train": 2000,
+    "validation": 500,
+    "internal_holdout": 500,
+    "manufacturers": {
+      "Samsung": 834,
+      "Apple": 1578,
+      "Vivo": 72,
+      "Oppo": 74,
+      "Huawei": 360,
+      "Xiaomi": 82
+    },
+    "device_models_n": 1416,
+    "largest_device_share": 0.032,
+    "largest_device": [
+      "iPhone X",
+      96
+    ]
+  },
+  "real": {
+    "Tiny": 2000,
+    "MLLM": 726,
+    "COCO": 400,
+    "Smartphone": 3000,
+    "total": 6126
+  },
+  "ai": {
+    "Tiny": 2000,
+    "MLLM": 1451,
+    "Qwen": 1800,
+    "total": 5251
+  },
+  "canonical_generator_ids": 27,
+  "exact_duplicate_groups": 1,
+  "confirmed_leakage_exclusions": 1,
+  "phash_candidates": 52,
+  "folds_holdouts": {
+    "fold_1": [
+      "mllm::GPT_Image_2",
+      "qwen::FLUX.2_max",
+      "qwen::GPT-Image-1",
+      "qwen::GPT-Image-1.5",
+      "qwen::Qwen-Image-2512",
+      "qwen::gpt-image-2",
+      "qwen::kling_v2_1",
+      "tiny::ADM",
+      "tiny::SD15"
+    ],
+    "fold_2": [
+      "mllm::Nano_Banana_2",
+      "qwen::GLM-Image",
+      "qwen::Seedream-4.0",
+      "qwen::nano-banana-2.0",
+      "qwen::nano-banana-pro",
+      "tiny::BigGAN",
+      "tiny::VQDM"
+    ],
+    "fold_3": [
+      "qwen::FLUX.2-pro",
+      "qwen::GPT-Image-1",
+      "qwen::GPT-Image-1.5",
+      "qwen::HunyuanImage-3.0",
+      "qwen::Seedream-4.5",
+      "tiny::GLIDE",
+      "tiny::Wukong"
+    ],
+    "fold_4": [
+      "qwen::Imagen-4.0",
+      "qwen::Imagen-4.0-Ultra",
+      "qwen::Qwen-Image",
+      "qwen::Qwen-Image-2.0-pro",
+      "qwen::Seedream-5.0",
+      "tiny::Midjourney"
+    ]
+  },
+  "stable_real_validation_n": 923,
+  "smartphone_validation_n": 500,
+  "primary_metrics": [
+    "heldout_generator_ROC_AUC",
+    "heldout_generator_AP",
+    "balanced_accuracy",
+    "AI_recall",
+    "Real_specificity",
+    "Real_FPR",
+    "smartphone_specificity",
+    "smartphone_FPR"
+  ],
+  "model_selection_hierarchy": [
+    "held-out generator AUC/AP",
+    "smartphone/Real specificity",
+    "consistency across folds",
+    "worst-fold performance",
+    "resource cost"
+  ],
+  "total_development_pool": 11377,
+  "images_for_future_clip": 11377,
+  "estimated_disk_bytes": 10349467398,
+  "estimated_disk_gb": 9.639,
+  "local_mps_assessment": "LOCAL_MPS_RECOMMENDED",
+  "kaggle_required_now": false
+}

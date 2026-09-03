@@ -1,0 +1,62 @@
+V2-5 Frozen CLIP + Logistic Regression baseline
+Decision: CLIP_BASELINE_PROMISING
+Evidence: same-sample AUC CLIP-V1=0.224; smartphone spec CLIP-V1=0.280 | mean AUC=0.815 worst=0.774; mean phone spec=0.981 worst=0.980
+
+ fold    n  roc_auc       ap  accuracy  balanced_accuracy  precision  ai_recall  specificity       f1      fpr  smartphone_specificity  smartphone_fpr  smartphone_mean_p_ai  train_n_real  train_n_ai class_weight  train_ratio_max_min  train_seconds  val_infer_seconds  train_n_total  val_n_total
+    1 2821 0.818552 0.899396  0.648352           0.711958   0.912568   0.527924     0.895991 0.668892 0.104009                   0.982           0.018              0.098362          4280        1728     balanced             2.476852       0.051102           0.000787           6008         2821
+    2 2619 0.837557 0.898178  0.658267           0.713676   0.907426   0.525943     0.901408 0.665920 0.098592                   0.984           0.016              0.089190          4280        1729     balanced             2.475419       0.026841           0.000697           6009         2619
+    3 1994 0.830272 0.865395  0.732698           0.742334   0.847545   0.612512     0.872156 0.711111 0.127844                   0.980           0.020              0.096921          4280        2029     balanced             2.109414       0.024355           0.000554           6309         1994
+    4 1709 0.773578 0.773315  0.692803           0.677078   0.763636   0.480916     0.873239 0.590164 0.126761                   0.980           0.020              0.095733          4280        2314     balanced             1.849611       0.041999           0.000506           6594         1709
+
+Cross-fold:
+{
+  "mean_heldout_auc": 0.8149897327443887,
+  "std_heldout_auc": 0.02869617281880758,
+  "min_heldout_auc": 0.7735782477208131,
+  "max_heldout_auc": 0.8375567264253152,
+  "mean_ap": 0.8590709910243797,
+  "std_ap": 0.059300321003127716,
+  "min_ap": 0.7733149426423561,
+  "mean_balanced_accuracy": 0.7112613077119878,
+  "mean_ai_recall": 0.5368238071899559,
+  "mean_real_specificity": 0.8856988082340194,
+  "mean_smartphone_specificity": 0.9814999999999999,
+  "min_smartphone_specificity": 0.98,
+  "best_fold_auc": 2,
+  "worst_fold_auc": 4,
+  "same_sample_available": true,
+  "v1_mean_auc": 0.5887014290281949,
+  "clip_mean_auc_aligned": 0.8130290735499327,
+  "auc_diff_mean": 0.22432764452173776,
+  "v1_mean_smartphone_specificity": 0.702,
+  "clip_mean_smartphone_specificity_aligned": 0.9814999999999999,
+  "smartphone_spec_diff_mean": 0.2795,
+  "decision_gate": "CLIP_BASELINE_PROMISING",
+  "decision_evidence": "same-sample AUC CLIP-V1=0.224; smartphone spec CLIP-V1=0.280 | mean AUC=0.815 worst=0.774; mean phone spec=0.981 worst=0.980",
+  "C": 1.0,
+  "threshold": 0.5,
+  "clip_frozen": true,
+  "ntire_accessed": false
+}
+
+Real domain mean specificity:
+             specificity       fpr  mean_p_ai
+real_domain                                  
+COCO            0.979167  0.020833   0.106183
+MLLM            0.654867  0.345133   0.393949
+Smartphone      0.981500  0.018500   0.095051
+Tiny            0.776000  0.224000   0.335980
+
+Smartphone by fold:
+  n  specificity   fpr  mean_p_ai  median_p_ai      p50      p75      p90      p95  frac_pred_ai_050  fold
+500        0.982 0.018   0.098362     0.055943 0.055943 0.120434 0.253061 0.340179             0.018     1
+500        0.984 0.016   0.089190     0.049615 0.049615 0.105550 0.219461 0.330531             0.016     2
+500        0.980 0.020   0.096921     0.052222 0.052222 0.125203 0.235092 0.377852             0.020     3
+500        0.980 0.020   0.095733     0.053241 0.053241 0.122823 0.230110 0.344189             0.020     4
+
+Same-sample V1 comparison:
+ fold  n_aligned  clip_auc   v1_auc  auc_diff_clip_minus_v1  clip_ap    v1_ap  clip_real_specificity  v1_real_specificity  clip_ai_recall  v1_ai_recall  clip_smartphone_specificity  v1_smartphone_specificity  smartphone_spec_diff_clip_minus_v1
+    1       2245  0.801485 0.534750                0.266735 0.867405 0.682790               0.913043             0.754037        0.434722      0.271528                        0.982                      0.702                               0.280
+    2       2272  0.843471 0.488558                0.354913 0.896547 0.658632               0.926708             0.754037        0.466258      0.229039                        0.984                      0.702                               0.282
+    3       1647  0.811047 0.661384                0.149663 0.824997 0.727186               0.889441             0.754037        0.515439      0.494062                        0.980                      0.702                               0.278
+    4       1591  0.796114 0.670114                0.126000 0.808437 0.702931               0.893168             0.754037        0.480916      0.491094                        0.980                      0.702                               0.278
