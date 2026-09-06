@@ -1,0 +1,22 @@
+[{"stream_name":"stderr","time":36.82905217,"data":"WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('\u003cpip._vendor.urllib3.connection.HTTPSConnection object at 0x7ba3b47eb530\u003e: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/open-clip-torch/\n"}
+,{"stream_name":"stderr","time":69.342976528,"data":"WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('\u003cpip._vendor.urllib3.connection.HTTPSConnection object at 0x7ba3b42fc710\u003e: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/open-clip-torch/\n"}
+,{"stream_name":"stderr","time":102.356280467,"data":"WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('\u003cpip._vendor.urllib3.connection.HTTPSConnection object at 0x7ba3b430dfa0\u003e: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/open-clip-torch/\n"}
+,{"stream_name":"stderr","time":136.370138339,"data":"WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('\u003cpip._vendor.urllib3.connection.HTTPSConnection object at 0x7ba3b4747c20\u003e: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/open-clip-torch/\n"}
+,{"stream_name":"stderr","time":172.383677894,"data":"WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('\u003cpip._vendor.urllib3.connection.HTTPSConnection object at 0x7ba3b42db050\u003e: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/open-clip-torch/\n"}
+,{"stream_name":"stderr","time":204.403581165,"data":"ERROR: Could not find a version that satisfies the requirement open-clip-torch==3.3.0 (from versions: none)\n"}
+,{"stream_name":"stderr","time":204.404064735,"data":"ERROR: No matching distribution found for open-clip-torch==3.3.0\n"}
+,{"stream_name":"stderr","time":204.536050469,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":204.536096909,"data":"  File \"/kaggle/src/script.py\", line 30, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":204.536107745,"data":"    _ensure_deps()\n"}
+,{"stream_name":"stderr","time":204.536260755,"data":"  File \"/kaggle/src/script.py\", line 27, in _ensure_deps\n"}
+,{"stream_name":"stderr","time":204.536410949,"data":"    subprocess.check_call([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", *pkgs])\n"}
+,{"stream_name":"stderr","time":204.536481792,"data":"  File \"/usr/lib/python3.12/subprocess.py\", line 413, in check_call\n"}
+,{"stream_name":"stderr","time":204.537904932,"data":"    raise CalledProcessError(retcode, cmd)\n"}
+,{"stream_name":"stderr","time":204.537931612,"data":"subprocess.CalledProcessError: Command '['/usr/bin/python3', '-m', 'pip', 'install', '-q', 'open-clip-torch==3.3.0', 'ftfy', 'regex', 'safetensors', 'timm', 'huggingface_hub']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":207.515133917,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":207.515175768,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":207.92471672,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":207.924752499,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":208.932129178,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":210.789536753,"data":"[NbConvertApp] Writing 408701 bytes to __results__.html\n"}
+]

@@ -1,0 +1,11 @@
+[{"stream_name":"stderr","time":51.329905528,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":51.329962657,"data":"  File \"/kaggle/src/script.py\", line 86, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":51.330015007,"data":"    from lora_utils import count_parameters, inject_lora_last_blocks\n"}
+,{"stream_name":"stderr","time":51.330173072,"data":"ModuleNotFoundError: No module named 'lora_utils'\n"}
+,{"stream_name":"stderr","time":55.449960118,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":55.450009343,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":55.808301999,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":55.808334681,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":56.657398608,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":58.613011206,"data":"[NbConvertApp] Writing 412881 bytes to __results__.html\n"}
+]

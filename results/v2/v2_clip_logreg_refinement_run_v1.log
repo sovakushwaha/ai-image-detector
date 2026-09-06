@@ -1,0 +1,28 @@
+Embeddings verified: {'sha256': 'cba0cf3176fd8e61d828a102505edb991d5093c7979eb900f61031fe63acd7d0', 'n': 11377, 'd': 512, 'norm_mean': 1.0, 'nan': 0, 'inf': 0}
+C=0.01 done
+C=0.03 done
+C=0.1 done
+C=0.3 done
+C=1.0 done
+C=3.0 done
+C=10.0 done
+SELECTED C 3.0
+RULE primary max mean AUC among eligible (best=0.822159); 2 C within 0.003 of best mean AUC; prefer higher worst-fold AUC (0.774378); selected C=3.0
+    C  eligible                                                                               reason
+ 0.01     False                                            Real spec 0.7321 < baseline-0.02 (0.8657)
+ 0.03     False MLLM spec 0.6018 < baseline-0.02 (0.6349); Real spec 0.7600 < baseline-0.02 (0.8657)
+ 0.10     False MLLM spec 0.5730 < baseline-0.02 (0.6349); Real spec 0.8126 < baseline-0.02 (0.8657)
+ 0.30     False MLLM spec 0.6018 < baseline-0.02 (0.6349); Real spec 0.8554 < baseline-0.02 (0.8657)
+ 1.00      True                                                          PASS all reliability guards
+ 3.00      True                                                          PASS all reliability guards
+10.00      True                                                          PASS all reliability guards
+DECISION LINEAR_PROBE_REFINED
+    C  mean_roc_auc  std_roc_auc  min_roc_auc  max_roc_auc  mean_ap   std_ap   min_ap  mean_ai_recall  mean_real_specificity  mean_smartphone_specificity  min_smartphone_specificity  mean_mllm_specificity  min_mllm_specificity  mean_coco_specificity  mean_tiny_specificity
+ 0.01      0.721267     0.031993     0.698824     0.768728 0.767500 0.052097 0.692773        0.476267               0.732124                       0.9875                       0.980               0.681416              0.451327               0.908333                  0.202
+ 0.03      0.745522     0.025764     0.726236     0.782690 0.788643 0.052768 0.713470        0.488693               0.760022                       0.9835                       0.978               0.601770              0.389381               0.933333                  0.343
+ 0.10      0.779009     0.021901     0.751427     0.803267 0.819085 0.055522 0.740181        0.515987               0.812568                       0.9840                       0.980               0.573009              0.407080               0.966667                  0.541
+ 0.30      0.802274     0.024025     0.768110     0.819472 0.842710 0.057333 0.760570        0.533350               0.855363                       0.9820                       0.978               0.601770              0.460177               0.975000                  0.688
+ 1.00      0.814990     0.028696     0.773578     0.837557 0.859071 0.059300 0.773315        0.536824               0.885699                       0.9815                       0.980               0.654867              0.575221               0.979167                  0.776
+ 3.00      0.819938     0.031777     0.774378     0.844955 0.867654 0.060065 0.779892        0.536077               0.908451                       0.9845                       0.980               0.701327              0.610619               0.983333                  0.832
+10.00      0.822159     0.033602     0.773760     0.845611 0.871431 0.061442 0.781007        0.529147               0.922806                       0.9805                       0.978               0.750000              0.663717               0.995833                  0.868
+selected 3.0 primary max mean AUC among eligible (best=0.822159); 2 C within 0.003 of best mean AUC; prefer higher worst-fold AUC (0.774378); selected C=3.0

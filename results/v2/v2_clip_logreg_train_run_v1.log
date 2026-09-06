@@ -1,0 +1,18 @@
+wrote V1 smartphone val preds n=500 in 52.8s
+=== FOLD 1 ===
+=== FOLD 2 ===
+=== FOLD 3 ===
+=== FOLD 4 ===
+DECISION CLIP_BASELINE_PROMISING
+   fold   roc_auc        ap  ai_recall  specificity  smartphone_specificity
+0     1  0.818552  0.899396   0.527924     0.895991                   0.982
+1     2  0.837557  0.898178   0.525943     0.901408                   0.984
+2     3  0.830272  0.865395   0.612512     0.872156                   0.980
+3     4  0.773578  0.773315   0.480916     0.873239                   0.980
+   fold  ...  smartphone_spec_diff_clip_minus_v1
+0     1  ...                               0.280
+1     2  ...                               0.282
+2     3  ...                               0.278
+3     4  ...                               0.278
+
+[4 rows x 14 columns]

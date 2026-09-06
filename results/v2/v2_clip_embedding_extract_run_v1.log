@@ -1,0 +1,127 @@
+skip existing chunk 1/23 (500 images)
+skip existing chunk 2/23 (500 images)
+skip existing chunk 3/23 (500 images)
+skip existing chunk 4/23 (500 images)
+skip existing chunk 5/23 (500 images)
+skip existing chunk 6/23 (500 images)
+skip existing chunk 7/23 (500 images)
+skip existing chunk 8/23 (500 images)
+wrote chunk 9/23 n=500 total=4500/11377 elapsed=0.9m
+wrote chunk 10/23 n=500 total=5000/11377 elapsed=2.0m
+wrote chunk 11/23 n=500 total=5500/11377 elapsed=3.1m
+wrote chunk 12/23 n=500 total=6000/11377 elapsed=4.2m
+Traceback (most recent call last):
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 189, in <module>
+    main()
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 185, in main
+    extract(device=args.device, batch_size=args.batch_size, chunk_size=args.chunk_size)
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 79, in extract
+    emb = encoder.encode_paths(paths, batch_size=batch_size, return_numpy=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 143, in encode_paths
+    x = self.preprocess_paths(batch_paths)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 119, in preprocess_paths
+    img = load_rgb_image(p)
+          ^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 63, in load_rgb_image
+    im = ImageOps.exif_transpose(im)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/ImageOps.py", line 726, in exif_transpose
+    exif_image.info["exif"] = exif.tobytes()
+                              ^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/Image.py", line 4226, in tobytes
+    return b"Exif\x00\x00" + head + ifd.tobytes(offset)
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 990, in tobytes
+    data = self._write_dispatch[typ](self, *values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 510, in <lambda>
+    b"".join(self._pack(fmt, value) for value in values)
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 510, in <genexpr>
+    b"".join(self._pack(fmt, value) for value in values)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 783, in _pack
+    return struct.pack(self._endian + fmt, *values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+struct.error: required argument is not an integer
+skip existing chunk 1/23 (500 images)
+skip existing chunk 2/23 (500 images)
+skip existing chunk 3/23 (500 images)
+skip existing chunk 4/23 (500 images)
+skip existing chunk 5/23 (500 images)
+skip existing chunk 6/23 (500 images)
+skip existing chunk 7/23 (500 images)
+skip existing chunk 8/23 (500 images)
+skip existing chunk 9/23 (500 images)
+skip existing chunk 10/23 (500 images)
+skip existing chunk 11/23 (500 images)
+skip existing chunk 12/23 (500 images)
+skip existing chunk 1/23 (500 images)
+skip existing chunk 2/23 (500 images)
+skip existing chunk 3/23 (500 images)
+skip existing chunk 4/23 (500 images)
+skip existing chunk 5/23 (500 images)
+skip existing chunk 6/23 (500 images)
+skip existing chunk 7/23 (500 images)
+skip existing chunk 8/23 (500 images)
+skip existing chunk 9/23 (500 images)
+skip existing chunk 10/23 (500 images)
+skip existing chunk 11/23 (500 images)
+skip existing chunk 12/23 (500 images)
+Traceback (most recent call last):
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 189, in <module>
+    main()
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 185, in main
+    extract(device=args.device, batch_size=args.batch_size, chunk_size=args.chunk_size)
+  File "/Users/PankajKushwaha/ai-image-detector/src/extract_v2_clip_embeddings_v1.py", line 79, in extract
+    emb = encoder.encode_paths(paths, batch_size=batch_size, return_numpy=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 143, in encode_paths
+    self,
+          
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 119, in preprocess_paths
+    l2_normalize=l2_normalize,
+          ^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/src/v2_clip_encoder_v1.py", line 63, in load_rgb_image
+    """
+        
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/ImageOps.py", line 726, in exif_transpose
+    exif_image.info["exif"] = exif.tobytes()
+                              ^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/Image.py", line 4226, in tobytes
+    return b"Exif\x00\x00" + head + ifd.tobytes(offset)
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 990, in tobytes
+    data = self._write_dispatch[typ](self, *values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 510, in <lambda>
+    b"".join(self._pack(fmt, value) for value in values)
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 510, in <genexpr>
+    b"".join(self._pack(fmt, value) for value in values)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/PankajKushwaha/ai-image-detector/.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py", line 783, in _pack
+    return struct.pack(self._endian + fmt, *values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+struct.error: required argument is not an integer
+wrote chunk 13/23 n=500 total=6500/11377 elapsed=1.4m
+wrote chunk 14/23 n=500 total=7000/11377 elapsed=2.5m
+wrote chunk 15/23 n=500 total=7500/11377 elapsed=3.5m
+wrote chunk 16/23 n=500 total=8000/11377 elapsed=4.1m
+wrote chunk 17/23 n=500 total=8500/11377 elapsed=4.6m
+wrote chunk 18/23 n=500 total=9000/11377 elapsed=5.2m
+wrote chunk 19/23 n=500 total=9500/11377 elapsed=5.7m
+wrote chunk 20/23 n=500 total=10000/11377 elapsed=6.3m
+wrote chunk 21/23 n=500 total=10500/11377 elapsed=6.9m
+wrote chunk 22/23 n=500 total=11000/11377 elapsed=7.4m
+wrote chunk 23/23 n=377 total=11377/11377 elapsed=7.8m
+V2-5 CLIP embedding extraction report
+N=11377 D=512 dtype=float32
+device=mps batch_size=32 chunk_size=500
+wall_clock_sec=470.5 wall_clock_min=7.84
+nan=0 inf=0
+norm_mean=1.000000 min=1.000000 max=1.000000
+artifact=/Users/PankajKushwaha/ai-image-detector/results/v2/v2_clip_embeddings_v1.npz bytes=21727921
+sha256_embeddings_bytes=cba0cf3176fd8e61d828a102505edb991d5093c7979eb900f61031fe63acd7d0
+model=ViT-B-16-quickgelu pretrained=openai
+CLIP frozen=YES fine_tune=NO NTIRE=NO

@@ -1,0 +1,8 @@
+[{"stream_name":"stderr","time":52.701621587,"data":"STOP: Kaggle GPU not available\n"}
+,{"stream_name":"stderr","time":57.087950211,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":57.088051737,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":57.464088605,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":57.46411886,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":58.272169465,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":60.21629131,"data":"[NbConvertApp] Writing 441238 bytes to __results__.html\n"}
+]

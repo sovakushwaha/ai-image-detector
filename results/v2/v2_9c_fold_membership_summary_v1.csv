@@ -1,0 +1,5 @@
+fold,train_n,train_real,train_ai,train_ai_generators,train_duplicates,eval_n,eval_real,eval_ai,candidate_unused_n,candidate_unused_real,candidate_unused_ai,unused_by_role,cap_leftover_ai_n,proposed_calib_real_n,proposed_calib_ai_prompt_blocked_n,proposed_calib_total_primary,overlap_proposed_vs_train,overlap_proposed_vs_eval,proposed_local_missing
+1,6008,4280,1728,6,0,2821,923,1898,2548,923,1625,"{'PROMPT_BLOCKED': 1200, 'REAL_INTERNAL_HOLDOUT': 923, 'TRAIN': 425}",425,923,1200,2123,0,0,0
+2,6009,4280,1729,6,0,2619,923,1696,2749,923,1826,"{'PROMPT_BLOCKED': 1400, 'REAL_INTERNAL_HOLDOUT': 923, 'TRAIN': 426}",426,923,1400,2323,0,0,0
+3,6309,4280,2029,7,0,1994,923,1071,3074,923,2151,"{'PROMPT_BLOCKED': 1300, 'REAL_INTERNAL_HOLDOUT': 923, 'TRAIN': 851}",851,923,1300,2223,0,0,0
+4,6594,4280,2314,8,0,1709,923,786,3074,923,2151,"{'PROMPT_BLOCKED': 1300, 'REAL_INTERNAL_HOLDOUT': 923, 'TRAIN': 851}",851,923,1300,2223,0,0,0

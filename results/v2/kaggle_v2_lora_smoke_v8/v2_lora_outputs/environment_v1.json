@@ -1,0 +1,8 @@
+{
+  "is_kaggle": true,
+  "cuda_available": false,
+  "gpu_name": null,
+  "cuda_version": null,
+  "torch_version": "2.10.0+cpu",
+  "open_clip_version": "3.3.0"
+}

@@ -1,0 +1,13 @@
+[{"stream_name":"stderr","time":203.909213414,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":203.909286389,"data":"  File \"/kaggle/src/script.py\", line 39, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":203.90929428,"data":"    _ensure_deps()\n"}
+,{"stream_name":"stderr","time":203.909374468,"data":"  File \"/kaggle/src/script.py\", line 36, in _ensure_deps\n"}
+,{"stream_name":"stderr","time":203.909479898,"data":"    raise RuntimeError(f\"pip install failed; see {log}\")\n"}
+,{"stream_name":"stderr","time":203.909603804,"data":"RuntimeError: pip install failed; see /kaggle/working/pip_install.log\n"}
+,{"stream_name":"stderr","time":206.407183185,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":206.407218069,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":206.732376791,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":206.732408826,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":207.585654832,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":209.234851692,"data":"[NbConvertApp] Writing 410686 bytes to __results__.html\n"}
+]

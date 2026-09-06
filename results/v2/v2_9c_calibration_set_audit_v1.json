@@ -1,0 +1,526 @@
+{
+  "stage": "V2-9C",
+  "status": "COMPLETE",
+  "decision": "CALIBRATION_SET_FEASIBLE_WITH_LIMITATIONS",
+  "role_inventory": {
+    "n_locked_v2_ids_including_excluded": 11378,
+    "n_after_excluding_duplicate": 11377,
+    "binary_label_counts": {
+      "0": 6126,
+      "1": 5251
+    },
+    "source_dataset_counts": {
+      "Tiny-GenImage": 4000,
+      "Smartphone": 3000,
+      "MLLM": 2177,
+      "Qwen": 1800,
+      "COCO": 400
+    },
+    "real_domain_counts": {
+      "AI_NA": 5251,
+      "Smartphone": 3000,
+      "Tiny": 2000,
+      "MLLM": 726,
+      "COCO": 400
+    },
+    "roles_per_fold": {
+      "fold_1": {
+        "TRAIN": 6433,
+        "HOLDOUT_VALIDATION": 1898,
+        "PROMPT_BLOCKED": 1200,
+        "REAL_VALIDATION": 923,
+        "REAL_INTERNAL_HOLDOUT": 923
+      },
+      "fold_2": {
+        "TRAIN": 6435,
+        "HOLDOUT_VALIDATION": 1696,
+        "PROMPT_BLOCKED": 1400,
+        "REAL_VALIDATION": 923,
+        "REAL_INTERNAL_HOLDOUT": 923
+      },
+      "fold_3": {
+        "TRAIN": 7160,
+        "PROMPT_BLOCKED": 1300,
+        "HOLDOUT_VALIDATION": 1071,
+        "REAL_VALIDATION": 923,
+        "REAL_INTERNAL_HOLDOUT": 923
+      },
+      "fold_4": {
+        "TRAIN": 7445,
+        "PROMPT_BLOCKED": 1300,
+        "REAL_VALIDATION": 923,
+        "REAL_INTERNAL_HOLDOUT": 923,
+        "HOLDOUT_VALIDATION": 786
+      }
+    },
+    "real_domain_by_fold1_role": {
+      "REAL_INTERNAL_HOLDOUT": {
+        "COCO": 60,
+        "MLLM": 113,
+        "Smartphone": 500,
+        "Tiny": 250
+      },
+      "REAL_VALIDATION": {
+        "COCO": 60,
+        "MLLM": 113,
+        "Smartphone": 500,
+        "Tiny": 250
+      },
+      "TRAIN": {
+        "COCO": 280,
+        "MLLM": 500,
+        "Smartphone": 2000,
+        "Tiny": 1500
+      }
+    },
+    "smartphone_manifest_splits": {
+      "train": 2000,
+      "validation": 500,
+      "internal_holdout": 500
+    },
+    "role_definitions": {
+      "TRAIN": "Detector training pool (AI subject to CAP=300 per generator in V2-8)",
+      "HOLDOUT_VALIDATION": "Generator-holdout AI evaluation",
+      "REAL_VALIDATION": "Shared Real evaluation across folds",
+      "REAL_INTERNAL_HOLDOUT": "Reserved Real internal holdout (not train/eval in V2-5\u2013V2-8)",
+      "PROMPT_BLOCKED": "AI blocked from train due to prompt-group leakage vs holdout",
+      "EXCLUDED_DUPLICATE": "Excluded duplicate (1 row)"
+    },
+    "ntire_present_in_manifest": false
+  },
+  "eval_prediction_checks": {
+    "fold_1": {
+      "manifest_eval_n": 2821,
+      "prediction_n": 2821,
+      "ids_match": true,
+      "roles": {
+        "HOLDOUT_VALIDATION": 1898,
+        "REAL_VALIDATION": 923
+      },
+      "n_real": 923,
+      "n_ai": 1898,
+      "ai_generators": {
+        "mllm::GPT_Image_2": 726,
+        "tiny::ADM": 286,
+        "tiny::SD15": 286,
+        "qwen::gpt-image-2": 100,
+        "qwen::FLUX.2_max": 100,
+        "qwen::kling_v2_1": 100,
+        "qwen::Qwen-Image-2512": 100,
+        "qwen::GPT-Image-1": 100,
+        "qwen::GPT-Image-1.5": 100
+      },
+      "real_domains": {
+        "Smartphone": 500,
+        "Tiny": 250,
+        "MLLM": 113,
+        "COCO": 60
+      }
+    },
+    "fold_2": {
+      "manifest_eval_n": 2619,
+      "prediction_n": 2619,
+      "ids_match": true,
+      "roles": {
+        "HOLDOUT_VALIDATION": 1696,
+        "REAL_VALIDATION": 923
+      },
+      "n_real": 923,
+      "n_ai": 1696,
+      "ai_generators": {
+        "mllm::Nano_Banana_2": 725,
+        "tiny::BigGAN": 286,
+        "tiny::VQDM": 285,
+        "qwen::nano-banana-2.0": 100,
+        "qwen::nano-banana-pro": 100,
+        "qwen::Seedream-4.0": 100,
+        "qwen::GLM-Image": 100
+      },
+      "real_domains": {
+        "Smartphone": 500,
+        "Tiny": 250,
+        "MLLM": 113,
+        "COCO": 60
+      }
+    },
+    "fold_3": {
+      "manifest_eval_n": 1994,
+      "prediction_n": 1994,
+      "ids_match": true,
+      "roles": {
+        "HOLDOUT_VALIDATION": 1071,
+        "REAL_VALIDATION": 923
+      },
+      "n_real": 923,
+      "n_ai": 1071,
+      "ai_generators": {
+        "tiny::GLIDE": 286,
+        "tiny::Wukong": 285,
+        "qwen::Seedream-4.5": 100,
+        "qwen::GPT-Image-1": 100,
+        "qwen::GPT-Image-1.5": 100,
+        "qwen::HunyuanImage-3.0": 100,
+        "qwen::FLUX.2-pro": 100
+      },
+      "real_domains": {
+        "Smartphone": 500,
+        "Tiny": 250,
+        "MLLM": 113,
+        "COCO": 60
+      }
+    },
+    "fold_4": {
+      "manifest_eval_n": 1709,
+      "prediction_n": 1709,
+      "ids_match": true,
+      "roles": {
+        "REAL_VALIDATION": 923,
+        "HOLDOUT_VALIDATION": 786
+      },
+      "n_real": 923,
+      "n_ai": 786,
+      "ai_generators": {
+        "tiny::Midjourney": 286,
+        "qwen::Qwen-Image-2.0-pro": 100,
+        "qwen::Seedream-5.0": 100,
+        "qwen::Qwen-Image": 100,
+        "qwen::Imagen-4.0": 100,
+        "qwen::Imagen-4.0-Ultra": 100
+      },
+      "real_domains": {
+        "Smartphone": 500,
+        "Tiny": 250,
+        "MLLM": 113,
+        "COCO": 60
+      }
+    }
+  },
+  "fold_summaries": [
+    {
+      "fold": 1,
+      "train_n": 6008,
+      "train_real": 4280,
+      "train_ai": 1728,
+      "train_ai_generators": 6,
+      "train_duplicates": 0,
+      "eval_n": 2821,
+      "eval_real": 923,
+      "eval_ai": 1898,
+      "candidate_unused_n": 2548,
+      "candidate_unused_real": 923,
+      "candidate_unused_ai": 1625,
+      "unused_by_role": {
+        "PROMPT_BLOCKED": 1200,
+        "REAL_INTERNAL_HOLDOUT": 923,
+        "TRAIN": 425
+      },
+      "cap_leftover_ai_n": 425,
+      "proposed_calib_real_n": 923,
+      "proposed_calib_ai_prompt_blocked_n": 1200,
+      "proposed_calib_total_primary": 2123,
+      "overlap_proposed_vs_train": 0,
+      "overlap_proposed_vs_eval": 0,
+      "proposed_local_missing": 0
+    },
+    {
+      "fold": 2,
+      "train_n": 6009,
+      "train_real": 4280,
+      "train_ai": 1729,
+      "train_ai_generators": 6,
+      "train_duplicates": 0,
+      "eval_n": 2619,
+      "eval_real": 923,
+      "eval_ai": 1696,
+      "candidate_unused_n": 2749,
+      "candidate_unused_real": 923,
+      "candidate_unused_ai": 1826,
+      "unused_by_role": {
+        "PROMPT_BLOCKED": 1400,
+        "REAL_INTERNAL_HOLDOUT": 923,
+        "TRAIN": 426
+      },
+      "cap_leftover_ai_n": 426,
+      "proposed_calib_real_n": 923,
+      "proposed_calib_ai_prompt_blocked_n": 1400,
+      "proposed_calib_total_primary": 2323,
+      "overlap_proposed_vs_train": 0,
+      "overlap_proposed_vs_eval": 0,
+      "proposed_local_missing": 0
+    },
+    {
+      "fold": 3,
+      "train_n": 6309,
+      "train_real": 4280,
+      "train_ai": 2029,
+      "train_ai_generators": 7,
+      "train_duplicates": 0,
+      "eval_n": 1994,
+      "eval_real": 923,
+      "eval_ai": 1071,
+      "candidate_unused_n": 3074,
+      "candidate_unused_real": 923,
+      "candidate_unused_ai": 2151,
+      "unused_by_role": {
+        "PROMPT_BLOCKED": 1300,
+        "REAL_INTERNAL_HOLDOUT": 923,
+        "TRAIN": 851
+      },
+      "cap_leftover_ai_n": 851,
+      "proposed_calib_real_n": 923,
+      "proposed_calib_ai_prompt_blocked_n": 1300,
+      "proposed_calib_total_primary": 2223,
+      "overlap_proposed_vs_train": 0,
+      "overlap_proposed_vs_eval": 0,
+      "proposed_local_missing": 0
+    },
+    {
+      "fold": 4,
+      "train_n": 6594,
+      "train_real": 4280,
+      "train_ai": 2314,
+      "train_ai_generators": 8,
+      "train_duplicates": 0,
+      "eval_n": 1709,
+      "eval_real": 923,
+      "eval_ai": 786,
+      "candidate_unused_n": 3074,
+      "candidate_unused_real": 923,
+      "candidate_unused_ai": 2151,
+      "unused_by_role": {
+        "PROMPT_BLOCKED": 1300,
+        "REAL_INTERNAL_HOLDOUT": 923,
+        "TRAIN": 851
+      },
+      "cap_leftover_ai_n": 851,
+      "proposed_calib_real_n": 923,
+      "proposed_calib_ai_prompt_blocked_n": 1300,
+      "proposed_calib_total_primary": 2223,
+      "overlap_proposed_vs_train": 0,
+      "overlap_proposed_vs_eval": 0,
+      "proposed_local_missing": 0
+    }
+  ],
+  "train_eval_unused_counts": {
+    "fold_1": {
+      "train_ids_n": 6008,
+      "eval_ids_n": 2821,
+      "unused_ids_n": 2548
+    },
+    "fold_2": {
+      "train_ids_n": 6009,
+      "eval_ids_n": 2619,
+      "unused_ids_n": 2749
+    },
+    "fold_3": {
+      "train_ids_n": 6309,
+      "eval_ids_n": 1994,
+      "unused_ids_n": 3074
+    },
+    "fold_4": {
+      "train_ids_n": 6594,
+      "eval_ids_n": 1709,
+      "unused_ids_n": 3074
+    }
+  },
+  "internal_holdout_audit": {
+    "n": 923,
+    "all_real": true,
+    "domains": {
+      "Smartphone": 500,
+      "Tiny": 250,
+      "MLLM": 113,
+      "COCO": 60
+    },
+    "identical_across_folds": true,
+    "smartphone_manifest_internal_holdout_n": 500,
+    "smartphone_split_assignments_match_manifest": true,
+    "local_available": 923,
+    "local_missing": 0,
+    "overlap_by_fold": {
+      "fold_1": {
+        "overlap_train": 0,
+        "overlap_eval": 0,
+        "roles_identical_across_folds": true
+      },
+      "fold_2": {
+        "overlap_train": 0,
+        "overlap_eval": 0,
+        "roles_identical_across_folds": true
+      },
+      "fold_3": {
+        "overlap_train": 0,
+        "overlap_eval": 0,
+        "roles_identical_across_folds": true
+      },
+      "fold_4": {
+        "overlap_train": 0,
+        "overlap_eval": 0,
+        "roles_identical_across_folds": true
+      }
+    },
+    "prior_v2_5_to_v2_8_use": {
+      "used_in_v2_5_6_7_8_detector_train": false,
+      "used_in_v2_5_6_7_8_final_eval": false,
+      "evidence": "train_indices uses role==TRAIN only; val_indices uses HOLDOUT_VALIDATION\u222aREAL_VALIDATION only (train_v2_clip_lora.py and analogous V2-5/6/7 scripts). REAL_INTERNAL_HOLDOUT never selected."
+    }
+  },
+  "intersection_unused_across_all_folds": {
+    "n": 923,
+    "n_real": 923,
+    "n_ai": 0,
+    "note": "Only REAL_INTERNAL_HOLDOUT is unused for every fold simultaneously."
+  },
+  "proposed_design": {
+    "name": "PRIMARY_V2_9C_CALIBRATION_POOL",
+    "rule": "For each Fold F: Real = all REAL_INTERNAL_HOLDOUT (shared 923 IDs); AI = all PROMPT_BLOCKED for Fold F. Score with Fold F frozen LoRA checkpoint only. Exclude TRAIN-role CAP leftovers from primary design.",
+    "real_component": {
+      "role": "REAL_INTERNAL_HOLDOUT",
+      "n": 923,
+      "domains": {
+        "Smartphone": 500,
+        "Tiny": 250,
+        "MLLM": 113,
+        "COCO": 60
+      },
+      "identical_across_folds": true
+    },
+    "ai_component": {
+      "role": "PROMPT_BLOCKED",
+      "n_by_fold": {
+        "fold_1": 1200,
+        "fold_2": 1400,
+        "fold_3": 1300,
+        "fold_4": 1300
+      },
+      "identical_ids_across_folds": false,
+      "note": "PROMPT_BLOCKED membership is fold-dependent (prompt leakage vs that fold's holdout generators)."
+    },
+    "excluded_from_primary": [
+      "TRAIN_ROLE_CAP_LEFTOVER (same generators as partially trained; fold-inconsistent)",
+      "EXCLUDED_DUPLICATE",
+      "NTIRE (sealed / absent from V2 development manifest)"
+    ],
+    "overlap_train_all_folds": 0,
+    "overlap_eval_all_folds": 0,
+    "both_classes_all_folds": true,
+    "local_availability_ok": true,
+    "local_missing_count": 0
+  },
+  "limitations": [
+    "AI calibration IDs differ by fold (PROMPT_BLOCKED composition is fold-specific).",
+    "PROMPT_BLOCKED AI are train-generator images blocked for prompt leakage \u2014 not the held-out hard modern generators used in final evaluation. Calibration AI distribution \u2260 evaluation AI distribution.",
+    "Using REAL_INTERNAL_HOLDOUT for calibration is a role reassignment relative to its original reserved-holdout purpose; tutor must approve before fitting.",
+    "No AI IDs are unused across ALL folds simultaneously (intersection unused = Real-only 923).",
+    "CAP leftovers exist but are excluded from primary design due to same-generator and fold-inconsistency concerns."
+  ],
+  "conditional_inference": {
+    "performed": true,
+    "device": "mps",
+    "folds": {
+      "fold_1": {
+        "checkpoint": "models/v2/clip_lora_fold1_best_v1.pt",
+        "n_expected": 2123,
+        "n_scored": 2123,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicates": 0,
+        "finite_probs": true,
+        "label_agreement": true,
+        "n_real": 923,
+        "n_ai": 1200,
+        "roles_scored": [
+          "PROMPT_BLOCKED",
+          "REAL_INTERNAL_HOLDOUT"
+        ],
+        "score_file": "results/v2/v2_9c_calibration_scores_fold1_v1.csv",
+        "selected_epoch_in_ckpt": 14,
+        "ok": true
+      },
+      "fold_2": {
+        "checkpoint": "models/v2/clip_lora_fold2_best_v1.pt",
+        "n_expected": 2323,
+        "n_scored": 2323,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicates": 0,
+        "finite_probs": true,
+        "label_agreement": true,
+        "n_real": 923,
+        "n_ai": 1400,
+        "roles_scored": [
+          "PROMPT_BLOCKED",
+          "REAL_INTERNAL_HOLDOUT"
+        ],
+        "score_file": "results/v2/v2_9c_calibration_scores_fold2_v1.csv",
+        "selected_epoch_in_ckpt": 19,
+        "ok": true
+      },
+      "fold_3": {
+        "checkpoint": "models/v2/clip_lora_fold3_best_v1.pt",
+        "n_expected": 2223,
+        "n_scored": 2223,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicates": 0,
+        "finite_probs": true,
+        "label_agreement": true,
+        "n_real": 923,
+        "n_ai": 1300,
+        "roles_scored": [
+          "PROMPT_BLOCKED",
+          "REAL_INTERNAL_HOLDOUT"
+        ],
+        "score_file": "results/v2/v2_9c_calibration_scores_fold3_v1.csv",
+        "selected_epoch_in_ckpt": 19,
+        "ok": true
+      },
+      "fold_4": {
+        "checkpoint": "models/v2/clip_lora_fold4_best_v1.pt",
+        "n_expected": 2223,
+        "n_scored": 2223,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicates": 0,
+        "finite_probs": true,
+        "label_agreement": true,
+        "n_real": 923,
+        "n_ai": 1300,
+        "roles_scored": [
+          "PROMPT_BLOCKED",
+          "REAL_INTERNAL_HOLDOUT"
+        ],
+        "score_file": "results/v2/v2_9c_calibration_scores_fold4_v1.csv",
+        "selected_epoch_in_ckpt": 19,
+        "ok": true
+      }
+    },
+    "all_folds_ok": true
+  },
+  "next_stage_recommendation": "Human/tutor review required before any calibrator fitting. If limitations are accepted, a future V2-9D may fit leakage-safe C1/C2 using per-fold scores of REAL_INTERNAL_HOLDOUT + PROMPT_BLOCKED produced by each Fold-F frozen checkpoint \u2014 without touching final-eval IDs. If limitations are rejected, abandon post-hoc calibration on current V2 artifacts and consider alternative directions (selective prediction / robustness / targeted representation). Do NOT auto-start.",
+  "artifacts": {
+    "membership_summary_csv": "results/v2/v2_9c_fold_membership_summary_v1.csv",
+    "candidate_ids_csv": "results/v2/v2_9c_candidate_calibration_ids_v1.csv"
+  },
+  "integrity_statement": {
+    "NTIRE_ACCESSED": "NO",
+    "FAL_USED": "NO",
+    "V1_MODIFIED": "NO",
+    "V2_3_FOLDS_CHANGED": "NO",
+    "DETECTOR_TRAINING_PERFORMED": "NO",
+    "MODEL_WEIGHTS_UPDATED": "NO",
+    "CLIP_EMBEDDINGS_REGENERATED": "NO",
+    "V2_7_REPLAYED": "NO",
+    "NEW_DATA_ACQUIRED": "NO",
+    "CALIBRATOR_FITTED": "NO",
+    "THRESHOLD_TUNED": "NO",
+    "FINAL_EVALUATION_IDS_USED_AS_CALIBRATION": "NO",
+    "TRAIN_IDS_USED_AS_CALIBRATION": "NO",
+    "FINAL_V2_MODEL_SELECTED": "NO",
+    "NEXT_STAGE_STARTED": "NO",
+    "NEW_INFERENCE_PERFORMED": "YES"
+  },
+  "final_v2_model_selected": false,
+  "calibrator_fitted": false,
+  "next_stage_started": false
+}

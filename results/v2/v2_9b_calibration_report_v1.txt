@@ -1,0 +1,92 @@
+V2-9B — Leakage-Safe Post-Hoc Calibration Evaluation
+Status: COMPLETE — decision CALIBRATION_PROTOCOL_NOT_SAFE
+Detector training: NO. V2-7 replay: NO. Threshold adoption: NO.
+
+Purpose
+Test whether leakage-safe post-hoc calibration (C1 temperature-only, C2 affine/Platt) on existing V2-8 LoRA scores can repair the PRIMARILY_OPERATING_POINT_SHIFT diagnosed in V2-9A without retraining.
+
+Predeclared calibrators (NOT fitted due to unsafe protocol)
+  C0 = uncalibrated LoRA probability
+  C1 = z_cal = z / T   (T>0)
+  C2 = z_cal = a*z + b (Platt/affine)
+  logit eps = 1e-06
+  NOT used: isotonic, splines, beta, neural, C-grid search
+
+Prediction role (from locked manifests)
+  Each V2-8 prediction row is exactly the locked per-fold evaluation set: REAL_VALIDATION ∪ HOLDOUT_VALIDATION. REAL_INTERNAL_HOLDOUT, TRAIN, and PROMPT_BLOCKED are not present in prediction files. Confirmed via metadata/v2_split_assignments_v1.csv.
+  Manifest alignment OK: True
+  fold_1: n=2821 roles={'HOLDOUT_VALIDATION': 1898, 'REAL_VALIDATION': 923} missing=0 extra=0 ok=True
+  fold_2: n=2619 roles={'HOLDOUT_VALIDATION': 1696, 'REAL_VALIDATION': 923} missing=0 extra=0 ok=True
+  fold_3: n=1994 roles={'HOLDOUT_VALIDATION': 1071, 'REAL_VALIDATION': 923} missing=0 extra=0 ok=True
+  fold_4: n=1709 roles={'REAL_VALIDATION': 923, 'HOLDOUT_VALIDATION': 786} missing=0 extra=0 ok=True
+
+Fold-overlap matrix (all IDs)
+  F1: 2821 F2:  923 F3: 1123 F4:  923
+  F1:  923 F2: 2619 F3:  923 F4:  923
+  F1: 1123 F2:  923 F3: 1994 F4:  923
+  F1:  923 F2:  923 F3:  923 F4: 1709
+Real overlap matrix: every off-diagonal = 923 (full REAL_VALIDATION reuse)
+AI pairwise overlaps: {"F1_F2": {"generators": {}, "n": 0}, "F1_F3": {"generators": {"qwen::GPT-Image-1": 100, "qwen::GPT-Image-1.5": 100}, "n": 200}, "F1_F4": {"generators": {}, "n": 0}, "F2_F3": {"generators": {}, "n": 0}, "F2_F4": {"generators": {}, "n": 0}, "F3_F4": {"generators": {}, "n": 0}}
+
+Leakage-safe fit plans (preferred LOFO; overlaps removed from FIT only)
+  fold_1: source_before=6322 removed=2969 (unique_ids=1123) fit_after=3353 AI=3353 Real=0 valid=False target_eval=2821
+  fold_2: source_before=6524 removed=2769 (unique_ids=923) fit_after=3755 AI=3755 Real=0 valid=False target_eval=2619
+  fold_3: source_before=7149 removed=2969 (unique_ids=1123) fit_after=4180 AI=4180 Real=0 valid=False target_eval=1994
+  fold_4: source_before=7434 removed=2769 (unique_ids=923) fit_after=4665 AI=4665 Real=0 valid=False target_eval=1709
+
+ROOT CAUSE
+  Under locked V2-3 generator-holdout evaluation, the same 923 REAL_VALIDATION image IDs appear in EVERY fold's prediction file. Preferred leave-one-fold-out calibration therefore has source Real rows that are exact ID duplicates of the target fold Real set. Leakage gate removes those IDs from FITTING ONLY, which removes ALL Real negatives from every calibrator fit set, leaving AI-only scores. Binary post-hoc calibration (temperature / Platt) cannot be fitted scientifically without Real labels. Protocol forbids inventing another split, using target-fold labels, or replaying V2-7 / train inference to obtain alternate scores.
+
+Unsafe reasons
+  - Target fold 1: after removing overlapping IDs, fit set has AI=3353, Real=0, total=3353. Binary NLL calibration requires both classes (min Real>=50, AI>=50).
+  - Target fold 2: after removing overlapping IDs, fit set has AI=3755, Real=0, total=3755. Binary NLL calibration requires both classes (min Real>=50, AI>=50).
+  - Target fold 3: after removing overlapping IDs, fit set has AI=4180, Real=0, total=4180. Binary NLL calibration requires both classes (min Real>=50, AI>=50).
+  - Target fold 4: after removing overlapping IDs, fit set has AI=4665, Real=0, total=4665. Binary NLL calibration requires both classes (min Real>=50, AI>=50).
+
+Calibration metrics / C1 / C2 / cross-fitted predictions
+  NOT COMPUTED — protocol unsafe; no calibrator fitted.
+  Cross-fitted prediction CSV written: False
+
+Consistency with V2-9A
+  {"checked": true, "consistent_with_v29a_summary": true, "observed_from_v28_preds": {"mean_ai_recall_050": 0.3860296665949639, "mean_auc": 0.9031727720401306, "mean_real_spec_050": 0.977518959913326, "pooled_ai_frac_ge_050": 0.3735094478077417, "pooled_ai_mean_p": 0.3896438444706912, "pooled_real_mean_p": 0.039356393817537756}, "v29a_classification": "PRIMARILY_OPERATING_POINT_SHIFT"}
+
+DECISION: CALIBRATION_PROTOCOL_NOT_SAFE
+Interpretation: The preferred leakage-safe cross-fold calibration design cannot be executed on existing V2-8 prediction artifacts because Real validation IDs are fully shared across folds. Fitting temperature/Platt would require either (a) leaking target Real IDs, (b) self-fitting on the target fold, or (c) inventing a new split / generating new scores — all forbidden. Therefore calibration helpfulness for repairing LoRA's operating-point shift remains UNTESTED under a safe protocol.
+
+Answers (constrained by unsafe protocol)
+- q1_was_v28_miscalibrated: Likely yes in the operating-point sense (V2-9A: Real-ward score shift, AI mean≈0.39 with high AUC), but V2-9B could not measure ECE/NLL under a leakage-safe calibrator comparison.
+- q2_temperature_change_at_0.5: Not evaluated. Theoretically temperature-only (z/T) preserves the sign of z and therefore generally does not move examples across p=0.5; it was a predeclared negative control. Fitting was blocked by the leakage gate.
+- q3_platt_improve_p05: Not evaluated — affine/Platt fitting blocked by AI-only fit sets after Real ID overlap removal.
+- q4_ai_recall_recovered: Not evaluated (no calibrator fitted).
+- q5_real_spec_cost: Not evaluated (no calibrator fitted).
+- q6_hard_generators_improved: Not evaluated (no calibrator fitted).
+- q7_hard_generators_remain_weak: V2-9A residual FLUX/Seedream AP weakness remains the best available evidence; V2-9B adds no new calibrated hard-generator results.
+- q8_retain_lora_candidate: Yes as a ranking/development candidate (V2-8 LORA_MIXED + V2-9A OP-shift), but calibrated probability usability at p=0.5 remains unproven under a safe protocol.
+- q9_next_direction: See next_stage_recommendation; do not auto-start.
+
+Next-stage recommendation ONLY (not executed)
+  Human/tutor decision required. Options consistent with locks: (1) design a new locked calibration split that provides Real negatives without target-ID leakage (e.g., dedicate REAL_INTERNAL_HOLDOUT scores via a future approved offline score dump — not this stage); (2) proceed without post-hoc calibration toward selective prediction / robustness / targeted representation work acknowledging uncalibrated LoRA probabilities at 0.5 are not trustworthy; (3) do NOT silently fit calibrators on overlapping Real IDs or on the target fold. Prefer tutor review before any new PEFT retrain.
+
+Figures
+  - figures/v2/v2_9b_fold_overlap_matrix_v1.png
+  - figures/v2/v2_9b_calibration_fit_composition_after_leakage_removal_v1.png
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V2_3_FOLDS_CHANGED = NO
+  DETECTOR_MODEL_TRAINING_PERFORMED = NO
+  CLIP_EMBEDDINGS_REGENERATED = NO
+  V2_7_INFERENCE_REPLAYED = NO
+  NEW_DATA_ACQUIRED = NO
+  TARGET_FOLD_LABELS_USED_FOR_ITS_CALIBRATOR = NO
+  DUPLICATE_TARGET_IDS_USED_FOR_CALIBRATOR_FIT = NO
+  THRESHOLD_SWEEP_FOR_SELECTION = NO
+  DEPLOYMENT_THRESHOLD_CHANGED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+  CALIBRATOR_FITTED = NO
+
+FINAL_V2_MODEL_SELECTED = NO
+NEXT_STAGE_STARTED = NO

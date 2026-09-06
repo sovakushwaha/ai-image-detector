@@ -1,0 +1,24 @@
+device=mps sha=cba0cf3176fd8e61...
+params {'MLP-A': 65793, 'MLP-B': 147841, 'LogReg_C3': 513}
+=== MLP-A fold 1 ===
+  selected epoch=48 AUC=0.8356 phone=0.984 MLLM=0.876
+=== MLP-A fold 2 ===
+  selected epoch=20 AUC=0.8474 phone=0.984 MLLM=0.858
+=== MLP-A fold 3 ===
+  selected epoch=22 AUC=0.8479 phone=0.980 MLLM=0.752
+=== MLP-A fold 4 ===
+  selected epoch=3 AUC=0.7907 phone=0.986 MLLM=0.619
+=== MLP-B fold 1 ===
+  selected epoch=21 AUC=0.8461 phone=0.992 MLLM=0.850
+=== MLP-B fold 2 ===
+  selected epoch=14 AUC=0.8532 phone=0.988 MLLM=0.929
+=== MLP-B fold 3 ===
+  selected epoch=20 AUC=0.8453 phone=0.996 MLLM=0.850
+=== MLP-B fold 4 ===
+  selected epoch=1 AUC=0.8029 phone=0.960 MLLM=0.496
+SELECTED MLP-B primary max mean AUC among eligible (best=0.836888); selected=MLP-B
+DECISION MLP_CLEARLY_BETTER
+architecture  trainable_params  mean_roc_auc  std_roc_auc  min_roc_auc  max_roc_auc  mean_ap   min_ap  mean_ai_recall  mean_real_specificity  mean_mllm_specificity  min_mllm_specificity  mean_smartphone_specificity  min_smartphone_specificity  mean_selected_epoch  eligible eligibility_reason
+       MLP-A             65793      0.830403     0.027076     0.790691     0.847920 0.877334 0.786381        0.518012               0.932015               0.776549              0.619469                       0.9835                        0.98                23.25      True               PASS
+       MLP-B            147841      0.836888     0.022928     0.802915     0.853238 0.883818 0.801643        0.536921               0.927140               0.780973              0.495575                       0.9840                        0.96                14.00      True               PASS
+REMOTE_GPU_NEEDED_FOR_NEXT_STAGE NO
