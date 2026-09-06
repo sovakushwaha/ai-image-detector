@@ -1,0 +1,101 @@
+V2-9D — Independent Post-Hoc Calibration Evaluation
+Status: COMPLETE — decision CALIBRATION_NOT_HELPFUL
+Detector training: NO. Eval re-inference: NO. Threshold adoption: NO.
+
+Design (from V2-9C)
+  Per Fold F: fit on REAL_INTERNAL_HOLDOUT + Fold-F PROMPT_BLOCKED scores
+  produced by Fold-F frozen LoRA checkpoint; apply to untouched eval preds.
+  Limitations preserved: fold-specific AI; PB≠hard holdout; IH role reassignment;
+  no shared unused AI; CAP leftovers excluded.
+
+Input integrity
+  fold_1: calib=2123 (R923/A1200) eval=2821 overlap=0 ok=True
+  fold_2: calib=2323 (R923/A1400) eval=2619 overlap=0 ok=True
+  fold_3: calib=2223 (R923/A1300) eval=1994 overlap=0 ok=True
+  fold_4: calib=2223 (R923/A1300) eval=1709 overlap=0 ok=True
+
+Fitted parameters
+  Fold 1: T=9.324032  a=0.698128  b=2.788404 a<=0=False platt_iters=11
+  Fold 2: T=6.688007  a=0.715160  b=3.328159 a<=0=False platt_iters=11
+  Fold 3: T=6.226951  a=0.713388  b=2.889396 a<=0=False platt_iters=12
+  Fold 4: T=8.286705  a=0.661339  b=2.715695 a<=0=False platt_iters=11
+
+Calibration-set metrics (descriptive)
+  F1 C0 NLL/Brier/ECE/AUC=1.4618/0.4060/0.4307/0.8379 | C1 0.6694/0.2390/0.2178/0.8379 | C2 0.4981/0.1603/0.0601/0.8379
+  F2 C0 NLL/Brier/ECE/AUC=1.3395/0.3457/0.3896/0.9062 | C1 0.6337/0.2237/0.2912/0.9062 | C2 0.3774/0.1184/0.0383/0.9062
+  F3 C0 NLL/Brier/ECE/AUC=1.2204/0.3451/0.3912/0.8897 | C1 0.6377/0.2257/0.2801/0.8897 | C2 0.4079/0.1268/0.0432/0.8897
+  F4 C0 NLL/Brier/ECE/AUC=1.4048/0.3855/0.4168/0.8503 | C1 0.6620/0.2358/0.2713/0.8503 | C2 0.4723/0.1515/0.0659/0.8503
+
+Untouched evaluation macro-mean
+  C0: NLL=1.1428 Brier=0.3002 ECE=0.3319 AUC=0.9032 AP=0.9174 AI@0.5=0.3860 RealSpec=0.9775 balAcc=0.6818 F1=0.5383
+  C1: NLL=0.6128 Brier=0.2124 ECE=0.2704 AUC=0.9032 AP=0.9174 AI@0.5=0.3860 RealSpec=0.9775 balAcc=0.6818 F1=0.5383
+  C2: NLL=0.4102 Brier=0.1296 ECE=0.0895 AUC=0.9032 AP=0.9174 AI@0.5=0.8675 RealSpec=0.7654 balAcc=0.8165 F1=0.8434
+
+Per-fold evaluation @0.5 (AI recall / Real spec)
+  F1: C0 0.288/0.982  C1 0.288/0.982  C2 0.846/0.779
+  F2: C0 0.364/0.992  C1 0.364/0.992  C2 0.785/0.848
+  F3: C0 0.599/0.962  C1 0.599/0.962  C2 0.958/0.715
+  F4: C0 0.293/0.974  C1 0.293/0.974  C2 0.880/0.719
+
+C1 vs C0 classification changes @0.5: 0 / 9143 (by fold {'fold_1': 0, 'fold_2': 0, 'fold_3': 0, 'fold_4': 0})
+
+Hard generators (mean across folds where present)
+  mllm::GPT_Image_2: recall C0/C1/C2=0.132/0.132/0.851  AUC 0.880/0.880  mean_p 0.199->0.731
+  mllm::Nano_Banana_2: recall C0/C1/C2=0.217/0.217/0.745  AUC 0.876/0.876  mean_p 0.237->0.706
+  qwen::FLUX.2_max: recall C0/C1/C2=0.120/0.120/0.670  AUC 0.820/0.820  mean_p 0.143->0.633
+  qwen::GPT-Image-1.5: recall C0/C1/C2=0.260/0.260/0.850  AUC 0.875/0.875  mean_p 0.278->0.759
+  qwen::Seedream-5.0: recall C0/C1/C2=0.170/0.170/0.780  AUC 0.839/0.839  mean_p 0.230->0.709
+
+Real-domain specificity @0.5 (macro over folds)
+  Tiny: C0=0.971 C1=0.971 C2=0.693
+  MLLM: C0=0.914 C1=0.914 C2=0.622
+  COCO: C0=1.000 C1=1.000 C2=0.792
+  Smartphone: C0=0.992 C1=0.992 C2=0.831
+  Fold3 MLLM: C0=0.823 C2=0.593
+
+DECISION: CALIBRATION_NOT_HELPFUL
+
+Interpretation
+- q1_miscalibrated: Yes on independent calib and untouched eval: C0 ECE≈0.332, AI recall@0.5≈0.386 despite AUC≈0.903, consistent with V2-9A operating-point shift.
+- q2_temperature_calibration: C1 T fitted per fold; calib/eval NLL 1.143→0.613, ECE 0.332→0.270. Temperature can improve proper scoring without moving the 0.5 boundary.
+- q3_temperature_p05_changes: C1 changed 0/9143 evaluation classifications at 0.5.
+- q4_platt_operating_point: C2 AI recall 0.386→0.867 (Δ=+0.481); Real spec 0.978→0.765 (Δ=-0.212).
+- q5_ai_recall_recovered: Macro-mean AI recall recovered by +0.481 absolute.
+- q6_real_spec_cost: Macro-mean Real specificity change -0.212.
+- q7_hard_improved: Improved recall under C2 (Δ≥0.05, AUC still decent): ['mllm::GPT_Image_2', 'mllm::Nano_Banana_2', 'qwen::FLUX.2_max', 'qwen::GPT-Image-1.5', 'qwen::Seedream-5.0'].
+- q8_hard_separability_limited: Still weak AP/AUC after C2: ['qwen::FLUX.2_max', 'qwen::GPT-Image-1.5', 'qwen::Seedream-5.0'].
+- q9_fold3_mllm: Fold3 MLLM Real spec C0=0.823 C2=0.593.
+- q10_lora_stronger_candidate: Decision=CALIBRATION_NOT_HELPFUL. Calibration did not sufficiently strengthen LoRA for p=0.5 use.
+- q11_next: See next_stage_recommendation.
+
+Next-stage recommendation ONLY
+  Independent post-hoc calibration did not deliver useful operating-point repair under locks. Prefer non-calibration directions (selective prediction / robustness / targeted representation) or accept uncalibrated LoRA as ranking-only. Do not auto-start.
+
+Figures
+  - figures/v2/v2_9d_reliability_pooled_v1.png
+  - figures/v2/v2_9d_reliability_by_fold_c0_c2_v1.png
+  - figures/v2/v2_9d_operating_point_recall_spec_v1.png
+  - figures/v2/v2_9d_operating_point_hard_generator_recall_v1.png
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V2_3_FOLDS_CHANGED = NO
+  DETECTOR_TRAINING_PERFORMED = NO
+  MODEL_WEIGHTS_UPDATED = NO
+  CLIP_EMBEDDINGS_REGENERATED = NO
+  V2_7_REPLAYED = NO
+  NEW_DATA_ACQUIRED = NO
+  EVAL_INFERENCE_RERUN = NO
+  CALIBRATOR_FITTED = YES
+  TARGET_EVAL_LABELS_USED_FOR_CALIBRATOR = NO
+  TRAIN_IDS_USED_AS_CALIBRATION = NO
+  EVAL_IDS_USED_AS_CALIBRATION = NO
+  THRESHOLD_SWEEP_FOR_SELECTION = NO
+  DEPLOYMENT_THRESHOLD_CHANGED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+
+FINAL_V2_MODEL_SELECTED = NO
+NEXT_STAGE_STARTED = NO
