@@ -1,0 +1,15 @@
+[{"stream_name":"stderr","time":204.173715692,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":204.173887552,"data":"  File \"/kaggle/src/script.py\", line 29, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":204.173901912,"data":"    _ensure_deps()\n"}
+,{"stream_name":"stderr","time":204.173905972,"data":"  File \"/kaggle/src/script.py\", line 22, in _ensure_deps\n"}
+,{"stream_name":"stderr","time":204.173971992,"data":"    subprocess.check_call(\n"}
+,{"stream_name":"stderr","time":204.173995492,"data":"  File \"/usr/lib/python3.12/subprocess.py\", line 413, in check_call\n"}
+,{"stream_name":"stderr","time":204.17542168,"data":"    raise CalledProcessError(retcode, cmd)\n"}
+,{"stream_name":"stderr","time":204.17546303,"data":"subprocess.CalledProcessError: Command '['/usr/bin/python3', '-m', 'pip', 'install', '-q', 'open_clip_torch==3.3.0', 'ftfy', 'regex', 'safetensors', 'timm', 'huggingface_hub']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":206.390004128,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":206.390045838,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":206.735059919,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":206.735090599,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":207.533890609,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":209.086795986,"data":"[NbConvertApp] Writing 408751 bytes to __results__.html\n"}
+]

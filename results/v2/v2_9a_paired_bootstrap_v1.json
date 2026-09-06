@@ -1,0 +1,8 @@
+{
+  "stage": "V2-9A",
+  "executed": false,
+  "reason": "Authoritative V2-7 MLP-B per-image predictions do not exist on disk; cannot prove exact ID-matched pairing. Invalid Kaggle in-run baseline explicitly excluded.",
+  "n_replicates_requested": 5000,
+  "seed_requested": 42,
+  "invalid_kaggle_baseline_bootstrap_used": false
+}

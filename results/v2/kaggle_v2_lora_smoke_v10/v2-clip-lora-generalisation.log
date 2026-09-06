@@ -1,0 +1,24 @@
+[{"stream_name":"stderr","time":1.059619015,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":1.059705253,"data":"  File \"/kaggle/src/script.py\", line 98, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":1.059713098,"data":"    _ensure_cuda_torch()\n"}
+,{"stream_name":"stderr","time":1.05971769,"data":"  File \"/kaggle/src/script.py\", line 27, in _ensure_cuda_torch\n"}
+,{"stream_name":"stderr","time":1.059722437,"data":"    if not _gpu_hardware_present():\n"}
+,{"stream_name":"stderr","time":1.059727027,"data":"           ^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":1.059732866,"data":"  File \"/kaggle/src/script.py\", line 21, in _gpu_hardware_present\n"}
+,{"stream_name":"stderr","time":1.059737526,"data":"    r = subprocess.run([\"nvidia-smi\", \"-L\"], capture_output=True, text=True)\n"}
+,{"stream_name":"stderr","time":1.059742863,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":1.059747753,"data":"  File \"/usr/lib/python3.12/subprocess.py\", line 548, in run\n"}
+,{"stream_name":"stderr","time":1.069228445,"data":"    with Popen(*popenargs, **kwargs) as process:\n"}
+,{"stream_name":"stderr","time":1.069261709,"data":"         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":1.069267218,"data":"  File \"/usr/lib/python3.12/subprocess.py\", line 1026, in __init__\n"}
+,{"stream_name":"stderr","time":1.069272035,"data":"    self._execute_child(args, executable, preexec_fn, close_fds,\n"}
+,{"stream_name":"stderr","time":1.069276632,"data":"  File \"/usr/lib/python3.12/subprocess.py\", line 1955, in _execute_child\n"}
+,{"stream_name":"stderr","time":1.0692814,"data":"    raise child_exception_type(errno_num, err_msg, err_filename)\n"}
+,{"stream_name":"stderr","time":1.069286001,"data":"FileNotFoundError: [Errno 2] No such file or directory: 'nvidia-smi'\n"}
+,{"stream_name":"stderr","time":4.290800443,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":4.290838139,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":4.783908868,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":4.78393943,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":6.759561313,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":8.730479407,"data":"[NbConvertApp] Writing 447619 bytes to __results__.html\n"}
+]
