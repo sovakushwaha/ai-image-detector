@@ -1,0 +1,22 @@
+V2-11 NTIRE PROTOCOL LOCK (written during V2-10I; NTIRE SEALED)
+Created: 2026-09-08T14:59:30Z
+
+NTIRE_ACCESSED_WHILE_WRITING = NO
+NTIRE_STATUS = SEALED
+
+Active final test (from prior reservation only): deepfakesMSU/NTIRE-RobustAIGenDetection-val
+Revision: c762434ed33d1b31f0adaafaaacaab1f8459a969
+FINAL_TEST_LOCKED: True
+
+Frozen model for V2-11: FINAL_RESEARCH_MODEL_V2 = H4
+Threshold: 0.5 (no tuning)
+Output: UNCALIBRATED H4 binary p(AI)
+No retraining / calibration / selective retune / architecture change after viewing results.
+
+Backup rule: if NTIRE unusable at V2-11, activate reserved backup per
+results/v2_final_external_backup_candidate_v1.json — do not score-shop.
+
+Fold aggregation exact mechanics: pre-execution implementation detail at V2-11,
+resolved from existing protocol records without NTIRE-label tuning.
+
+Contamination guard remains active until V2-11 explicit authorisation.

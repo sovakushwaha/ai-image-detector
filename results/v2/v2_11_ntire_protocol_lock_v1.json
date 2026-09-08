@@ -1,0 +1,57 @@
+{
+  "document": "v2_11_ntire_protocol_lock_v1",
+  "created_at_utc": "2026-09-08T14:59:30Z",
+  "created_during_stage": "V2-10I",
+  "NTIRE_STATUS_DURING_THIS_DOCUMENT": "SEALED",
+  "NTIRE_ACCESSED_WHILE_WRITING": "NO",
+  "images_opened": false,
+  "labels_opened": false,
+  "filenames_inspected_beyond_prior_reservation_metadata": false,
+  "FINAL_RESEARCH_MODEL_V2": "H4",
+  "active_final_test": {
+    "role": "V2_FINAL_EXTERNAL_TEST_V1",
+    "dataset_id": "deepfakesMSU/NTIRE-RobustAIGenDetection-val",
+    "revision_sha": "c762434ed33d1b31f0adaafaaacaab1f8459a969",
+    "FINAL_TEST_LOCKED": true,
+    "contamination_guard": "src/v2_final_test_contamination_guard_v1.py",
+    "label_usability_status_from_reservation": "UNVERIFIED_AT_V2_1 \u2014 README contradicts filename listing; DO NOT open label files until STAGE V2-11"
+  },
+  "backup_if_ntire_unusable": {
+    "rule": "If NTIRE is usable at V2-11, use NTIRE regardless of score. Do NOT create two final tests to choose the better score.",
+    "backup_dataset_id": "saberzl/So-Fake-OOD",
+    "backup_revision_sha": "b4b34d16fda2020c2923a21d431d1ab3acbdbaff",
+    "note": "Use NTIRE if usable at V2-11 regardless of score; do not cherry-pick between tests."
+  },
+  "locked_before_opening_ntire": {
+    "model": "H4 = frozen CLIP + V2-8 LoRA fold checkpoints + H4 LogReg heads",
+    "representation": "R1 D=512 L2-normalized",
+    "preprocessing": "open_clip ViT-B-16-quickgelu/openai preprocess; EXIF transpose + RGB; no StrongRobust transforms at inference unless separately declared as evaluation conditions",
+    "binary_threshold": 0.5,
+    "threshold_tuning_allowed": false,
+    "calibration_fitting_allowed": false,
+    "selective_policy_retuning_allowed": false,
+    "retraining_allowed": false,
+    "architecture_changes_allowed": false,
+    "sample_exclusion_after_viewing_results_allowed": false,
+    "external_result_driven_model_changes_allowed": false,
+    "fold_inference_aggregation": {
+      "intent": "Use existing four fold-specific LoRA+H4 pairs; aggregation strategy must follow prior project practice for multi-fold V2 detectors",
+      "locked_principle": "No development-data retuning of aggregation after seeing NTIRE outcomes",
+      "pre_execution_detail": "Exact fold-routing / probability aggregation (e.g., per-image fold assignment vs mean of four fold models) is an implementation detail to be resolved at V2-11 from existing V2 development protocol records WITHOUT using NTIRE labels for tuning."
+    },
+    "metrics_where_labels_permit": [
+      "ROC-AUC",
+      "AP",
+      "AI_recall@0.5",
+      "Real_specificity@0.5",
+      "balanced_accuracy",
+      "precision",
+      "F1",
+      "optional_domain_or_generator_breakdowns_if_metadata_available"
+    ],
+    "primary_score": "UNCALIBRATED H4 p(AI) at threshold 0.5",
+    "ranking_metrics": "report threshold-free AUC/AP whenever labels permit"
+  },
+  "acceptance_rule": "NTIRE (or declared backup) results must be accepted as observed; no post-hoc model surgery.",
+  "v2_10i_note": "This protocol is locked without opening NTIRE contents."
+}

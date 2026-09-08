@@ -1,0 +1,14 @@
+V2-11 External Transfer Summary (paper-ready factual)
+Assessment: WEAK_EXTERNAL_TRANSFER
+
+The final V2 detector (H4) was frozen before NTIRE access under SHA256 manifest verification. NTIRE (deepfakesMSU/NTIRE-RobustAIGenDetection-val @ c762434ed33d1b31f0adaafaaacaab1f8459a969) was sealed throughout development.
+Primary score is equal-weight mean of four fold-specific frozen LoRA+H4 probabilities; binary decisions at threshold 0.5 with no calibration or threshold tuning.
+
+Primary NTIRE metrics (N=10000, Real=5000, AI=5000): AUC=0.6250, AP=0.6303, AI_recall@0.5=0.1296, Real_specificity@0.5=0.9556, balanced_accuracy=0.5426.
+Bootstrap 95% CI AUC [0.6138, 0.6362]; AP [0.6186, 0.6423]; AI_rec [0.1204, 0.1388]; RealSpec [0.9498, 0.9614].
+
+Descriptive gap vs frozen H4 development CLEAN (different dataset): ΔAUC=-0.3014, ΔAI_rec=-0.3954, ΔRealSpec=-0.0192.
+Official generator identities are not provided in val metadata; distortion flag (is_distorted) strata are reported instead. Hard public subset is diagnostic only.
+Historical V1 Stage27 external failure is CONTEXT_ONLY (different benchmark), not a paired comparison.
+
+FINAL_RESEARCH_MODEL_V2 remains H4. POST_NTIRE_MODEL_MODIFICATION_ALLOWED = NO.

@@ -1,0 +1,50 @@
+V2-10I FINAL MODEL LIMITATION REGISTER
+FINAL_RESEARCH_MODEL_V2 = H4
+Status: FROZEN_WITH_DOCUMENTED_LIMITATIONS
+Freeze timestamp (UTC): 2026-09-08T14:59:30Z
+
+These limitations remain visible and must not be softened.
+
+1. Seedream-5.0 weakness
+   H4 CLEAN recall remains ~0.030 (H2 ~0.270; H3 ~0.030).
+   Clean-anchored weighting did NOT recover the Seedream collapse.
+
+2. FLUX.2_max weakness
+   H4 CLEAN recall ~0.260 (H2 ~0.190; H3 ~0.240).
+   FLUX remains a primary residual AI weakness under H4.
+
+3. Fold4 weaker behaviour
+   Fold4 H4 CLEAN AUC ~0.866 (vs H2 ~0.949).
+   Fold4 continues to underperform Folds 1–3 under the frozen detector.
+
+4. Clean / robust trade-off
+   H4 CLEAN AUC ~0.926 is below H2 (~0.951).
+   H4 was selected as a compromise, not as a clean-optimal detector.
+
+5. StrongRobust AUC remains imperfect
+   Mean transformed AUC ~0.826; worst transformed AUC ~0.812.
+   Robustness is substantially improved vs H2 but is NOT solved completely.
+
+6. H4 missed V2-10H PROMISING gates
+   Decision label: CLEAN_ANCHORED_ROBUST_HEAD_MIXED.
+   Predeclared PROMISING criteria were not all met; freeze proceeds with documented MIXED status.
+
+7. Selective prediction was MIXED and is not a complete error solution
+   V2-10C (H2) selective prediction captured only a minority of errors.
+   Selective prediction is NOT part of the mandatory final binary detector.
+   H2 temperature/selective findings are NOT transferred to H4.
+
+8. Calibration experiments did not yield a safe global operating rescue for the original MLP-B
+   V2-9B: CALIBRATION_PROTOCOL_NOT_SAFE.
+   V2-9D: CALIBRATION_NOT_HELPFUL.
+   Frozen H4 external evaluation is UNCALIBRATED binary output at p=0.5.
+
+9. Final external transfer remains unknown before NTIRE
+   FINAL_EXTERNAL_PERFORMANCE = UNKNOWN.
+   Do NOT claim H4 generalises to NTIRE.
+   Do NOT predict NTIRE scores.
+   NTIRE remains SEALED until V2-11.
+
+Language for papers/reports:
+  "selected development compromise"
+  "final V2 model with documented robustness/generalisation limitations"

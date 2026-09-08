@@ -1,0 +1,153 @@
+{
+  "access": {
+    "NTIRE_FIRST_AUTHORIZED_ACCESS": "YES",
+    "timestamp_utc": "2026-09-08T15:09:21Z",
+    "dataset_id": "deepfakesMSU/NTIRE-RobustAIGenDetection-val",
+    "revision": "c762434ed33d1b31f0adaafaaacaab1f8459a969",
+    "local_dir": "data/v2/NTIRE-RobustAIGenDetection-val",
+    "authorization_token": "STAGE_V2_11_AUTHORIZED",
+    "file_val_images.zip": {
+      "path": "data/v2/NTIRE-RobustAIGenDetection-val/val_images.zip",
+      "bytes": 3185123401
+    },
+    "file_val_images_hard.zip": {
+      "path": "data/v2/NTIRE-RobustAIGenDetection-val/val_images_hard.zip",
+      "bytes": 804902498
+    },
+    "file_val_labels.csv": {
+      "path": "data/v2/NTIRE-RobustAIGenDetection-val/val_labels.csv",
+      "bytes": 702260
+    },
+    "file_val_hard_labels.csv": {
+      "path": "data/v2/NTIRE-RobustAIGenDetection-val/val_hard_labels.csv",
+      "bytes": 177226
+    },
+    "file_README.md": {
+      "path": "data/v2/NTIRE-RobustAIGenDetection-val/README.md",
+      "bytes": 2995
+    },
+    "revision_confirmed": "c762434ed33d1b31f0adaafaaacaab1f8459a969",
+    "n_val_jpg": 10000,
+    "n_hard_jpg": 2500
+  },
+  "primary_split": "val_images + val_labels.csv",
+  "secondary_hard_split": "val_images_hard + val_hard_labels.csv (diagnostic; disjoint IDs)",
+  "label_encoding": {
+    "source": "deepfakesMSU/NTIRE-RobustAIGenDetection-train README",
+    "0": "real",
+    "1": "generated (AI)",
+    "val_readme_claims_no_labels": true,
+    "val_labels_csv_present_in_reserved_revision": true,
+    "resolution": "Reserved revision contains val_labels.csv with binary labels matching train schema. Despite val README text claiming no deepfake labels, files are present and usable; encoding taken from official train documentation, NOT from model predictions."
+  },
+  "n_label_rows": 10000,
+  "n_unique_ids": 10000,
+  "n_duplicate_ids": 0,
+  "n_images_on_disk": 10000,
+  "n_missing_images": 0,
+  "n_extra_images_not_in_labels": 0,
+  "missing_image_names_sample": [],
+  "n_corrupt": 0,
+  "corrupt_images": [],
+  "corrupt_sample": [],
+  "label_counts": {
+    "1": 5000,
+    "0": 5000
+  },
+  "n_real": 5000,
+  "n_ai": 5000,
+  "is_distorted_counts": {
+    "0": 5000,
+    "1": 5000
+  },
+  "generator_metadata_officially_provided": false,
+  "hard": {
+    "n_label_rows": 2500,
+    "n_images_on_disk": 2500,
+    "overlap_with_primary": 0.0,
+    "label_counts": {
+      "0": 1250,
+      "1": 1250
+    }
+  },
+  "corrupt_policy": "Record corrupt images; exclude only unreadable files from eligible set with explicit audit. Do not exclude based on predictions.",
+  "freeze_verification": {
+    "PRE_NTIRE_FREEZE_VERIFIED": "YES",
+    "n_model_artifacts": 8,
+    "artifacts": [
+      {
+        "path": "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold1_v1.joblib",
+        "expected_sha256": "603c6e195afe41727f61cef9fb0e9c73de151cbaec1a72669c3e7aeed8daed3c",
+        "actual_sha256": "603c6e195afe41727f61cef9fb0e9c73de151cbaec1a72669c3e7aeed8daed3c",
+        "match": true,
+        "status": "OK",
+        "role": "H4_HEAD",
+        "fold": 1
+      },
+      {
+        "path": "models/v2/clip_lora_fold1_best_v1.pt",
+        "expected_sha256": "ebdf9fdce7ada9e4654f7f9ad8c19f20b716b0d4226256c2627114c7a715a1f6",
+        "actual_sha256": "ebdf9fdce7ada9e4654f7f9ad8c19f20b716b0d4226256c2627114c7a715a1f6",
+        "match": true,
+        "status": "OK",
+        "role": "LORA_CHECKPOINT",
+        "fold": 1
+      },
+      {
+        "path": "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold2_v1.joblib",
+        "expected_sha256": "3501845ffd16cfd2af11f4c9f2f7dae1c63971de4467b6584f8109ed0161a5e8",
+        "actual_sha256": "3501845ffd16cfd2af11f4c9f2f7dae1c63971de4467b6584f8109ed0161a5e8",
+        "match": true,
+        "status": "OK",
+        "role": "H4_HEAD",
+        "fold": 2
+      },
+      {
+        "path": "models/v2/clip_lora_fold2_best_v1.pt",
+        "expected_sha256": "73b0fbd67fa9a6eec02b75648d69ac0d9d67bac5b39cc6d1e0d3a4a709f35865",
+        "actual_sha256": "73b0fbd67fa9a6eec02b75648d69ac0d9d67bac5b39cc6d1e0d3a4a709f35865",
+        "match": true,
+        "status": "OK",
+        "role": "LORA_CHECKPOINT",
+        "fold": 2
+      },
+      {
+        "path": "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold3_v1.joblib",
+        "expected_sha256": "6063d30a908cc8737afb4011976f7f1b71ac6e1eb83c3dc527d2eb6159be39d0",
+        "actual_sha256": "6063d30a908cc8737afb4011976f7f1b71ac6e1eb83c3dc527d2eb6159be39d0",
+        "match": true,
+        "status": "OK",
+        "role": "H4_HEAD",
+        "fold": 3
+      },
+      {
+        "path": "models/v2/clip_lora_fold3_best_v1.pt",
+        "expected_sha256": "35b1cf6f955564abe17bd1e9cb971e6d7896a02b8e331a74688898d2343e588b",
+        "actual_sha256": "35b1cf6f955564abe17bd1e9cb971e6d7896a02b8e331a74688898d2343e588b",
+        "match": true,
+        "status": "OK",
+        "role": "LORA_CHECKPOINT",
+        "fold": 3
+      },
+      {
+        "path": "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold4_v1.joblib",
+        "expected_sha256": "346433a774a40dad61c4db982822f73393b21aa0defbd4c6e05122e801b27391",
+        "actual_sha256": "346433a774a40dad61c4db982822f73393b21aa0defbd4c6e05122e801b27391",
+        "match": true,
+        "status": "OK",
+        "role": "H4_HEAD",
+        "fold": 4
+      },
+      {
+        "path": "models/v2/clip_lora_fold4_best_v1.pt",
+        "expected_sha256": "065695b66a3c779605b9469ea64874844aa52d50e20cac81c5c07485e5a1d540",
+        "actual_sha256": "065695b66a3c779605b9469ea64874844aa52d50e20cac81c5c07485e5a1d540",
+        "match": true,
+        "status": "OK",
+        "role": "LORA_CHECKPOINT",
+        "fold": 4
+      }
+    ],
+    "manifest": "models/v2/final_v2_h4_freeze_manifest_v1.json"
+  }
+}

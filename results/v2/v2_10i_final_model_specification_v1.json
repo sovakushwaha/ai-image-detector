@@ -1,0 +1,127 @@
+{
+  "document": "v2_10i_final_model_specification_v1",
+  "FINAL_RESEARCH_MODEL_V2": "H4",
+  "DEVELOPMENT_STATUS": "FROZEN_WITH_DOCUMENTED_LIMITATIONS",
+  "FINAL_EXTERNAL_VALIDATION": "NOT_STARTED",
+  "NTIRE_STATUS": "SEALED",
+  "freeze_timestamp_utc": "2026-09-08T14:59:30Z",
+  "conceptual_stack": {
+    "backbone": {
+      "library": "open_clip_torch",
+      "model_name": "ViT-B-16-quickgelu",
+      "pretrained": "openai",
+      "config_source": "kaggle/v2_lora/configs/v2_lora_config_v1.json"
+    },
+    "adaptation": {
+      "stage": "V2-8",
+      "method": "LoRA",
+      "target": "last_4_visual_transformer_blocks",
+      "target_modules": [
+        "attn.in_proj",
+        "attn.out_proj"
+      ],
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "checkpoints": [
+        "models/v2/clip_lora_fold1_best_v1.pt",
+        "models/v2/clip_lora_fold2_best_v1.pt",
+        "models/v2/clip_lora_fold3_best_v1.pt",
+        "models/v2/clip_lora_fold4_best_v1.pt"
+      ]
+    },
+    "representation": {
+      "name": "R1",
+      "definition": "LoRA-adapted visual embedding before classification head",
+      "D": 512,
+      "l2_normalized": true
+    },
+    "head": {
+      "name": "H4",
+      "full_name": "CLEAN_ANCHORED_ROBUST_LOGREG_BALANCED",
+      "type": "sklearn.linear_model.LogisticRegression",
+      "penalty": "l2",
+      "C": 1.0,
+      "fit_intercept": true,
+      "class_weight": "balanced",
+      "solver": "lbfgs",
+      "max_iter": 2000,
+      "n_params_approx": 513,
+      "serialized_size_approx_bytes": 2907,
+      "models": [
+        "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold1_v1.joblib",
+        "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold2_v1.joblib",
+        "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold3_v1.joblib",
+        "models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold4_v1.joblib"
+      ]
+    },
+    "threshold": {
+      "binary_threshold": 0.5,
+      "threshold_tuned": false
+    },
+    "offline_head_training_condition_weights": {
+      "CLEAN": 4.0,
+      "jpeg_q50": 1.0,
+      "resize_112": 1.0,
+      "blur_sigma2": 1.0,
+      "screenshot_strong": 1.0,
+      "effective_clean_fraction": 0.5,
+      "effective_transformed_fraction": 0.5,
+      "note": "OFFLINE sample_weight only; deployment inference uses CLEAN image once; transform identity is NOT an input feature."
+    },
+    "preprocessing": {
+      "inference": "open_clip create_model_and_transforms preprocess for ViT-B-16-quickgelu/openai; EXIF transpose + RGB",
+      "source": "kaggle/v2_lora/train_v2_clip_lora.py + analyze_v2_10a ClipLoRAModel",
+      "strongrobust_offline_defs": "src/external_v2_common.py TRANSFORM_FNS (training-time only for H4)"
+    },
+    "calibration_selective": {
+      "primary_external_output": "UNCALIBRATED H4 binary p(AI) at threshold 0.5",
+      "h2_temperature_selective": "SCIENTIFIC_DEVELOPMENT_FINDING_ONLY_NOT_TRANSFERRED_TO_H4",
+      "h4_calibrator_fitted_at_freeze": false
+    }
+  },
+  "lora_config_echo": {
+    "model_name": "ViT-B-16-quickgelu",
+    "pretrained": "openai",
+    "library": "open_clip_torch",
+    "library_version": "3.3.0",
+    "embedding_dim": 512,
+    "l2_normalize": true
+  },
+  "lora_adaptation_echo": {
+    "target": "last_4_visual_transformer_blocks",
+    "target_modules": [
+      "attn.in_proj",
+      "attn.out_proj"
+    ],
+    "rank": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "last_n_blocks": 4
+  },
+  "authoritative_h4_clean_macro": {
+    "roc_auc": 0.9263901084194186,
+    "ap": 0.9291294072277244,
+    "ai_recall": 0.5249771485247796,
+    "real_specificity": 0.9748104008667389,
+    "balanced_accuracy": 0.7498937746957592,
+    "precision": 0.9584117341294311,
+    "f1": 0.6659968505298787
+  },
+  "authoritative_h4_tradeoff": {
+    "clean_auc": 0.9263901084194186,
+    "clean_ap": 0.9291294072277244,
+    "clean_ai_recall": 0.5249771485247796,
+    "clean_real_spec": 0.9748104008667389,
+    "clean_balacc": 0.7498937746957592,
+    "mean_tf_auc": 0.8259320480728356,
+    "worst_tf_auc": 0.8123471863409399,
+    "mean_tf_ap": 0.8274158008455492,
+    "mean_tf_ai_recall": 0.4970083384573738,
+    "mean_tf_real_spec": 0.8833288190682557,
+    "worst_tf_real_spec": 0.8369447453954497,
+    "mean_tf_balacc": 0.6901685787628147,
+    "worst_tf_balacc": 0.6560237592126046
+  },
+  "v2_10h_decision": "CLEAN_ANCHORED_ROBUST_HEAD_MIXED"
+}
