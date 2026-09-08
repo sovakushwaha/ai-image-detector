@@ -1,0 +1,118 @@
+V2-10C — H2 Confidence Calibration + Selective Prediction
+Status: COMPLETE — decision SELECTIVE_PREDICTION_MIXED
+Temperature-only on frozen H2. Binary thr=0.5 unchanged. S90 primary.
+No Platt. No H2 retrain. FINAL_V2_MODEL NOT SELECTED.
+
+Provenance audit
+  v2_9c_primary_calib_ok: True
+  calib_train_overlap_all_folds: 0
+  calib_eval_overlap_all_folds: 0
+  eval_matches_v2_10b: True
+  h2_models_present: True
+  eval_r1_present: True
+NEW_CALIBRATION_FEATURE_INFERENCE_PERFORMED = YES
+  fold_1: ckpt=models/v2/clip_lora_fold1_best_v1.pt n=2123 D=512 reused=False path=results/v2/v2_10c_calibration_r1_fold1_v1.npz
+  fold_2: ckpt=models/v2/clip_lora_fold2_best_v1.pt n=2323 D=512 reused=False path=results/v2/v2_10c_calibration_r1_fold2_v1.npz
+  fold_3: ckpt=models/v2/clip_lora_fold3_best_v1.pt n=2223 D=512 reused=False path=results/v2/v2_10c_calibration_r1_fold3_v1.npz
+  fold_4: ckpt=models/v2/clip_lora_fold4_best_v1.pt n=2223 D=512 reused=False path=results/v2/v2_10c_calibration_r1_fold4_v1.npz
+
+Temperature params (fit on calib only)
+  Fold 1: T=3.031194 raw_NLL=0.7732 temp_NLL=0.5972 status=ok
+  Fold 2: T=1.721992 raw_NLL=0.5273 temp_NLL=0.4894 status=ok
+  Fold 3: T=2.461569 raw_NLL=0.6406 temp_NLL=0.5225 status=ok
+  Fold 4: T=3.235256 raw_NLL=0.7951 temp_NLL=0.5945 status=ok
+
+p=0.5 classification changes (eval): 0 / 9143
+
+Calibration quality (macro over folds)
+  calib:
+    C0: NLL=0.6840 Brier=0.2344 ECE=0.3006 AUC=0.9351 AP=0.9414 AI_rec=0.4092 RealSpec=0.9797
+    C1: NLL=0.5509 Brier=0.1923 ECE=0.2773 AUC=0.9351 AP=0.9414 AI_rec=0.4092 RealSpec=0.9797
+  eval:
+    C0: NLL=0.5255 Brier=0.1756 ECE=0.2211 AUC=0.9507 AP=0.9576 AI_rec=0.5756 RealSpec=0.9670
+    C1: NLL=0.4853 Brier=0.1612 ECE=0.2437 AUC=0.9507 AP=0.9576 AI_rec=0.5756 RealSpec=0.9670
+
+Selective policies (eval macro)
+  S95: cov=0.959 abstain=0.041 sel_acc=0.7513 sel_err=0.2487 covBalAcc=0.7756 err_capture=0.081 enrich=1.958
+  S90: cov=0.920 abstain=0.080 sel_acc=0.7618 sel_err=0.2382 covBalAcc=0.7808 err_capture=0.159 enrich=2.035
+  S80: cov=0.839 abstain=0.161 sel_acc=0.7840 sel_err=0.2160 covBalAcc=0.7880 err_capture=0.309 enrich=1.970
+
+PRIMARY S90 details
+  coverage=0.920 AI_cov=0.883 Real_cov=0.974
+  covered AI recall=0.5830 covered RealSpec=0.9786
+  TP/totalAI=0.5168 TN/totalReal=0.9531
+  err_capture=0.159 enrich=2.035 (AI capture=0.143, Real capture=0.369)
+
+S90 per-fold
+  Fold 1: cov=0.907 sel_acc=0.7160 covBalAcc=0.7761 AI_cov=0.871 covAI_rec=0.5699 Real_cov=0.983 covRealSpec=0.9824 err_cap=0.155 enrich=1.672
+  Fold 2: cov=0.908 sel_acc=0.7169 covBalAcc=0.7688 AI_cov=0.869 covAI_rec=0.5519 Real_cov=0.979 covRealSpec=0.9856 err_cap=0.156 enrich=1.684
+  Fold 3: cov=0.927 sel_acc=0.8778 covBalAcc=0.8820 AI_cov=0.912 covAI_rec=0.8076 Real_cov=0.945 covRealSpec=0.9564 err_cap=0.213 enrich=2.923
+  Fold 4: cov=0.939 sel_acc=0.7364 covBalAcc=0.6964 AI_cov=0.882 covAI_rec=0.4026 Real_cov=0.988 covRealSpec=0.9901 err_cap=0.113 enrich=1.860
+
+Hard generators under S90
+  mllm::GPT_Image_2: n=726 base_rec=0.653 cov=0.865 unc=0.135 cov_rec=0.670 TP/total=0.580 err_cap=45/252 mode=mixed_detect_and_abstain
+  mllm::Nano_Banana_2: n=725 base_rec=0.483 cov=0.817 unc=0.183 cov_rec=0.481 TP/total=0.393 err_cap=68/375 mode=still_confidently_misclassifies
+  qwen::FLUX.2_max: n=100 base_rec=0.190 cov=0.890 unc=0.110 cov_rec=0.124 TP/total=0.110 err_cap=3/81 mode=still_confidently_misclassifies
+  qwen::GPT-Image-1.5: n=200 base_rec=0.425 cov=0.855 unc=0.145 cov_rec=0.395 TP/total=0.335 err_cap=11/115 mode=still_confidently_misclassifies
+  qwen::Seedream-5.0: n=100 base_rec=0.270 cov=0.910 unc=0.090 cov_rec=0.220 TP/total=0.200 err_cap=2/73 mode=still_confidently_misclassifies
+
+Real domains under S90
+  Tiny: n=1000 cov=0.932 unc=0.068 covSpec=0.946 covFP=48 FP_to_unc=32
+  MLLM: n=452 cov=0.936 unc=0.064 covSpec=0.935 covFP=27 FP_to_unc=14
+  COCO: n=240 cov=1.000 unc=0.000 covSpec=1.000 covFP=0 FP_to_unc=0
+  Smartphone: n=2000 cov=1.000 unc=0.000 covSpec=1.000 covFP=1 FP_to_unc=0
+  Fold3 MLLM: n=113 cov=0.920 covSpec=0.894 FP_to_unc=4
+
+Risk-coverage AURC (macro mean folds): 0.1051
+
+Decision evidence
+  - flags={'leakage_safe': True, 'temp_improves_ge2': True, 'p05_unchanged': True, 'eval_coverage_ge_080': True, 'selective_error_down': False, 'enrichment_gt_1_5': True, 'covered_real_spec_ge_097': True, 'phone_ge_099': True, 'mllm_ge_085': True, 'folds_ge_3': True, 'hard_not_all_abstain': True}
+  - S90 macro: cov=0.920 sel_err=0.2382 base_err=0.2581 enrich=2.035 covRealSpec=0.979
+  - Phone covSpec=1.000 MLLM covSpec=0.935 mean_hard_cov=0.867 folds_ok=4 temp_metrics_improved=3
+
+DECISION: SELECTIVE_PREDICTION_MIXED
+
+Interpretation
+- q1_h2_miscalibrated: Calib C0 NLL/Brier/ECE=0.6840/0.2344/0.3006; C1=0.5509/0.1923/0.2773; metrics improved=3/3.
+- q2_temp_helps: Temperature improved 3/3 of NLL/Brier/ECE on calib; AUC unchanged by construction.
+- q3_p05_changes: 0 classification changes at p=0.5 on eval.
+- q4_s90_coverage: S90 macro eval coverage=0.920.
+- q5_error_capture: S90 error capture rate=0.159.
+- q6_enrichment: S90 enrichment=2.035 (>1 means preferential error abstention).
+- q7_covered_ai: Covered AI recall=0.5830; TP/totalAI=0.5168 (not full-dataset recall).
+- q8_real_safety: Covered RealSpec=0.9786; Phone=1.000; MLLM=0.935.
+- q9_gpt: mixed_detect_and_abstain (cov=0.865)
+- q10_nano: still_confidently_misclassifies (cov=0.817)
+- q11_flux: still_confidently_misclassifies (cov=0.890)
+- q12_seedream: still_confidently_misclassifies (cov=0.910)
+- q13_mllm_real: Fold3 MLLM covSpec=0.894 cov=0.920 FP_to_unc=4
+- q14_remaining_mistakes: Of 2421 baseline errors: 372 UNCERTAIN, 2049 still covered (confident wrong).
+- q15_dev_candidate: H2 (+ optional temperature); selective policy conditional
+- q16_next: Keep H2 as primary binary development candidate; treat selective S90 as optional risk-reduction layer with documented limitations (coverage/hard-gen). Next: targeted residual-error analysis or robustness — not Platt, not LoRA redo. Do not auto-start.
+
+Development candidate: H2 (+ optional temperature); selective policy conditional
+Next-stage recommendation ONLY: Keep H2 as primary binary development candidate; treat selective S90 as optional risk-reduction layer with documented limitations (coverage/hard-gen). Next: targeted residual-error analysis or robustness — not Platt, not LoRA redo. Do not auto-start.
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V2_3_FOLDS_CHANGED = NO
+  LORA_BACKBONE_TRAINED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  CLIP_WEIGHTS_UPDATED = NO
+  H2_RETRAINED = NO
+  NEW_HEAD_TRAINED = NO
+  CALIBRATION_DATA_OVERLAPS_TRAIN = NO
+  CALIBRATION_DATA_OVERLAPS_EVAL = NO
+  EVAL_LABELS_USED_FOR_TEMPERATURE_FIT = NO
+  EVAL_LABELS_USED_FOR_SELECTIVE_CUTOFF = NO
+  PLATT_OR_AFFINE_CALIBRATION_USED = NO
+  BINARY_THRESHOLD_CHANGED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+  NEW_DATA_ACQUIRED = NO
+  NEW_CALIBRATION_FEATURE_INFERENCE_PERFORMED = YES
+
+FINAL_V2_MODEL_SELECTED = NO
+NEXT_STAGE_STARTED = NO

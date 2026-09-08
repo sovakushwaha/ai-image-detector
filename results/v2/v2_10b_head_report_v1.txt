@@ -1,0 +1,137 @@
+V2-10B — Frozen-LoRA Head Refit: Linear vs Class-Balanced Linear
+Status: COMPLETE — decision HEAD_RESCUE_PROMISING
+Only predeclared H1/H2 trained on frozen R1. No LoRA/CLIP/MLP-B training.
+No threshold sweep. No calibration. FINAL_V2_MODEL NOT SELECTED.
+
+Artifact audit
+  Eval R1 reused (V2-10A): all present=True
+  Train R1 preexisting before stage: False
+NEW_TRAIN_FEATURE_INFERENCE_PERFORMED = YES
+  fold_1: ckpt=models/v2/clip_lora_fold1_best_v1.pt n=6008 D_r1=512 reused=False path=results/v2/v2_10b_lora_train_features_fold1_v1.npz
+  fold_2: ckpt=models/v2/clip_lora_fold2_best_v1.pt n=6009 D_r1=512 reused=False path=results/v2/v2_10b_lora_train_features_fold2_v1.npz
+  fold_3: ckpt=models/v2/clip_lora_fold3_best_v1.pt n=6309 D_r1=512 reused=False path=results/v2/v2_10b_lora_train_features_fold3_v1.npz
+  fold_4: ckpt=models/v2/clip_lora_fold4_best_v1.pt n=6594 D_r1=512 reused=False path=results/v2/v2_10b_lora_train_features_fold4_v1.npz
+
+Train/eval integrity
+  folds: {'fold_1': {'train_n': 6008, 'train_real': 4280, 'train_ai': 1728, 'train_dups': 0, 'overlap_eval': 0, 'expected_match': True}, 'fold_2': {'train_n': 6009, 'train_real': 4280, 'train_ai': 1729, 'train_dups': 0, 'overlap_eval': 0, 'expected_match': True}, 'fold_3': {'train_n': 6309, 'train_real': 4280, 'train_ai': 2029, 'train_dups': 0, 'overlap_eval': 0, 'expected_match': True}, 'fold_4': {'train_n': 6594, 'train_real': 4280, 'train_ai': 2314, 'train_dups': 0, 'overlap_eval': 0, 'expected_match': True}}
+  ok: True
+
+H1/H2 train meta (macro over folds)
+  H1: mean_n_iter=18.0 mean_time_s=0.029 params=513 mean_coef_l2=21.8548
+  H2: mean_n_iter=18.0 mean_time_s=0.021 params=513 mean_coef_l2=22.5049
+
+Macro metrics @ p=0.5
+  H0: AUC=0.9032 AP=0.9174 AI_rec=0.3860 RealSpec=0.9775 BalAcc=0.6818 F1=0.5383
+  H1: AUC=0.9505 AP=0.9576 AI_rec=0.4736 RealSpec=0.9835 BalAcc=0.7285 F1=0.6250
+  H2: AUC=0.9507 AP=0.9576 AI_rec=0.5756 RealSpec=0.9670 BalAcc=0.7713 F1=0.7099
+
+Per-fold (AUC / AP / AI_rec / RealSpec / BalAcc)
+  Fold 1:
+    H0: 0.8893 / 0.9331 / 0.2877 / 0.9816 / 0.6346
+    H1: 0.9528 / 0.9732 / 0.4568 / 0.9881 / 0.7224
+    H2: 0.9523 / 0.9727 / 0.5595 / 0.9740 / 0.7668
+  Fold 2:
+    H0: 0.8999 / 0.9439 / 0.3644 / 0.9924 / 0.6784
+    H1: 0.9429 / 0.9654 / 0.3921 / 0.9924 / 0.6923
+    H2: 0.9437 / 0.9661 / 0.5442 / 0.9740 / 0.7591
+  Fold 3:
+    H0: 0.9368 / 0.9397 / 0.5994 / 0.9621 / 0.7808
+    H1: 0.9568 / 0.9614 / 0.7096 / 0.9621 / 0.8358
+    H2: 0.9580 / 0.9623 / 0.7890 / 0.9339 / 0.8614
+  Fold 4:
+    H0: 0.8867 / 0.8528 / 0.2926 / 0.9740 / 0.6333
+    H1: 0.9494 / 0.9303 / 0.3359 / 0.9913 / 0.6636
+    H2: 0.9489 / 0.9291 / 0.4097 / 0.9859 / 0.6978
+
+Worst-fold by balanced accuracy
+  H0: fold=4 BalAcc=0.6333
+  H1: fold=4 BalAcc=0.6636
+  H2: fold=4 BalAcc=0.6978
+
+Score distributions (macro-mean of fold summaries)
+  H0 Real mean/med=0.0394/0.0035 AI mean/med=0.4013/0.2859
+  H1 Real mean/med=0.0480/0.0072 AI mean/med=0.4880/0.4770
+  H2 Real mean/med=0.0666/0.0108 AI mean/med=0.5679/0.5962
+
+Hard generators (macro recall@0.5)
+  mllm::GPT_Image_2: H0=0.132 H1=0.536 H2=0.653  ΔH1=+0.404 ΔH2=+0.521
+  mllm::Nano_Banana_2: H0=0.217 H1=0.255 H2=0.483  ΔH1=+0.039 ΔH2=+0.266
+  qwen::FLUX.2_max: H0=0.120 H1=0.070 H2=0.190  ΔH1=-0.050 ΔH2=+0.070
+  qwen::GPT-Image-1.5: H0=0.260 H1=0.300 H2=0.425  ΔH1=+0.040 ΔH2=+0.165
+  qwen::Seedream-5.0: H0=0.170 H1=0.200 H2=0.270  ΔH1=+0.030 ΔH2=+0.100
+
+Real domains (macro specificity@0.5)
+  Tiny: H0=0.971 H1=0.961 H2=0.920
+  MLLM: H0=0.914 H1=0.954 H2=0.909
+  COCO: H0=1.000 H1=1.000 H2=1.000
+  Smartphone: H0=0.992 H1=1.000 H2=1.000
+  Fold3 MLLM: H0=0.823 H1=0.920 H2=0.867
+
+Paired bootstrap (fold-wise; Δ = head − H0; 5000× seed42 stratified)
+  fold_1:
+    H1_minus_H0: AUC +0.0635 [+0.0548,+0.0726]; AI_rec +0.1694 [+0.1491,+0.1902]; RealSpec +0.0065 [-0.0011,+0.0141]
+    H2_minus_H0: AUC +0.0631 [+0.0544,+0.0722]; AI_rec +0.2721 [+0.2508,+0.2940]; RealSpec -0.0076 [-0.0184,+0.0033]
+  fold_2:
+    H1_minus_H0: AUC +0.0431 [+0.0352,+0.0511]; AI_rec +0.0277 [+0.0094,+0.0454]; RealSpec +0.0000 [-0.0065,+0.0065]
+    H2_minus_H0: AUC +0.0439 [+0.0361,+0.0518]; AI_rec +0.1797 [+0.1604,+0.2011]; RealSpec -0.0185 [-0.0293,-0.0087]
+  fold_3:
+    H1_minus_H0: AUC +0.0200 [+0.0139,+0.0262]; AI_rec +0.1103 [+0.0887,+0.1317]; RealSpec -0.0000 [-0.0130,+0.0130]
+    H2_minus_H0: AUC +0.0211 [+0.0151,+0.0274]; AI_rec +0.1896 [+0.1662,+0.2129]; RealSpec -0.0282 [-0.0444,-0.0130]
+  fold_4:
+    H1_minus_H0: AUC +0.0629 [+0.0529,+0.0727]; AI_rec +0.0433 [+0.0204,+0.0674]; RealSpec +0.0173 [+0.0087,+0.0271]
+    H2_minus_H0: AUC +0.0624 [+0.0524,+0.0721]; AI_rec +0.1169 [+0.0891,+0.1450]; RealSpec +0.0119 [+0.0043,+0.0206]
+
+Resource analysis
+  H0_mlp_b_params: 147841
+  H1_H2_params: 513
+  H1_mean_serialized_bytes: 2891.0
+  H2_mean_serialized_bytes: 2907.0
+  H1_mean_train_s: 0.02905978125022557
+  H2_mean_train_s: 0.02138789574985367
+  note: Linear head ~513 params vs MLP-B ~147841; inference is one dot-product + sigmoid vs 3-layer MLP. Backbone cost dominates either way.
+
+Decision evidence
+  - H1: recall_gain=+0.088 auc_drop=-0.0473 RealSpec=0.983 Phone=1.000 MLLM=0.954 folds_improve=2/4 hard_improve=1/5 flags={'substantial_recall': False, 'auc_ok': True, 'real_spec_ok': True, 'phone_ok': True, 'mllm_ok': True, 'fold_consistency': False, 'hard_gen_improve': False, 'no_catastrophic_real': True}
+  - H2: recall_gain=+0.190 auc_drop=-0.0476 RealSpec=0.967 Phone=1.000 MLLM=0.909 folds_improve=4/4 hard_improve=4/5 flags={'substantial_recall': True, 'auc_ok': True, 'real_spec_ok': True, 'phone_ok': True, 'mllm_ok': True, 'fold_consistency': True, 'hard_gen_improve': True, 'no_catastrophic_real': True}
+
+DECISION: HEAD_RESCUE_PROMISING
+
+Interpretation
+- q1_linearly_separable: Partially: H1 AUC=0.9505 vs H0=0.9032 (Δ=+0.0473); linear head recovers ranking on frozen R1.
+- q2_h1_vs_mlpb: H1 vs H0: AUC Δ=+0.0473, AI_rec Δ=+0.0876, RealSpec Δ=+0.0060, BalAcc Δ=+0.0468.
+- q3_h2_recall: H2 AI_rec=0.5756 vs H1=0.4736 vs H0=0.3860 (H2−H0=+0.1896).
+- q4_h2_real_cost: H2 RealSpec=0.9670 vs H0=0.9775 (Δ=-0.0106).
+- q5_vs_platt: V2-9D Platt RealSpec~0.765; H2 RealSpec=0.9670; Phone H2=1.000; MLLM H2=0.909.
+- q6_gpt_nano: GPT Image2 recall H0/H1/H2=0.132/0.536/0.653; Nano Banana2=0.217/0.255/0.483.
+- q7_flux_seedream: FLUX.2_max H0/H1/H2=0.120/0.070/0.190; Seedream=0.170/0.200/0.270.
+- q8_fold3_mllm: Fold3 MLLM spec H0/H1/H2=0.823/0.920/0.867
+- q9_imbalance_contributor: H2 (balanced) vs H1 (unweighted): AI_rec Δ=+0.1020, RealSpec Δ=-0.0165. If H2 lifts recall materially beyond H1, imbalance/objective likely contributed to H0 failure.
+- q10_resource: Linear ~513 params vs MLP-B ~147841; mean H1 train 0.029s. Backbone still dominates runtime.
+- q11_dev_candidate: H2
+- q12_next: Authorize a locked follow-up validating H2 as V2 development candidate (operating-point / selective-prediction study on frozen R1) — not another LoRA recipe. Do not auto-start. Do not select FINAL_V2_MODEL.
+
+Development candidate: H2
+Next-stage recommendation ONLY: Authorize a locked follow-up validating H2 as V2 development candidate (operating-point / selective-prediction study on frozen R1) — not another LoRA recipe. Do not auto-start. Do not select FINAL_V2_MODEL.
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V2_3_FOLDS_CHANGED = NO
+  LORA_BACKBONE_TRAINED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  CLIP_WEIGHTS_UPDATED = NO
+  HEAD_TRAINING_PERFORMED = YES
+  ONLY_PREDECLARED_H1_H2_TRAINED = YES
+  EVAL_FEATURES_REEXTRACTED = NO
+  EVAL_LABELS_USED_FOR_TRAINING = NO
+  V2_9C_CALIBRATION_DATA_USED_FOR_TRAINING = NO
+  NEW_DATA_ACQUIRED = NO
+  THRESHOLD_TUNED = NO
+  CALIBRATOR_FITTED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+  NEW_TRAIN_FEATURE_INFERENCE_PERFORMED = YES
+
+FINAL_V2_MODEL_SELECTED = NO
+NEXT_STAGE_STARTED = NO
