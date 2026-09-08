@@ -1,0 +1,37 @@
+V2-12 DISCUSSION THEMES (for later writing)
+Each theme lists RESULT / INTERPRETATION / SPECULATION separately.
+
+THEME 1 — Representation quality vs decision-head quality
+RESULT: R1 k5 purity high; MLP-B recall low; H2 rescues clean; H2 collapses under transforms via margin shift (V2-10A/B/D/E).
+INTERPRETATION: In development, useful representations can be underutilized or misaligned by a small head.
+SPECULATION: Similar head/repr mismatch might contribute to NTIRE failure (NOT tested; no NTIRE geometry).
+
+THEME 2 — Development robustness vs true domain generalisation
+RESULT: H4 StrongRobust much better than H2; NTIRE still weak.
+INTERPRETATION: Controlled transform suites and development generators are not substitutes for sealed external benchmarks.
+SPECULATION: Broader transform/generator coverage might have predicted NTIRE better (untested).
+
+THEME 3 — Conservative operating behaviour
+RESULT: External AI scores low (87% <0.5) with high Real specificity.
+INTERPRETATION: At thr=0.5 the frozen ensemble behaves Real-biased on NTIRE.
+SPECULATION: Score bias could reflect domain shift, generator mix, distortion mix, or head orientation (causes not identified).
+
+THEME 4 — Resource efficiency
+RESULT: Final deployment head ~513 params / ~2.9KB; LoRA adapters historically ~295k trainable; no new V2-11 training.
+INTERPRETATION: Large robustness gains in development came from offline head redesign, not enlarging the online head.
+SPECULATION: Even smaller backbones might suffice if R1-like structure is available (not tested in final path).
+
+THEME 5 — Limits of benchmark-driven detector development
+RESULT: Progressive internal improvements co-existed with sealed external weakness.
+INTERPRETATION: Optimising to development folds can create a misleading competence narrative.
+SPECULATION: Multiple sealed externals would further stress-test claims (not run; not recommending now).
+
+THEME 6 — Importance of sealed external evaluation
+RESULT: NTIRE opened only after freeze; aggregation locked before results; result accepted.
+INTERPRETATION: Negative sealed outcomes are scientifically informative and protect claim integrity.
+SPECULATION: Without sealing, post-hoc retuning might have inflated reported transfer (counterfactual).
+
+THEME 7 — Why negative external results matter
+RESULT: WEAK_EXTERNAL_TRANSFER with tight bootstrap CIs excluding strong ranking.
+INTERPRETATION: The paper's contribution includes bounding overclaim from development success.
+SPECULATION: Community detectors may share similar hidden transfer gaps (not evaluated here).

@@ -1,0 +1,26 @@
+V2-12 CONFERENCE-PAPER READINESS
+
+EXPERIMENTS_COMPLETE = YES
+FINAL_MODEL_FROZEN = YES
+SEALED_EXTERNAL_VALIDATION_COMPLETE = YES
+RESULTS_SYNTHESIS_COMPLETE = YES
+PAPER_READY_FOR_FULL_DRAFT = YES
+
+Interpretation:
+  Experimental programme is closed. Evidence package is sufficient to draft full
+  Methods/Results/Discussion from authoritative artifacts. Remaining work is
+  writing/editing — not experimentation.
+
+REMAINING NON-EXPERIMENTAL TASKS ONLY
+- Final literature refresh and related-work positioning
+- Venue formatting (LaTeX template, page limits, anonymity if needed)
+- Full prose drafting of Introduction/Methods/Results/Discussion/Conclusion
+- Citation verification (no hallucinated references)
+- Table/figure formatting from shortlist into camera-ready assets
+- Supplementary material curation (fold tables, hard-subset, limitations register)
+- Proofreading / claim-check against v2_12_supported_claims_v1.txt
+- Optional: update paper_draft.md sections to cite V2-11/V2-12 artifacts
+
+DO NOT recommend another experiment.
+DO NOT modify H4.
+DO NOT retune NTIRE.

@@ -1,0 +1,45 @@
+V2-12 PAPER RESULTS NARRATIVE OUTLINE (factual; not Discussion prose)
+
+A. V1 internal success and external failure motivates V2
+   - FINAL_RESEARCH_MODEL_V1=C0 selected after RQ1–RQ5 + resource synthesis.
+   - Stage27A independent external historically failed (~AUC0.516).
+   - Mark Stage27 vs NTIRE as CONTEXT_ONLY unless exact comparability is shown.
+
+B. Frozen CLIP improves development generalisation on V2 protocol
+   - V2-5/6 linear probes: AUC~0.815→0.820; CLIP_BASELINE_PROMISING / REFINED.
+   - V2-7 MLP-B: modest gain AUC~0.837 (MLP_MODEST_GAIN).
+
+C. LoRA improves ranking but creates poor fixed-threshold behaviour with MLP-B
+   - V2-8: AUC~0.903 / AP~0.917 but AI_rec@0.5~0.386 (LORA_MIXED).
+
+D. Calibration does not safely resolve the LoRA+MLP-B operating problem
+   - V2-9B protocol unsafe; V2-9D temperature helps proper scores but preserves .5
+     decisions; Platt increases recall with unacceptable Real FPs → CALIBRATION_NOT_HELPFUL.
+
+E. Representation analysis shows LoRA R1 is useful but the head is limiting
+   - V2-10A: R1 k5 purity ~0.966; HEAD_LIMITED.
+
+F. H2 balanced linear head rescues clean development performance
+   - V2-10B: CLEAN AUC~0.951 / AI_rec~0.576 / RealSpec~0.967 (HEAD_RESCUE_PROMISING).
+   - V2-10C: temperature improves confidence quality; selective MIXED (~16% errors at S90).
+
+G. StrongRobust exposes transformation-induced collapse for H2
+   - V2-10D: JPEG AI_rec~0.089; resize RealSpec~0.131; ROBUSTNESS_NOT_ACCEPTABLE.
+
+H. Geometry shows development robustness remains head-limited
+   - V2-10E: transform k5 purities high; HEAD_SHIFT_DOMINANT; do not claim this explains NTIRE.
+
+I. H3/H4 show robustness can be improved cheaply at the head level
+   - H3 rescues mean tf AUC/RealSpec; clean cost.
+   - H4 clean-anchored compromise: CLEAN AUC~0.926; mean tf AUC~0.826; RealSpec~0.883.
+
+J. H4 frozen as clean/robust development compromise with documented limitations
+   - V2-10I: FINAL_RESEARCH_MODEL_V2=H4; PROMISING gates missed; Seedream/FLUX/Fold4 remain.
+
+K. Sealed NTIRE reveals weak external transfer despite development gains
+   - V2-11: N=10000; equal-weight ensemble; AUC0.625; AI_rec0.130; RealSpec0.956;
+     hard AUC~0.551; WEAK_EXTERNAL_TRANSFER; H4 unchanged.
+
+L. Implication for Results closing sentence
+   - Internal unseen-generator and transform-robustness improvements are insufficient
+     evidence of broad external generalisation under sealed evaluation.

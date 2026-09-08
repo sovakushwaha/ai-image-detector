@@ -1,0 +1,49 @@
+V2-12 CONFERENCE PAPER FIGURE/TABLE SHORTLIST
+Prefer a shortlist; do not include every generated figure.
+
+TABLE 1 — Datasets / evaluation protocol
+  Content: V2 development pool + folds; StrongRobust suite; sealed NTIRE reservation/revision;
+           equal-weight ensemble; thr=0.5; freeze-before-access.
+  Sources: results/v2/v2_11_ntire_protocol_lock_v1.json;
+           results/v2/v2_10i_final_model_specification_v1.json;
+           paper/research_log.md (V2-1/V2-3/V2-10I/V2-11).
+
+TABLE 2 — V2 model progression (clean development)
+  Content: CLIP LogReg → refined linear → MLP-B → LoRA+MLP-B → H2 → H3 → H4.
+  Source: results/v2/v2_12_v2_model_progression_v1.csv
+          (built from v2_10i_development_model_comparison_v1.csv).
+
+TABLE 3 — Robustness H2 vs H3 vs H4 (StrongRobust)
+  Content: per-transform AI recall / RealSpec / AUC + mean transformed.
+  Sources: results/v2/v2_10d_robustness_metrics_v1.csv;
+           results/v2/v2_10f_robust_head_metrics_v1.csv;
+           results/v2/v2_10h_metrics_v1.csv.
+
+TABLE 4 — Final NTIRE external result
+  Content: primary metrics + 95% bootstrap CIs + confusion; optional clean/distorted strata.
+  Sources: results/v2/v2_11_ntire_metrics_v1.json;
+           results/v2/v2_11_ntire_bootstrap_v1.json;
+           results/v2/v2_12_development_external_gap_v1.csv.
+
+FIGURE 1 — Method / research pipeline
+  Content: V1→V2 freeze→CLIP→LoRA→head rescue→robust head→seal→NTIRE.
+  Suggested compose from narrative; no single existing figure covers all.
+
+FIGURE 2 — Representation / head diagnostic
+  Preferred existing: figures/v2/ related to V2-10A geometry if present;
+  else table+text from results/v2/v2_10a_representation_geometry_report_v1.txt
+  and v2_10a_representation_geometry_v1.json (k5 purity R0/R1).
+
+FIGURE 3 — Robustness score / margin shift
+  Preferred: figures from V2-10E if present under figures/v2/;
+  else summarize from results/v2/v2_10e_transform_shift_report_v1.txt
+  (Δz JPEG AI strongly negative; resize Real strongly positive).
+
+FIGURE 4 — NTIRE ROC or score distribution
+  Existing: figures/v2/v2_11_ntire_roc_v1.png
+            figures/v2/v2_11_ntire_pr_v1.png
+            figures/v2/v2_11_ntire_score_distribution_v1.png
+  Prefer ROC + score distribution for the main paper; PR optional/supplement.
+
+Optional supplement only: fold diagnostics, hard-subset, generator residual tables
+(Seedream/FLUX) from V2-10H/I — not primary conference figures.

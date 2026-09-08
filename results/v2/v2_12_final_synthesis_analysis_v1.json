@@ -1,0 +1,392 @@
+{
+  "stage": "V2-12",
+  "status": "COMPLETE",
+  "timestamp_utc": "2026-09-08T16:44:03Z",
+  "RESULTS_SYNTHESIS_COMPLETE": "YES",
+  "PAPER_READY_FOR_FULL_DRAFT": "YES",
+  "FINAL_RESEARCH_MODEL_V1": "C0",
+  "FINAL_RESEARCH_MODEL_V2": "H4",
+  "DEVELOPMENT_STATUS": "FROZEN_WITH_DOCUMENTED_LIMITATIONS",
+  "EXTERNAL_TRANSFER_ASSESSMENT": "WEAK_EXTERNAL_TRANSFER",
+  "artifact_audit": {
+    "required_present": {
+      "paper/research_log.md": true,
+      "models/v2/final_v2_h4_freeze_manifest_v1.json": true,
+      "results/v2/v2_10i_final_model_specification_v1.json": true,
+      "results/v2/v2_10i_development_model_comparison_v1.csv": true,
+      "results/v2/v2_10i_final_model_limitations_v1.txt": true,
+      "results/v2/v2_11_ntire_protocol_lock_v1.json": true,
+      "results/v2/v2_11_ntire_metrics_v1.json": true,
+      "results/v2/v2_11_ntire_bootstrap_v1.json": true,
+      "results/v2/v2_11_external_transfer_summary_v1.txt": true,
+      "results/v2/v2_10a_representation_geometry_v1.json": true,
+      "results/v2/v2_10e_transform_shift_analysis_v1.json": true,
+      "results/v2/v2_10d_robustness_metrics_v1.csv": true,
+      "results/v2/v2_10f_robust_head_metrics_v1.csv": true,
+      "results/v2/v2_10h_metrics_v1.csv": true,
+      "results/v2/v2_10b_head_metrics_v1.csv": true,
+      "results/v2/v2_10c_selective_report_v1.txt": true
+    },
+    "n_missing": 0,
+    "missing": [],
+    "discrepancies": [
+      {
+        "item": "NTIRE_val_README_vs_labels",
+        "severity": "Val README claims no deepfake labels; reserved revision includes val_labels.csv. V2-11 used train-doc encoding 0=real/1=generated; documented in research_log and audit.",
+        "resolution": "Prefer V2-11 audit + research_log over README marketing text."
+      },
+      {
+        "item": "V2-10I_limitations_pre_NTIRE_external_unknown",
+        "severity": "v2_10i_final_model_limitations_v1.txt still says FINAL_EXTERNAL_PERFORMANCE=UNKNOWN. That was correct at freeze time; V2-11 later completed NTIRE.",
+        "resolution": "Treat V2-10I limitations as freeze-time register; V2-11 is authoritative for external result."
+      },
+      {
+        "item": "research_log_header_last_updated",
+        "severity": "Header 'Last updated' may still mention V2-8 while later stages are appended.",
+        "resolution": "Prefer stage sections over header line for chronology."
+      }
+    ],
+    "authority_order": [
+      "stage-specific final artifact",
+      "paper/research_log.md stage section",
+      "freeze manifest / protocol lock",
+      "older roadmap only if consistent"
+    ]
+  },
+  "robustness_macros": {
+    "H2": {
+      "CLEAN": {
+        "auc": 0.9507478096532107,
+        "ap": 0.957553939124205,
+        "ai_recall": 0.5756023807341333,
+        "real_specificity": 0.9669555796316359,
+        "balanced_accuracy": 0.7712789801828847
+      },
+      "jpeg_q50": {
+        "auc": 0.8222931898263142,
+        "ap": 0.8458960934798005,
+        "ai_recall": 0.08932186084485169,
+        "real_specificity": 0.9943120260021668,
+        "balanced_accuracy": 0.5418169434235094
+      },
+      "resize_112": {
+        "auc": 0.7252256696808078,
+        "ap": 0.7505803793448611,
+        "ai_recall": 0.9811415504403842,
+        "real_specificity": 0.13136511375947996,
+        "balanced_accuracy": 0.556253332099932
+      },
+      "blur_sigma2": {
+        "auc": 0.7265347274217077,
+        "ap": 0.7042040183801412,
+        "ai_recall": 0.958756946901872,
+        "real_specificity": 0.5552546045503792,
+        "balanced_accuracy": 0.7570057757261255
+      },
+      "screenshot_strong": {
+        "auc": 0.7710482228392842,
+        "ap": 0.798043396353396,
+        "ai_recall": 0.4287996954813945,
+        "real_specificity": 0.8624052004333693,
+        "balanced_accuracy": 0.645602447957382
+      },
+      "mean_transformed": {
+        "auc": 0.7612754524420285,
+        "ai_recall": 0.6145050134171256,
+        "real_specificity": 0.6358342361863488
+      },
+      "worst_transformed_auc": 0.7252256696808078
+    },
+    "H3": {
+      "CLEAN": {
+        "auc": 0.9183701535127649,
+        "ap": 0.9210668525059379,
+        "ai_recall": 0.543485746187902,
+        "real_specificity": 0.9615384615384617,
+        "balanced_accuracy": 0.7525121038631818
+      },
+      "jpeg_q50": {
+        "auc": 0.8364163735984749,
+        "ap": 0.8520429001096396,
+        "ai_recall": 0.3761046994636242,
+        "real_specificity": 0.9561213434452871,
+        "balanced_accuracy": 0.6661130214544556
+      },
+      "resize_112": {
+        "auc": 0.8312654159950098,
+        "ap": 0.8328927756308362,
+        "ai_recall": 0.5309025306830547,
+        "real_specificity": 0.8751354279523295,
+        "balanced_accuracy": 0.703018979317692
+      },
+      "blur_sigma2": {
+        "auc": 0.8418307848249711,
+        "ap": 0.8228611290701734,
+        "ai_recall": 0.5907416963755018,
+        "real_specificity": 0.8469664138678222,
+        "balanced_accuracy": 0.718854055121662
+      },
+      "screenshot_strong": {
+        "auc": 0.8200233154729117,
+        "ap": 0.8218232722899422,
+        "ai_recall": 0.530259559981649,
+        "real_specificity": 0.8689057421451787,
+        "balanced_accuracy": 0.6995826510634139
+      },
+      "mean_transformed": {
+        "auc": 0.8323839724728419,
+        "ai_recall": 0.5070021216259575,
+        "real_specificity": 0.8867822318526544
+      },
+      "worst_transformed_auc": 0.8200233154729117
+    },
+    "H4": {
+      "CLEAN": {
+        "auc": 0.9263901084194186,
+        "ap": 0.9291294072277244,
+        "ai_recall": 0.5249771485247796,
+        "real_specificity": 0.9748104008667389,
+        "balanced_accuracy": 0.7498937746957592
+      },
+      "jpeg_q50": {
+        "auc": 0.8322567169968254,
+        "ap": 0.8511316701992697,
+        "ai_recall": 0.35538446317060457,
+        "real_specificity": 0.9566630552546046,
+        "balanced_accuracy": 0.6560237592126046
+      },
+      "resize_112": {
+        "auc": 0.8236357034423009,
+        "ap": 0.8266095462341971,
+        "ai_recall": 0.5243877857242667,
+        "real_specificity": 0.8748645720476705,
+        "balanced_accuracy": 0.6996261788859687
+      },
+      "blur_sigma2": {
+        "auc": 0.8354885855112759,
+        "ap": 0.8158326333646693,
+        "ai_recall": 0.5866752138940122,
+        "real_specificity": 0.8369447453954496,
+        "balanced_accuracy": 0.711809979644731
+      },
+      "screenshot_strong": {
+        "auc": 0.8123471863409399,
+        "ap": 0.8160893535840608,
+        "ai_recall": 0.5215858910406116,
+        "real_specificity": 0.8648429035752979,
+        "balanced_accuracy": 0.6932143973079548
+      },
+      "mean_transformed": {
+        "auc": 0.8259320480728356,
+        "ai_recall": 0.4970083384573738,
+        "real_specificity": 0.8833288190682557
+      },
+      "worst_transformed_auc": 0.8123471863409399
+    }
+  },
+  "geometry": {
+    "r1_clean_k5_purity": 0.9661100349653255,
+    "transform_k5_purity": {
+      "jpeg_q50": 0.9808316349132999,
+      "resize_112": 0.9190386464236294,
+      "blur_sigma2": 0.9583692760902891,
+      "screenshot_strong": 0.9521246310567231
+    },
+    "h2_margin_shifts_macro": {
+      "jpeg_q50": {
+        "delta_z_mean": -2.407534742430503,
+        "delta_z_real_mean": -1.167446890730242,
+        "delta_z_ai_mean": -3.280662005676097,
+        "recon_max_abs": 3.552713678800501e-15
+      },
+      "resize_112": {
+        "delta_z_mean": 4.106122192912746,
+        "delta_z_real_mean": 6.340922203395349,
+        "delta_z_ai_mean": 2.424478280215471,
+        "recon_max_abs": 5.329070518200751e-15
+      },
+      "blur_sigma2": {
+        "delta_z_mean": 2.5877065358576337,
+        "delta_z_real_mean": 3.6369043428823584,
+        "delta_z_ai_mean": 1.7962477092384188,
+        "recon_max_abs": 3.552713678800501e-15
+      },
+      "screenshot_strong": {
+        "delta_z_mean": 0.5622195879476142,
+        "delta_z_real_mean": 2.4998779334180212,
+        "delta_z_ai_mean": -0.8267829753492947,
+        "recon_max_abs": 2.6645352591003757e-15
+      }
+    },
+    "scope_note": "Development StrongRobust mechanism only; no NTIRE R1 geometry."
+  },
+  "ntire_primary": {
+    "n": 10000,
+    "n_real": 5000,
+    "n_ai": 5000,
+    "roc_auc": 0.62502648,
+    "ap": 0.6302553959370336,
+    "ai_recall": 0.1296,
+    "real_specificity": 0.9556,
+    "balanced_accuracy": 0.5426,
+    "precision": 0.7448275862068966,
+    "f1": 0.22078364565587735,
+    "accuracy": 0.5426,
+    "tn": 4778,
+    "fp": 222,
+    "fn": 4352,
+    "tp": 648
+  },
+  "ntire_bootstrap": {
+    "n_boot": 5000,
+    "seed": 42,
+    "stratified": true,
+    "roc_auc": {
+      "mean": 0.625008780544,
+      "ci_low": 0.6138403720000001,
+      "ci_high": 0.636171342,
+      "n_valid": 5000
+    },
+    "ap": {
+      "mean": 0.6304012357742304,
+      "ci_low": 0.6185834125464937,
+      "ci_high": 0.6422800720099026,
+      "n_valid": 5000
+    },
+    "ai_recall": {
+      "mean": 0.12958124000000001,
+      "ci_low": 0.1204,
+      "ci_high": 0.1388,
+      "n_valid": 5000
+    },
+    "real_specificity": {
+      "mean": 0.95561268,
+      "ci_low": 0.9498,
+      "ci_high": 0.9614,
+      "n_valid": 5000
+    },
+    "balanced_accuracy": {
+      "mean": 0.54259696,
+      "ci_low": 0.537,
+      "ci_high": 0.548,
+      "n_valid": 5000
+    }
+  },
+  "ntire_score_distributions": {
+    "real": {
+      "n": 5000,
+      "mean": 0.12231979327839644,
+      "median": 0.050377904350170866,
+      "std": 0.16165608942856757,
+      "p05": 0.001848712934770447,
+      "p25": 0.012669155490584671,
+      "p75": 0.17033262512995861,
+      "p95": 0.47671929020434617,
+      "frac_lt_0.1": 0.6348,
+      "frac_lt_0.25": 0.8286,
+      "frac_lt_0.5": 0.9556,
+      "frac_ge_0.5": 0.0444,
+      "frac_ge_0.75": 0.0074,
+      "frac_ge_0.9": 0.001
+    },
+    "ai": {
+      "n": 5000,
+      "mean": 0.21089454071884653,
+      "median": 0.12385290654492564,
+      "std": 0.2269760662458725,
+      "p05": 0.0038235760246607244,
+      "p25": 0.029038715088972822,
+      "p75": 0.32823814870789647,
+      "p95": 0.6966349549591542,
+      "frac_lt_0.1": 0.458,
+      "frac_lt_0.25": 0.6722,
+      "frac_lt_0.5": 0.8704,
+      "frac_ge_0.5": 0.1296,
+      "frac_ge_0.75": 0.036,
+      "frac_ge_0.9": 0.0096
+    },
+    "all": {
+      "n": 10000,
+      "mean": 0.1666071669986215,
+      "median": 0.07991685275919735,
+      "std": 0.20195738268240837,
+      "p05": 0.0024977169392514046,
+      "p25": 0.018607437661557924,
+      "p75": 0.24952898890478536,
+      "p95": 0.6160066218115383,
+      "frac_lt_0.1": 0.5464,
+      "frac_lt_0.25": 0.7504,
+      "frac_lt_0.5": 0.913,
+      "frac_ge_0.5": 0.087,
+      "frac_ge_0.75": 0.0217,
+      "frac_ge_0.9": 0.0053
+    }
+  },
+  "failure_components_descriptive": [
+    "RANKING_GENERALISATION_LOSS",
+    "STRONG_REAL_WARD_SCORE_BIAS_LOW_AI_SCORES"
+  ],
+  "key_statistical_evidence": {
+    "ntire_bootstrap_95": {
+      "roc_auc": [
+        0.6138403720000001,
+        0.636171342
+      ],
+      "ap": [
+        0.6185834125464937,
+        0.6422800720099026
+      ],
+      "ai_recall": [
+        0.1204,
+        0.1388
+      ],
+      "real_specificity": [
+        0.9498,
+        0.9614
+      ],
+      "balanced_accuracy": [
+        0.537,
+        0.548
+      ]
+    },
+    "publication_priority": [
+      "NTIRE primary metrics + bootstrap CIs (V2-11)",
+      "H2 vs H4 StrongRobust paired/macro contrasts (V2-10D/H)",
+      "H2 vs H3/H4 clean deltas (V2-10F/H)",
+      "Optional: V2-10B H2 vs MLP-B head rescue contrast"
+    ],
+    "note": "Existing bootstrap JSONs reused; no rerun."
+  },
+  "integrity_statement": {
+    "MODEL_TRAINING_PERFORMED": "NO",
+    "MODEL_INFERENCE_PERFORMED": "NO",
+    "NEW_DATA_ACQUIRED": "NO",
+    "NTIRE_REEVALUATED": "NO",
+    "NTIRE_TUNING_PERFORMED": "NO",
+    "H4_MODIFIED": "NO",
+    "THRESHOLD_CHANGED": "NO",
+    "CALIBRATION_PERFORMED": "NO",
+    "NEW_MODEL_SELECTED": "NO",
+    "FINAL_RESEARCH_MODEL_V2": "H4",
+    "DEVELOPMENT_FROZEN": "YES",
+    "FINAL_EXTERNAL_VALIDATION_COMPLETE": "YES",
+    "POST_NTIRE_MODEL_MODIFICATION_ALLOWED": "NO",
+    "NEXT_EXPERIMENT_STARTED": "NO"
+  },
+  "outputs": [
+    "results/v2/v2_12_final_synthesis_analysis_v1.json",
+    "results/v2/v2_12_final_synthesis_report_v1.txt",
+    "results/v2/v2_12_final_experiment_timeline_v1.csv",
+    "results/v2/v2_12_v2_model_progression_v1.csv",
+    "results/v2/v2_12_development_external_gap_v1.csv",
+    "results/v2/v2_12_supported_claims_v1.txt",
+    "results/v2/v2_12_final_contributions_v1.txt",
+    "results/v2/v2_12_final_limitations_v1.txt",
+    "results/v2/v2_12_paper_results_narrative_v1.txt",
+    "results/v2/v2_12_discussion_themes_v1.txt",
+    "results/v2/v2_12_paper_figure_table_plan_v1.txt",
+    "results/v2/v2_12_paper_readiness_v1.txt",
+    "src/build_v2_12_final_synthesis_v1.py",
+    "paper/research_log.md"
+  ]
+}

@@ -1,0 +1,18 @@
+V2-12 FINAL LIMITATIONS REGISTER
+
+1. Sealed NTIRE external transfer is weak (WEAK_EXTERNAL_TRANSFER).
+2. Severe external AI false negatives (FN 4352/5000; AI recall@0.5 ≈ 0.130).
+3. Hard external diagnostic subset near chance (AUC ≈ 0.551).
+4. No official NTIRE generator identities on the val labels used.
+5. Final detector is externally conservative / Real-biased (AI mean p≈0.211; 87% AI < 0.5).
+6. Development folds cannot represent full future generator diversity.
+7. Residual development weaknesses: Seedream (~0.03 recall), FLUX (~0.26), Fold4 weaker.
+8. StrongRobust suite limited to selected transforms; physical screen recapture not tested.
+9. H4 missed V2-10H PROMISING gates (MIXED freeze with documented limitations).
+10. Selective/calibration layers are not part of frozen H4 primary binary output.
+11. No post-NTIRE model modification allowed; external result accepted as observed.
+12. V1 Stage27 external vs NTIRE are not directly comparable (CONTEXT_ONLY).
+13. External evidence comes from one sealed benchmark revision.
+14. NTIRE R1 geometry / margin mechanism was NOT analysed; do not assert identical
+    head-shift causality for NTIRE failure.
+15. Paper must not soften these limitations into success language.
