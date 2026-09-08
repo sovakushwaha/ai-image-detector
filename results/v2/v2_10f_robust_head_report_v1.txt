@@ -1,0 +1,128 @@
+V2-10F — Frozen-R1 Robust Linear Head Intervention (H3)
+Status: COMPLETE — decision ROBUST_HEAD_MIXED
+Only H3 trained on frozen R1. No LoRA/CLIP/H2 training. thr=0.5.
+FINAL_V2_MODEL NOT SELECTED.
+
+NEW_TRANSFORMED_TRAIN_FEATURE_INFERENCE_PERFORMED = YES
+  device=mps n_entries=16
+
+Integrity
+  {'folds': {'fold_1': {'train_n': 6008, 'eval_n': 2821, 'overlap': 0, 'expected_match': True}, 'fold_2': {'train_n': 6009, 'eval_n': 2619, 'overlap': 0, 'expected_match': True}, 'fold_3': {'train_n': 6309, 'eval_n': 1994, 'overlap': 0, 'expected_match': True}, 'fold_4': {'train_n': 6594, 'eval_n': 1709, 'overlap': 0, 'expected_match': True}}, 'ok': True}
+
+H3 training
+  fold_1: N=30040 Real=21400 AI=8640 iters=22 time=0.26s params=513 ||w||=48.965 b=+2.132
+  fold_2: N=30045 Real=21400 AI=8645 iters=33 time=0.17s params=513 ||w||=48.904 b=+0.385
+  fold_3: N=31545 Real=21400 AI=10145 iters=52 time=0.28s params=513 ||w||=48.822 b=-0.618
+  fold_4: N=32970 Real=21400 AI=11570 iters=45 time=0.32s params=513 ||w||=52.148 b=-0.052
+
+CLEAN macro H2 vs H3
+  H2: AUC=0.9507 AP=0.9576 AI_rec=0.5756 RealSpec=0.9670 BalAcc=0.7713
+  H3: AUC=0.9184 AP=0.9211 AI_rec=0.5435 RealSpec=0.9615 BalAcc=0.7525
+  H3-H2: ΔAUC=-0.0324 ΔAI_rec=-0.0321 ΔRealSpec=-0.0054 ΔBalAcc=-0.0188
+
+StrongRobust macro H2 vs H3
+  H2/jpeg_q50: AUC=0.8223 AI_rec=0.0893 RealSpec=0.9943 BalAcc=0.5418
+  H3/jpeg_q50: AUC=0.8364 AI_rec=0.3761 RealSpec=0.9561 BalAcc=0.6661
+  H2/resize_112: AUC=0.7252 AI_rec=0.9811 RealSpec=0.1314 BalAcc=0.5563
+  H3/resize_112: AUC=0.8313 AI_rec=0.5309 RealSpec=0.8751 BalAcc=0.7030
+  H2/blur_sigma2: AUC=0.7265 AI_rec=0.9588 RealSpec=0.5553 BalAcc=0.7570
+  H3/blur_sigma2: AUC=0.8418 AI_rec=0.5907 RealSpec=0.8470 BalAcc=0.7189
+  H2/screenshot_strong: AUC=0.7710 AI_rec=0.4288 RealSpec=0.8624 BalAcc=0.6456
+  H3/screenshot_strong: AUC=0.8200 AI_rec=0.5303 RealSpec=0.8689 BalAcc=0.6996
+
+Robustness summary
+  H2_clean_auc: 0.9507478096532107
+  H3_clean_auc: 0.9183701535127649
+  H2_mean_tf_auc: 0.7612754524420285
+  H3_mean_tf_auc: 0.8323839724728419
+  H2_worst_tf_auc: 0.7252256696808078
+  H3_worst_tf_auc: 0.8200233154729117
+  H2_clean_ai_recall: 0.5756023807341333
+  H3_clean_ai_recall: 0.543485746187902
+  H2_mean_tf_ai_recall: 0.6145050134171255
+  H3_mean_tf_ai_recall: 0.5070021216259575
+  H2_clean_real_spec: 0.966955579631636
+  H3_clean_real_spec: 0.9615384615384615
+  H2_mean_tf_real_spec: 0.6358342361863488
+  H3_mean_tf_real_spec: 0.8867822318526544
+  H2_worst_tf_real_spec: 0.13136511375947996
+  H3_worst_tf_real_spec: 0.8469664138678223
+  H3_mean_tf_balacc: 0.6968921767393058
+  H3_worst_tf_balacc_cond: jpeg_q50
+
+Margin / direction
+  cos(w_H2,w_H3) macro=0.5611
+  jpeg_q50: H2 Δz Real/AI=-1.167/-3.281; H3=+0.129/-0.981; cos(d_real,w) H2/H3=-0.190/+0.010
+  resize_112: H2 Δz Real/AI=+6.341/+2.424; H3=+2.269/-0.264; cos(d_real,w) H2/H3=+0.375/+0.061
+  blur_sigma2: H2 Δz Real/AI=+3.637/+1.796; H3=+1.421/-0.051; cos(d_real,w) H2/H3=+0.402/+0.071
+  screenshot_strong: H2 Δz Real/AI=+2.500/-0.827; H3=+2.167/-0.199; cos(d_real,w) H2/H3=+0.245/+0.098
+
+Hard generators (CLEAN / JPEG recall)
+  mllm::GPT_Image_2: H2 C/J=0.653/0.091 H3 C/J=0.709/0.468
+  mllm::Nano_Banana_2: H2 C/J=0.483/0.008 H3 C/J=0.554/0.279
+  qwen::FLUX.2_max: H2 C/J=0.190/0.000 H3 C/J=0.240/0.050
+  qwen::GPT-Image-1.5: H2 C/J=0.425/0.000 H3 C/J=0.370/0.110
+  qwen::Seedream-5.0: H2 C/J=0.270/0.000 H3 C/J=0.030/0.010
+
+Real domains (CLEAN / resize / blur specificity)
+  Tiny: H2 0.920/0.044/0.010; H3 0.920/0.631/0.553
+  MLLM: H2 0.909/0.097/0.164; H3 0.865/0.805/0.761
+  COCO: H2 1.000/0.079/0.008; H3 1.000/0.992/0.958
+  Smartphone: H2 1.000/0.189/0.982; H3 1.000/0.999/1.000
+  Fold3 MLLM: {'n': 113, 'H2_CLEAN': 0.8672566371681416, 'H3_CLEAN': 0.8672566371681416, 'H2_jpeg_q50': 0.9203539823008849, 'H3_jpeg_q50': 0.8053097345132744, 'H2_resize_112': 0.035398230088495575, 'H3_resize_112': 0.8849557522123894, 'H2_blur_sigma2': 0.12389380530973451, 'H3_blur_sigma2': 0.7964601769911505, 'H2_screenshot_strong': 0.7522123893805309, 'H3_screenshot_strong': 0.7522123893805309}
+
+Decision evidence
+  - flags={'clean_auc_ge_093': False, 'clean_auc_drop_le_003': False, 'clean_spec_ge_093': True, 'clean_phone_ge_098': True, 'clean_mllm_ge_085': True, 'clean_ai_rec_ge_050': True, 'mean_tf_auc_ge_090': False, 'worst_tf_auc_ge_085': False, 'mean_tf_spec_ge_090': False, 'mean_phone_ge_095': True, 'mean_mllm_ge_080': False, 'no_spec_lt_075': True, 'mean_rec_drop_le_010': True, 'fold_consistency': True, 'jpeg_not_collapse': True, 'resize_not_collapse': True, 'params_ok': True}
+  - H3 clean AUC=0.9184 AI_rec=0.5435 RealSpec=0.9615; mean_tf_AUC=0.8324 worst_tf_AUC=0.8200 mean_tf_spec=0.8868
+  - phone_mean_tf=0.999 mllm_mean_tf=0.790 fold_improve=3 jpeg_ok=True resize_ok=True
+
+DECISION: ROBUST_HEAD_MIXED
+
+Interpretation
+- q1_retain_ranking: H3 clean AUC=0.9184 vs H2=0.9507 (Δ=-0.0324).
+- q2_clean_cost: ΔAI_rec=-0.0321 ΔRealSpec=-0.0054 ΔBalAcc=-0.0188.
+- q3_jpeg_rescue: JPEG AI_rec H2=0.089 H3=0.376.
+- q4_resize_rescue: resize RealSpec H2=0.131 H3=0.875.
+- q5_blur_rescue: blur RealSpec H2=0.555 H3=0.847.
+- q6_screenshot: screenshot AUC H2/H3=0.771/0.820.
+- q7_mean_tf_auc: H2=0.7613 H3=0.8324.
+- q8_worst_tf_auc: H2=0.7252 H3=0.8200.
+- q9_margin_projection: See margin_macro; mean |H3 Real Δz| vs H2 for resize/blur.
+- q10_direction_rotate: mean cos(w_H2,w_H3)=0.5611.
+- q11_hard_gens: See hard_generators table.
+- q12_flux: {'generator_id': 'qwen::FLUX.2_max', 'H2_CLEAN_recall': 0.19, 'H2_CLEAN_mean_p': 0.2710367545299232, 'H2_CLEAN_median_p': 0.2089475616812706, 'H2_CLEAN_ap': nan, 'H3_CLEAN_recall': 0.24, 'H3_CLEAN_mean_p': 0.3182126383250579, 'H3_CLEAN_median_p': 0.214643694460392, 'H3_CLEAN_ap': nan, 'H2_jpeg_q50_recall': 0.0, 'H2_jpeg_q50_mean_p': 0.043660887026926505, 'H2_jpeg_q50_median_p': 0.0172768235206604, 'H2_jpeg_q50_ap': nan, 'H3_jpeg_q50_recall': 0.05, 'H3_jpeg_q50_mean_p': 0.133713303746772, 'H3_jpeg_q50_median_p': 0.054935647174715996, 'H3_jpeg_q50_ap': nan, 'H2_resize_112_recall': 0.99, 'H2_resize_112_mean_p': 0.8636585786938668, 'H2_resize_112_median_p': 0.8904320299625397, 'H2_resize_112_ap': nan, 'H3_resize_112_recall': 0.21, 'H3_resize_112_mean_p': 0.3331120040128008, 'H3_resize_112_median_p': 0.2864163815975189, 'H3_resize_112_ap': nan, 'H2_blur_sigma2_recall': 0.94, 'H2_blur_sigma2_mean_p': 0.7989506646990776, 'H2_blur_sigma2_median_p': 0.8361108303070068, 'H2_blur_sigma2_ap': nan, 'H3_blur_sigma2_recall': 0.47, 'H3_blur_sigma2_mean_p': 0.4992475222609937, 'H3_blur_sigma2_median_p': 0.45899996161460876, 'H3_blur_sigma2_ap': nan, 'H2_screenshot_strong_recall': 0.05, 'H2_screenshot_strong_mean_p': 0.1836739782989025, 'H2_screenshot_strong_median_p': 0.13807504624128342, 'H2_screenshot_strong_ap': nan, 'H3_screenshot_strong_recall': 0.24, 'H3_screenshot_strong_mean_p': 0.32712882761377843, 'H3_screenshot_strong_median_p': 0.2629062682390213, 'H3_screenshot_strong_ap': nan, 'n': 100}
+- q13_real_domains: See real_domains table.
+- q14_fold3: {'n': 113, 'H2_CLEAN': 0.8672566371681416, 'H3_CLEAN': 0.8672566371681416, 'H2_jpeg_q50': 0.9203539823008849, 'H3_jpeg_q50': 0.8053097345132744, 'H2_resize_112': 0.035398230088495575, 'H3_resize_112': 0.8849557522123894, 'H2_blur_sigma2': 0.12389380530973451, 'H3_blur_sigma2': 0.7964601769911505, 'H2_screenshot_strong': 0.7522123893805309, 'H3_screenshot_strong': 0.7522123893805309}
+- q15_validates_head_limited: decision=ROBUST_HEAD_MIXED; if H3 improves robustness with frozen R1, validates ROBUSTNESS_HEAD_LIMITED.
+- q16_freeze_ready: NO
+- q17_next: Keep H3 as promising robust-head candidate with documented residual failures; next may be one tightly scoped residual diagnostic (e.g. remaining collapse transform) or development freeze with caveats — tutor chooses. Do not auto-start LoRA training.
+
+Next-stage recommendation ONLY: Keep H3 as promising robust-head candidate with documented residual failures; next may be one tightly scoped residual diagnostic (e.g. remaining collapse transform) or development freeze with caveats — tutor chooses. Do not auto-start LoRA training.
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V1_RERUN = NO
+  V2_3_FOLDS_CHANGED = NO
+  LORA_BACKBONE_TRAINED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  CLIP_WEIGHTS_UPDATED = NO
+  H2_RETRAINED = NO
+  H3_HEAD_TRAINING_PERFORMED = YES
+  ONLY_PREDECLARED_H3_TRAINED = YES
+  HYPERPARAMETER_SEARCH_PERFORMED = NO
+  NEW_DATA_ACQUIRED = NO
+  EVAL_LABELS_USED_FOR_TRAINING = NO
+  V2_9C_CALIBRATION_DATA_USED_FOR_TRAINING = NO
+  PROMPT_BLOCKED_USED_FOR_TRAINING = NO
+  BINARY_THRESHOLD_CHANGED = NO
+  THRESHOLD_SWEEP_PERFORMED = NO
+  CALIBRATOR_FITTED = NO
+  SELECTIVE_POLICY_RETUNED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+  NEW_TRANSFORMED_TRAIN_FEATURE_INFERENCE_PERFORMED = YES
+
+FINAL_V2_MODEL_SELECTED = NO
+NEXT_STAGE_STARTED = NO
