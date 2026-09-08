@@ -1,0 +1,485 @@
+{
+  "stage": "V2-10G",
+  "status": "COMPLETE",
+  "decision": "ROBUST_HEAD_MIXED_LIMITATION",
+  "next_intervention": "OPTION_A_CLEAN_ANCHORED_ROBUST_LINEAR_HEAD",
+  "decision_evidence": [
+    "mean pairwise condition cos(s_c,s_c')=0.596; mean cos(w_H2,w_H3)=0.561; cos(w,s_clean) H2=0.747 H3=0.376",
+    "Fold4 clean \u0394AUC=-0.095; share of macro clean AUC drop\u22480.73; Seedream \u0394rec=-0.240",
+    "compatibility={'fold_1': 'CONDITIONS_PARTLY_CONFLICTING', 'fold_2': 'CONDITIONS_PARTLY_CONFLICTING', 'fold_3': 'CONDITIONS_PARTLY_CONFLICTING', 'fold_4': 'CONDITIONS_PARTLY_CONFLICTING'}",
+    "decision_logic overrotated=True linear_conflict=False fold_gen=True"
+  ],
+  "integrity": {
+    "ok": true,
+    "missing": [],
+    "folds": {
+      "fold_1": {
+        "train_n": 6008,
+        "eval_n": 2821,
+        "overlap": 0,
+        "h2_n_params": 513,
+        "h3_n_params": 513,
+        "h2_path": "models/v2/v2_10b_h2_balanced_logreg_fold1_v1.joblib",
+        "h3_path": "models/v2/v2_10f_h3_robust_balanced_logreg_fold1_v1.joblib"
+      },
+      "fold_2": {
+        "train_n": 6009,
+        "eval_n": 2619,
+        "overlap": 0,
+        "h2_n_params": 513,
+        "h3_n_params": 513,
+        "h2_path": "models/v2/v2_10b_h2_balanced_logreg_fold2_v1.joblib",
+        "h3_path": "models/v2/v2_10f_h3_robust_balanced_logreg_fold2_v1.joblib"
+      },
+      "fold_3": {
+        "train_n": 6309,
+        "eval_n": 1994,
+        "overlap": 0,
+        "h2_n_params": 513,
+        "h3_n_params": 513,
+        "h2_path": "models/v2/v2_10b_h2_balanced_logreg_fold3_v1.joblib",
+        "h3_path": "models/v2/v2_10f_h3_robust_balanced_logreg_fold3_v1.joblib"
+      },
+      "fold_4": {
+        "train_n": 6594,
+        "eval_n": 1709,
+        "overlap": 0,
+        "h2_n_params": 513,
+        "h3_n_params": 513,
+        "h2_path": "models/v2/v2_10b_h2_balanced_logreg_fold4_v1.joblib",
+        "h3_path": "models/v2/v2_10f_h3_robust_balanced_logreg_fold4_v1.joblib"
+      }
+    },
+    "new_feature_inference": false
+  },
+  "macro_direction": {
+    "mean_pairwise_condition_cos": 0.5960736944195236,
+    "mean_cos_s_clean_each_tf": {
+      "jpeg_q50": 0.7336824251420665,
+      "resize_112": 0.5722385850754893,
+      "blur_sigma2": 0.7365841081844375,
+      "screenshot_strong": 0.6298877061722721
+    },
+    "most_conflicting_transform": "resize_112",
+    "mean_cos_w_h2_h3": 0.5610671633735693,
+    "mean_angle_w_h2_h3": 55.85571803137239,
+    "mean_cos_w_h2_s_clean": 0.7470256593459446,
+    "mean_cos_w_h3_s_clean": 0.37605608215274466,
+    "mean_cos_w_h2_s_tfmean": 0.5178937981351158,
+    "mean_cos_w_h3_s_tfmean": 0.42247597853068214,
+    "mean_cos_s_clean_s_tfmean": 0.8275167959744855
+  },
+  "macro_direction_per_fold_summary": {
+    "fold_1": {
+      "cos_w_h2_h3": 0.5758435761236028,
+      "cos_w_h2_s_clean": 0.8103135800485525,
+      "cos_w_h3_s_clean": 0.4127577056128245,
+      "cos_w_h2_s_tfmean": 0.563916726081985,
+      "cos_w_h3_s_tfmean": 0.4916001372750122,
+      "mean_pairwise_condition_cos": 0.5533513488934088,
+      "cos_s_clean_each_tf": {
+        "jpeg_q50": 0.6390250634692669,
+        "resize_112": 0.6602635564319076,
+        "blur_sigma2": 0.5412122066810278,
+        "screenshot_strong": 0.5988816941569445
+      }
+    },
+    "fold_2": {
+      "cos_w_h2_h3": 0.5875837425697195,
+      "cos_w_h2_s_clean": 0.6505377979092277,
+      "cos_w_h3_s_clean": 0.34489828898458535,
+      "cos_w_h2_s_tfmean": 0.4778105123895678,
+      "cos_w_h3_s_tfmean": 0.3627773545417342,
+      "mean_pairwise_condition_cos": 0.692265482881543,
+      "cos_s_clean_each_tf": {
+        "jpeg_q50": 0.8080584544359238,
+        "resize_112": 0.6317963743991141,
+        "blur_sigma2": 0.88257011421868,
+        "screenshot_strong": 0.708779577625756
+      }
+    },
+    "fold_3": {
+      "cos_w_h2_h3": 0.5529078585857415,
+      "cos_w_h2_s_clean": 0.7095720552136358,
+      "cos_w_h3_s_clean": 0.3520960331963547,
+      "cos_w_h2_s_tfmean": 0.489704192209206,
+      "cos_w_h3_s_tfmean": 0.3836646909725095,
+      "mean_pairwise_condition_cos": 0.6314236524757456,
+      "cos_s_clean_each_tf": {
+        "jpeg_q50": 0.8326409851834076,
+        "resize_112": 0.4384326459576762,
+        "blur_sigma2": 0.8335605057033224,
+        "screenshot_strong": 0.7259215865216556
+      }
+    },
+    "fold_4": {
+      "cos_w_h2_h3": 0.5279334762152134,
+      "cos_w_h2_s_clean": 0.8176792042123625,
+      "cos_w_h3_s_clean": 0.39447230081721407,
+      "cos_w_h2_s_tfmean": 0.5401437618597046,
+      "cos_w_h3_s_tfmean": 0.4518617313334727,
+      "mean_pairwise_condition_cos": 0.5072542934273973,
+      "cos_s_clean_each_tf": {
+        "jpeg_q50": 0.6550051974796678,
+        "resize_112": 0.5584617635132593,
+        "blur_sigma2": 0.6889936061347204,
+        "screenshot_strong": 0.48596796638473216
+      }
+    }
+  },
+  "tradeoff": {
+    "per_fold_corr_clean_dm_vs_mean_tf_impr": {
+      "fold_1": 0.7036943907133083,
+      "fold_2": 0.5885715858364843,
+      "fold_3": 0.5402304304699516,
+      "fold_4": 0.6866498823719516
+    },
+    "mean_corr": 0.6297865723479239,
+    "interpretation": "Negative correlation would support a systematic clean-vs-robust margin trade-off; near-zero suggests gains/losses are not strongly paired at sample level."
+  },
+  "clean_transitions_macro": {
+    "n_h2ok_h3bad": 524,
+    "n_h2bad_h3ok": 500,
+    "n_both_ok": 6198,
+    "n_both_bad": 1921,
+    "h2ok_h3bad_real": 66,
+    "h2ok_h3bad_ai": 458,
+    "top_generators_h2ok_h3bad": {
+      "mllm::Nano_Banana_2": 69,
+      "mllm::GPT_Image_2": 30,
+      "tiny::GLIDE": 30,
+      "qwen::Qwen-Image-2.0-pro": 29,
+      "qwen::Imagen-4.0": 29,
+      "qwen::Imagen-4.0-Ultra": 27,
+      "qwen::GPT-Image-1.5": 25,
+      "qwen::Seedream-5.0": 24
+    },
+    "top_real_domains_h2ok_h3bad": {
+      "Tiny": 34,
+      "MLLM": 31,
+      "Smartphone": 1
+    },
+    "fold4_share_h2ok_h3bad": 0.2958015267175573,
+    "mean_margin_h2_of_h2ok_h3bad": 0.7731903826671819,
+    "mean_margin_h3_of_h2ok_h3bad": -0.8807648124760475,
+    "mean_k5_purity_h2ok_h3bad": 0.9656488549618321,
+    "per_fold_counts": {
+      "fold_1": {
+        "H2ok_H3bad": 77,
+        "H2bad_H3ok": 216,
+        "both_ok": 1884,
+        "both_bad": 644
+      },
+      "fold_2": {
+        "H2ok_H3bad": 139,
+        "H2bad_H3ok": 215,
+        "both_ok": 1683,
+        "both_bad": 582
+      },
+      "fold_3": {
+        "H2ok_H3bad": 153,
+        "H2bad_H3ok": 33,
+        "both_ok": 1554,
+        "both_bad": 254
+      },
+      "fold_4": {
+        "H2ok_H3bad": 155,
+        "H2bad_H3ok": 36,
+        "both_ok": 1077,
+        "both_bad": 441
+      }
+    }
+  },
+  "seedream": {
+    "generator_id": "qwen::Seedream-5.0",
+    "n": 100,
+    "clean_recall_h2": 0.27,
+    "clean_recall_h3": 0.03,
+    "cos_s_seed_w_h2": 0.3200635810214478,
+    "cos_s_seed_w_h3": 0.09579827878194855,
+    "cos_s_gen_w_h2": 0.3200635810214478,
+    "cos_s_gen_w_h3": 0.09579827878194855,
+    "centroid_euc_to_real": 0.4714849591255188,
+    "centroid_euc_to_ai": 0.2618181109428406,
+    "k5_same_label_frac": 0.998,
+    "n_H2ok_H3bad_CLEAN": 24,
+    "n_H2bad_H3ok_CLEAN": 0,
+    "per_condition_recall": {
+      "CLEAN": {
+        "H2": 0.27,
+        "H3": 0.03,
+        "H2_mean_margin": -0.9770639895275537,
+        "H3_mean_margin": -2.781444302486838
+      },
+      "jpeg_q50": {
+        "H2": 0.0,
+        "H3": 0.01,
+        "H2_mean_margin": -3.6361240365136864,
+        "H3_mean_margin": -3.760009503965749
+      },
+      "resize_112": {
+        "H2": 1.0,
+        "H3": 0.09,
+        "H2_mean_margin": 4.61381288211107,
+        "H3_mean_margin": -1.6699374680423693
+      },
+      "blur_sigma2": {
+        "H2": 0.99,
+        "H3": 0.08,
+        "H2_mean_margin": 2.278211927283903,
+        "H3_mean_margin": -1.7004210309654133
+      },
+      "screenshot_strong": {
+        "H2": 0.47,
+        "H3": 0.06,
+        "H2_mean_margin": 0.020707880312356576,
+        "H3_mean_margin": -1.9965616531632508
+      }
+    },
+    "per_fold": [
+      {
+        "fold": 4,
+        "generator_id": "qwen::Seedream-5.0",
+        "n": 100,
+        "centroid_euc_to_real": 0.4714849591255188,
+        "centroid_euc_to_ai": 0.2618181109428406,
+        "k5_same_label_frac": 0.998,
+        "cos_s_gen_w_h2": 0.3200635810214478,
+        "cos_s_gen_w_h3": 0.09579827878194855,
+        "angle_s_gen_from_h2_to_h3_drop": 0.22426530223949923,
+        "H2_CLEAN_recall": 0.27,
+        "H3_CLEAN_recall": 0.03,
+        "H2_CLEAN_mean_logit": -0.9770639895275537,
+        "H3_CLEAN_mean_logit": -2.781444302486838,
+        "H2_CLEAN_mean_margin": -0.9770639895275537,
+        "H3_CLEAN_mean_margin": -2.781444302486838,
+        "H2_CLEAN_median_margin": -1.2124883859382396,
+        "H3_CLEAN_median_margin": -2.750542805337321,
+        "n_H2ok_H3bad_CLEAN": 24,
+        "n_H2bad_H3ok_CLEAN": 0,
+        "H2_jpeg_q50_recall": 0.0,
+        "H3_jpeg_q50_recall": 0.01,
+        "H2_jpeg_q50_mean_logit": -3.6361240365136864,
+        "H3_jpeg_q50_mean_logit": -3.760009503965749,
+        "H2_jpeg_q50_mean_margin": -3.6361240365136864,
+        "H3_jpeg_q50_mean_margin": -3.760009503965749,
+        "H2_jpeg_q50_median_margin": -3.782434560648872,
+        "H3_jpeg_q50_median_margin": -3.6627280527477524,
+        "H2_resize_112_recall": 1.0,
+        "H3_resize_112_recall": 0.09,
+        "H2_resize_112_mean_logit": 4.61381288211107,
+        "H3_resize_112_mean_logit": -1.6699374680423693,
+        "H2_resize_112_mean_margin": 4.61381288211107,
+        "H3_resize_112_mean_margin": -1.6699374680423693,
+        "H2_resize_112_median_margin": 4.682258959112751,
+        "H3_resize_112_median_margin": -1.69419447175969,
+        "H2_blur_sigma2_recall": 0.99,
+        "H3_blur_sigma2_recall": 0.08,
+        "H2_blur_sigma2_mean_logit": 2.278211927283903,
+        "H3_blur_sigma2_mean_logit": -1.7004210309654133,
+        "H2_blur_sigma2_mean_margin": 2.278211927283903,
+        "H3_blur_sigma2_mean_margin": -1.7004210309654133,
+        "H2_blur_sigma2_median_margin": 2.2340094771948102,
+        "H3_blur_sigma2_median_margin": -1.6436489208436789,
+        "H2_screenshot_strong_recall": 0.47,
+        "H3_screenshot_strong_recall": 0.06,
+        "H2_screenshot_strong_mean_logit": 0.020707880312356576,
+        "H3_screenshot_strong_mean_logit": -1.9965616531632508,
+        "H2_screenshot_strong_mean_margin": 0.020707880312356576,
+        "H3_screenshot_strong_mean_margin": -1.9965616531632508,
+        "H2_screenshot_strong_median_margin": -0.04518170211295024,
+        "H3_screenshot_strong_median_margin": -2.0191789326566356
+      }
+    ],
+    "diagnosis": "H3 rotated away from Seedream's CLEAN discriminative direction relative to Real (\u0394cos=+0.224); most Seedream positives lose margin under H3."
+  },
+  "flux": {
+    "generator_id": "qwen::FLUX.2_max",
+    "n": 100,
+    "clean_recall_h2": 0.19,
+    "clean_recall_h3": 0.24,
+    "cos_s_seed_w_h2": 0.36114033489294867,
+    "cos_s_seed_w_h3": 0.2158840217317899,
+    "cos_s_gen_w_h2": 0.36114033489294867,
+    "cos_s_gen_w_h3": 0.2158840217317899,
+    "centroid_euc_to_real": 0.3542689383029938,
+    "centroid_euc_to_ai": 0.23204542696475983,
+    "k5_same_label_frac": 0.998,
+    "n_H2ok_H3bad_CLEAN": 4,
+    "n_H2bad_H3ok_CLEAN": 9,
+    "per_condition_recall": {
+      "CLEAN": {
+        "H2": 0.19,
+        "H3": 0.24,
+        "H2_mean_margin": -1.3008644087034458,
+        "H3_mean_margin": -1.1933231479735853
+      },
+      "jpeg_q50": {
+        "H2": 0.0,
+        "H3": 0.05,
+        "H2_mean_margin": -3.8747072663504754,
+        "H3_mean_margin": -2.7151937701538635
+      },
+      "resize_112": {
+        "H2": 0.99,
+        "H3": 0.21,
+        "H2_mean_margin": 2.0690816572681343,
+        "H3_mean_margin": -0.9043160217663876
+      },
+      "blur_sigma2": {
+        "H2": 0.94,
+        "H3": 0.47,
+        "H2_mean_margin": 1.621539814138831,
+        "H3_mean_margin": -0.02037723035258828
+      },
+      "screenshot_strong": {
+        "H2": 0.05,
+        "H3": 0.24,
+        "H2_mean_margin": -1.7792792177569874,
+        "H3_mean_margin": -1.0058634136940605
+      }
+    },
+    "per_fold": [
+      {
+        "fold": 1,
+        "generator_id": "qwen::FLUX.2_max",
+        "n": 100,
+        "centroid_euc_to_real": 0.3542689383029938,
+        "centroid_euc_to_ai": 0.23204542696475983,
+        "k5_same_label_frac": 0.998,
+        "cos_s_gen_w_h2": 0.36114033489294867,
+        "cos_s_gen_w_h3": 0.2158840217317899,
+        "angle_s_gen_from_h2_to_h3_drop": 0.14525631316115878,
+        "H2_CLEAN_recall": 0.19,
+        "H3_CLEAN_recall": 0.24,
+        "H2_CLEAN_mean_logit": -1.3008644087034458,
+        "H3_CLEAN_mean_logit": -1.1933231479735853,
+        "H2_CLEAN_mean_margin": -1.3008644087034458,
+        "H3_CLEAN_mean_margin": -1.1933231479735853,
+        "H2_CLEAN_median_margin": -1.331526293252744,
+        "H3_CLEAN_median_margin": -1.297179506479766,
+        "n_H2ok_H3bad_CLEAN": 4,
+        "n_H2bad_H3ok_CLEAN": 9,
+        "H2_jpeg_q50_recall": 0.0,
+        "H3_jpeg_q50_recall": 0.05,
+        "H2_jpeg_q50_mean_logit": -3.8747072663504754,
+        "H3_jpeg_q50_mean_logit": -2.7151937701538635,
+        "H2_jpeg_q50_mean_margin": -3.8747072663504754,
+        "H3_jpeg_q50_mean_margin": -2.7151937701538635,
+        "H2_jpeg_q50_median_margin": -4.041034055853119,
+        "H3_jpeg_q50_median_margin": -2.8566733111179206,
+        "H2_resize_112_recall": 0.99,
+        "H3_resize_112_recall": 0.21,
+        "H2_resize_112_mean_logit": 2.0690816572681343,
+        "H3_resize_112_mean_logit": -0.9043160217663876,
+        "H2_resize_112_mean_margin": 2.0690816572681343,
+        "H3_resize_112_mean_margin": -0.9043160217663876,
+        "H2_resize_112_median_margin": 2.0951687151470133,
+        "H3_resize_112_median_margin": -0.9128595208953478,
+        "H2_blur_sigma2_recall": 0.94,
+        "H3_blur_sigma2_recall": 0.47,
+        "H2_blur_sigma2_mean_logit": 1.621539814138831,
+        "H3_blur_sigma2_mean_logit": -0.02037723035258828,
+        "H2_blur_sigma2_mean_margin": 1.621539814138831,
+        "H3_blur_sigma2_mean_margin": -0.02037723035258828,
+        "H2_blur_sigma2_median_margin": 1.629676555815306,
+        "H3_blur_sigma2_median_margin": -0.16436953084765604,
+        "H2_screenshot_strong_recall": 0.05,
+        "H3_screenshot_strong_recall": 0.24,
+        "H2_screenshot_strong_mean_logit": -1.7792792177569874,
+        "H3_screenshot_strong_mean_logit": -1.0058634136940605,
+        "H2_screenshot_strong_mean_margin": -1.7792792177569874,
+        "H3_screenshot_strong_mean_margin": -1.0058634136940605,
+        "H2_screenshot_strong_median_margin": -1.831374040365067,
+        "H3_screenshot_strong_median_margin": -1.030925325503212
+      }
+    ],
+    "diagnosis": "FLUX weakness mixes modest geometry separation with head threshold placement; H3 does not substantially worsen or rescue it."
+  },
+  "fold4": {
+    "clean_auc_h2": 0.9489384929660168,
+    "clean_auc_h3": 0.854202332806784,
+    "clean_auc_delta": -0.09473616015923281,
+    "share_of_macro_clean_auc_drop": 0.7314933464322739,
+    "cos_w_h2_h3": 0.5279334762152134,
+    "angle_w_h2_h3": 58.13406581431381,
+    "cos_w_h3_s_clean": 0.39447230081721407,
+    "cos_s_clean_s_tfmean": 0.7813148765795949,
+    "mean_pairwise_condition_cos": 0.5072542934273973,
+    "train_ai": 2314,
+    "train_n": 6594,
+    "vs_f123_mean_cos_w_h2_h3": 0.5721117257596879,
+    "vs_f123_mean_clean_auc_delta": -0.011591488134183536,
+    "heldout_generators_unique_vs_f123": [
+      "qwen::Imagen-4.0",
+      "qwen::Imagen-4.0-Ultra",
+      "qwen::Qwen-Image",
+      "qwen::Qwen-Image-2.0-pro",
+      "qwen::Seedream-5.0",
+      "tiny::Midjourney"
+    ],
+    "n_heldout_ai_generators": 6,
+    "h2ok_h3bad_top_generators": {
+      "qwen::Qwen-Image-2.0-pro": 29,
+      "qwen::Imagen-4.0": 29,
+      "qwen::Imagen-4.0-Ultra": 27,
+      "qwen::Seedream-5.0": 24,
+      "tiny::Midjourney": 14,
+      "qwen::Qwen-Image": 13
+    },
+    "mean_tf_margin_impr": 0.33476930260134474,
+    "mean_clean_dm": -0.05530059089195545,
+    "corr_clean_dm_vs_tf_impr": 0.6866498823719516,
+    "diagnosis": "Fold4 H3 clean AUC\u22480.854 is not generic difficulty alone: largest TRAIN AI count (2314 vs F1\u20133 mean 1829) with different held-out AI generator composition; held-out AI generators unique vs F1\u20133: ['qwen::Imagen-4.0', 'qwen::Imagen-4.0-Ultra', 'qwen::Qwen-Image', 'qwen::Qwen-Image-2.0-pro', 'qwen::Seedream-5.0', 'tiny::Midjourney']; H2ok\u2192H3bad AI concentrated in [('qwen::Qwen-Image-2.0-pro', 29), ('qwen::Imagen-4.0', 29), ('qwen::Imagen-4.0-Ultra', 27)]"
+  },
+  "compatibility": {
+    "fold_1": "CONDITIONS_PARTLY_CONFLICTING",
+    "fold_2": "CONDITIONS_PARTLY_CONFLICTING",
+    "fold_3": "CONDITIONS_PARTLY_CONFLICTING",
+    "fold_4": "CONDITIONS_PARTLY_CONFLICTING"
+  },
+  "figures": [
+    "figures/v2/v2_10g_condition_direction_similarity_v1.png",
+    "figures/v2/v2_10g_head_alignment_clean_vs_tf_v1.png"
+  ],
+  "interpretation": {
+    "q1_directions_compatible": "Broadly yes/partial: mean pairwise cos=0.596; cos(s_clean,s_tfmean)=0.828. Lowest clean\u2194tf alignment: resize_112 (0.572).",
+    "q2_h3_overrotated": "Yes: mean cos(w_H2,w_H3)=0.561 (~56\u00b0); alignment to s_clean collapses H2 0.747 \u2192 H3 0.376. Relative preference flips: H2 prefers s_clean over s_tfmean (0.747>0.518), while H3 prefers s_tfmean over s_clean (0.422>0.376).",
+    "q3_80pct_transformed_rows": "Plausible major contributor: equal 5-condition expansion makes transformed conditions 80% of rows; H3's preference flips from clean- to transform-side separation while still only partially matching any single transform direction \u2014 consistent with over-rotation / compromise, not pure conflict.",
+    "q4_greatest_conflict": "resize_112 (lowest cos with s_clean among transforms).",
+    "q5_why_clean_auc_drop": "H3 reduces clean margins for a non-trivial H2-correct set (n=524, AI-heavy 458 vs Real 66); Fold4 share of these errors=0.30.",
+    "q6_seedream": "H3 rotated away from Seedream's CLEAN discriminative direction relative to Real (\u0394cos=+0.224); most Seedream positives lose margin under H3.",
+    "q7_flux": "FLUX weakness mixes modest geometry separation with head threshold placement; H3 does not substantially worsen or rescue it.",
+    "q8_fold4": "Fold4 H3 clean AUC\u22480.854 is not generic difficulty alone: largest TRAIN AI count (2314 vs F1\u20133 mean 1829) with different held-out AI generator composition; held-out AI generators unique vs F1\u20133: ['qwen::Imagen-4.0', 'qwen::Imagen-4.0-Ultra', 'qwen::Qwen-Image', 'qwen::Qwen-Image-2.0-pro', 'qwen::Seedream-5.0', 'tiny::Midjourney']; H2ok\u2192H3bad AI concentrated in [('qwen::Qwen-Image-2.0-pro', 29), ('qwen::Imagen-4.0', 29), ('qwen::Imagen-4.0-Ultra', 27)]",
+    "q9_fold4_protocol_vs_general": "Both: Fold4 contributes ~73% of the mean clean-AUC drop and has larger H2\u2192H3 rotation, but F1\u2013F3 also show clean cost and robust gains \u2014 not Fold4-only.",
+    "q10_one_linear_head_plausible": "Yes, still plausible: condition separation directions remain positively aligned (mean pairwise cos=0.596); no strong evidence of opposing linear requirements.",
+    "q11_another_linear_justified": "Yes \u2014 ONE predeclared clean-anchored robust linear head is justified as testing over-rotation, not as a free weight search. Arbitrary multi-weight grids would not be justified.",
+    "q12_nonlinear": "Not yet: linear conflict is not established; nonlinear head would be premature relative to a single clean-anchored linear correction.",
+    "q13_freeze_now": "No \u2014 over-rotation hypothesis is actionable and low-cost; freeze-with-limitations remains fallback.",
+    "q14_one_next": "OPTION_A_CLEAN_ANCHORED_ROBUST_LINEAR_HEAD"
+  },
+  "integrity_statement": {
+    "NTIRE_ACCESSED": "NO",
+    "FAL_USED": "NO",
+    "V1_MODIFIED": "NO",
+    "V1_RERUN": "NO",
+    "V2_3_FOLDS_CHANGED": "NO",
+    "LORA_BACKBONE_TRAINED": "NO",
+    "LORA_WEIGHTS_UPDATED": "NO",
+    "CLIP_WEIGHTS_UPDATED": "NO",
+    "H2_RETRAINED": "NO",
+    "H3_RETRAINED": "NO",
+    "NEW_HEAD_TRAINED": "NO",
+    "HYPERPARAMETER_SEARCH_PERFORMED": "NO",
+    "CONDITION_WEIGHT_SEARCH_PERFORMED": "NO",
+    "NEW_DATA_ACQUIRED": "NO",
+    "THRESHOLD_CHANGED": "NO",
+    "CALIBRATOR_FITTED": "NO",
+    "SELECTIVE_POLICY_RETUNED": "NO",
+    "FINAL_V2_MODEL_SELECTED": "NO",
+    "NEXT_STAGE_STARTED": "NO",
+    "NEW_FEATURE_INFERENCE_PERFORMED": "NO"
+  },
+  "final_v2_model_selected": false,
+  "next_stage_started": false
+}

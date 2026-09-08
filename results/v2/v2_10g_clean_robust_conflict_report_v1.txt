@@ -1,0 +1,90 @@
+V2-10G — Clean/Robust Decision-Conflict Diagnostic
+Status: COMPLETE — ROBUST_HEAD_MIXED_LIMITATION
+Analysis only. No training. No H2/H3 change. thr unchanged.
+FINAL_V2_MODEL NOT SELECTED. NEXT_STAGE_STARTED = NO.
+
+Integrity
+  ok=True new_feature_inference=NO
+
+Condition-direction compatibility (TRAIN)
+  mean pairwise cos(s_c,s_c')=0.5961
+  mean cos(s_clean,s_tf)={'jpeg_q50': 0.7336824251420665, 'resize_112': 0.5722385850754893, 'blur_sigma2': 0.7365841081844375, 'screenshot_strong': 0.6298877061722721}
+  greatest conflict transform≈resize_112
+
+H2 vs H3 direction
+  mean cos(w_H2,w_H3)=0.5611 angle≈55.9°
+  mean cos(w_H2,s_clean)=0.7470
+  mean cos(w_H3,s_clean)=0.3761
+  mean cos(w_H2,s_tfmean)=0.5179
+  mean cos(w_H3,s_tfmean)=0.4225
+
+Clean-loss transitions (eval CLEAN)
+  H2ok→H3bad=524 H2bad→H3ok=500 both_ok=6198 both_bad=1921
+  H2ok→H3bad by class Real/AI=66/458
+  top generators in H2ok→H3bad: {'mllm::Nano_Banana_2': 69, 'mllm::GPT_Image_2': 30, 'tiny::GLIDE': 30, 'qwen::Qwen-Image-2.0-pro': 29, 'qwen::Imagen-4.0': 29, 'qwen::Imagen-4.0-Ultra': 27, 'qwen::GPT-Image-1.5': 25, 'qwen::Seedream-5.0': 24}
+  Fold4 share of H2ok→H3bad=0.296
+
+Seedream
+  CLEAN recall H2=0.270 H3=0.030; cos(s_seed,w) H2=0.320 H3=0.096
+  H3 rotated away from Seedream's CLEAN discriminative direction relative to Real (Δcos=+0.224); most Seedream positives lose margin under H3.
+
+FLUX.2_max
+  CLEAN recall H2=0.190 H3=0.240; centroid_euc_to_real=0.3543; k5_purity=0.998
+  FLUX weakness mixes modest geometry separation with head threshold placement; H3 does not substantially worsen or rescue it.
+
+Fold4
+  CLEAN AUC H2=0.949 H3=0.854; share_macro_drop≈0.73; cos(w_H2,w_H3)=0.528
+  Fold4 H3 clean AUC≈0.854 is not generic difficulty alone: largest TRAIN AI count (2314 vs F1–3 mean 1829) with different held-out AI generator composition; held-out AI generators unique vs F1–3: ['qwen::Imagen-4.0', 'qwen::Imagen-4.0-Ultra', 'qwen::Qwen-Image', 'qwen::Qwen-Image-2.0-pro', 'qwen::Seedream-5.0', 'tiny::Midjourney']; H2ok→H3bad AI concentrated in [('qwen::Qwen-Image-2.0-pro', 29), ('qwen::Imagen-4.0', 29), ('qwen::Imagen-4.0-Ultra', 27)]
+
+Per-fold compatibility
+  fold_1: CONDITIONS_PARTLY_CONFLICTING
+  fold_2: CONDITIONS_PARTLY_CONFLICTING
+  fold_3: CONDITIONS_PARTLY_CONFLICTING
+  fold_4: CONDITIONS_PARTLY_CONFLICTING
+
+Decision evidence
+  - mean pairwise condition cos(s_c,s_c')=0.596; mean cos(w_H2,w_H3)=0.561; cos(w,s_clean) H2=0.747 H3=0.376
+  - Fold4 clean ΔAUC=-0.095; share of macro clean AUC drop≈0.73; Seedream Δrec=-0.240
+  - compatibility={'fold_1': 'CONDITIONS_PARTLY_CONFLICTING', 'fold_2': 'CONDITIONS_PARTLY_CONFLICTING', 'fold_3': 'CONDITIONS_PARTLY_CONFLICTING', 'fold_4': 'CONDITIONS_PARTLY_CONFLICTING'}
+  - decision_logic overrotated=True linear_conflict=False fold_gen=True
+
+DECISION: ROBUST_HEAD_MIXED_LIMITATION
+NEXT_INTERVENTION_RECOMMENDATION: OPTION_A_CLEAN_ANCHORED_ROBUST_LINEAR_HEAD
+
+Scientific answers
+- q1_directions_compatible: Broadly yes/partial: mean pairwise cos=0.596; cos(s_clean,s_tfmean)=0.828. Lowest clean↔tf alignment: resize_112 (0.572).
+- q2_h3_overrotated: Yes: mean cos(w_H2,w_H3)=0.561 (~56°); alignment to s_clean collapses H2 0.747 → H3 0.376. Relative preference flips: H2 prefers s_clean over s_tfmean (0.747>0.518), while H3 prefers s_tfmean over s_clean (0.422>0.376).
+- q3_80pct_transformed_rows: Plausible major contributor: equal 5-condition expansion makes transformed conditions 80% of rows; H3's preference flips from clean- to transform-side separation while still only partially matching any single transform direction — consistent with over-rotation / compromise, not pure conflict.
+- q4_greatest_conflict: resize_112 (lowest cos with s_clean among transforms).
+- q5_why_clean_auc_drop: H3 reduces clean margins for a non-trivial H2-correct set (n=524, AI-heavy 458 vs Real 66); Fold4 share of these errors=0.30.
+- q6_seedream: H3 rotated away from Seedream's CLEAN discriminative direction relative to Real (Δcos=+0.224); most Seedream positives lose margin under H3.
+- q7_flux: FLUX weakness mixes modest geometry separation with head threshold placement; H3 does not substantially worsen or rescue it.
+- q8_fold4: Fold4 H3 clean AUC≈0.854 is not generic difficulty alone: largest TRAIN AI count (2314 vs F1–3 mean 1829) with different held-out AI generator composition; held-out AI generators unique vs F1–3: ['qwen::Imagen-4.0', 'qwen::Imagen-4.0-Ultra', 'qwen::Qwen-Image', 'qwen::Qwen-Image-2.0-pro', 'qwen::Seedream-5.0', 'tiny::Midjourney']; H2ok→H3bad AI concentrated in [('qwen::Qwen-Image-2.0-pro', 29), ('qwen::Imagen-4.0', 29), ('qwen::Imagen-4.0-Ultra', 27)]
+- q9_fold4_protocol_vs_general: Both: Fold4 contributes ~73% of the mean clean-AUC drop and has larger H2→H3 rotation, but F1–F3 also show clean cost and robust gains — not Fold4-only.
+- q10_one_linear_head_plausible: Yes, still plausible: condition separation directions remain positively aligned (mean pairwise cos=0.596); no strong evidence of opposing linear requirements.
+- q11_another_linear_justified: Yes — ONE predeclared clean-anchored robust linear head is justified as testing over-rotation, not as a free weight search. Arbitrary multi-weight grids would not be justified.
+- q12_nonlinear: Not yet: linear conflict is not established; nonlinear head would be premature relative to a single clean-anchored linear correction.
+- q13_freeze_now: No — over-rotation hypothesis is actionable and low-cost; freeze-with-limitations remains fallback.
+- q14_one_next: OPTION_A_CLEAN_ANCHORED_ROBUST_LINEAR_HEAD
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V1_RERUN = NO
+  V2_3_FOLDS_CHANGED = NO
+  LORA_BACKBONE_TRAINED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  CLIP_WEIGHTS_UPDATED = NO
+  H2_RETRAINED = NO
+  H3_RETRAINED = NO
+  NEW_HEAD_TRAINED = NO
+  HYPERPARAMETER_SEARCH_PERFORMED = NO
+  CONDITION_WEIGHT_SEARCH_PERFORMED = NO
+  NEW_DATA_ACQUIRED = NO
+  THRESHOLD_CHANGED = NO
+  CALIBRATOR_FITTED = NO
+  SELECTIVE_POLICY_RETUNED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+  NEW_FEATURE_INFERENCE_PERFORMED = NO

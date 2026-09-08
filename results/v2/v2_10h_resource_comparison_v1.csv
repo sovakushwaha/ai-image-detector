@@ -1,0 +1,4 @@
+head,params,mean_serialized_bytes,mean_train_s,mean_sum_sample_weight
+H2,513,,,
+H3,513,,,
+H4,513,2907.0,0.18850584400024673,49840.0

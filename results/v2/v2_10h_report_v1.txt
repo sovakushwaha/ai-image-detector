@@ -1,0 +1,119 @@
+V2-10H — Clean-Anchored Robust Linear Head (H4)
+Status: COMPLETE — CLEAN_ANCHORED_ROBUST_HEAD_MIXED
+Only H4 trained. Locked sample weights CLEAN=4 / transforms=1. No weight search.
+FINAL_V2_MODEL NOT SELECTED. NEXT_STAGE_STARTED = NO.
+
+Weighting
+  Locked sample_weight CLEAN=4.0, each StrongRobust transform=1.0 on identical 5× TRAIN rows; effective sample-weight mass 50% clean / 50% transformed. sklearn class_weight='balanced' uses raw row class counts then multiplies by sample_weight.
+
+H4 training
+  fold_1: raw_N=30040 iters=30 time=0.16s params=513 ||w||=53.618 b=+2.000
+  fold_2: raw_N=30045 iters=44 time=0.21s params=513 ||w||=53.141 b=-0.283
+  fold_3: raw_N=31545 iters=44 time=0.22s params=513 ||w||=54.262 b=-1.254
+  fold_4: raw_N=32970 iters=30 time=0.16s params=513 ||w||=55.604 b=-0.826
+
+CLEAN macro H2/H3/H4
+  H2: AUC=0.9507 AP=0.9576 AI_rec=0.5756 RealSpec=0.9670 BalAcc=0.7713
+  H3: AUC=0.9184 AP=0.9211 AI_rec=0.5435 RealSpec=0.9615 BalAcc=0.7525
+  H4: AUC=0.9264 AP=0.9291 AI_rec=0.5250 RealSpec=0.9748 BalAcc=0.7499
+  H4-H2: {'roc_auc': -0.024357701233792106, 'ap': -0.02842453189648042, 'ai_recall': -0.050625232209353666, 'real_specificity': 0.007854821235102838, 'balanced_accuracy': -0.021385205487125414, 'precision': -0.0031938846197405724, 'f1': -0.04389379837276697}
+  H4-H3: {'roc_auc': 0.008019954906653748, 'ap': 0.008062554721786408, 'ai_recall': -0.018508597663122406, 'real_specificity': 0.013271939328277416, 'balanced_accuracy': -0.0026183291674225506, 'precision': 0.017183512864262673, 'f1': -0.010797976190951797}
+
+StrongRobust macro
+  H2/jpeg_q50: AUC=0.8223 AI_rec=0.0893 RealSpec=0.9943 BalAcc=0.5418
+  H3/jpeg_q50: AUC=0.8364 AI_rec=0.3761 RealSpec=0.9561 BalAcc=0.6661
+  H4/jpeg_q50: AUC=0.8323 AI_rec=0.3554 RealSpec=0.9567 BalAcc=0.6560
+  H2/resize_112: AUC=0.7252 AI_rec=0.9811 RealSpec=0.1314 BalAcc=0.5563
+  H3/resize_112: AUC=0.8313 AI_rec=0.5309 RealSpec=0.8751 BalAcc=0.7030
+  H4/resize_112: AUC=0.8236 AI_rec=0.5244 RealSpec=0.8749 BalAcc=0.6996
+  H2/blur_sigma2: AUC=0.7265 AI_rec=0.9588 RealSpec=0.5553 BalAcc=0.7570
+  H3/blur_sigma2: AUC=0.8418 AI_rec=0.5907 RealSpec=0.8470 BalAcc=0.7189
+  H4/blur_sigma2: AUC=0.8355 AI_rec=0.5867 RealSpec=0.8369 BalAcc=0.7118
+  H2/screenshot_strong: AUC=0.7710 AI_rec=0.4288 RealSpec=0.8624 BalAcc=0.6456
+  H3/screenshot_strong: AUC=0.8200 AI_rec=0.5303 RealSpec=0.8689 BalAcc=0.6996
+  H4/screenshot_strong: AUC=0.8123 AI_rec=0.5216 RealSpec=0.8648 BalAcc=0.6932
+
+Trade-off summary
+  H2: {'clean_auc': 0.9507478096532107, 'clean_ap': 0.9575539391242048, 'clean_ai_recall': 0.5756023807341333, 'clean_real_spec': 0.966955579631636, 'clean_balacc': 0.7712789801828847, 'mean_tf_auc': 0.7612754524420285, 'worst_tf_auc': 0.7252256696808078, 'mean_tf_ap': 0.7746809718895498, 'mean_tf_ai_recall': 0.6145050134171255, 'mean_tf_real_spec': 0.6358342361863488, 'worst_tf_real_spec': 0.13136511375947996, 'mean_tf_balacc': 0.6251696248017372, 'worst_tf_balacc': 0.5418169434235094}
+  H3: {'clean_auc': 0.9183701535127649, 'clean_ap': 0.921066852505938, 'clean_ai_recall': 0.543485746187902, 'clean_real_spec': 0.9615384615384615, 'clean_balacc': 0.7525121038631818, 'mean_tf_auc': 0.8323839724728419, 'worst_tf_auc': 0.8200233154729117, 'mean_tf_ap': 0.8324050192751479, 'mean_tf_ai_recall': 0.5070021216259575, 'mean_tf_real_spec': 0.8867822318526544, 'worst_tf_real_spec': 0.8469664138678223, 'mean_tf_balacc': 0.6968921767393058, 'worst_tf_balacc': 0.6661130214544556}
+  H4: {'clean_auc': 0.9263901084194186, 'clean_ap': 0.9291294072277244, 'clean_ai_recall': 0.5249771485247796, 'clean_real_spec': 0.9748104008667389, 'clean_balacc': 0.7498937746957592, 'mean_tf_auc': 0.8259320480728356, 'worst_tf_auc': 0.8123471863409399, 'mean_tf_ap': 0.8274158008455492, 'mean_tf_ai_recall': 0.4970083384573738, 'mean_tf_real_spec': 0.8833288190682557, 'worst_tf_real_spec': 0.8369447453954497, 'mean_tf_balacc': 0.6901685787628147, 'worst_tf_balacc': 0.6560237592126046}
+  characterization: genuine_intermediate_Pareto_compromise
+
+Direction
+  mean_cos_w_h4_h2: 0.6289808315388473
+  mean_cos_w_h4_h3: 0.9799729527789688
+  mean_angle_h4_h2: 51.00794380595493
+  mean_angle_h4_h3: 11.473998597112233
+  cos_w_h2_s_clean: 0.7470256593459446
+  cos_w_h3_s_clean: 0.37605608215274466
+  cos_w_h4_s_clean: 0.4009766467951621
+  cos_w_h2_s_tfmean: 0.5178937981351158
+  cos_w_h3_s_tfmean: 0.42247597853068214
+  cos_w_h4_s_tfmean: 0.4110489855656703
+  cos_w_h4_s_CLEAN: 0.4009766467951621
+  cos_w_h4_s_jpeg_q50: 0.37661961809469097
+  cos_w_h4_s_resize_112: 0.3672784220313695
+  cos_w_h4_s_blur_sigma2: 0.28973390825981366
+  cos_w_h4_s_screenshot_strong: 0.320100120670357
+
+Seedream / FLUX
+  Seedream: {'clean_recall_H2': 0.27, 'clean_recall_H3': 0.03, 'clean_recall_H4': 0.03, 'detail': {'generator_id': 'qwen::Seedream-5.0', 'n': 100, 'H2_CLEAN_recall': 0.27, 'H2_CLEAN_mean_p': 0.3240866351686418, 'H2_CLEAN_median_p': 0.22926737368106842, 'H3_CLEAN_recall': 0.03, 'H3_CLEAN_mean_p': 0.11277324998285622, 'H3_CLEAN_median_p': 0.06005936674773693, 'H4_CLEAN_recall': 0.03, 'H4_CLEAN_mean_p': 0.09566041882731952, 'H4_CLEAN_median_p': 0.04036540538072586, 'H2_jpeg_q50_recall': 0.0, 'H2_jpeg_q50_mean_p': 0.055790304274414663, 'H2_jpeg_q50_median_p': 0.022260397672653198, 'H3_jpeg_q50_recall': 0.01, 'H3_jpeg_q50_mean_p': 0.05659527467039879, 'H3_jpeg_q50_median_p': 0.025043200701475143, 'H4_jpeg_q50_recall': 0.03, 'H4_jpeg_q50_mean_p': 0.05831399685659562, 'H4_jpeg_q50_median_p': 0.020621875301003456, 'H2_resize_112_recall': 1.0, 'H2_resize_112_mean_p': 0.9860292911529541, 'H2_resize_112_median_p': 0.990826815366745, 'H3_resize_112_recall': 0.09, 'H3_resize_112_mean_p': 0.2094345526676625, 'H3_resize_112_median_p': 0.15522901713848114, 'H4_resize_112_recall': 0.06, 'H4_resize_112_mean_p': 0.17697043494321407, 'H4_resize_112_median_p': 0.1164579764008522, 'H2_blur_sigma2_recall': 0.99, 'H2_blur_sigma2_mean_p': 0.8665510529279709, 'H2_blur_sigma2_median_p': 0.9032260477542877, 'H3_blur_sigma2_recall': 0.08, 'H3_blur_sigma2_mean_p': 0.21364715290255845, 'H3_blur_sigma2_median_p': 0.16199219971895218, 'H4_blur_sigma2_recall': 0.06, 'H4_blur_sigma2_mean_p': 0.19307435153983532, 'H4_blur_sigma2_median_p': 0.1268494799733162, 'H2_screenshot_strong_recall': 0.47, 'H2_screenshot_strong_mean_p': 0.49476825051009654, 'H2_screenshot_strong_median_p': 0.4887065142393112, 'H3_screenshot_strong_recall': 0.06, 'H3_screenshot_strong_mean_p': 0.17261581419967115, 'H3_screenshot_strong_median_p': 0.1172054223716259, 'H4_screenshot_strong_recall': 0.06, 'H4_screenshot_strong_mean_p': 0.1597970718680881, 'H4_screenshot_strong_median_p': 0.10100292414426804}}
+  FLUX: {'clean_recall_H2': 0.19, 'clean_recall_H3': 0.24, 'clean_recall_H4': 0.26, 'detail': {'generator_id': 'qwen::FLUX.2_max', 'n': 100, 'H2_CLEAN_recall': 0.19, 'H2_CLEAN_mean_p': 0.2710367545299232, 'H2_CLEAN_median_p': 0.2089475616812706, 'H3_CLEAN_recall': 0.24, 'H3_CLEAN_mean_p': 0.3182126383250579, 'H3_CLEAN_median_p': 0.214643694460392, 'H4_CLEAN_recall': 0.26, 'H4_CLEAN_mean_p': 0.29945639326178936, 'H4_CLEAN_median_p': 0.19551364332437515, 'H2_jpeg_q50_recall': 0.0, 'H2_jpeg_q50_mean_p': 0.043660887026926505, 'H2_jpeg_q50_median_p': 0.0172768235206604, 'H3_jpeg_q50_recall': 0.05, 'H3_jpeg_q50_mean_p': 0.133713303746772, 'H3_jpeg_q50_median_p': 0.054935647174715996, 'H4_jpeg_q50_recall': 0.04, 'H4_jpeg_q50_mean_p': 0.11609188220172655, 'H4_jpeg_q50_median_p': 0.03919866122305393, 'H2_resize_112_recall': 0.99, 'H2_resize_112_mean_p': 0.8636585786938668, 'H2_resize_112_median_p': 0.8904320299625397, 'H3_resize_112_recall': 0.21, 'H3_resize_112_mean_p': 0.3331120040128008, 'H3_resize_112_median_p': 0.2864163815975189, 'H4_resize_112_recall': 0.18, 'H4_resize_112_mean_p': 0.3088698686379939, 'H4_resize_112_median_p': 0.2715081423521042, 'H2_blur_sigma2_recall': 0.94, 'H2_blur_sigma2_mean_p': 0.7989506646990776, 'H2_blur_sigma2_median_p': 0.8361108303070068, 'H3_blur_sigma2_recall': 0.47, 'H3_blur_sigma2_mean_p': 0.4992475222609937, 'H3_blur_sigma2_median_p': 0.45899996161460876, 'H4_blur_sigma2_recall': 0.52, 'H4_blur_sigma2_mean_p': 0.5175640261080116, 'H4_blur_sigma2_median_p': 0.5207253098487854, 'H2_screenshot_strong_recall': 0.05, 'H2_screenshot_strong_mean_p': 0.1836739782989025, 'H2_screenshot_strong_median_p': 0.13807504624128342, 'H3_screenshot_strong_recall': 0.24, 'H3_screenshot_strong_mean_p': 0.32712882761377843, 'H3_screenshot_strong_median_p': 0.2629062682390213, 'H4_screenshot_strong_recall': 0.25, 'H4_screenshot_strong_mean_p': 0.3256236910447478, 'H4_screenshot_strong_median_p': 0.2532418519258499}}
+
+Fold4
+  {'CLEAN': {'H2': {'n': 1709, 'roc_auc': 0.9489384929660168, 'ap': 0.9291316765693193, 'ai_recall': 0.40966921119592875, 'real_specificity': 0.9859154929577465, 'balanced_accuracy': 0.6977923520768377, 'precision': 0.9611940298507463, 'f1': 0.5744870651204282, 'tn': 910, 'fp': 13, 'fn': 464, 'tp': 322}, 'H3': {'n': 1709, 'roc_auc': 0.854202332806784, 'ap': 0.8086005795996034, 'ai_recall': 0.27735368956743, 'real_specificity': 0.9696641386782232, 'balanced_accuracy': 0.6235089141228266, 'precision': 0.8861788617886179, 'f1': 0.42248062015503873, 'tn': 895, 'fp': 28, 'fn': 568, 'tp': 218}, 'H4': {'n': 1709, 'roc_auc': 0.8660455589280447, 'ap': 0.8236295469938136, 'ai_recall': 0.27099236641221375, 'real_specificity': 0.9783315276273022, 'balanced_accuracy': 0.624661947019758, 'precision': 0.9141630901287554, 'f1': 0.4180569185475957, 'tn': 903, 'fp': 20, 'fn': 573, 'tp': 213}}, 'transforms': {'H2': {'jpeg_q50': {'n': 1709, 'roc_auc': 0.853063773126132, 'ap': 0.8012196096086439, 'ai_recall': 0.030534351145038167, 'real_specificity': 1.0, 'balanced_accuracy': 0.5152671755725191, 'precision': 1.0, 'f1': 0.05925925925925926, 'tn': 923, 'fp': 0, 'fn': 762, 'tp': 24}, 'resize_112': {'n': 1709, 'roc_auc': 0.566680864202636, 'ap': 0.5259978894480717, 'ai_recall': 1.0, 'real_specificity': 0.0, 'balanced_accuracy': 0.5, 'precision': 0.459918080748976, 'f1': 0.630060120240481, 'tn': 0, 'fp': 923, 'fn': 0, 'tp': 786}, 'blur_sigma2': {'n': 1709, 'roc_auc': 0.6116009031286959, 'ap': 0.46680406302119754, 'ai_recall': 0.9923664122137404, 'real_specificity': 0.5222101841820151, 'balanced_accuracy': 0.7572882981978778, 'precision': 0.6388206388206388, 'f1': 0.7772795216741405, 'tn': 482, 'fp': 441, 'fn': 6, 'tp': 780}, 'screenshot_strong': {'n': 1709, 'roc_auc': 0.772319767105274, 'ap': 0.7221542277358592, 'ai_recall': 0.4389312977099237, 'real_specificity': 0.8634886240520043, 'balanced_accuracy': 0.6512099608809641, 'precision': 0.732484076433121, 'f1': 0.548926014319809, 'tn': 797, 'fp': 126, 'fn': 441, 'tp': 345}}, 'H3': {'jpeg_q50': {'n': 1709, 'roc_auc': 0.7274996622916201, 'ap': 0.6621772704643555, 'ai_recall': 0.15521628498727735, 'real_specificity': 0.9588299024918743, 'balanced_accuracy': 0.5570230937395758, 'precision': 0.7625, 'f1': 0.25792811839323465, 'tn': 885, 'fp': 38, 'fn': 664, 'tp': 122}, 'resize_112': {'n': 1709, 'roc_auc': 0.7057429722196952, 'ap': 0.6390917871306843, 'ai_recall': 0.24681933842239187, 'real_specificity': 0.9024918743228603, 'balanced_accuracy': 0.574655606372626, 'precision': 0.6830985915492958, 'f1': 0.36261682242990656, 'tn': 833, 'fp': 90, 'fn': 592, 'tp': 194}, 'blur_sigma2': {'n': 1709, 'roc_auc': 0.6911071045572712, 'ap': 0.5363863883260621, 'ai_recall': 0.21755725190839695, 'real_specificity': 0.7941495124593716, 'balanced_accuracy': 0.5058533821838843, 'precision': 0.47368421052631576, 'f1': 0.2981691368788143, 'tn': 733, 'fp': 190, 'fn': 615, 'tp': 171}, 'screenshot_strong': {'n': 1709, 'roc_auc': 0.7003796117869874, 'ap': 0.6255940110419398, 'ai_recall': 0.22391857506361323, 'real_specificity': 0.9209100758396533, 'balanced_accuracy': 0.5724143254516333, 'precision': 0.7068273092369478, 'f1': 0.34009661835748795, 'tn': 850, 'fp': 73, 'fn': 610, 'tp': 176}}, 'H4': {'jpeg_q50': {'n': 1709, 'roc_auc': 0.7420362850424134, 'ap': 0.6824541882073747, 'ai_recall': 0.16030534351145037, 'real_specificity': 0.962080173347779, 'balanced_accuracy': 0.5611927584296147, 'precision': 0.782608695652174, 'f1': 0.26610348468849, 'tn': 888, 'fp': 35, 'fn': 660, 'tp': 126}, 'resize_112': {'n': 1709, 'roc_auc': 0.6822164145570231, 'ap': 0.6180515255965231, 'ai_recall': 0.22137404580152673, 'real_specificity': 0.9035752979414952, 'balanced_accuracy': 0.5624746718715109, 'precision': 0.6615969581749049, 'f1': 0.3317445185891325, 'tn': 834, 'fp': 89, 'fn': 612, 'tp': 174}, 'blur_sigma2': {'n': 1709, 'roc_auc': 0.6736799737552346, 'ap': 0.5159940001070495, 'ai_recall': 0.18829516539440203, 'real_specificity': 0.7757313109425785, 'balanced_accuracy': 0.4820132381684903, 'precision': 0.4169014084507042, 'f1': 0.25942156003505695, 'tn': 716, 'fp': 207, 'fn': 638, 'tp': 148}, 'screenshot_strong': {'n': 1709, 'roc_auc': 0.6740576557800513, 'ap': 0.6068358747652041, 'ai_recall': 0.22391857506361323, 'real_specificity': 0.9100758396533044, 'balanced_accuracy': 0.5669972073584588, 'precision': 0.6795366795366795, 'f1': 0.3368421052631579, 'tn': 840, 'fp': 83, 'fn': 610, 'tp': 176}}}, 'generator_clean_recall': [{'generator_id': 'qwen::Imagen-4.0', 'n': 100, 'H2_CLEAN_recall': 0.34, 'H3_CLEAN_recall': 0.05, 'H4_CLEAN_recall': 0.05}, {'generator_id': 'qwen::Imagen-4.0-Ultra', 'n': 100, 'H2_CLEAN_recall': 0.31, 'H3_CLEAN_recall': 0.04, 'H4_CLEAN_recall': 0.03}, {'generator_id': 'qwen::Qwen-Image', 'n': 100, 'H2_CLEAN_recall': 0.2, 'H3_CLEAN_recall': 0.09, 'H4_CLEAN_recall': 0.07}, {'generator_id': 'qwen::Qwen-Image-2.0-pro', 'n': 100, 'H2_CLEAN_recall': 0.33, 'H3_CLEAN_recall': 0.06, 'H4_CLEAN_recall': 0.06}, {'generator_id': 'qwen::Seedream-5.0', 'n': 100, 'H2_CLEAN_recall': 0.27, 'H3_CLEAN_recall': 0.03, 'H4_CLEAN_recall': 0.03}, {'generator_id': 'tiny::Midjourney', 'n': 286, 'H2_CLEAN_recall': 0.6188811188811189, 'H3_CLEAN_recall': 0.6678321678321678, 'H4_CLEAN_recall': 0.6608391608391608}]}
+
+Decision evidence
+  - flags={'clean_auc_ge_093': False, 'clean_auc_drop_vs_h2_le_002': False, 'clean_ai_rec_ge_053': False, 'clean_spec_ge_094': True, 'phone_clean_ge_098': True, 'mllm_clean_ge_085': True, 'mean_tf_auc_ge_084': False, 'worst_tf_auc_ge_080': True, 'mean_tf_spec_ge_088': True, 'worst_tf_spec_ge_080': True, 'phone_mean_tf_ge_095': True, 'mllm_mean_tf_ge_078': True, 'jpeg_ai_rec_ge_030': True, 'resize_spec_ge_080': True, 'blur_spec_ge_080': True, 'no_collapse': True, 'fold_benefit_ge_3': True, 'params_ok': True}
+  - H4 clean AUC=0.9264 AI_rec=0.5250 RealSpec=0.9748; mean_tf_AUC=0.8259 worst_tf_AUC=0.8123 mean_tf_spec=0.8833
+  - phone_mean_tf=0.998 mllm_mean_tf=0.797 fold_benefit=3
+
+DECISION: CLEAN_ANCHORED_ROBUST_HEAD_MIXED
+Recommended development candidate: H4 (with documented residual gates)
+Next-stage recommendation ONLY: Do NOT search another condition weight. Prefer development freeze-with-limitations around the best clean/robust compromise among H2/H3/H4, or a non-weight residual diagnostic. Do not auto-start.
+
+Scientific answers
+- q1_recover_clean_auc: H3=0.9184 → H4=0.9264 (Δ vs H3=+0.0080).
+- q2_retain_h2_clean: H4 retains H2 clean AUC fraction; Δ vs H2=-0.0244 (H2=0.9507).
+- q3_retain_h3_robust: H4 mean_tf_AUC=0.8259 vs H3=0.8324 H2=0.7613.
+- q4_jpeg: JPEG AI_rec H2/H3/H4=0.089/0.376/0.355.
+- q5_resize: resize RealSpec H2/H3/H4=0.131/0.875/0.875.
+- q6_blur: blur RealSpec H2/H3/H4=0.555/0.847/0.837.
+- q7_screenshot: screenshot AUC H2/H3/H4=0.771/0.820/0.812.
+- q8_seedream: CLEAN recall H2/H3/H4=0.270/0.030/0.030.
+- q9_flux: CLEAN recall H2/H3/H4=0.190/0.240/0.260.
+- q10_fold4: Fold4 CLEAN AUC H2/H3/H4=0.949/0.854/0.866.
+- q11_direction_between: cos(w_H4,w_H2)=0.629, cos(w_H4,w_H3)=0.980; cos(w_H4,s_clean)=0.401 (H2=0.747, H3=0.376).
+- q12_validates_overrotation: Yes if H4 restores clean alignment toward H2 while retaining more transform robustness than H2.
+- q13_linear_sufficient: decision=CLEAN_ANCHORED_ROBUST_HEAD_MIXED; trade_char=genuine_intermediate_Pareto_compromise.
+- q14_strongest_compromise: H4 (with documented residual gates)
+- q15_another_weight_experiment: NO — V2-10H was the single predeclared clean-anchor test; do not grid weights.
+- q16_freeze_recommendation: Recommend development candidate H4 (with documented residual gates) for freeze-with-limitations consideration; do NOT formally select FINAL_V2_MODEL in this stage.
+- q17_next: Do NOT search another condition weight. Prefer development freeze-with-limitations around the best clean/robust compromise among H2/H3/H4, or a non-weight residual diagnostic. Do not auto-start.
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V1_RERUN = NO
+  V2_3_FOLDS_CHANGED = NO
+  LORA_BACKBONE_TRAINED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  CLIP_WEIGHTS_UPDATED = NO
+  H2_RETRAINED = NO
+  H3_RETRAINED = NO
+  H4_HEAD_TRAINING_PERFORMED = YES
+  ONLY_PREDECLARED_H4_TRAINED = YES
+  CONDITION_WEIGHT_SEARCH_PERFORMED = NO
+  HYPERPARAMETER_SEARCH_PERFORMED = NO
+  NEW_FEATURE_INFERENCE_PERFORMED = NO
+  NEW_DATA_ACQUIRED = NO
+  EVAL_LABELS_USED_FOR_TRAINING = NO
+  V2_9C_CALIBRATION_DATA_USED_FOR_TRAINING = NO
+  PROMPT_BLOCKED_USED_FOR_TRAINING = NO
+  THRESHOLD_CHANGED = NO
+  THRESHOLD_SWEEP_PERFORMED = NO
+  CALIBRATOR_FITTED = NO
+  SELECTIVE_POLICY_RETUNED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
