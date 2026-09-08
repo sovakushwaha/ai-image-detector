@@ -1,0 +1,97 @@
+V2-10A — Representation Overlap and Error-Geometry Diagnostic
+Status: COMPLETE — decision HEAD_LIMITED
+No training. No calibrators. No threshold tuning.
+
+Artifact inventory
+  - results/v2/v2_clip_embeddings_v1.npz | V2-5/6/7 frozen CLIP (shared) | layer=CLIP image embedding R0 | usable=True
+  - results/v2/kaggle_v2_lora_v37/v2_lora_outputs/predictions/fold1_predictions_v1.csv | V2-8 LoRA | layer=R3 probability/logit-equivalent p_lora | usable=True
+  - results/v2/kaggle_v2_lora_v37/v2_lora_outputs/predictions/fold2_predictions_v1.csv | V2-8 LoRA | layer=R3 probability/logit-equivalent p_lora | usable=True
+  - results/v2/kaggle_v2_lora_v37/v2_lora_outputs/predictions/fold3_predictions_v1.csv | V2-8 LoRA | layer=R3 probability/logit-equivalent p_lora | usable=True
+  - results/v2/kaggle_v2_lora_v37/v2_lora_outputs/predictions/fold4_predictions_v1.csv | V2-8 LoRA | layer=R3 probability/logit-equivalent p_lora | usable=True
+  - results/v2/v2_10a_lora_features_fold{1-4}_v1.npz | V2-8 LoRA | layer=R1 pre-head LoRA embedding (+ R2 penultimate if extracted) | usable=True
+
+NEW_FEATURE_INFERENCE_PERFORMED = YES
+  fold_1: ckpt=models/v2/clip_lora_fold1_best_v1.pt n=2821 D_r1=512 D_r2=64 reused=False path=results/v2/v2_10a_lora_features_fold1_v1.npz
+  fold_2: ckpt=models/v2/clip_lora_fold2_best_v1.pt n=2619 D_r1=512 D_r2=64 reused=False path=results/v2/v2_10a_lora_features_fold2_v1.npz
+  fold_3: ckpt=models/v2/clip_lora_fold3_best_v1.pt n=1994 D_r1=512 D_r2=64 reused=False path=results/v2/v2_10a_lora_features_fold3_v1.npz
+  fold_4: ckpt=models/v2/clip_lora_fold4_best_v1.pt n=1709 D_r1=512 D_r2=64 reused=False path=results/v2/v2_10a_lora_features_fold4_v1.npz
+
+Integrity
+  {'folds': {'fold_1': {'n': 2821, 'unique': 2821, 'dups': 0, 'r0_match': True, 'label_ok': True, 'finite': True, 'D_r0': 512, 'D_r1': 512, 'D_r2': 64}, 'fold_2': {'n': 2619, 'unique': 2619, 'dups': 0, 'r0_match': True, 'label_ok': True, 'finite': True, 'D_r0': 512, 'D_r1': 512, 'D_r2': 64}, 'fold_3': {'n': 1994, 'unique': 1994, 'dups': 0, 'r0_match': True, 'label_ok': True, 'finite': True, 'D_r0': 512, 'D_r1': 512, 'D_r2': 64}, 'fold_4': {'n': 1709, 'unique': 1709, 'dups': 0, 'r0_match': True, 'label_ok': True, 'finite': True, 'D_r0': 512, 'D_r1': 512, 'D_r2': 64}}, 'ok': True}
+
+Global R0 vs R1 (macro-mean folds)
+  R0: centroid_euc=0.1839 between/within=0.2541 kNN_purity=0.8214
+  R1: centroid_euc=0.3856 between/within=0.6222 kNN_purity=0.9661
+  Δ(R1-R0): sep=+0.2018 purity=+0.1447
+
+Hard generators (macro)
+  mllm::GPT_Image_2: Δcent_to_Real=+0.1520 R0/R1 cent=0.2696/0.4216 R1_frac_nn_Real=0.004 R1_k5_real_frac=0.008
+  mllm::Nano_Banana_2: Δcent_to_Real=+0.0658 R0/R1 cent=0.2940/0.3598 R1_frac_nn_Real=0.001 R1_k5_real_frac=0.011
+  qwen::FLUX.2_max: Δcent_to_Real=+0.0831 R0/R1 cent=0.2712/0.3543 R1_frac_nn_Real=0.000 R1_k5_real_frac=0.002
+  qwen::GPT-Image-1.5: Δcent_to_Real=+0.1746 R0/R1 cent=0.2729/0.4476 R1_frac_nn_Real=0.000 R1_k5_real_frac=0.000
+  qwen::Seedream-5.0: Δcent_to_Real=+0.1881 R0/R1 cent=0.2833/0.4715 R1_frac_nn_Real=0.000 R1_k5_real_frac=0.002
+
+Real domains (macro)
+  Tiny: Δdist_to_AI=+0.0781 R1_k5_ai_frac=0.169
+  MLLM: Δdist_to_AI=+0.1533 R1_k5_ai_frac=0.092
+  COCO: Δdist_to_AI=+0.2866 R1_k5_ai_frac=0.033
+  Smartphone: Δdist_to_AI=+0.3025 R1_k5_ai_frac=0.009
+
+Error geometry (R1 macro)
+  TN_REAL: n_mean=902.2 dist_opp_cent=0.7553 k5_ai_frac=0.060
+  FP_REAL: n_mean=20.8 dist_opp_cent=0.7329 k5_ai_frac=0.291
+  TP_AI: n_mean=509.0 dist_opp_cent=0.7588 k5_ai_frac=0.992
+  FN_AI: n_mean=853.8 dist_opp_cent=0.6942 k5_ai_frac=0.978
+
+Head-vs-representation evidence
+  - Mean Δ centroid sep R1-R0 = +0.2018
+  - Mean Δ kNN purity R1-R0 = +0.1447
+  - Hard-gen mean Δ centroid-to-Real R1-R0 = +0.1397
+  - Hard-gen mean frac NN=Real under R1 = 0.001
+  - Folds where FN closer to Real centroid than TP: 4/4
+  - Mean k5 local AI frac FN=0.978 TP=0.992
+  - Mean R1 kNN purity=0.966; mean AI recall@0.5=0.386
+
+DIAGNOSTIC CLASSIFICATION: HEAD_LIMITED
+
+Interpretation
+- q1_lora_global_sep: Yes/partial: LoRA R1 centroid sep 0.3856 vs R0 0.1839 (Δ=+0.2018); kNN purity 0.966 vs 0.821 (Δ=+0.145).
+- q2_hard_farther: Moved farther from Real (Δcent>0): ['mllm::GPT_Image_2', 'mllm::Nano_Banana_2', 'qwen::FLUX.2_max', 'qwen::GPT-Image-1.5', 'qwen::Seedream-5.0']
+- q3_hard_close: Remain relatively Real-neighbouring / not clearly farther: []
+- q4_gpt_image2: GPT Image2 Δcent=+0.1520, R1 frac NN=Real=0.004. Geometry improved; residual low recall more score/head related.
+- q5_nano_banana2: Nano Banana2 Δcent=+0.0658, R1 frac NN=Real=0.001.
+- q6_flux_seedream: FLUX.2_max Δcent=+0.0831, R1 frac NN=Real=0.000; Seedream-5.0 Δcent=+0.1881, R1 frac NN=Real=0.000. Both moved farther from Real with near-zero Real neighbourhoods under R1; residual operating weakness is primarily score/head mapping, not Real-like embedding.
+- q7_mllm_real: MLLM Real R1 k5 AI frac=0.092, Δdist_to_AI=+0.1533. Fold3 MLLM is not AI-neighbour-dominated in R1 (see per-fold real_domains); C2 RealSpec collapse is score-mapping, not pure overlap.
+- q8_fn_in_real_like: FN local AI frac=0.978 vs TP=0.992 (FN not clearly more Real-like).
+- q9_fp_in_ai_like: FP local AI frac=0.291 vs TN=0.060 (FP more AI-like).
+- q10_head_failing_on_good_features: R1 kNN purity=0.966 with AI recall@0.5≈0.386 suggests score/operating-point issues coexist with any residual overlap; decision=HEAD_LIMITED.
+- q11_next: See next_stage_recommendation.
+
+Next-stage recommendation ONLY
+  Prioritize classification-head / objective / operating-point work on frozen LoRA features before another LoRA PEFT recipe. Do not auto-start.
+
+Figures
+  - figures/v2/v2_10a_pca_r0_r1_real_vs_ai_v1.png
+  - figures/v2/v2_10a_pca_r1_hard_generators_v1.png
+  - figures/v2/v2_10a_hard_generator_distance_to_real_r0_r1_v1.png
+  - figures/v2/v2_10a_real_domain_distance_to_ai_r0_r1_v1.png
+  - figures/v2/v2_10a_error_group_neighbourhood_v1.png
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V2_3_FOLDS_CHANGED = NO
+  DETECTOR_TRAINING_PERFORMED = NO
+  MODEL_WEIGHTS_UPDATED = NO
+  CLIP_EMBEDDINGS_REGENERATED = NO
+  V2_7_REPLAYED = NO
+  NEW_DATA_ACQUIRED = NO
+  THRESHOLD_TUNED = NO
+  CALIBRATOR_FITTED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+  NEW_FEATURE_INFERENCE_PERFORMED = YES
+
+FINAL_V2_MODEL_SELECTED = NO
+NEXT_STAGE_STARTED = NO

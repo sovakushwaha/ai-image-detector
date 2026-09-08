@@ -1,0 +1,150 @@
+V2-10D — Frozen H2 Robustness Evaluation
+Status: COMPLETE — decision ROBUSTNESS_NOT_ACCEPTABLE
+Evaluation only. No training. Threshold=0.5. FINAL_V2_MODEL NOT SELECTED.
+
+Authoritative robustness protocol
+  Suite: RQ3_StrongRobust_C0_evaluation_suite
+  Rationale: research_log: Stage 23A–23E / RQ5 / Stage26B StrongRobust conditions for FINAL_RESEARCH_MODEL_V1=C0 are jpeg_q50, resize_112, blur_sigma2, screenshot_strong. Full RQ2 Stage22A suite has 8 mild+strong transforms including crop; StrongRobust aggregate and C0 paper-facing robustness use the 4 strong conditions without crop/mild variants.
+  Source: paper/research_log.md (Stages 22D, 23A–E, 26B); src/generate_rq3_validation_v1.py; src/external_v2_common.py; src/evaluate_rq3_frozen_test_v1.py CONDITIONS
+  Note: Full RQ2 8-transform mild+strong suite exists but StrongRobust/C0
+  authoritative evaluation uses the 4 strong conditions below (no crop/mild).
+  - jpeg_q50: sev=strong params={'quality': 50, 'subsampling': 0} det=True src=external_v2_common.apply_jpeg_q50 / generate_rq3_validation_v1
+  - resize_112: sev=strong params={'downsample_to': 112, 'restore_to': 224, 'resample': 'LANCZOS'} det=True src=external_v2_common.apply_resize_112 / generate_rq3_validation_v1
+  - blur_sigma2: sev=strong params={'sigma_or_radius': 2.0, 'filter': 'PIL.GaussianBlur'} det=True src=external_v2_common.apply_blur_sigma2 / generate_rq3_validation_v1
+  - screenshot_strong: sev=strong params={'jpeg_quality': 65, 'display_size': 384, 'canvas': 512, 'canvas_rgb': [32, 32, 32], 'final_size': 224} det=True src=external_v2_common.apply_screenshot_strong / generate_rq3_validation_v1 / generate_screenshot_v1
+
+Clean baseline integrity
+  {'macro': {'roc_auc': 0.9507478096532107, 'ap': 0.9575539391242048, 'ai_recall': 0.5756023807341333, 'real_specificity': 0.966955579631636, 'balanced_accuracy': 0.7712789801828847, 'precision': 0.9616056187491717, 'f1': 0.7098906489026456}, 'per_fold': [{'n': 2821, 'roc_auc': 0.9523470563186202, 'ap': 0.9726765857786811, 'ai_recall': 0.559536354056902, 'real_specificity': 0.9739978331527628, 'balanced_accuracy': 0.7667670936048324, 'precision': 0.9779005524861878, 'f1': 0.7117962466487936, 'tn': 899, 'fp': 24, 'fn': 836, 'tp': 1062}, {'n': 2619, 'roc_auc': 0.9437437396512602, 'ap': 0.96608650499662, 'ai_recall': 0.5442216981132075, 'real_specificity': 0.9739978331527628, 'balanced_accuracy': 0.7591097656329852, 'precision': 0.9746568109820486, 'f1': 0.6984487325009459, 'tn': 899, 'fp': 24, 'fn': 773, 'tp': 923}, {'n': 1994, 'roc_auc': 0.9579619496769455, 'ap': 0.9623209891521992, 'ai_recall': 0.7889822595704948, 'real_specificity': 0.933911159263272, 'balanced_accuracy': 0.8614467094168834, 'precision': 0.9326710816777042, 'f1': 0.8548305513404147, 'tn': 862, 'fp': 61, 'fn': 226, 'tp': 845}, {'n': 1709, 'roc_auc': 0.9489384929660168, 'ap': 0.9291316765693193, 'ai_recall': 0.40966921119592875, 'real_specificity': 0.9859154929577465, 'balanced_accuracy': 0.6977923520768377, 'precision': 0.9611940298507463, 'f1': 0.5744870651204282, 'tn': 910, 'fp': 13, 'fn': 464, 'tp': 322}], 'checks': {'auc_ok': True, 'ap_ok': True, 'recall_ok': True, 'spec_ok': True}, 'ok': True}
+
+TRANSFORMED_INFERENCE_PERFORMED = YES
+  folds: [1, 2, 3, 4]
+  transforms: ['jpeg_q50', 'resize_112', 'blur_sigma2', 'screenshot_strong']
+  n_per_fold: {1: 2821, 2: 2619, 3: 1994, 4: 1709}
+  checkpoints: ['models/v2/clip_lora_fold1_best_v1.pt', 'models/v2/clip_lora_fold2_best_v1.pt', 'models/v2/clip_lora_fold3_best_v1.pt', 'models/v2/clip_lora_fold4_best_v1.pt']
+  h2_heads: ['models/v2/v2_10b_h2_balanced_logreg_fold1_v1.joblib', 'models/v2/v2_10b_h2_balanced_logreg_fold2_v1.joblib', 'models/v2/v2_10b_h2_balanced_logreg_fold3_v1.joblib', 'models/v2/v2_10b_h2_balanced_logreg_fold4_v1.joblib']
+  integrity: {'folds': {'fold_1': {'jpeg_q50': {'n': 2821, 'finite': True, 'ids_match_clean': True}, 'resize_112': {'n': 2821, 'finite': True, 'ids_match_clean': True}, 'blur_sigma2': {'n': 2821, 'finite': True, 'ids_match_clean': True}, 'screenshot_strong': {'n': 2821, 'finite': True, 'ids_match_clean': True}}, 'fold_2': {'jpeg_q50': {'n': 2619, 'finite': True, 'ids_match_clean': True}, 'resize_112': {'n': 2619, 'finite': True, 'ids_match_clean': True}, 'blur_sigma2': {'n': 2619, 'finite': True, 'ids_match_clean': True}, 'screenshot_strong': {'n': 2619, 'finite': True, 'ids_match_clean': True}}, 'fold_3': {'jpeg_q50': {'n': 1994, 'finite': True, 'ids_match_clean': True}, 'resize_112': {'n': 1994, 'finite': True, 'ids_match_clean': True}, 'blur_sigma2': {'n': 1994, 'finite': True, 'ids_match_clean': True}, 'screenshot_strong': {'n': 1994, 'finite': True, 'ids_match_clean': True}}, 'fold_4': {'jpeg_q50': {'n': 1709, 'finite': True, 'ids_match_clean': True}, 'resize_112': {'n': 1709, 'finite': True, 'ids_match_clean': True}, 'blur_sigma2': {'n': 1709, 'finite': True, 'ids_match_clean': True}, 'screenshot_strong': {'n': 1709, 'finite': True, 'ids_match_clean': True}}}}
+
+Macro metrics CLEAN vs transforms
+  CLEAN: AUC=0.9507 AP=0.9576 AI_rec=0.5756 RealSpec=0.9670 BalAcc=0.7713
+  jpeg_q50: AUC=0.8223 AP=0.8459 AI_rec=0.0893 RealSpec=0.9943 BalAcc=0.5418
+  resize_112: AUC=0.7252 AP=0.7506 AI_rec=0.9811 RealSpec=0.1314 BalAcc=0.5563
+  blur_sigma2: AUC=0.7265 AP=0.7042 AI_rec=0.9588 RealSpec=0.5553 BalAcc=0.7570
+  screenshot_strong: AUC=0.7710 AP=0.7980 AI_rec=0.4288 RealSpec=0.8624 BalAcc=0.6456
+
+Deltas (TRANSFORM − CLEAN)
+  jpeg_q50: ΔAUC=-0.1285 ΔAP=-0.1117 ΔAI_rec=-0.4863 ΔRealSpec=+0.0274 ΔBalAcc=-0.2295
+  resize_112: ΔAUC=-0.2255 ΔAP=-0.2070 ΔAI_rec=+0.4055 ΔRealSpec=-0.8356 ΔBalAcc=-0.2150
+  blur_sigma2: ΔAUC=-0.2242 ΔAP=-0.2533 ΔAI_rec=+0.3832 ΔRealSpec=-0.4117 ΔBalAcc=-0.0143
+  screenshot_strong: ΔAUC=-0.1797 ΔAP=-0.1595 ΔAI_rec=-0.1468 ΔRealSpec=-0.1046 ΔBalAcc=-0.1257
+
+Worst transforms
+  worst_auc: resize_112
+  worst_ai_recall: jpeg_q50
+  worst_real_specificity: resize_112
+  worst_balanced_accuracy: jpeg_q50
+  mean_transformed_auc: 0.7612754524420285
+  mean_transformed_ap: 0.7746809718895498
+  mean_transformed_ai_recall: 0.6145050134171255
+  mean_transformed_real_specificity: 0.6358342361863488
+  worst_fold_transform: {'fold': 4, 'condition': 'resize_112', 'balanced_accuracy': 0.5}
+
+Hard generators (recall@0.5)
+  mllm::GPT_Image_2: CLEAN=0.653 jpeg_q50=0.091 resize_112=1.000 blur_sigma2=0.999 screenshot_strong=0.274
+  mllm::Nano_Banana_2: CLEAN=0.483 jpeg_q50=0.008 resize_112=0.945 blur_sigma2=0.926 screenshot_strong=0.531
+  qwen::FLUX.2_max: CLEAN=0.190 jpeg_q50=0.000 resize_112=0.990 blur_sigma2=0.940 screenshot_strong=0.050
+  qwen::GPT-Image-1.5: CLEAN=0.425 jpeg_q50=0.000 resize_112=0.990 blur_sigma2=0.935 screenshot_strong=0.350
+  qwen::Seedream-5.0: CLEAN=0.270 jpeg_q50=0.000 resize_112=1.000 blur_sigma2=0.990 screenshot_strong=0.470
+
+Real domains (specificity@0.5)
+  Tiny: CLEAN=0.920 jpeg_q50=0.993 resize_112=0.044 blur_sigma2=0.010 screenshot_strong=0.749
+  MLLM: CLEAN=0.909 jpeg_q50=0.969 resize_112=0.097 blur_sigma2=0.164 screenshot_strong=0.792
+  COCO: CLEAN=1.000 jpeg_q50=1.000 resize_112=0.079 blur_sigma2=0.008 screenshot_strong=0.975
+  Smartphone: CLEAN=1.000 jpeg_q50=1.000 resize_112=0.189 blur_sigma2=0.982 screenshot_strong=0.921
+  Fold3 MLLM: CLEAN=0.867 jpeg_q50=0.920 resize_112=0.035 blur_sigma2=0.124 screenshot_strong=0.752
+
+Prediction flips (macro mean folds)
+  jpeg_q50: flip_rate=0.2993 correct→wrong=0.2861 wrong→correct=0.0131 mean|Δp|=0.2659 meanΔp=-0.2577
+  resize_112: flip_rate=0.5950 correct→wrong=0.3612 wrong→correct=0.2338 mean|Δp|=0.5125 meanΔp=+0.5022
+  blur_sigma2: flip_rate=0.4071 correct→wrong=0.1816 wrong→correct=0.2255 mean|Δp|=0.3469 meanΔp=+0.3274
+  screenshot_strong: flip_rate=0.2739 correct→wrong=0.2052 wrong→correct=0.0687 mean|Δp|=0.2357 meanΔp=-0.0061
+
+Paired bootstrap (fold-wise TRANSFORM−CLEAN; 5000× seed42)
+  fold_1:
+    jpeg_q50: AUC -0.1606 [-0.1761,-0.1455]; AI_rec -0.4750; RealSpec +0.0162
+    resize_112: AUC -0.2199 [-0.2402,-0.2001]; AI_rec +0.4349; RealSpec -0.9295
+    blur_sigma2: AUC -0.2254 [-0.2481,-0.2032]; AI_rec +0.4270; RealSpec -0.4462
+    screenshot_strong: AUC -0.1890 [-0.2056,-0.1730]; AI_rec -0.4039; RealSpec +0.0043
+  fold_2:
+    jpeg_q50: AUC -0.1495 [-0.1648,-0.1342]; AI_rec -0.5344; RealSpec +0.0228
+    resize_112: AUC -0.1643 [-0.1812,-0.1475]; AI_rec +0.3860; RealSpec -0.5475
+    blur_sigma2: AUC -0.1756 [-0.1958,-0.1560]; AI_rec +0.3403; RealSpec -0.3579
+    screenshot_strong: AUC -0.2259 [-0.2448,-0.2079]; AI_rec +0.0339; RealSpec -0.2394
+  fold_3:
+    jpeg_q50: AUC -0.1080 [-0.1206,-0.0961]; AI_rec -0.5567; RealSpec +0.0563
+    resize_112: AUC -0.1359 [-0.1534,-0.1191]; AI_rec +0.2110; RealSpec -0.8798
+    blur_sigma2: AUC -0.1588 [-0.1754,-0.1425]; AI_rec +0.1830; RealSpec -0.3796
+    screenshot_strong: AUC -0.1276 [-0.1432,-0.1119]; AI_rec -0.2463; RealSpec -0.0608
+  fold_4:
+    jpeg_q50: AUC -0.0959 [-0.1109,-0.0818]; AI_rec -0.3790; RealSpec +0.0142
+    resize_112: AUC -0.3823 [-0.4082,-0.3569]; AI_rec +0.5906; RealSpec -0.9858
+    blur_sigma2: AUC -0.3376 [-0.3650,-0.3100]; AI_rec +0.5831; RealSpec -0.4640
+    screenshot_strong: AUC -0.1767 [-0.1962,-0.1575]; AI_rec +0.0294; RealSpec -0.1224
+
+V1 historical comparison
+  status: CONTEXT_ONLY
+  note: V1 C0 (RQ3 A2) StrongRobust metrics are on controlled_v1 known/unseen test with MobileNet thresholds and 224-controlled pipeline; V2 H2 is on V2 development eval with CLIP+LoRA+LogReg at p=0.5. Datasets/generators/thresholds differ — compare qualitative degradation patterns only (e.g. blur_sigma2 historically most damaging to Real specificity for V1).
+
+Optional temperature confidence diagnostic
+  jpeg_q50: mean_conf_clean=0.7237 mean_conf_tf=0.7924 Δ=+0.0687
+  resize_112: mean_conf_clean=0.7237 mean_conf_tf=0.7227 Δ=-0.0009
+  blur_sigma2: mean_conf_clean=0.7237 mean_conf_tf=0.7347 Δ=+0.0110
+  screenshot_strong: mean_conf_clean=0.7237 mean_conf_tf=0.6400 Δ=-0.0837
+
+Decision evidence
+  - flags={'mean_auc_ge_090': False, 'worst_auc_ge_085': False, 'mean_spec_ge_090': False, 'phone_ge_095': False, 'mllm_ge_080': False, 'no_catastrophic_real': False, 'mean_recall_drop_le_010': True, 'fold_behaviour_ok': True, 'most_transforms_preserve': False}
+  - mean_auc=0.7613 worst_auc=0.7252 mean_spec=0.6358 mean_phone=0.7731 mean_mllm=0.5055 mean_rec_drop=-0.0389 preserve=0/4
+
+DECISION: ROBUSTNESS_NOT_ACCEPTABLE
+
+Interpretation
+- q1_overall: Decision=ROBUSTNESS_NOT_ACCEPTABLE; mean_tf_AUC=0.7613; mean_tf_RealSpec=0.6358.
+- q2_worst_auc: resize_112 (AUC=0.7252, Δ=-0.2255).
+- q3_worst_recall: jpeg_q50 (AI_rec=0.0893, Δ=-0.4863).
+- q4_worst_spec: resize_112 (RealSpec=0.1314, Δ=-0.8356).
+- q5_hard_more_sensitive: See hard-generator table; compare transform recall deltas vs overall AI recall deltas.
+- q6_flux: FLUX CLEAN=0.190; transforms=jpeg_q50=0.000, resize_112=0.990, blur_sigma2=0.940, screenshot_strong=0.050
+- q7_nano: Nano CLEAN=0.483; transforms=jpeg_q50=0.008, resize_112=0.945, blur_sigma2=0.926, screenshot_strong=0.531
+- q8_gpt: GPT Image2 CLEAN=0.653; transforms=jpeg_q50=0.091, resize_112=1.000, blur_sigma2=0.999, screenshot_strong=0.274
+- q9_mllm: MLLM specs=CLEAN=0.909, jpeg_q50=0.969, resize_112=0.097, blur_sigma2=0.164, screenshot_strong=0.792
+- q10_phone: Phone specs=CLEAN=1.000, jpeg_q50=1.000, resize_112=0.189, blur_sigma2=0.982, screenshot_strong=0.921
+- q11_failure_mode: ranking_degradation_present=True; operating_score_shift_present=True.
+- q12_vs_v1: CONTEXT_ONLY: V1 C0 (RQ3 A2) StrongRobust metrics are on controlled_v1 known/unseen test with MobileNet thresholds and 224-controlled pipeline; V2 H2 is on V2 development eval with CLIP+LoRA+LogReg at p=0.5. Datasets/generators/thresholds differ — compare qualitative degradation patterns only (e.g. blur_sigma2 historically most damaging to Real specificity for V1).
+- q13_h2_primary: H2 remains the strongest CLEAN-development candidate, but V2-10D = ROBUSTNESS_NOT_ACCEPTABLE blocks development freeze; do not treat H2 as freeze-ready without a robustness intervention.
+- q14_next: B. one tightly scoped robustness intervention / C. further diagnostic
+
+Next-stage recommendation ONLY: Do not freeze H2; authorize one tightly scoped robustness intervention or deeper failure diagnostic for the worst transform. Do not auto-start.
+
+Integrity statement
+  NTIRE_ACCESSED = NO
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V1_RERUN = NO
+  V2_3_FOLDS_CHANGED = NO
+  LORA_BACKBONE_TRAINED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  CLIP_WEIGHTS_UPDATED = NO
+  H2_RETRAINED = NO
+  NEW_HEAD_TRAINED = NO
+  ROBUSTNESS_AWARE_TRAINING_PERFORMED = NO
+  NEW_DATA_ACQUIRED = NO
+  EVALUATION_MEMBERSHIP_CHANGED = NO
+  BINARY_THRESHOLD_CHANGED = NO
+  THRESHOLD_SWEEP_PERFORMED = NO
+  CALIBRATOR_FITTED = NO
+  SELECTIVE_POLICY_RETUNED = NO
+  FINAL_V2_MODEL_SELECTED = NO
+  NEXT_STAGE_STARTED = NO
+  TRANSFORMED_INFERENCE_PERFORMED = YES
+
+FINAL_V2_MODEL_SELECTED = NO
+NEXT_STAGE_STARTED = NO
