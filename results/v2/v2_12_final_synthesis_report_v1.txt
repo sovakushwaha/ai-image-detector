@@ -1,0 +1,52 @@
+V2-12 — FINAL SCIENTIFIC RESULTS SYNTHESIS
+Status: COMPLETE — RESULTS_SYNTHESIS_COMPLETE @ 2026-09-08T16:44:03Z
+FINAL_RESEARCH_MODEL_V1 = C0 | FINAL_RESEARCH_MODEL_V2 = H4
+EXPERIMENTS_COMPLETE=YES | PAPER_READY_FOR_FULL_DRAFT=YES
+
+ARTIFACT CONSISTENCY
+  required_missing=0
+  DISCREPANCY[NTIRE_val_README_vs_labels]: Prefer V2-11 audit + research_log over README marketing text.
+  DISCREPANCY[V2-10I_limitations_pre_NTIRE_external_unknown]: Treat V2-10I limitations as freeze-time register; V2-11 is authoritative for external result.
+  DISCREPANCY[research_log_header_last_updated]: Prefer stage sections over header line for chronology.
+
+V2 PROGRESSION (clean development macros from freeze comparison)
+  CLIP LogReg ~0.815 → refined ~0.820 → MLP-B ~0.837 → LoRA+MLP-B ~0.903 (rec~0.386)
+  H2 ~0.951 → H3 ~0.918 → H4 ~0.926 (FINAL)
+
+ROBUSTNESS MECHANISM SUMMARY
+  H2 mean_tf AUC=0.761 RealSpec=0.636
+    JPEG AI_rec=0.089; resize RealSpec=0.131; blur RealSpec=0.555
+  H4 mean_tf AUC=0.826 RealSpec=0.883
+    JPEG AI_rec=0.355; resize RealSpec=0.875; blur RealSpec=0.837; screenshot AUC=0.812
+  R1 clean k5 purity=0.966; transform purities JPEG/Resize/Blur/Screenshot=0.981/0.919/0.958/0.952
+  Interpretation: development robustness head-limited; NOT proven as NTIRE cause.
+
+CALIBRATION / SELECTIVE
+  V2-9D: temperature improves NLL/Brier, preserves .5 decisions; Platt unsafe Real FPs.
+  V2-10C: selective S90 enrich~2x but err_capture~0.16; most errors remain confident.
+  Do NOT transfer H2 calibration findings to frozen H4.
+
+NTIRE EXTERNAL SYNTHESIS
+  AUC=0.6250 AP=0.6303 AI_rec=0.1296 RealSpec=0.9556 BalAcc=0.5426
+  Bootstrap AUC [0.614,0.636]; AI_rec [0.120,0.139]
+  Failure components (descriptive): RANKING GENERALISATION LOSS; STRONG REAL-WARD SCORE BIAS / LOW AI SCORES.
+  Assessment: WEAK_EXTERNAL_TRANSFER
+
+DEVELOPMENT–EXTERNAL GAP (DESCRIPTIVE; DATASETS DIFFER; NOT PAIRED)
+  ΔAUC_vs_CLEAN=-0.301; ΔAI_rec=-0.395; ΔRealSpec=-0.019
+
+INTEGRITY
+  MODEL_TRAINING_PERFORMED = NO
+  MODEL_INFERENCE_PERFORMED = NO
+  NEW_DATA_ACQUIRED = NO
+  NTIRE_REEVALUATED = NO
+  NTIRE_TUNING_PERFORMED = NO
+  H4_MODIFIED = NO
+  THRESHOLD_CHANGED = NO
+  CALIBRATION_PERFORMED = NO
+  NEW_MODEL_SELECTED = NO
+  FINAL_RESEARCH_MODEL_V2 = H4
+  DEVELOPMENT_FROZEN = YES
+  FINAL_EXTERNAL_VALIDATION_COMPLETE = YES
+  POST_NTIRE_MODEL_MODIFICATION_ALLOWED = NO
+  NEXT_EXPERIMENT_STARTED = NO

@@ -1,0 +1,79 @@
+V2-12 SUPPORTED / UNSUPPORTED CLAIM REGISTER
+Authority: existing stage artifacts + research_log. No new experiments.
+
+======================================================================
+SUPPORTED CLAIMS
+======================================================================
+
+1. V1 established a resource-aware lightweight detector (C0) with strong
+   controlled internal evidence but historically poor independent external
+   transfer (Stage 27A CONTEXT_ONLY vs NTIRE).
+
+2. Frozen CLIP representations improved V2 development unseen-generator
+   discrimination relative to continuing a V1-style lightweight RGB path
+   on the V2 development protocol (V2-5/6/7).
+
+3. Parameter-efficient LoRA improved development ranking (V2-8 AUC~0.903 vs
+   MLP-B ~0.837) while degrading AI recall@0.5 under the MLP-B head
+   (LORA_MIXED).
+
+4. Adapted LoRA R1 retained strong local class structure on clean evaluation
+   (V2-10A k5 purity ~0.966), indicating a head-limited failure mode for the
+   original MLP-B operating point.
+
+5. Small class-balanced linear heads (~513 parameters) can materially improve
+   clean operating performance on frozen R1 (V2-10B H2).
+
+6. Strong social-media-style transformations can induce large systematic score
+   / margin shifts without complete local representation collapse (V2-10D/E;
+   transform k5 purities remain high; HEAD_SHIFT_DOMINANT).
+
+7. Robustness-aware head training on frozen R1 (H3/H4) can substantially reduce
+   catastrophic transform-driven collapses while preserving a ~513-parameter
+   deployment head (V2-10F/H).
+
+8. Development robustness and high clean development scores do not guarantee
+   sealed independent-benchmark transfer (V2-11 WEAK_EXTERNAL_TRANSFER).
+
+9. Final NTIRE transfer for frozen H4 was weak: ranking only modestly above
+   chance with severe AI false negatives at threshold 0.5, while Real
+   specificity remained high.
+
+10. Sealed external evaluation after freeze is scientifically informative even
+    when negative: it bounds claims that would otherwise be overstated from
+    development alone.
+
+
+======================================================================
+UNSUPPORTED / PROHIBITED CLAIMS
+======================================================================
+
+1. H4 is state of the art. (No competitive leaderboard comparison performed.)
+
+2. H4 robustly generalises to arbitrary unseen generators. (NTIRE weak; hard
+   subset near chance; no generator IDs on val.)
+
+3. H4 solves AI-image detection. (External AI recall ~0.13.)
+
+4. StrongRobust success guarantees general social-media robustness. (Suite is
+   limited; physical recapture not tested; NTIRE still weak.)
+
+5. NTIRE weakness was definitively caused by one specific generator. (No
+   official per-generator metadata on the val split used.)
+
+6. One threshold adjustment would solve NTIRE. (No threshold sweep performed
+   after freeze; would violate protocol and is not evidence-supported.)
+
+7. Calibration would rescue NTIRE. (H4 was evaluated uncalibrated; H2/V2-9
+   calibration findings must not be transferred.)
+
+8. V2 significantly beats V1 on the same external benchmark. (Stage27 and
+   NTIRE are not established as the same benchmark; CONTEXT_ONLY.)
+
+9. NTIRE failure is proven to be the same H2 margin-shift mechanism. (No NTIRE
+   R1 geometry / margin analysis was run.)
+
+10. Best-fold or reweighted aggregation would be a valid primary NTIRE result.
+    (Equal-weight ensemble was locked before result inspection.)
+
+11. Post-NTIRE retraining/tuning is allowed. (POST_NTIRE_MODEL_MODIFICATION_ALLOWED=NO.)

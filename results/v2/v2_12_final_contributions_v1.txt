@@ -1,0 +1,43 @@
+V2-12 FINAL CONTRIBUTIONS (candidate; evidence-grounded; not inflated)
+
+C1. Resource-aware, protocol-locked detector development framework
+    Support: V1 Stages 25–28; V2-0 protocol freeze; contamination guard;
+    V2-10I SHA256 freeze + NTIRE protocol lock before access.
+    Substance: Shows how to run a multi-stage detector programme with
+    sealed external validation and explicit resource accounting.
+
+C2. Modern multi-generator development evaluation for unseen-generator risk
+    Support: V2-3 dataset/folds; V2-5..V2-10H hard-generator tables
+    (Seedream/FLUX residual documented).
+    Substance: Development evidence that foundation embeddings + adaptation
+    improve controlled unseen-generator discrimination vs lightweight V1 path,
+    while exposing residual modern-generator failures.
+
+C3. LoRA representation diagnostic separating ranking gains from operating failure
+    Support: V2-8 LORA_MIXED; V2-9A–D; V2-10A HEAD_LIMITED (R1 k5~0.966).
+    Substance: Demonstrates that adaptation can improve ranking yet leave a
+    head that underutilizes a class-structured representation at a fixed threshold.
+
+C4. Head-limited robustness mechanism under StrongRobust transforms
+    Support: V2-10D collapses; V2-10E HEAD_SHIFT_DOMINANT with preserved k5
+    purity under JPEG/resize/blur/screenshot.
+    Substance: Provides mechanistic development evidence that transform failures
+    can be decision-direction / margin failures rather than complete local
+    representation collapse. Scope: development StrongRobust; not extrapolated
+    as the proven cause of NTIRE failure.
+
+C5. Tiny robustness-aware linear head intervention (H3→H4)
+    Support: V2-10F/G/H; ~513-parameter heads; mean tf RealSpec H2~0.636 → H4~0.883
+    with catastrophic JPEG/resize collapses largely corrected; H4 clean/robust compromise.
+    Substance: Shows offline transform-weighted linear probing can buy substantial
+    development robustness without enlarging the deployment head.
+
+C6. Sealed external validation revealing a persistent generalisation gap
+    Support: V2-10I freeze; V2-11 NTIRE WEAK_EXTERNAL_TRANSFER (AUC0.625, AI_rec0.130).
+    Substance: Establishes that substantial internal development gains are insufficient
+    evidence of broad independent transfer; negative sealed result is a core contribution.
+
+Non-contributions / do not claim as contributions:
+- SOTA detector performance
+- Solved social-media robustness
+- Solved NTIRE / wild AI detection
