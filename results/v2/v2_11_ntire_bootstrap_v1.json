@@ -1,0 +1,35 @@
+{
+  "n_boot": 5000,
+  "seed": 42,
+  "stratified": true,
+  "roc_auc": {
+    "mean": 0.625008780544,
+    "ci_low": 0.6138403720000001,
+    "ci_high": 0.636171342,
+    "n_valid": 5000
+  },
+  "ap": {
+    "mean": 0.6304012357742304,
+    "ci_low": 0.6185834125464937,
+    "ci_high": 0.6422800720099026,
+    "n_valid": 5000
+  },
+  "ai_recall": {
+    "mean": 0.12958124000000001,
+    "ci_low": 0.1204,
+    "ci_high": 0.1388,
+    "n_valid": 5000
+  },
+  "real_specificity": {
+    "mean": 0.95561268,
+    "ci_low": 0.9498,
+    "ci_high": 0.9614,
+    "n_valid": 5000
+  },
+  "balanced_accuracy": {
+    "mean": 0.54259696,
+    "ci_low": 0.537,
+    "ci_high": 0.548,
+    "n_valid": 5000
+  }
+}

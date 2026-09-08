@@ -1,0 +1,37 @@
+V2-10I FINAL MODEL SPECIFICATION
+Freeze timestamp (UTC): 2026-09-08T14:59:30Z
+
+FINAL_RESEARCH_MODEL_V2 = H4
+DEVELOPMENT_STATUS = FROZEN_WITH_DOCUMENTED_LIMITATIONS
+FINAL_EXTERNAL_VALIDATION = NOT_STARTED
+NTIRE_STATUS = SEALED
+
+Conceptual stack:
+  Frozen CLIP ViT-B-16-quickgelu (OpenAI pretrained, open_clip)
+  + V2-8 fold-specific LoRA (last 4 visual blocks; attn.in_proj + attn.out_proj; r=8, alpha=16, dropout=0.05)
+  + R1 512-d L2-normalized visual representation
+  + H4 class-balanced clean-anchored robust Logistic Regression
+
+H4 head:
+  penalty=L2; C=1.0; fit_intercept=True; class_weight=balanced; solver=lbfgs; max_iter=2000
+  binary threshold = 0.5 (not tuned)
+  ~513 learned parameters; ~2.9 KB serialized
+
+Offline TRAIN condition sample weights (LOCKED; no search):
+  CLEAN=4, jpeg_q50=1, resize_112=1, blur_sigma2=1, screenshot_strong=1
+  => 50% clean / 50% transformed by sample-weight mass
+  Deployment does NOT require transformed copies at inference.
+
+Primary external output:
+  UNCALIBRATED H4 binary p(AI) at p=0.5 (+ threshold-free ranking metrics where labels permit).
+  Do NOT transfer H2 temperature/selective policies to H4.
+
+Artifacts:
+  LoRA: models/v2/clip_lora_fold1_best_v1.pt
+  H4:   models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold1_v1.joblib
+  LoRA: models/v2/clip_lora_fold2_best_v1.pt
+  H4:   models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold2_v1.joblib
+  LoRA: models/v2/clip_lora_fold3_best_v1.pt
+  H4:   models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold3_v1.joblib
+  LoRA: models/v2/clip_lora_fold4_best_v1.pt
+  H4:   models/v2/v2_10h_h4_clean_anchored_robust_logreg_fold4_v1.joblib

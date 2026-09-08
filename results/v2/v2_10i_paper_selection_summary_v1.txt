@@ -1,0 +1,51 @@
+V2-10I PAPER-READY SELECTION SUMMARY (factual evidence; not Discussion prose)
+Freeze timestamp (UTC): 2026-09-08T14:59:30Z
+FINAL_RESEARCH_MODEL_V2 = H4
+DEVELOPMENT_STATUS = FROZEN_WITH_DOCUMENTED_LIMITATIONS
+FINAL_EXTERNAL_PERFORMANCE = UNKNOWN (NTIRE SEALED)
+
+Why LoRA was retained
+- V2-8 LoRA improved mean development AUC (~0.903) vs frozen CLIP MLP-B (~0.837).
+- V2-10A showed LoRA R1 geometry is strong (k5 purity ~0.966), indicating the representation remains useful even when the MLP-B operating point failed.
+
+Why MLP-B was rejected as the final head
+- Under LoRA+MLP-B, AI recall@0.5 fell to ~0.386 despite strong ranking.
+- V2-9 showed primarily an operating-point / calibration-protocol problem rather than a safe calibrator rescue.
+- V2-10A–B showed a class-balanced linear head on frozen R1 (H2) restored clean discrimination more effectively for the binary detector objective.
+
+Why H2 was not selected despite best clean score
+- H2 CLEAN AUC ~0.951 is strongest among H2/H3/H4.
+- V2-10D StrongRobust evaluation was ROBUSTNESS_NOT_ACCEPTABLE: e.g. JPEG AI recall ~0.089; resize Real specificity ~0.131.
+- V2-10E attributed this to head/decision-direction sensitivity, not R1 collapse.
+
+Why H3 was not selected
+- H3 substantially fixed catastrophic transform collapses (mean tf AUC ~0.832; mean tf RealSpec ~0.887).
+- Clean ranking degraded more strongly (CLEAN AUC ~0.918).
+- V2-10G showed over-rotation away from the clean class-separation direction under 80% transformed training rows.
+
+Why H4 was selected
+- H4 is the strongest overall clean-versus-robust compromise among completed candidates.
+- CLEAN AUC ~0.926 modestly recovers vs H3 while retaining StrongRobust behaviour close to H3 (mean tf AUC ~0.826; mean tf RealSpec ~0.883).
+- Real-domain safety remains strong (especially Smartphone/COCO; MLLM improved vs H2 under resize/blur).
+- Deployment head remains ~513 parameters (~2.9 KB); transform weighting is offline only.
+- No further condition-weight search is scientifically justified after the single predeclared V2-10H experiment.
+
+Resource cost
+- Deployment: frozen LoRA visual pathway + 513-parameter logistic head.
+- Offline H4 training used weighted CLEAN/StrongRobust R1 rows; inference needs a single CLEAN forward pass.
+
+Robustness gains vs H2
+- Catastrophic one-class collapses under JPEG/resize/blur are largely corrected.
+- Mean transformed Real specificity rises from ~0.636 (H2) to ~0.883 (H4).
+
+Remaining limitations (must remain visible)
+- H4 missed V2-10H PROMISING gates (MIXED).
+- Clean AUC below H2; mean/worst StrongRobust AUC imperfect.
+- Seedream and FLUX remain weak; Fold4 remains weaker.
+- Selective/calibration layers are not part of the frozen primary detector.
+- NTIRE external transfer is unknown.
+
+Required wording
+- selected development compromise
+- final V2 model with documented robustness/generalisation limitations
+- Do not claim NTIRE generalisation or predict NTIRE scores.

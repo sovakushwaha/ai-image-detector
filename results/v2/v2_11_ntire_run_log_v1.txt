@@ -1,0 +1,136 @@
+[V2-11] STEP 0 — Pre-NTIRE freeze verification ...
+PRE_NTIRE_FREEZE_VERIFIED = YES
+[V2-11] STEP 1 — Formal NTIRE open ...
+NTIRE_FIRST_AUTHORIZED_ACCESS = YES @ 2026-09-08T15:09:21Z
+[V2-11] STEP 2 — Dataset audit ...
+[V2-11] Checking image readability ...
+[V2-11] Inference fold 1 n=10000 on mps ...
+[V2-11] Fold 1 done in 562.0s
+[V2-11] Inference fold 2 n=10000 on mps ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[V2-11] Fold 2 done in 675.1s
+[V2-11] Inference fold 3 n=10000 on mps ...
+[V2-11] Fold 3 done in 656.6s
+[V2-11] Inference fold 4 n=10000 on mps ...
+[V2-11] Fold 4 done in 742.5s
+[V2-11] Hard-subset diagnostic inference ...
+[V2-11] Inference fold 1 n=2500 on mps ...
+[V2-11] Fold 1 done in 184.6s
+[V2-11] Inference fold 2 n=2500 on mps ...
+[V2-11] Fold 2 done in 188.5s
+[V2-11] Inference fold 3 n=2500 on mps ...
+[V2-11] Fold 3 done in 188.3s
+[V2-11] Inference fold 4 n=2500 on mps ...
+[V2-11] Fold 4 done in 189.6s
+[V2-11] Bootstrap ...
+[V2-11] Appended research_log.md
+V2-11 — NTIRE Final External Evaluation (Frozen H4)
+Status: COMPLETE — WEAK_EXTERNAL_TRANSFER
+FINAL_RESEARCH_MODEL_V2 = H4 (unchanged)
+DEVELOPMENT_STATUS = FROZEN_WITH_DOCUMENTED_LIMITATIONS
+FINAL_EXTERNAL_VALIDATION = COMPLETE
+POST_NTIRE_MODEL_MODIFICATION_ALLOWED = NO
+
+Pre-NTIRE freeze verification: YES
+First authorized access: 2026-09-08T15:09:21Z
+Dataset: deepfakesMSU/NTIRE-RobustAIGenDetection-val
+Revision: c762434ed33d1b31f0adaafaaacaab1f8459a969
+Local: data/v2/NTIRE-RobustAIGenDetection-val
+
+Aggregation: p_final = mean(p1,p2,p3,p4); equal weights 0.25; thr=0.5
+max |p_final - mean(p_folds)| = 0.000e+00
+
+Primary ensemble metrics
+  n: 10000
+  n_real: 5000
+  n_ai: 5000
+  roc_auc: 0.62502648
+  ap: 0.6302553959370336
+  ai_recall: 0.1296
+  real_specificity: 0.9556
+  balanced_accuracy: 0.5426
+  precision: 0.7448275862068966
+  f1: 0.22078364565587735
+  accuracy: 0.5426
+  tn: 4778
+  fp: 222
+  fn: 4352
+  tp: 648
+
+Bootstrap 95% CIs (5000, seed 42, stratified)
+  roc_auc: 0.6250 [0.6138, 0.6362]
+  ap: 0.6304 [0.6186, 0.6423]
+  ai_recall: 0.1296 [0.1204, 0.1388]
+  real_specificity: 0.9556 [0.9498, 0.9614]
+  balanced_accuracy: 0.5426 [0.5370, 0.5480]
+
+Fold diagnostics (NOT primary)
+  fold_1: AUC=0.6001 AP=0.6100 AI_rec=0.2846 RealSpec=0.8386 BalAcc=0.5616
+  fold_2: AUC=0.6651 AP=0.6658 AI_rec=0.1296 RealSpec=0.9660 BalAcc=0.5478
+  fold_3: AUC=0.6204 AP=0.6200 AI_rec=0.1720 RealSpec=0.9254 BalAcc=0.5487
+  fold_4: AUC=0.5559 AP=0.5652 AI_rec=0.0948 RealSpec=0.9492 BalAcc=0.5220
+
+Distortion strata (official is_distorted)
+  clean_is_distorted_0: n=5000 AUC=0.6311 AI_rec=0.0352 RealSpec=0.9936 BalAcc=0.5144
+  distorted_is_distorted_1: n=5000 AUC=0.6528 AI_rec=0.2240 RealSpec=0.9176 BalAcc=0.5708
+
+Hard subset (diagnostic; disjoint IDs)
+  n=2500 AUC=0.5512 AI_rec=0.1408 RealSpec=0.8992 BalAcc=0.5200
+
+Development vs external (DESCRIPTIVE; different datasets)
+  note: Different datasets; descriptive gap only; not paired.
+  delta_auc_vs_dev_clean: -0.30136362841941855
+  delta_ap_vs_dev_clean: -0.2988740112906908
+  delta_ai_recall_vs_dev_clean: -0.3953771485247796
+  delta_real_spec_vs_dev_clean: -0.019210400866738864
+  delta_balacc_vs_dev_clean: -0.20729377469575927
+  delta_auc_vs_dev_mean_tf: -0.20090556807283555
+  delta_real_spec_vs_dev_mean_tf: 0.07227118093174434
+
+V1 historical context: CONTEXT_ONLY (different benchmark)
+  Stage27A approx AUC~0.516 AI_rec~0.220 RealSpec~0.806
+
+EXTERNAL_TRANSFER_ASSESSMENT: WEAK_EXTERNAL_TRANSFER
+  - NTIRE ensemble AUC=0.6250 AP=0.6303 AI_rec=0.1296 RealSpec=0.9556 BalAcc=0.5426
+  - Dev H4 CLEAN≈AUC0.926/AP0.929/rec0.525/spec0.975/bal0.750; dev mean StrongRobust≈AUC0.826/spec0.883 (different dataset; descriptive gap only).
+  - Historical V1 Stage27 external CONTEXT_ONLY ≈AUC0.516/rec0.220/spec0.806 (different benchmark).
+  - descriptive_rule_applied -> WEAK_EXTERNAL_TRANSFER
+
+Successes / failures
+  + Real specificity retained at useful level (0.956).
+  + No post-NTIRE model modification; freeze held.
+  - External ranking weak (AUC=0.625).
+  - AI recall@0.5 low (0.130).
+  - Substantial descriptive drop vs development CLEAN AUC.
+  - Official per-generator metadata absent on val split.
+  - Hard subset weaker than primary (hard AUC=0.551).
+
+Integrity
+  PRE_NTIRE_FREEZE_VERIFIED = YES
+  NTIRE_ACCESSED = YES
+  NTIRE_FIRST_AUTHORIZED_ACCESS = YES
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V1_RERUN = NO
+  V2_3_FOLDS_CHANGED = NO
+  MODEL_TRAINING_PERFORMED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  H4_UPDATED = NO
+  HYPERPARAMETER_SEARCH_PERFORMED = NO
+  FOLD_WEIGHT_SEARCH_PERFORMED = NO
+  AGGREGATION_RULE_CHANGED_AFTER_RESULTS = NO
+  THRESHOLD_CHANGED = NO
+  THRESHOLD_SWEEP_PERFORMED = NO
+  CALIBRATOR_FITTED = NO
+  SELECTIVE_POLICY_RETUNED = NO
+  NEW_DEVELOPMENT_DATA_ACQUIRED = NO
+  NTIRE_LABELS_USED_FOR_MODEL_SELECTION = NO
+  NTIRE_LABELS_USED_FOR_TUNING = NO
+  FINAL_RESEARCH_MODEL_V2 = H4
+  DEVELOPMENT_FROZEN = YES
+  FINAL_EXTERNAL_VALIDATION_COMPLETE = YES
+  POST_NTIRE_MODEL_MODIFICATION_ALLOWED = NO
+  NEXT_STAGE_STARTED = NO
+
+EXTERNAL_TRANSFER_ASSESSMENT = WEAK_EXTERNAL_TRANSFER

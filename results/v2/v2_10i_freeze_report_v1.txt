@@ -1,0 +1,42 @@
+V2-10I — Development Closure / Formal Freeze
+Status: COMPLETE — FROZEN_WITH_DOCUMENTED_LIMITATIONS
+FINAL_RESEARCH_MODEL_V2 = H4
+NTIRE_STATUS = SEALED
+Freeze timestamp (UTC): 2026-09-08T14:59:30Z
+
+No training. No inference. No NTIRE access.
+
+H4 artifact audit: OK
+Freeze manifest entries: 19
+Manifest: models/v2/final_v2_h4_freeze_manifest_v1.json
+
+Selection rationale:
+  H2 NOT selected: StrongRobust collapse despite best clean AUC.
+  H3 NOT selected: robustness gained; clean ranking / over-rotation cost too high.
+  H4 SELECTED: strongest completed clean/robust development compromise; ~513-param head.
+
+Primary external output: UNCALIBRATED H4 p(AI) @ 0.5
+NTIRE protocol lock written; NTIRE remains SEALED.
+
+Integrity statement:
+  NTIRE_ACCESSED = NO
+  NTIRE_STATUS = SEALED
+  FAL_USED = NO
+  V1_MODIFIED = NO
+  V1_RERUN = NO
+  V2_3_FOLDS_CHANGED = NO
+  MODEL_TRAINING_PERFORMED = NO
+  MODEL_INFERENCE_PERFORMED = NO
+  LORA_WEIGHTS_UPDATED = NO
+  H2_UPDATED = NO
+  H3_UPDATED = NO
+  H4_UPDATED = NO
+  THRESHOLD_CHANGED = NO
+  CALIBRATOR_FITTED = NO
+  SELECTIVE_POLICY_RETUNED = NO
+  NEW_DATA_ACQUIRED = NO
+  FINAL_RESEARCH_MODEL_V2_SELECTED = YES
+  FINAL_RESEARCH_MODEL_V2 = H4
+  DEVELOPMENT_FROZEN = YES
+  FINAL_EXTERNAL_VALIDATION_STARTED = NO
+  NEXT_STAGE_STARTED = NO
